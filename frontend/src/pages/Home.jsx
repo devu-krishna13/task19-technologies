@@ -216,20 +216,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ STATS (after proof) ═══ */}
-      <section className="py-24 bg-primary">
+      {/* ═══ OUR STORY (Stats) ═══ */}
+      <section className="py-24 bg-primary text-white">
         <div className="container">
-          <div className="mb-12 max-w-2xl">
-            <span className="inline-flex items-center gap-3 mb-4"><span className="h-px w-8 bg-accent" /><span className="font-display text-xs font-medium tracking-[0.25em] uppercase text-accent">Measured impact</span></span>
-            <h2 className="font-display font-light text-white" style={{ fontSize: 'var(--font-size-h2)' }}>Numbers That Feel <em className="font-serif-italic text-white/50">Earned</em></h2>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-            {stats.map((stat, i) => (
-              <motion.div key={i} className="p-10 lg:p-14 bg-primary text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <div className="font-display text-5xl sm:text-6xl font-light text-white mb-3 leading-none">{stat.value}{stat.suffix}</div>
-                <p className="text-xs font-display font-medium tracking-[0.2em] text-white/40 uppercase">{stat.label}</p>
-              </motion.div>
-            ))}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 mb-20 items-start">
+            <div className="lg:w-1/3">
+              <span className="inline-flex items-center gap-3 mb-6"><span className="h-px w-8 bg-accent" /><span className="font-display text-xs font-medium tracking-[0.25em] uppercase text-accent">Our Story</span></span>
+              <h2 className="font-display font-light text-white leading-tight" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>Numbers<br />That Matter</h2>
+            </div>
+            <div className="lg:w-2/3 lg:pt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+                {stats.map((stat, i) => (
+                  <motion.div key={i} className="text-left" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
+                    <div className="font-display text-4xl sm:text-5xl font-light text-white mb-4 leading-none tracking-tight">{stat.value}<span className="text-accent">{stat.suffix}</span></div>
+                    <p className="text-sm font-body text-white/60 leading-snug max-w-[120px]">{stat.label.split(' ').map((word, idx) => (
+                      <span key={idx}>{word}<br/></span>
+                    ))}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

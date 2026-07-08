@@ -12,42 +12,40 @@ export default function CTASection({
   eyebrow = 'Start Your Project',
 }) {
   return (
-    <section className="section-dark py-24 border-t border-white/10">
-      <div className="container">
-        <motion.div
-          className="max-w-4xl mx-auto text-center"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="inline-flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-accent" />
-            <span className="font-display text-xs font-medium tracking-[0.25em] uppercase text-accent">{eyebrow}</span>
-            <span className="h-px w-8 bg-accent" />
-          </span>
-          <h2 className="font-display font-light text-white mb-6 leading-snug" style={{ fontSize: 'var(--font-size-h2)' }}>
-            {title}
-          </h2>
-          <p className="text-white/60 text-lg font-light leading-relaxed mb-10 max-w-2xl mx-auto">{subtitle}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+    <section className="py-32 bg-white relative overflow-hidden">
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-end">
+          <motion.div
+            className="max-w-4xl text-left"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="inline-flex items-center gap-3 mb-8">
+              <span className="h-px w-10 bg-primary" />
+              <span className="font-display text-sm font-semibold tracking-widest uppercase text-primary">{eyebrow}</span>
+            </span>
+            <h2 className="font-display font-light text-primary leading-[1.1] mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
+              {title}
+            </h2>
+            <p className="text-primary/60 text-xl font-light leading-relaxed max-w-2xl">{subtitle}</p>
+          </motion.div>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-5 pb-2"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             <Link
               to={primaryTo}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-white font-display font-semibold text-sm hover:bg-accent-hover transition-all duration-300"
+              className="inline-flex items-center justify-center gap-4 px-10 py-5 bg-primary text-white font-display font-medium text-sm hover:bg-accent hover:text-white transition-all duration-500 hover:shadow-glow group"
             >
-              {primaryText} <ArrowRight className="w-4 h-4" />
+              {primaryText} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            {secondaryText ? (
-              <Link
-                to={secondaryTo}
-                className="inline-flex items-center justify-center gap-2 text-sm font-display font-medium text-white/70 hover:text-white transition-all duration-300"
-              >
-                {secondaryText}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            ) : null}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

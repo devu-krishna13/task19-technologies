@@ -38,12 +38,12 @@ export default function Header() {
 
   const isHome = location.pathname === '/'
   const headerBg = scrolled
-    ? 'bg-white/96 backdrop-blur-xl shadow-sm border-b border-border'
+    ? 'bg-primary/95 backdrop-blur-xl shadow-sm border-b border-white/10'
     : isHome
       ? 'bg-transparent'
-      : 'bg-white/96 backdrop-blur-xl border-b border-border'
-  const textColor = scrolled || !isHome ? 'text-text-primary' : 'text-white'
-  const logoColor = scrolled || !isHome ? 'text-text-primary' : 'text-white'
+      : 'bg-primary/95 backdrop-blur-xl border-b border-white/10'
+  const textColor = 'text-white'
+  const logoColor = 'text-white'
 
   return (
     <>
