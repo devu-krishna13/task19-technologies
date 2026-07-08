@@ -389,3 +389,12 @@ ul, ol {
   width: 28px !important;
   border-radius: var(--radius-full) !important;
 }
+
+/* ── Custom Interaction Effects (WAC Inspired) ── */
+.clip-inset-wrapper:hover .clip-inset {
+  clip-path: inset(5% round 0px);
+}
+.clip-inset {
+  clip-path: inset(0% round 0px);
+  will-change: clip-path;
+}

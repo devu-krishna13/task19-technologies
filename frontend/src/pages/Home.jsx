@@ -32,32 +32,32 @@ import {
 /* ── Hero Slides ── */
 const heroSlides = [
   {
-    label: 'Shopify & E-Commerce Specialists',
-    title: <>We Build Premium Commerce<br />Experiences That <em className="font-serif-italic not-italic text-white/50">Convert</em></>,
-    desc: 'Shopify development, custom apps, WooCommerce migrations, and CRO execution designed to turn technical complexity into measurable revenue growth.',
-    metric: '70%+',
-    metricLabel: 'YOY revenue increase delivered for a fashion brand',
+    label: 'Innovation & Strategy',
+    title: <>Experiences Powered by<br /><em className="font-serif-italic not-italic text-white/50">Intelligence.</em></>,
+    desc: 'Today’s businesses need more than just digital tools—they need clear strategic direction, backed by deep customer insight.',
+    metric: '700+',
+    metricLabel: 'High-Impact Projects Delivered',
   },
   {
-    label: 'Proof Before Pitch',
-    title: <>Case Studies That Show<br /><em className="font-serif-italic not-italic text-white/50">What Good Work Looks Like</em></>,
-    desc: 'From luxury retail to high-volume catalogs, our portfolio is built around launch quality, performance, and operational fit.',
-    metric: '6',
-    metricLabel: 'featured project stories on the homepage',
+    label: 'AI Solutions',
+    title: <>AI Precision. Human Intuition.<br /><em className="font-serif-italic not-italic text-white/50">Real Results.</em></>,
+    desc: 'Agentic Solutions Engineered to Scale and drive the next digital revolution in your industry.',
+    metric: '100+',
+    metricLabel: 'Brand Connections Worldwide',
   },
   {
-    label: 'Performance Engineering',
-    title: <>Fast, Flexible Stores Built<br />for <em className="font-serif-italic not-italic text-white/50">Scale</em></>,
-    desc: 'We optimize storefront performance, information architecture, and conversion flows so every launch feels polished on every screen.',
-    metric: '45%',
-    metricLabel: 'faster load times from targeted optimization',
+    label: 'Industry Leaders',
+    title: <>Tech, Marketing, Industry<br />Leaders, <em className="font-serif-italic not-italic text-white/50">One Stage!</em></>,
+    desc: 'WAC Beyond Preview Event - Discover authentic experiences, straight from those we serve.',
+    metric: '600+',
+    metricLabel: 'International Clients',
   },
   {
-    label: 'Long-Term Partnership',
-    title: <>A Team That Solves the<br /><em className="font-serif-italic not-italic text-white/50">Hard Parts</em></>,
-    desc: 'Migration strategy, product growth, custom features, and post-launch support delivered through reusable systems, not one-off fixes.',
-    metric: '10,000+',
-    metricLabel: 'SKUs migrated with preserved SEO integrity',
+    label: 'Digital Transformation',
+    title: <>Helping You Take the<br /><em className="font-serif-italic not-italic text-white/50">Digital Leap</em></>,
+    desc: 'Reshaping the entire digital landscape for global brands across retail, finance, and manufacturing.',
+    metric: '450+',
+    metricLabel: 'Dedicated Experts',
   },
 ]
 
@@ -186,10 +186,12 @@ export default function Home() {
             {portfolioItems.slice(0, 6).map((item, i) => (
               <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}>
                 <Link to={`/portfolio/${item.slug}`} className="group block border border-border hover:border-accent/30 transition-all duration-500 overflow-hidden bg-surface h-full">
-                  <div className="aspect-[4/3] overflow-hidden relative">
-                    <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary/65 to-transparent" />
-                    <div className="absolute top-4 left-4"><span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[11px] font-display font-medium tracking-wider uppercase text-text-primary">{item.industry}</span></div>
+                  <div className="aspect-[4/3] overflow-hidden relative clip-inset-wrapper">
+                    <div className="absolute inset-0 clip-inset transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+                      <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary/65 to-transparent" />
+                    </div>
+                    <div className="absolute top-4 left-4 z-10"><span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[11px] font-display font-medium tracking-wider uppercase text-text-primary">{item.industry}</span></div>
                   </div>
                   <div className="p-6 flex flex-col h-[calc(100%-14rem)]">
                     <div className="flex items-center justify-between gap-3 mb-3">

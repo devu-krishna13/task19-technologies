@@ -5,9 +5,10 @@ import { Menu, X, ArrowRight, Phone, Mail } from 'lucide-react'
 
 const navLinks = [
   { label: 'Home', to: '/' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Shopify Services', to: '/services/shopify' },
+  { label: 'Recent Portfolio', to: '/portfolio' },
+  { label: 'Shopify Service Page', to: '/services/shopify' },
   { label: 'Shopify Apps', to: '/shopify-apps' },
+  { label: 'Contact Us', to: '/contact' },
 ]
 
 export default function Header() {
@@ -79,7 +80,7 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* CTA — Distinct Contact Button */}
+            {/* CTA */}
             <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
               <a
                 href="tel:+917012639646"
@@ -88,14 +89,6 @@ export default function Header() {
                 <Phone className="w-4 h-4" />
                 <span className="hidden xl:inline">+91 70126 39646</span>
               </a>
-              <Link
-                to="/contact"
-                id="header-contact-btn"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white text-sm font-display font-semibold transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20"
-              >
-                Contact
-                <ArrowRight className="w-4 h-4" />
-              </Link>
             </div>
 
             {/* Mobile Toggle */}
@@ -146,13 +139,7 @@ export default function Header() {
                 </Link>
               ))}
 
-              <Link
-                to="/contact"
-                className="block py-5 border-b border-border-dark font-display font-light text-xl text-white hover:text-accent transition-colors duration-200"
-                onClick={() => setMobileOpen(false)}
-              >
-                Contact
-              </Link>
+
 
               {/* Mobile Contact Info */}
               <div className="pt-8 space-y-5">
@@ -165,7 +152,7 @@ export default function Header() {
                   <span className="text-sm">info@task19.com</span>
                 </a>
                 <Link
-                  to="/contact"
+                  to="/contact-us"
                   className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-white text-sm font-display font-semibold transition-all duration-300 hover:bg-accent-hover w-full justify-center mt-4"
                   onClick={() => setMobileOpen(false)}
                 >
