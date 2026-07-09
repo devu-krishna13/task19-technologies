@@ -1,116 +1,100 @@
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
-import { motion, AnimatePresence } from 'framer-motion'
-import PortfolioCard from '../components/ui/PortfolioCard'
+import { ArrowRight, ExternalLink } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { portfolioItems } from '../constants/data'
 import CTASection from '../components/ui/CTASection'
-import { portfolioItems, portfolioCategories } from '../constants/data'
-import { ArrowRight } from 'lucide-react'
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState('All')
-
-  const filtered = activeCategory === 'All'
-    ? portfolioItems
-    : portfolioItems.filter(p => p.category === activeCategory)
-
   return (
     <>
       <Helmet>
-        <title>Portfolio — Task19 Technologies</title>
-        <meta name="description" content="Explore Task19 Technologies' portfolio of high-performance e-commerce and web applications delivered for clients across 15+ countries." />
+        <title>Recent Portfolio — Task19 Technologies</title>
+        <meta name="description" content="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries." />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-40 pb-28 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
-        <div className="container relative z-10">
-          <motion.div className="max-w-3xl" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="inline-flex items-center gap-3 mb-7">
-              <span className="h-px w-10 bg-accent" />
-              <span className="font-display text-xs font-medium tracking-[0.3em] uppercase text-accent">Our Work</span>
+      {/* ── Page Hero ── */}
+      <section className="pt-40 pb-20 bg-white border-b border-border">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-3 mb-6">
+              <span className="h-px w-8 bg-accent" />
+              <span className="font-display text-[10px] font-semibold tracking-[0.25em] uppercase text-accent">Our Work</span>
             </span>
-            <h1 className="font-display font-light text-white mb-7 leading-[1.05]" style={{ fontSize: 'var(--font-size-h1)' }}>
-              Projects That{' '}
-              <em className="font-serif-italic text-white/50">Delivered Results</em>
+            <h1 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+              Recent Portfolio
             </h1>
-            <p className="text-xl text-white/60 leading-relaxed font-light">
-              A curated selection of our most impactful digital solutions — each one a story of challenges solved, goals exceeded, and businesses transformed.
+            <p className="text-text-secondary text-xl font-light leading-relaxed max-w-2xl">
+              Trusted by brands across the globe. Here's a showcase of our recent Shopify and e-commerce projects — each built with precision, purpose, and a focus on results.
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 mt-12 max-w-4xl">
-            {[
-              ['Proof-first layout', 'Featured case studies appear before generic selling points.'],
-              ['Commercial outcomes', 'Metrics stay tied to actual launch and growth context.'],
-              ['Premium presentation', 'Cleaner cards, spacing, and category filtering across devices.'],
-            ].map(([title, desc]) => (
-              <div key={title} className="bg-white/5 p-6">
-                <p className="font-display text-sm text-white mb-2">{title}</p>
-                <p className="text-sm text-white/50 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Filters + Grid */}
-      <section className="section bg-surface">
+      {/* ── All Portfolio Items ── */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="container">
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-0 mb-12 border border-border">
-            {portfolioCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-3 font-display text-xs font-medium tracking-wider uppercase transition-all duration-300 border-r border-border last:border-r-0
-                  ${activeCategory === cat
-                    ? 'bg-primary text-white'
-                    : 'bg-surface text-text-secondary hover:bg-secondary hover:text-text-primary'
-                  }`}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {portfolioItems.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+                className="group cursor-pointer"
               >
-                {cat}
-              </button>
+                <a
+                  href={item.externalLink || `/portfolio/${item.slug}`}
+                  target={item.externalLink ? '_blank' : '_self'}
+                  rel={item.externalLink ? 'noopener noreferrer' : undefined}
+                  className="block"
+                >
+                  {/* Image */}
+                  <div
+                    className="w-full bg-[#f7f7f5] overflow-hidden relative"
+                    style={{ aspectRatio: '4/3' }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 p-4"
+                    />
+                    {/* Hover overlay with external link icon */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white w-12 h-12 flex items-center justify-center">
+                        <ExternalLink className="w-5 h-5 text-black" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Title bar */}
+                  <div className="pt-5 pb-3 flex items-center justify-between gap-4">
+                    <h2 className="font-display text-base font-semibold text-text-primary uppercase tracking-wide group-hover:text-accent transition-colors">
+                      {item.title}
+                    </h2>
+                    <span className="text-xs text-text-muted font-display uppercase tracking-wider shrink-0 border border-border px-2 py-1">
+                      {item.industry}
+                    </span>
+                  </div>
+                </a>
+              </motion.div>
             ))}
           </div>
-
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence>
-              {filtered.map((item, i) => (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <PortfolioCard
-                    title={item.title}
-                    category={item.category}
-                    image={item.image}
-                    to={`/portfolio/${item.slug}`}
-                    index={i}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-20 text-text-muted font-display">
-              No projects found in this category.
-            </div>
-          )}
         </div>
       </section>
 
       <CTASection
-        eyebrow="Launch the Next Story"
-        title="Have a Project in Mind?"
-        subtitle="Let's build something exceptional together. Share your vision and we'll show you how to make it a reality."
+        title="Ready to Build Your Store?"
+        subtitle="Whether you need a Shopify build, migration, or custom app — our team delivers results."
         primaryText="Start Your Project"
+        primaryTo="/contact"
+        eyebrow="Let's Work Together"
       />
     </>
   )

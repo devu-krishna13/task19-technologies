@@ -1,118 +1,81 @@
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, ArrowRight, Linkedin, Twitter, Facebook, Instagram, Youtube, Github } from 'lucide-react'
+import { ArrowRight, Linkedin, Twitter, Facebook, Instagram, Youtube } from 'lucide-react'
+
+const companyLinks = [
+  { label: 'About Us', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Industries', to: '/industries' },
+  { label: 'Works', to: '/portfolio' },
+  { label: 'Careers', to: '/careers' },
+  { label: 'Contact Us', to: '/contact' },
+]
 
 const serviceLinks = [
   { label: 'Shopify Store Development', to: '/services/shopify' },
-  { label: 'Shopify Customization & CRO', to: '/services/shopify-cro' },
   { label: 'WooCommerce Development', to: '/services/woocommerce' },
   { label: 'Custom Shopify Apps', to: '/services/shopify-apps-dev' },
   { label: 'Web Development', to: '/services/web-development' },
   { label: 'Mobile App Development', to: '/services/mobile-app-development' },
   { label: 'UI/UX Design', to: '/services/ui-ux-design' },
-  { label: 'Cloud & DevOps', to: '/services/cloud-solutions' },
-]
-
-const companyLinks = [
-  { label: 'About Us', to: '/about' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Industries', to: '/industries' },
-  { label: 'Technologies', to: '/technologies' },
 ]
 
 const otherLinks = [
-  { label: 'Shopify Apps', to: '/shopify-apps' },
-  { label: 'Blog & Insights', to: '/blog' },
-  { label: 'Careers', to: '/careers' },
-  { label: 'Contact Us', to: '/contact' },
+  { label: 'Partnership', to: '/partnership' },
+  { label: 'Awards and Recognitions', to: '/awards' },
+  { label: 'Insights', to: '/blog' },
+  { label: 'Resource Augmentation', to: '/resources' },
+  { label: 'Testimonials', to: '/testimonials' },
+  { label: 'Our Clients', to: '/clients' },
+  { label: 'Submit Feedback', to: '/feedback' },
+  { label: 'Sitemap', to: '/sitemap' },
+]
+
+const connectInfo = [
+  { label: 'General Enquiry', value: '+91 70126 39646' },
+  { label: 'Sales Enquiry', value: '+91 70126 39647' },
+  { label: 'Email', value: 'info@task19.com' },
+  { label: 'HR Enquiry', value: '+91 70126 39648' },
+  { label: 'Whatsapp (Sales)', value: '+91 70126 39649' },
 ]
 
 const socialLinks = [
   { icon: Linkedin, href: 'https://www.linkedin.com/company/task19', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Youtube, href: '#', label: 'Youtube' },
   { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
-  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Twitter, href: '#', label: 'Twitter' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-[#121212] text-white">
-      {/* Main Footer — Full 4-Column Layout */}
-      <div className="container py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+    <footer className="bg-black text-white">
+      <div className="container pt-20 pb-12 lg:pt-28 lg:pb-16">
 
-          {/* Brand + Connect Column */}
-          <div className="lg:col-span-4">
-            <Link to="/" className="flex items-center gap-2.5 mb-6">
-              <div className="w-9 h-9 bg-accent flex items-center justify-center font-display font-bold text-white text-xs">T19</div>
-              <span className="font-display font-semibold text-xl text-white">Task19</span>
-            </Link>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">
-              Revenue-focused Shopify, WooCommerce, and custom commerce engineering for ambitious digital brands.
-            </p>
-
-            {/* Multiple Contact Lines */}
-            <div className="space-y-3 mb-6">
-              <a href="tel:+917012639646" className="flex items-center gap-3 text-sm text-white/50 hover:text-white transition-colors duration-300">
-                <Phone className="w-4 h-4 text-accent flex-shrink-0" />
-                <span>+91 70126 39646</span>
-              </a>
-              <a href="mailto:info@task19.com" className="flex items-center gap-3 text-sm text-white/50 hover:text-white transition-colors duration-300">
-                <Mail className="w-4 h-4 text-accent flex-shrink-0" />
-                <span>info@task19.com</span>
-              </a>
-              <a href="mailto:careers@task19.com" className="flex items-center gap-3 text-sm text-white/50 hover:text-white transition-colors duration-300">
-                <Mail className="w-4 h-4 text-accent flex-shrink-0" />
-                <span>careers@task19.com</span>
-              </a>
-              <div className="flex items-start gap-3 text-sm text-white/50">
-                <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                <span>Kathrikadavu Junction, Ernakulam, Kerala 682017, India</span>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Link to="/" className="px-3 py-1.5 border border-white/10 text-[11px] font-display tracking-[0.2em] uppercase text-white/60 hover:text-white hover:border-white/30 transition-all duration-300">Home</Link>
-              <Link to="/services/shopify" className="px-3 py-1.5 border border-white/10 text-[11px] font-display tracking-[0.2em] uppercase text-white/60 hover:text-white hover:border-white/30 transition-all duration-300">Services</Link>
-              <Link to="/shopify-apps" className="px-3 py-1.5 border border-white/10 text-[11px] font-display tracking-[0.2em] uppercase text-white/60 hover:text-white hover:border-white/30 transition-all duration-300">Apps</Link>
-              <Link to="/portfolio" className="px-3 py-1.5 border border-white/10 text-[11px] font-display tracking-[0.2em] uppercase text-white/60 hover:text-white hover:border-white/30 transition-all duration-300">Portfolio</Link>
-            </div>
-
-            {/* Social Icons — 6 icons */}
-            <div className="flex items-center gap-2.5">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                  className="w-9 h-9 flex items-center justify-center border border-white/10 text-white/40 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300">
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
-            </div>
+        {/* Top CTA Banner */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 lg:mb-28 gap-10">
+          <div>
+            <h4 className="font-display font-light text-white leading-[1.08]" style={{ fontSize: '40px' }}>
+              Get started now!
+            </h4>
+            <p className="text-white/60 text-lg font-light mt-4">It takes less than a minute of your time.</p>
           </div>
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center px-8 py-3.5 text-[13px] font-light border border-white/40 bg-transparent text-white hover:bg-black hover:text-white transition-all duration-300 flex-shrink-0"
+          >
+            Request a quote <span className="ml-3 font-normal text-[15px]">→</span>
+          </Link>
+        </div>
 
-          {/* Services Column */}
-          <div className="lg:col-span-3">
-            <h3 className="font-display font-medium text-white mb-6 text-sm tracking-[0.1em] uppercase">Services</h3>
-            <ul className="space-y-3">
-              {serviceLinks.map((link) => (
-                <li key={link.to}>
-                  <Link to={link.to} className="flex items-center gap-2 text-sm text-white/50 hover:text-white group transition-colors duration-300">
-                    <ArrowRight className="w-3 h-3 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company Column */}
-          <div className="lg:col-span-2">
-            <h3 className="font-display font-medium text-white mb-6 text-sm tracking-[0.1em] uppercase">Company</h3>
-            <ul className="space-y-3">
+        {/* Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+          {/* Company */}
+          <div>
+            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Company</h4>
+            <ul className="space-y-3.5">
               {companyLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="flex items-center gap-2 text-sm text-white/50 hover:text-white group transition-colors duration-300">
-                    <ArrowRight className="w-3 h-3 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  <Link to={link.to} className="text-[13px] font-light text-white/70 hover:text-white transition-colors duration-300">
                     {link.label}
                   </Link>
                 </li>
@@ -120,46 +83,70 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Other + Newsletter Column */}
-          <div className="lg:col-span-3">
-            <h3 className="font-display font-medium text-white mb-6 text-sm tracking-[0.1em] uppercase">Other</h3>
-            <ul className="space-y-3 mb-8">
+          {/* Services */}
+          <div>
+            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Services</h4>
+            <ul className="space-y-3.5">
+              {serviceLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="text-[13px] font-light text-white/70 hover:text-white transition-colors duration-300">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Other */}
+          <div>
+            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Other</h4>
+            <ul className="space-y-3.5">
               {otherLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="flex items-center gap-2 text-sm text-white/50 hover:text-white group transition-colors duration-300">
-                    <ArrowRight className="w-3 h-3 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  <Link to={link.to} className="text-[13px] font-light text-white/70 hover:text-white transition-colors duration-300">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
 
-            <h4 className="font-display font-medium text-white mb-4 text-xs tracking-[0.1em] uppercase">Stay Updated</h4>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              <div className="border-b border-white/20 focus-within:border-accent transition-colors duration-300">
-                <input type="email" placeholder="Your email address" className="w-full bg-transparent text-white text-sm py-3 focus:outline-none placeholder-white/30" />
-              </div>
-              <button type="submit" className="w-full py-3 bg-accent text-white text-sm font-display font-semibold hover:bg-accent-hover transition-colors duration-300 flex items-center justify-center gap-2">
-                Subscribe <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
+          {/* Connect */}
+          <div>
+            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Connect</h4>
+            <ul className="space-y-3.5">
+              {connectInfo.map((info) => (
+                <li key={info.label} className="grid grid-cols-[135px_1fr] items-start gap-2">
+                  <span className="text-[13px] font-light text-white/60">{info.label}</span>
+                  <span className="text-[13px] font-light text-white">: {info.value}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar — with legal links */}
-      <div className="border-t border-white/10">
-        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Task19 Technologies Pvt. Ltd. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link to="/privacy-policy" className="text-xs text-white/30 hover:text-white transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/terms" className="text-xs text-white/30 hover:text-white transition-colors duration-300">Terms of Service</Link>
-            <Link to="/sitemap" className="text-xs text-white/30 hover:text-white transition-colors duration-300">Sitemap</Link>
+        {/* Bottom Bar */}
+        {/* Add mb-8 (mobile) and lg:mb-12 (desktop) to the top-level div here */}
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-6 pt-6 mb-8 lg:mb-12">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-[12px] font-light text-white/50 w-full lg:w-auto">
+            <span>TASK19 © {new Date().getFullYear()} All rights reserved</span>
+            <div className="flex items-center gap-6">
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-6 justify-center w-full lg:w-auto">
+            {socialLinks.map(({ icon: Icon, href, label }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                className="text-white/60 hover:text-white transition-colors duration-300">
+                <Icon className="w-4 h-4" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
     </footer>
   )
 }
+

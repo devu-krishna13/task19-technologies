@@ -40,7 +40,7 @@ export default function Header() {
   const headerBg = scrolled
     ? 'bg-primary/95 backdrop-blur-xl shadow-sm border-b border-white/10'
     : isHome
-      ? 'bg-transparent'
+      ? 'bg-black/30 backdrop-blur-md border-b border-white/5'
       : 'bg-primary/95 backdrop-blur-xl border-b border-white/10'
   const textColor = 'text-white'
   const logoColor = 'text-white'
@@ -49,7 +49,7 @@ export default function Header() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${headerBg}`}>
         <div className="container">
-          <div className="flex items-center justify-between h-20 gap-6">
+          <div className="flex items-center justify-between h-[72px] gap-8">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 group" aria-label="Task19 Technologies Home">
               <div className="w-9 h-9 bg-accent flex items-center justify-center font-display font-bold text-white text-xs">
@@ -61,13 +61,13 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-7 xl:gap-8" aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center gap-9 xl:gap-11" aria-label="Main navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.to}
-                  className={`group relative font-body text-sm font-medium transition-colors duration-300 hover:text-accent ${textColor} ${
-                    location.pathname === link.to ? 'text-accent' : ''
+                  className={`group relative font-body text-sm font-medium transition-colors duration-300 hover:text-white ${textColor} ${
+                    location.pathname === link.to ? 'text-white' : 'text-white/80'
                   }`}
                 >
                   {link.label}
@@ -84,10 +84,10 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
               <a
                 href="tel:+917012639646"
-                className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 hover:text-accent ${textColor}`}
+                className={`flex items-center gap-2 text-sm font-medium leading-none transition-colors duration-300 hover:text-white/80 ${textColor}`}
               >
-                <Phone className="w-4 h-4" />
-                <span className="hidden xl:inline">+91 70126 39646</span>
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <span>+91 70126 39646</span>
               </a>
             </div>
 
