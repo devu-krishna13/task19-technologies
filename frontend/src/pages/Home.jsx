@@ -503,66 +503,82 @@ export default function Home() {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section className="section bg-white border-t border-border">
-        <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-32 lg:mb-40">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">What We Do</span>
-              </span>
-              <h4 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.2rem)' }}>
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+          
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>What We Do</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
                 Full-Stack E-Commerce Solutions
-              </h4>
-              <p className="text-text-secondary text-[15px] leading-relaxed font-light">
+              </h2>
+              <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
                 A balanced mix of platform expertise, growth engineering, and custom product work for brands that need more than a template rollout.
               </p>
             </div>
-            <Link to="/services" className="btn-base btn-outline-dark flex-shrink-0" style={{ padding: "0.75rem 2.5rem", fontSize: "11px", border: "1px solid #000", boxSizing: "border-box", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-              Explore All Services <ArrowRight className="w-3.5 h-3.5 ml-2" />
-            </Link>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>Explore All Services</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-4">
-            {servicesForCards.slice(0, 6).map((service, i) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {servicesForCards.slice(0, 8).map((service, i) => {
               const dummyImages = [
                 "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
                 "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
                 "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80",
                 "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
                 "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80"
+                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
               ];
               return (
                 <motion.div
                   key={service.id}
-                  className="group cursor-pointer"
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                  style={{ borderRadius: '24px' }}
                 >
-                  <Link to={`/services/${service.slug}`} className="block h-full">
-                    {/* Image Wrapper */}
-                    <div className="aspect-[4/3] w-full overflow-hidden mb-4 clip-inset-wrapper bg-surface">
-                      <img
-                        src={dummyImages[i] || dummyImages[0]}
-                        alt={service.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 clip-inset"
-                        loading="lazy"
-                      />
-                    </div>
+                  <Link to={`/services/${service.slug}`} className="absolute inset-0 z-10" aria-label={service.title} />
 
-                    {/* Content */}
-                    <div>
-                      <h6 className="font-display text-[12px] font-semibold text-text-primary mb-1.5 group-hover:text-accent transition-colors duration-300 uppercase tracking-wide">
-                        {service.title}
-                      </h6>
-                      <p className="text-text-secondary text-[11px] leading-[1.6] font-light line-clamp-3">
-                        {service.shortDesc}
-                      </p>
+                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
+                    <img
+                      src={dummyImages[i] || dummyImages[0]}
+                      alt={service.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '24px' }}>
+                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '18px' }}>
+                      {service.title}
+                    </h6>
+                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '14px' }}>
+                      {service.shortDesc}
+                    </p>
+                    <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
+                      Learn More
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                     </div>
-                  </Link>
+                  </div>
                 </motion.div>
               );
             })}
@@ -571,24 +587,30 @@ export default function Home() {
       </section>
 
       {/* ═══ VALUE SECTION ═══ */}
-      <section className="section bg-surface">
-        <div className="container">
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
 
-          <div className="max-w-3xl mx-auto flex flex-col items-center justify-center text-center mb-16 mt-8">
-            <div className="flex items-center justify-center gap-3 mb-4 w-full">
-              <span className="h-px w-6 bg-accent" />
-              <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">Why Task19</span>
-              <span className="h-px w-6 bg-accent" />
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Why Task19</span>
             </div>
-            <h2 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-6 w-full text-center" style={{ fontSize: 'clamp(2.2rem, 4vw, 3rem)' }}>
-              Modern UI Needs More Than Pretty Screens
-            </h2>
-            <p className="text-text-secondary text-lg leading-relaxed font-light w-full text-center">
-              The strongest section design comes from alignment between messaging, interaction quality, visual rhythm, and reusable implementation.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+                Modern UI Needs More Than Pretty Screens
+              </h2>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <p className="font-light leading-relaxed max-w-xl text-gray-500 lg:text-right" style={{ fontSize: '18px', margin: 0 }}>
+                The strongest section design comes from alignment between messaging, interaction quality, visual rhythm, and reusable implementation.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {valuePillars.map((item, i) => {
               const valueImages = [
                 "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
@@ -603,28 +625,27 @@ export default function Home() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group flex flex-col bg-white"
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                  style={{ borderRadius: '24px' }}
                 >
-                  {/* Top Image */}
-                  <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
+                  <div className="aspect-[16/10] overflow-hidden bg-gray-100 relative shrink-0">
                     <img
                       src={imageUrl}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
 
-                  {/* Bottom Text Box with 3-sided border */}
-                  <div className="border-x border-b border-border p-6 lg:p-8 flex-grow flex flex-col items-center justify-center text-center bg-white">
-                    <h6 className="font-display text-[15px] font-semibold text-text-primary mb-3 group-hover:text-accent transition-colors duration-300 uppercase tracking-wide">
+                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
+                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-3" style={{ fontSize: '22px' }}>
                       {item.title}
                     </h6>
-                    <p className="text-text-secondary text-[12px] leading-[1.6] font-light">
+                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3" style={{ fontSize: '15px' }}>
                       {item.description}
                     </p>
                   </div>
