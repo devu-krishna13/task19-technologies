@@ -1,11 +1,25 @@
-import { motion } from 'framer-motion'
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
-import { ArrowRight, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { portfolioItems } from '../constants/data'
 import CTASection from '../components/ui/CTASection'
 
 export default function Portfolio() {
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  // Extract unique categories (industries) from the portfolio items
+  const categories = useMemo(() => {
+    const allCategories = portfolioItems.map(item => item.industry || item.category).filter(Boolean)
+    return ['All', ...new Set(allCategories)]
+  }, [])
+
+  // Filter items based on active category
+  const filteredItems = useMemo(() => {
+    if (activeFilter === 'All') return portfolioItems
+    return portfolioItems.filter(item => (item.industry || item.category) === activeFilter)
+  }, [activeFilter])
+
   return (
     <>
       <Helmet>
@@ -14,78 +28,117 @@ export default function Portfolio() {
       </Helmet>
 
       {/* ── Page Hero ── */}
-      <section className="pt-40 pb-20 bg-white border-b border-border">
-        <div className="container">
+      <section className="section relative overflow-hidden" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 1) 80%)', paddingTop: '128px', paddingBottom: '64px' }}>
+        <div className="container relative z-10 max-w-6xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center"
           >
-            <span className="inline-flex items-center gap-3 mb-6">
-              <span className="h-px w-8 bg-accent" />
-              <span className="font-display text-[10px] font-semibold tracking-[0.25em] uppercase text-accent">Our Work</span>
-            </span>
-            <h1 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+            <div className="mb-6">
+              <div className="inline-block bg-white/10 backdrop-blur-md" style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
+                <span className="font-medium text-white" style={{ fontSize: '14px' }}>Our Work</span>
+              </div>
+            </div>
+            
+            <h1 className="font-display font-bold text-white leading-tight tracking-tight mb-6" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
               Recent Portfolio
             </h1>
-            <p className="text-text-secondary text-xl font-light leading-relaxed max-w-2xl">
+            
+            <p className="font-light leading-relaxed max-w-2xl mx-auto" style={{ fontSize: '18px', color: 'rgba(255, 255, 255, 0.9)' }}>
               Trusted by brands across the globe. Here's a showcase of our recent Shopify and e-commerce projects — each built with precision, purpose, and a focus on results.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* ── All Portfolio Items ── */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {portfolioItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                className="group cursor-pointer"
+      {/* ── Filter Bar ── */}
+      <section className="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
+        <div className="container max-w-6xl mx-auto px-4 py-5">
+          <div className="flex items-center justify-start lg:justify-center gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveFilter(category)}
+                className="whitespace-nowrap transition-all duration-300 hover:text-black"
+                style={{
+                  padding: '8px 24px',
+                  borderRadius: '9999px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  border: `1px solid ${activeFilter === category ? '#000000' : '#e5e7eb'}`,
+                  backgroundColor: activeFilter === category ? '#000000' : '#ffffff',
+                  color: activeFilter === category ? '#ffffff' : '#6b7280',
+                  boxShadow: activeFilter === category ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none',
+                  cursor: 'pointer'
+                }}
               >
-                <a
-                  href={item.externalLink || `/portfolio/${item.slug}`}
-                  target={item.externalLink ? '_blank' : '_self'}
-                  rel={item.externalLink ? 'noopener noreferrer' : undefined}
-                  className="block"
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── All Portfolio Items ── */}
+      <section className="section bg-white" style={{ paddingTop: '64px', paddingBottom: '128px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredItems.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                  style={{ borderRadius: '24px' }}
                 >
-                  {/* Image */}
-                  <div
-                    className="w-full bg-[#f7f7f5] overflow-hidden relative"
-                    style={{ aspectRatio: '4/3' }}
-                  >
+                  <a
+                    href={item.externalLink || `/portfolio/${item.slug}`}
+                    target={item.externalLink ? '_blank' : '_self'}
+                    rel={item.externalLink ? 'noopener noreferrer' : undefined}
+                    className="absolute inset-0 z-10"
+                    aria-label={item.title}
+                  />
+
+                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
                     <img
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 p-4"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Hover overlay with external link icon */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white w-12 h-12 flex items-center justify-center">
-                        <ExternalLink className="w-5 h-5 text-black" />
-                      </div>
+                    <div className="absolute top-4 left-4 backdrop-blur-md px-3 py-1.5" style={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '9999px' }}>
+                      <span className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">{item.industry || item.category}</span>
                     </div>
                   </div>
 
-                  {/* Title bar */}
-                  <div className="pt-5 pb-3 flex items-center justify-between gap-4">
-                    <h2 className="font-display text-base font-semibold text-text-primary uppercase tracking-wide group-hover:text-accent transition-colors">
+                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
+                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '22px' }}>
                       {item.title}
-                    </h2>
-                    <span className="text-xs text-text-muted font-display uppercase tracking-wider shrink-0 border border-border px-2 py-1">
-                      {item.industry}
-                    </span>
+                    </h6>
+                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '15px' }}>
+                      {item.shortDesc}
+                    </p>
+                    <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
+                      View Case Study
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                    </div>
                   </div>
-                </a>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+          
+          {filteredItems.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-gray-500 text-lg">No projects found for this category.</p>
+            </div>
+          )}
         </div>
       </section>
 

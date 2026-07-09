@@ -10,7 +10,6 @@ const shopifyServices = [
   {
     id: 'D2C Store Setup',
     icon: ShoppingCart,
-    color: '#013ad6',
     tagline: '01 — Store Setup',
     title: 'D2C Shopify Store Development',
     desc: 'End-to-end Shopify store creation for direct-to-consumer brands. From theme selection to custom Liquid development, payment integrations, and full store launch strategy.',
@@ -28,7 +27,6 @@ const shopifyServices = [
   {
     id: 'CRO',
     icon: Palette,
-    color: '#7c3aed',
     tagline: '02 — CRO & Optimization',
     title: 'Shopify Customization & CRO',
     desc: 'Transform an underperforming store into a revenue machine. We audit, redesign, and optimize your Shopify storefront for maximum conversions, mobile performance, and user experience.',
@@ -46,7 +44,6 @@ const shopifyServices = [
   {
     id: 'WooCommerce',
     icon: Package,
-    color: '#06b6d4',
     tagline: '03 — WooCommerce',
     title: 'WooCommerce Development & Migration',
     desc: 'Build powerful WooCommerce stores from scratch, or migrate from Magento, Shopify, or other platforms with zero data loss and zero downtime.',
@@ -64,7 +61,6 @@ const shopifyServices = [
   {
     id: 'ShopifyApps',
     icon: Code2,
-    color: '#10b981',
     tagline: '04 — Custom Apps',
     title: 'Custom Shopify App Development',
     desc: 'When the Shopify App Store doesn\'t have what you need, we build it. From private business automation apps to public apps for the Shopify marketplace.',
@@ -113,32 +109,35 @@ export default function ShopifyServices() {
         <link rel="canonical" href="https://task19.com/shopify-services/" />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-40 pb-28 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
-        <div className="container relative z-10">
+      {/* ── Page Hero ── */}
+      <section className="section relative overflow-hidden" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 1) 80%)', paddingTop: '160px', paddingBottom: '96px' }}>
+        <div className="container relative z-10 max-w-6xl mx-auto px-4">
           <motion.div
-            className="max-w-4xl"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
           >
-            <span className="inline-flex items-center gap-3 mb-7">
-              <span className="h-px w-10 bg-accent" />
-              <span className="font-display text-xs font-medium tracking-[0.3em] uppercase text-accent">Shopify Services</span>
-            </span>
-            <h1 className="font-display font-light text-white mb-7 leading-[1.05]" style={{ fontSize: 'var(--font-size-h1)' }}>
+            <div className="mb-8">
+              <div className="inline-block bg-white/10 backdrop-blur-md" style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
+                <span className="font-medium text-white" style={{ fontSize: '14px' }}>Shopify Services</span>
+              </div>
+            </div>
+            
+            <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)' }}>
               Shopify Expertise That<br />
-              <em className="font-serif-italic text-white/50">Drives Revenue</em>
+              <span className="text-white/60 font-light">Drives Revenue</span>
             </h1>
-            <p className="text-xl text-white/60 leading-relaxed max-w-3xl font-light mb-10">
+            
+            <p className="font-light leading-relaxed max-w-2xl mb-10" style={{ fontSize: '20px', color: 'rgba(255, 255, 255, 0.8)' }}>
               From D2C store launches to complex app development — our Shopify specialists deliver e-commerce solutions that convert browsers into buyers and buyers into loyal customers.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-display font-semibold text-sm hover:bg-accent-hover transition-all duration-300">
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold text-[15px] rounded-full hover:bg-gray-100 transition-all duration-300">
                 Get Free Audit <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/portfolio" className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white font-display font-medium text-sm hover:border-white/50 transition-all duration-300">
+              <Link to="/portfolio" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium text-[15px] rounded-full hover:bg-white/10 transition-all duration-300">
                 View Case Studies
               </Link>
             </div>
@@ -146,97 +145,109 @@ export default function ShopifyServices() {
         </div>
       </section>
 
-      {/* Services List */}
-      {shopifyServices.map((service, i) => {
-        const Icon = service.icon
-        const isEven = i % 2 === 0
-        return (
-          <section key={service.id} className={`section ${isEven ? 'bg-surface' : 'bg-secondary'}`}>
-            <div className="container">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${isEven ? '' : 'lg:flex-row-reverse'}`}>
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className={isEven ? '' : 'lg:order-2'}
-                >
-                  <span className="inline-block font-display text-xs font-medium tracking-[0.2em] uppercase mb-5" style={{ color: service.color }}>
-                    {service.tagline}
-                  </span>
-                  <h2 className="font-display font-light text-text-primary mb-5 leading-snug" style={{ fontSize: 'var(--font-size-h3)' }}>
-                    {service.title}
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed mb-8 font-light text-lg">
-                    {service.desc}
-                  </p>
-                  <div className="space-y-3 mb-8">
-                    {service.features.map((f, j) => (
-                      <div key={j} className="flex gap-3">
-                        <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: service.color }} />
-                        <span className="text-sm text-text-secondary">{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Link
-                    to={service.link}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-display font-semibold text-sm transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: service.color }}
+      {/* ── Services List ── */}
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+          {shopifyServices.map((service, i) => {
+            const Icon = service.icon
+            const isEven = i % 2 === 0
+            
+            return (
+              <div key={service.id} className="mb-24 lg:mb-32 last:mb-0">
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+                  
+                  {/* Content Side */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className={isEven ? '' : 'lg:order-2'}
                   >
-                    Get Started <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className={isEven ? '' : 'lg:order-1'}
-                >
-                  <div className="border border-border p-8 bg-surface">
-                    <div
-                      className="w-16 h-16 flex items-center justify-center mb-6"
-                      style={{ backgroundColor: `${service.color}10` }}
-                    >
-                      <Icon className="w-7 h-7" style={{ color: service.color }} />
-                    </div>
-                    <h3 className="font-display font-medium text-text-primary text-lg mb-6">Proven Results</h3>
-                    <div className="space-y-4">
-                      {service.results.map((r, j) => (
-                        <div key={j} className="flex items-center gap-3 py-3 border-b border-border last:border-b-0">
-                          <div className="w-1.5 h-1.5 flex-shrink-0" style={{ backgroundColor: service.color }} />
-                          <span className="font-display font-medium text-text-primary text-sm">{r}</span>
+                    <span className="inline-block font-bold text-[12px] tracking-widest uppercase text-gray-500 mb-4">
+                      {service.tagline}
+                    </span>
+                    <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-5" style={{ fontSize: '32px' }}>
+                      {service.title}
+                    </h2>
+                    <p className="text-gray-500 leading-relaxed font-light text-[18px] mb-8">
+                      {service.desc}
+                    </p>
+                    
+                    <div className="space-y-4 mb-10">
+                      {service.features.map((f, j) => (
+                        <div key={j} className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-gray-900 flex-shrink-0 mt-0.5" />
+                          <span className="text-[15px] text-gray-600 font-medium">{f}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-        )
-      })}
+                    
+                    <Link
+                      to={service.link}
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-black text-white font-medium text-[15px] rounded-full hover:bg-gray-800 transition-all duration-300"
+                    >
+                      Discuss Project <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </motion.div>
 
-      {/* FAQ */}
-      <section className="section bg-secondary">
-        <div className="container">
+                  {/* Premium Card Side */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className={isEven ? '' : 'lg:order-1'}
+                  >
+                    <div className="relative bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 flex flex-col" style={{ borderRadius: '24px', padding: '48px' }}>
+                      <div className="w-16 h-16 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center mb-8">
+                        <Icon className="w-7 h-7 text-gray-900" />
+                      </div>
+                      
+                      <h3 className="font-display font-bold text-gray-900 text-2xl mb-8">Proven Results</h3>
+                      
+                      <div className="space-y-0">
+                        {service.results.map((r, j) => (
+                          <div key={j} className="flex items-center gap-4 py-5 border-b border-gray-100 last:border-b-0">
+                            <div className="w-2 h-2 rounded-full bg-black flex-shrink-0" />
+                            <span className="font-medium text-gray-700 text-[16px]">{r}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="bg-gray-50 border-t border-gray-100" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <SectionHeading
-                label="Questions & Answers"
-                title="Shopify Service FAQs"
-                align="left"
-                className="mb-0"
-              />
-              <p className="text-text-secondary mt-5 mb-8 font-light">
+              <div className="mb-6">
+                <div className="inline-block bg-white border border-gray-200" style={{ borderRadius: '9999px', padding: '6px 16px' }}>
+                  <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Questions & Answers</span>
+                </div>
+              </div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-5" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>
+                Shopify Service FAQs
+              </h2>
+              <p className="text-gray-500 font-light text-[18px] mb-8 max-w-md">
                 Have more questions about our Shopify development services? Let's talk.
               </p>
-              <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-display font-semibold text-sm hover:bg-primary-light transition-all duration-300">
+              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-medium text-[15px] rounded-full hover:bg-gray-800 transition-all duration-300">
                 Ask a Question <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            <FAQAccordion items={faqs} />
+            
+            <div className="bg-white border border-gray-100 p-8 shadow-sm" style={{ borderRadius: '24px' }}>
+              <FAQAccordion items={faqs} />
+            </div>
           </div>
         </div>
       </section>
