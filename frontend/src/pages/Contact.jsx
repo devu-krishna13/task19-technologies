@@ -143,7 +143,15 @@ export default function Contact() {
 
             {/* Right Side: Contact Form */}
             <div className="lg:col-span-7">
-              <div className="bg-white border border-gray-100 p-8 sm:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.04)]" style={{ borderRadius: '24px' }}>
+              <div 
+                className="p-8 sm:p-12" 
+                style={{ 
+                  backgroundColor: '#ffffff', 
+                  borderRadius: '24px', 
+                  border: '1px solid #f3f4f6', 
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.04)' 
+                }}
+              >
                 <h3 className="font-display text-2xl font-bold text-gray-900 mb-3">Send us a message</h3>
                 <p className="text-gray-500 text-[15px] font-medium mb-10">Fill out the form below and our team will get back to you within 24 hours.</p>
 
@@ -154,7 +162,7 @@ export default function Contact() {
                       <input
                         {...register('firstName', { required: 'First name is required' })}
                         className={`${inputBase} ${errors.firstName ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
-                        style={{ backgroundColor: '#f9fafb' }}
+                        style={{ backgroundColor: '#f9fafb', borderRadius: '12px', border: '1px solid #e5e7eb' }}
                         placeholder="John"
                       />
                       {errors.firstName && <p className="text-xs text-red-500 mt-2 font-medium">{errors.firstName.message}</p>}
@@ -164,7 +172,7 @@ export default function Contact() {
                       <input
                         {...register('lastName', { required: 'Last name is required' })}
                         className={`${inputBase} ${errors.lastName ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
-                        style={{ backgroundColor: '#f9fafb' }}
+                        style={{ backgroundColor: '#f9fafb', borderRadius: '12px', border: '1px solid #e5e7eb' }}
                         placeholder="Doe"
                       />
                       {errors.lastName && <p className="text-xs text-red-500 mt-2 font-medium">{errors.lastName.message}</p>}
@@ -180,7 +188,7 @@ export default function Contact() {
                           pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Invalid email address' }
                         })}
                         className={`${inputBase} ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
-                        style={{ backgroundColor: '#f9fafb' }}
+                        style={{ backgroundColor: '#f9fafb', borderRadius: '12px', border: '1px solid #e5e7eb' }}
                         placeholder="john@company.com"
                       />
                       {errors.email && <p className="text-xs text-red-500 mt-2 font-medium">{errors.email.message}</p>}
@@ -190,7 +198,7 @@ export default function Contact() {
                       <input
                         {...register('phone')}
                         className={inputBase}
-                        style={{ backgroundColor: '#f9fafb' }}
+                        style={{ backgroundColor: '#f9fafb', borderRadius: '12px', border: '1px solid #e5e7eb' }}
                         placeholder="+91 98765 43210"
                       />
                     </div>
@@ -202,7 +210,7 @@ export default function Contact() {
                       <select
                         {...register('service')}
                         className={`${inputBase} appearance-none cursor-pointer pr-10`}
-                        style={{ backgroundColor: '#f9fafb' }}
+                        style={{ backgroundColor: '#f9fafb', borderRadius: '12px', border: '1px solid #e5e7eb' }}
                       >
                         <option value="">Select a service...</option>
                         <option value="shopify">Shopify Store Development</option>
@@ -225,7 +233,7 @@ export default function Contact() {
                       {...register('message', { required: 'Please provide some details about your project' })}
                       rows="5"
                       className={`${inputBase} resize-none ${errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
-                      style={{ backgroundColor: '#f9fafb' }}
+                      style={{ backgroundColor: '#f9fafb', borderRadius: '12px', border: '1px solid #e5e7eb' }}
                       placeholder="Tell us about your project, goals, and timeline..."
                     />
                     {errors.message && <p className="text-xs text-red-500 mt-2 font-medium">{errors.message.message}</p>}
