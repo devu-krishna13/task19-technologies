@@ -244,93 +244,79 @@ export default function Home() {
       </section>
 
       {/* ═══ RECENT PORTFOLIO ═══ */}
-      <section className="pt-40 pb-32 lg:pt-48 lg:pb-40 bg-white">
-        <div className="container">
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
 
-          <div className="text-center">
-            <h2
-              className="font-display font-light text-text-primary leading-[1.05] tracking-tight"
-              style={{
-                fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
-                marginTop: "40px",       // Forces space above the text
-                marginBottom: "40px"     // Forces space below the text before the grid
-              }}
-            >
-              Recent Portfolio
-            </h2>
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Our Work</span>
+            </div>
           </div>
 
-          {/* Added pt-12 pb-16 (for mobile) and lg:pt-20 lg:pb-24 (for desktop screens) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 pt-12 pb-16 lg:pt-20 lg:pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+                Recent Portfolio
+              </h2>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/portfolio"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>Explore All Portfolio</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioItems.slice(0, 6).map((item, i) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                className="cursor-pointer"
+                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                style={{ borderRadius: '24px' }}
               >
                 <a
                   href={item.externalLink || `/portfolio/${item.slug}`}
                   target={item.externalLink ? "_blank" : "_self"}
                   rel={item.externalLink ? "noopener noreferrer" : undefined}
-                  className="block clip-inset-wrapper group"
-                >
-                  {/* Image */}
-                  <div
-                    className="w-full overflow-hidden clip-inset"
-                    style={{ aspectRatio: "1/1" }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
+                  className="absolute inset-0 z-10" 
+                  aria-label={item.title}
+                />
 
-                  {/* Content */}
-                  <div className="pt-4 pb-2">
-                    <span className="text-[11px] font-body text-text-muted">
-                      {item.industry || item.category}
-                    </span>
-
-                    <p className="mt-2 text-[13px] leading-[1.7] text-text-primary group-hover:text-accent transition-colors">
-                      <span className="font-semibold">{item.title}:</span>{" "}
-                      {item.shortDesc}
-                    </p>
+                <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4 backdrop-blur-md px-3 py-1.5" style={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '9999px' }}>
+                    <span className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">{item.industry || item.category}</span>
                   </div>
-                </a>
+                </div>
+
+                <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
+                  <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '22px' }}>
+                    {item.title}
+                  </h6>
+                  <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '15px' }}>
+                    {item.shortDesc}
+                  </p>
+                  <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
+                    View Case Study
+                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </div>
+                </div>
               </motion.div>
             ))}
-          </div>
-
-          {/* Button */}
-          <div
-            className="flex justify-center mt-20 pt-14 pb-6"
-            style={{ borderTop: "1px solid #e5e5e5" }}
-          >
-            <Link
-              to="/portfolio"
-              className="group inline-flex items-center gap-3 bg-black text-white hover:bg-[#1b1b1b] transition-all duration-300"
-              style={{
-                padding: "1rem 2.8rem",
-                fontSize: "0.9rem",
-                fontFamily: "var(--font-display)",
-                fontWeight: 500,
-                letterSpacing: "0.02em",
-                marginTop: "40px",       // Forces space above the text
-                marginBottom: "40px"     // Forces space below the text before the grid
-              }}
-            >
-              Explore All Portfolio
-
-              <ArrowRight
-                className="group-hover:translate-x-1 transition-transform duration-300"
-                size={18}
-              />
-            </Link>
           </div>
         </div>
       </section>
