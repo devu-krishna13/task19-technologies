@@ -178,7 +178,7 @@ export default function Home() {
       </Helmet>
 
       {/* ═══ ROTATING HERO ═══ */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper">
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper h-screen min-h-[600px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}
@@ -189,35 +189,47 @@ export default function Home() {
           className="hero-swiper absolute inset-0 w-full h-full"
         >
           {heroSlides.map((slide, i) => (
-            <SwiperSlide key={i} className="relative w-full h-full">
-              {/* Background image — fills full area below header, no black bars */}
-              <div className="absolute top-[72px] bottom-0 left-0 right-0 z-0 overflow-hidden">
+            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
+              {/* Background image with cinematic gradient */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
                 <img
                   src={slide.bg}
                   alt={slide.label}
                   className="w-full h-full object-cover object-center"
                   loading={i === 0 ? 'eager' : 'lazy'}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
+                <div className="absolute inset-0" style={{
+                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
+                }}></div>
               </div>
 
-              {/* Content — centered vertically, text left-aligned */}
-              <div className="relative z-10 h-full flex flex-col pt-[72px]">
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="container">
-                    <h1
-                      className="font-display font-light text-white leading-[1.1] tracking-tight mb-5 text-left"
-                      style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
-                    >
+              {/* Content — Centered absolutely */}
+              <div className="absolute inset-0 z-10 flex flex-col justify-center">
+                <div className="container relative flex flex-col items-center text-center px-4 mx-auto">
+
+                  {/* Top Badge (slide.label) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-8"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">!</div>
+                    <span className="text-white/90 text-sm font-medium">{slide.label}</span>
+                  </motion.div>
+
+                  {/* Main Headline (slide.title) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="max-w-4xl mx-auto"
+                  >
+                    <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
                       {slide.title}
                     </h1>
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 text-white text-sm font-light hover:text-white/70 transition-colors"
-                    >
-                      {slide.cta} <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
+                  </motion.div>
+
                 </div>
               </div>
             </SwiperSlide>
@@ -225,7 +237,7 @@ export default function Home() {
         </Swiper>
 
         <div className="absolute bottom-8 left-0 right-0 z-20 pointer-events-none">
-          <div className="container flex justify-start">
+          <div className="container flex justify-center">
             <div className="hero-pagination flex gap-2 pointer-events-auto" />
           </div>
         </div>
@@ -324,47 +336,47 @@ export default function Home() {
       </section>
 
       {/* ═══ STRATEGY ═══ */}
-      <section className="section bg-surface border-t border-border">
+      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '32px', paddingBottom: '32px' }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
-            <div className="lg:sticky lg:top-32">
-              <span className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">Strategy</span>
-              </span>
-              <h2 className="font-display font-light text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
+            <div className="lg:sticky lg:top-32 self-start">
+              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Strategy</span>
+              </div>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
                 Stop Leaving Revenue<br />On The Table
               </h2>
-              <p className="text-text-secondary text-lg leading-relaxed font-light mb-10 max-w-md">
+              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
                 In the competitive Direct-to-Consumer (D2C) landscape, your e-commerce platform is your most critical asset. We solve the technical and strategic hurdles that limit growth.
               </p>
-              <Link to="/contact" className="btn-base btn-outline-dark">
-                Discuss Your Project <ArrowRight className="w-4 h-4" />
+              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                Discuss Your Project <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
 
-            <div className="flex flex-col">
+            <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '8px' }}>
               {[
                 { title: 'Conversion Bottlenecks', desc: 'A beautiful site is useless if it doesn\'t sell. We focus on conversion rate optimization (CRO) from the ground up.' },
                 { title: 'Scalability Issues', desc: 'We build infrastructure—from code to hosting—that can handle flash sales, high traffic, and rapid product expansion without breaking.' },
                 { title: 'Feature Gaps', desc: 'When off-the-shelf apps aren\'t enough, we develop custom solutions that fit your unique business logic perfectly.' },
                 { title: 'Proven Results & Trust', desc: 'We partner with D2C brands to deliver measurable growth. Our solutions are designed to be high-performance, maintainable, and revenue-focused.' }
-              ].map((item, i) => (
+              ].map((item, i, arr) => (
                 <motion.div
                   key={i}
-                  className="group py-10 border-b border-border hover:border-accent transition-colors duration-500 flex flex-col sm:flex-row gap-6 sm:gap-10 items-start first:pt-0"
+                  className="transition-all duration-300"
+                  style={{ padding: '24px 0', borderBottom: i < arr.length - 1 ? '1px solid #e5e7eb' : 'none' }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <span className="font-display text-4xl font-light text-border group-hover:text-accent transition-colors duration-500 mt-1">
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl font-light text-text-primary mb-3 group-hover:text-accent transition-colors duration-300">{item.title}</h3>
-                    <p className="text-base font-body text-text-secondary leading-relaxed font-light">{item.desc}</p>
+                  <div className="flex items-center gap-5 mb-3">
+                    <div className="flex flex-shrink-0 items-center justify-center rounded-full" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
+                      <span className="font-display font-bold" style={{ fontSize: '18px', color: '#111827' }}>0{i + 1}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
                   </div>
+                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -373,39 +385,41 @@ export default function Home() {
       </section>
 
       {/* ═══ TECHNOLOGIES (WAC Clean Layout Style) ═══ */}
-      <section className="pt-12 pb-28 lg:pt-16 lg:pb-36 bg-black text-white">
+      <section className="section" style={{ backgroundColor: '#050f28', color: '#fff', paddingTop: '48px', paddingBottom: '48px' }}>
         <div className="container px-4 mx-auto w-full">
 
-          {/* Header Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-32 lg:mb-44 items-start">
-            <div className="lg:col-span-5">
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-white" style={{ fontSize: '14px' }}>Tech Stack</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '48px' }}>
+            <div>
               <h2
-                className="font-display font-normal text-white leading-none tracking-tight"
-                style={{
-                  fontSize: 'clamp(2.2rem, 4vw, 3.4rem)',
-                  marginTop: "50px",
-                  marginBottom: "20px"
-                }}
+                className="font-display font-bold text-white leading-tight tracking-tight"
+                style={{ fontSize: '42px', margin: 0 }}
               >
                 Technologies
               </h2>
             </div>
-            <div className="lg:col-span-7 flex items-end h-full">
-              <p className="text-white/60 font-light leading-relaxed max-w-xl"
+            <div>
+              <p className="font-light leading-relaxed max-w-xl"
                 style={{
-                  fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)',
-                  marginTop: "0px",
-                  marginBottom: "20px"
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '18px',
+                  margin: 0
                 }}>
                 Shopify, WooCommerce & Custom App Development expertise for seamless e-commerce.
               </p>
             </div>
           </div>
 
-          {/* Logo Grid — more vertical space between rows, and before button */}
+          {/* Logo Grid */}
           <div
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-24 lg:gap-y-32 mb-36 lg:mb-52 items-center justify-items-center"
-            style={{ marginBottom: "clamp(6rem, 9vw, 6rem)" }}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 items-center justify-items-center"
+            style={{ gap: '48px 32px', marginBottom: '48px' }}
           >
             {techLogos.map((tech, i) => (
               <motion.div
@@ -417,10 +431,10 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: (i % 5) * 0.05 }}
               >
                 <div
-                  className="flex items-center justify-center opacity-90 hover:opacity-100 transition-all duration-300 [&_svg]:h-full [&_svg]:w-auto"
+                  className="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-300 [&_svg]:h-full [&_svg]:w-auto"
                   style={{
                     height: '42px',
-                    filter: 'brightness(0) invert(1)', // forces logo to solid white regardless of source colors
+                    filter: 'brightness(0) invert(1)',
                   }}
                 >
                   {tech.svg}
@@ -429,21 +443,15 @@ export default function Home() {
             ))}
           </div>
 
-          {/* View all button — matches reference style */}
+          {/* View all button */}
           <div className="flex justify-center">
             <Link
               to="/technologies"
-              className="group border border-white/25 text-white hover:bg-black hover:text-white transition-all duration-300 font-display text-[13px] tracking-widest uppercase flex items-center justify-center gap-3"
-              style={{
-                padding: "1.25rem 2.75rem",
-                fontSize: "0.85rem",
-                fontFamily: "var(--font-display)",
-                fontWeight: 600,
-                marginBottom: "50px", letterSpacing: "0.15em",
-              }}
+              className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90"
+              style={{ backgroundColor: '#fff', color: '#000', borderRadius: '9999px', padding: '14px 28px', fontSize: '15px' }}
             >
               <span>View all technologies</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
           </div>
 
@@ -451,40 +459,42 @@ export default function Home() {
       </section>
 
       {/* ═══ SPECIALIZED SOLUTIONS ═══ */}
-      <section className="section bg-secondary border-t border-border">
+      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="container">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-            <div className="lg:w-[40%] lg:sticky lg:top-32">
-              <span className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">Specialized Solutions</span>
-              </span>
-              <h2 className="font-display font-light text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
+            <div className="lg:sticky lg:top-32 self-start">
+              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Specialized Solutions</span>
+              </div>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
                 Focused Services for Commerce Teams
               </h2>
-              <p className="text-text-secondary text-lg leading-relaxed font-light mb-10">
+              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
                 These focused capabilities connect clearly to the problems growing stores actually need solved.
               </p>
-              <Link to="/services/shopify" className="btn-base btn-solid-blue">
-                All Services <ArrowRight className="w-4 h-4" />
+              <Link to="/services/shopify" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                All Services <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
 
-            <div className="lg:w-[60%] grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1" style={{ gap: '16px', paddingTop: '8px' }}>
               {specializedSolutions.map((item, i) => (
                 <motion.div
                   key={item.title}
-                  className="bg-surface p-10 border border-border hover:border-accent hover:shadow-xl transition-all duration-500 group"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  className="bg-white transition-all duration-300 hover:shadow-md"
+                  style={{ borderRadius: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', padding: '20px 32px' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <div className="w-14 h-14 bg-secondary flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-500 text-accent">
-                    <item.icon className="w-6 h-6" />
+                  <div className="flex items-center gap-5 mb-4">
+                    <div className="flex flex-shrink-0 items-center justify-center rounded-full transition-transform duration-300" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
+                      <item.icon className="w-5 h-5" style={{ color: '#000' }} />
+                    </div>
+                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
                   </div>
-                  <h3 className="font-display text-xl font-medium text-text-primary mb-3">{item.title}</h3>
-                  <p className="text-text-secondary leading-relaxed font-light">{item.description}</p>
+                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -626,96 +636,132 @@ export default function Home() {
       </section>
 
       {/* ═══ TESTIMONIALS (Featured Stories) ═══ */}
-      <section className="py-24 bg-[#f9f9f9]">
-        <div className="container">
-          <div className="mb-12">
-            <h4 className="font-display font-light text-text-primary mb-4" style={{
-              fontSize: '40px',
-              marginTop: "40px",       // Forces space above the text
-              marginBottom: "40px"
-            }}>
+      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-gray-900 mb-4" style={{ fontSize: '42px', letterSpacing: '-0.02em' }}>
               Client Success Stories
-            </h4>
-            <p className="text-text-secondary text-[16px] font-light">
-              Real results from ambitious brands that trusted us to scale their digital presence.
-            </p>
+            </h2>
+            <div className="flex items-center justify-center gap-2 font-medium text-gray-800">
+              <span style={{ fontSize: '15px' }}>4.5/5</span>
+              <div className="flex text-yellow-400 gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+              </div>
+              <span className="text-gray-500 ml-1" style={{ fontSize: '14px' }}>(Trusted by 148+ users)</span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {[
-              {
-                company: 'TechFlow Solutions',
-                industry: 'Enterprise Software',
-                image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
-                content: 'How we scaled a B2B SaaS platform to support 2M+ active users with zero downtime.'
-              },
-              {
-                company: 'Aura Lifestyle',
-                industry: 'E-Commerce',
-                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-                content: 'Transforming a boutique into a headless Shopify powerhouse with lightning-fast checkouts.'
-              },
-              {
-                company: 'FinGuard Systems',
-                industry: 'FinTech',
-                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-                content: 'Engineering a bank-grade mobile payment app with end-to-end encryption.'
-              },
-              {
-                company: 'NexHealth AI',
-                industry: 'Healthcare',
-                image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-                content: 'Building a HIPAA-compliant telemedicine portal that reduced wait times by 40%.'
-              }
-            ].map((t, i) => (
-              <motion.div
-                key={i}
-                className="flex flex-col group cursor-pointer"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-              >
-                {/* Image area */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface">
-                  <img src={t.image} alt={t.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                  {/* Play icon overlay */}
-                  <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-                    <div className="w-0 h-0 border-t-[4px] border-t-transparent border-l-[6px] border-l-white border-b-[4px] border-b-transparent ml-0.5"></div>
-                  </div>
-                </div>
-
-                {/* Text area */}
-                <div className="bg-white p-5 flex-grow flex flex-col justify-start border border-t-0 border-[#eaeaea]">
-                  <span className="text-[9px] font-semibold text-[#0057FF] mb-3 uppercase tracking-[0.05em]">{t.industry}</span>
-                  <h5 className="font-display text-[15px] font-medium text-text-primary mb-2 group-hover:text-[#0057FF] transition-colors">{t.company}</h5>
-                  <p className="text-text-secondary text-[11px] leading-[1.6] font-light">
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  name: 'Maya Zong',
+                  title: 'UI/UX Designer',
+                  image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+                  content: 'I appreciate how simple and focused this platform is. It removes the clutter and helps me stay organized across multiple e-commerce projects.'
+                },
+                {
+                  name: 'Ethan Miller',
+                  title: 'Web Developer',
+                  image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=150',
+                  content: 'Working with this team helps me manage multiple client setups without missing deadlines. The workflows give instant clarity on builds and deployments.'
+                },
+                {
+                  name: 'Hannah Lee',
+                  title: 'Content Writer',
+                  image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+                  content: 'Tracking content migrations used to be difficult. The custom solutions provided made the entire transition process clear and completely reliable.'
+                },
+                {
+                  name: 'Daniel Perez',
+                  title: 'Software Engineer',
+                  image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+                  content: 'The integrations are perfectly suited for modern engineering teams. I can quickly see what’s due and what’s completed without legacy blockers.'
+                },
+                {
+                  name: 'Laura Kim',
+                  title: 'Product Designer',
+                  image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
+                  content: 'The strategic consulting has helped me improve my delivery consistency with enterprise clients drastically.'
+                },
+                {
+                  name: 'Priya Shah',
+                  title: 'Marketing Specialist',
+                  image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
+                  content: 'This keeps all my campaign technical requirements structured. I no longer rely on scattered notes or reminders.'
+                }
+              ].map((t, i) => (
+                <div key={i} className="rounded-[24px] flex flex-col justify-between" style={{ backgroundColor: '#e5e7eb', padding: '32px', minHeight: '260px' }}>
+                  <p className="text-gray-800 leading-relaxed mb-8 font-medium" style={{ fontSize: '15px' }}>
                     {t.content}
                   </p>
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center gap-4">
+                      <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
+                      <div>
+                        <h5 className="font-display font-bold text-gray-900 m-0 leading-tight" style={{ fontSize: '15px' }}>{t.name}</h5>
+                        <span className="text-gray-600" style={{ fontSize: '13px' }}>{t.title}</span>
+                      </div>
+                    </div>
+                    <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+                      <svg className="w-4 h-4 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* <div className="flex justify-center mt-12">
-            <Link to="/stories" className="inline-flex items-center justify-center px-8 py-3 text-[11px] uppercase font-medium tracking-wide border border-border hover:bg-black hover:text-white transition-all duration-300 bg-transparent">
-              View Case Studies <ArrowRight className="w-3.5 h-3.5 ml-3" />
-            </Link>
-          </div> */}
+            {/* Fade overlay and button */}
+            <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none flex items-end justify-center pb-8" style={{ background: 'linear-gradient(to top, #f9fafb 15%, rgba(249, 250, 251, 0) 100%)' }}>
+              <Link
+                to="#"
+                className="inline-flex items-center justify-center text-white rounded-full font-medium pointer-events-auto hover:bg-black transition-all"
+                style={{ backgroundColor: '#111827', fontSize: '15px', padding: '16px 36px', lineHeight: '1', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  // In a real app this would route to a reviews page
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                View all Reviews
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ═══ BLOG (WAC Insights Style) ═══ */}
-      <section className="py-24 lg:py-32 bg-white border-t border-border">
-        <div className="container">
-          <div className="mb-12 lg:mb-16">
-            <h4 className="font-display font-light text-text-primary" style={{
-              fontSize: '40px',
-              marginTop: "40px",       // Forces space above the text
-              marginBottom: "40px"
-            }}>Insights</h4>
+      {/* ═══ BLOG ═══ */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '48px', paddingBottom: '48px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Our Blog</span>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '40px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight" style={{ fontSize: '42px', margin: 0 }}>
+                Insights & News
+              </h2>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/blog"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>View all insights</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               ...blogPosts,
               {
@@ -726,32 +772,43 @@ export default function Home() {
                 readTime: '6 min read',
                 image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=360&fit=crop'
               }
-            ].map((post, i) => (
+            ].slice(0, 3).map((post, i) => (
               <motion.div
                 key={post.slug}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group cursor-pointer flex flex-col"
+                className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                style={{ borderRadius: '24px' }}
               >
-                <Link to={`/blog/${post.slug}`} className="block h-full">
-                  <div className="aspect-[16/10] overflow-hidden mb-5 bg-surface">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                <Link to={`/blog/${post.slug}`} className="absolute inset-0 z-10" aria-label={`Read ${post.title}`} />
+
+                <div className="aspect-[16/10] overflow-hidden bg-gray-100 relative shrink-0">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4 backdrop-blur-md px-3 py-1.5" style={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '9999px' }}>
+                    <span className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">{post.category}</span>
                   </div>
-                  <div className="flex items-center justify-between text-[10px] text-[#666] font-medium mb-3 tracking-wide">
-                    <span>{post.category} - {post.readTime}</span>
+                </div>
+
+                <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
+                  <div className="flex items-center justify-between text-gray-500 font-medium mb-4" style={{ fontSize: '13px', letterSpacing: '0.02em' }}>
                     <span>{post.date}</span>
+                    <span>{post.readTime}</span>
                   </div>
-                  <h5 className="font-display text-[15px] font-medium text-text-primary leading-snug group-hover:text-[#0057FF] transition-colors line-clamp-3">
+                  <h5 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors line-clamp-3 mb-6" style={{ fontSize: '22px' }}>
                     {post.title}
                   </h5>
-                </Link>
+                  <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
+                    Read Article
+                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -759,17 +816,24 @@ export default function Home() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section className="section bg-secondary">
+      <section className="section" style={{ backgroundColor: '#f9fafb' }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
             <div>
-              <SectionHeading label="Questions & Answers" title="Frequently Asked Questions" align="left" className="mb-0" />
-              <p className="text-text-secondary mt-5 mb-8 font-light text-base">Can't find what you're looking for? Reach out directly — we typically respond within 2 business hours.</p>
-              <Link to="/contact" className="btn-base btn-solid-dark">
-                Contact Us <ArrowRight className="w-4 h-4" />
+              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Common questions</span>
+              </div>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+                Frequently<br />asked questions
+              </h2>
+              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
+                Can't find what you're looking for? Reach out directly — we typically respond within 2 business hours.
+              </p>
+              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                Contact Us <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
-            <div><FAQAccordion items={faqs.slice(0, 5)} /></div>
+            <div style={{ paddingTop: '8px' }}><FAQAccordion items={faqs.slice(0, 5)} /></div>
           </div>
         </div>
       </section>

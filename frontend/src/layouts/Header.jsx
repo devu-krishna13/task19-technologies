@@ -5,10 +5,10 @@ import { Menu, X, ArrowRight, Phone, Mail } from 'lucide-react'
 
 const navLinks = [
   { label: 'Home', to: '/' },
-  { label: 'Recent Portfolio', to: '/portfolio' },
-  { label: 'Shopify Service Page', to: '/services/shopify' },
-  { label: 'Shopify Apps', to: '/shopify-apps' },
-  { label: 'Contact Us', to: '/contact' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Services', to: '/services/shopify' },
+  { label: 'Apps', to: '/shopify-apps' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Header() {
@@ -17,7 +17,7 @@ export default function Header() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60)
+    const handleScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -36,64 +36,53 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const isHome = location.pathname === '/'
-  const headerBg = scrolled
-    ? 'bg-primary/95 backdrop-blur-xl shadow-sm border-b border-white/10'
-    : isHome
-      ? 'bg-black/30 backdrop-blur-md border-b border-white/5'
-      : 'bg-primary/95 backdrop-blur-xl border-b border-white/10'
-  const textColor = 'text-white'
-  const logoColor = 'text-white'
-
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${headerBg}`}>
-        <div className="container">
-          <div className="flex items-center justify-between h-[72px] gap-8">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 group" aria-label="Task19 Technologies Home">
-              <div className="w-9 h-9 bg-accent flex items-center justify-center font-display font-bold text-white text-xs">
+      <header className={`fixed top-4 left-0 right-0 z-[100] transition-all duration-500 px-4 md:px-8`}>
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between gap-4">
+            {/* Logo Pill */}
+            <Link 
+              to="/" 
+              className="flex items-center gap-3 bg-white h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ paddingLeft: '12px', paddingRight: '32px' }}
+              aria-label="Task19 Technologies Home"
+            >
+              <div className="w-9 h-9 rounded-full bg-accent flex items-center justify-center font-display font-bold text-white text-sm">
                 T19
               </div>
-              <span className={`font-display font-semibold text-xl tracking-tight transition-colors duration-300 ${logoColor}`}>
+              <span className="font-display font-bold text-xl tracking-tight" style={{ color: '#000' }}>
                 Task19
               </span>
             </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-9 xl:gap-11" aria-label="Main navigation">
+            {/* Desktop Nav Pill */}
+            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg" style={{ paddingLeft: '80px', paddingRight: '80px', gap: '40px' }} aria-label="Main navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.to}
-                  className={`group relative font-body text-sm font-medium transition-colors duration-300 hover:text-white ${textColor} ${
-                    location.pathname === link.to ? 'text-white' : 'text-white/80'
-                  }`}
+                  className="font-body text-[15px] font-medium transition-colors duration-300 hover:opacity-70 whitespace-nowrap"
+                  style={{ color: location.pathname === link.to ? '#2563eb' : '#000' }}
                 >
                   {link.label}
-                  <span
-                    className={`absolute left-0 top-full mt-2 h-px bg-accent transition-all duration-300 ${
-                      location.pathname === link.to ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full'
-                    }`}
-                  />
                 </Link>
               ))}
             </nav>
 
-            {/* CTA */}
-            <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
-              <a
-                href="tel:+917012639646"
-                className={`flex items-center gap-2 text-sm font-medium leading-none transition-colors duration-300 hover:text-white/80 ${textColor}`}
-              >
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <span>+91 70126 39646</span>
+            {/* Right Actions Pill */}
+            <div className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg" style={{ paddingLeft: '12px', paddingRight: '12px', gap: '12px' }}>
+              <a href="tel:+917012639646" className="w-10 h-10 flex items-center justify-center transition-colors hover:opacity-80" style={{ backgroundColor: '#f3f4f6', borderRadius: '12px' }}>
+                <Phone className="w-4 h-4" style={{ color: '#000' }} />
               </a>
+              <Link to="/contact" className="w-10 h-10 flex items-center justify-center transition-colors hover:opacity-80" style={{ backgroundColor: '#f3f4f6', borderRadius: '12px' }}>
+                <Mail className="w-4 h-4" style={{ color: '#000' }} />
+              </Link>
             </div>
 
-            {/* Mobile Toggle */}
+            {/* Mobile Toggle Pill */}
             <button
-              className={`lg:hidden transition-colors duration-300 ${textColor}`}
+              className="lg:hidden flex items-center justify-center w-14 h-14 bg-white rounded-full shadow-lg text-primary"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -107,31 +96,20 @@ export default function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[90] bg-primary overflow-y-auto lg:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[90] bg-surface pt-28 px-6 lg:hidden"
           >
-            {/* Mobile Header */}
-            <div className="flex items-center justify-between h-20 px-6 border-b border-border-dark">
-              <Link to="/" className="flex items-center gap-2.5">
-                <div className="w-9 h-9 bg-accent flex items-center justify-center font-display font-bold text-white text-xs">T19</div>
-                <span className="font-display font-semibold text-xl text-white">Task19</span>
-              </Link>
-              <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
-                <X className="w-6 h-6 text-white" />
-              </button>
-            </div>
-
             {/* Mobile Nav Links */}
-            <nav className="px-6 pt-6 pb-10">
+            <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.to}
-                  className={`block py-5 border-b border-border-dark font-display font-light text-xl text-white hover:text-accent transition-colors duration-200 ${
-                    location.pathname === link.to ? 'text-accent' : ''
+                  className={`py-4 px-6 rounded-2xl font-display font-semibold text-2xl transition-colors duration-200 ${
+                    location.pathname === link.to ? 'bg-secondary text-accent' : 'text-text-primary hover:bg-secondary'
                   }`}
                   onClick={() => setMobileOpen(false)}
                 >
@@ -139,21 +117,23 @@ export default function Header() {
                 </Link>
               ))}
 
-
-
               {/* Mobile Contact Info */}
-              <div className="pt-8 space-y-5">
-                <a href="tel:+917012639646" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-200">
-                  <Phone className="w-4 h-4 text-accent" />
-                  <span className="text-sm">+91 70126 39646</span>
+              <div className="pt-8 px-6 space-y-6">
+                <a href="tel:+917012639646" className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-lg font-medium">+91 70126 39646</span>
                 </a>
-                <a href="mailto:info@task19.com" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-200">
-                  <Mail className="w-4 h-4 text-accent" />
-                  <span className="text-sm">info@task19.com</span>
+                <a href="mailto:info@task19.com" className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-lg font-medium">info@task19.com</span>
                 </a>
                 <Link
-                  to="/contact-us"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-white text-sm font-display font-semibold transition-all duration-300 hover:bg-accent-hover w-full justify-center mt-4"
+                  to="/contact"
+                  className="mt-6 flex items-center justify-center gap-2 h-14 bg-primary text-white text-[15px] font-medium rounded-full hover:bg-primary-light transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   Start a Project

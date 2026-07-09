@@ -49,8 +49,8 @@
   --font-size-nav: 0.9375rem;
 
   /* Spacing */
-  --spacing-section: clamp(4rem, 8vw, 6rem);
-  --spacing-section-sm: clamp(3rem, 5vw, 4rem);
+  --spacing-section: clamp(2.5rem, 4vw, 3.5rem);
+  --spacing-section-sm: clamp(2rem, 3vw, 2.5rem);
 
   /* Container */
   --container-max: 1400px;
