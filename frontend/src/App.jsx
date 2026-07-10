@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import MainLayout from './layouts/MainLayout'
@@ -34,6 +34,11 @@ const Sitemap = lazy(() => import('./pages/Sitemap'))
 
 export default function App() {
   const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   return (
     <MainLayout>
       <AnimatePresence mode="wait">

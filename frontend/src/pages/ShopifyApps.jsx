@@ -1,16 +1,31 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, CheckCircle } from 'lucide-react'
-import SectionHeading from '../components/ui/SectionHeading'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { ArrowRight, Star, ExternalLink, CheckCircle } from 'lucide-react'
 import CTASection from '../components/ui/CTASection'
+
+const appsHeroSlides = [
+  {
+    label: 'Shopify App Store',
+    title: <>Apps We've Built for the<br /><em className="font-serif-italic not-italic text-white/40">Shopify Ecosystem.</em></>,
+    bg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+  },
+  {
+    label: 'Merchant Solutions',
+    title: <>Automate Operations &<br /><em className="font-serif-italic not-italic text-white/40">Grow Revenue Faster.</em></>,
+    bg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+  }
+]
 
 const apps = [
   {
     id: 'profit-saver',
     name: 'Profit Saver: 7-Tier Loyalty',
     tagline: 'Customer Loyalty & Rewards',
-    icon: BarChart3,
     color: '#013ad6',
     rating: '4.9',
     reviews: '120+',
@@ -25,13 +40,12 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'Top Rated',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
   },
   {
     id: 'page-booster',
     name: 'Page Booster – Product Blocks',
     tagline: 'Upsells & Product Features',
-    icon: Layers,
     color: '#7c3aed',
     rating: '4.8',
     reviews: '80+',
@@ -46,13 +60,12 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
   },
   {
     id: 'marginmate',
     name: 'MarginMate Custom Pricing',
     tagline: 'Custom Pricing Engine',
-    icon: Zap,
     color: '#06b6d4',
     rating: '4.7',
     reviews: '45+',
@@ -67,13 +80,12 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'B2B Essential',
-    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=640&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80',
   },
   {
     id: 'variant-image',
     name: 'Task19 Variant Image Manager',
     tagline: 'Product Variant Images',
-    icon: ShoppingBag,
     color: '#10b981',
     rating: '4.9',
     reviews: '95+',
@@ -88,7 +100,7 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'Conversion Booster',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=640&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
   },
 ]
 
@@ -97,235 +109,174 @@ export default function ShopifyApps() {
     <>
       <Helmet>
         <title>Shopify Apps by Task19 Technologies — App Store</title>
-        <meta name="description" content="Shopify apps built by Task19 Technologies: Profit Saver Loyalty, Page Booster, MarginMate Custom Pricing, and Variant Image Manager. Install from the Shopify App Store." />
-        <link rel="canonical" href="https://task19.com/shopify-apps-list/" />
+        <meta name="description" content="Shopify apps built by Task19 Technologies: Profit Saver Loyalty, Page Booster, MarginMate Custom Pricing, and Variant Image Manager." />
+        <link rel="canonical" href="https://task19.com/shopify-apps" />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-40 pb-28 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-dot-pattern opacity-30" />
-        <div className="container relative z-10">
-          <motion.div
-            className="max-w-4xl"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-flex items-center gap-3 mb-7">
-              <span className="h-px w-10 bg-accent" />
-              <span className="font-display text-xs font-medium tracking-[0.3em] uppercase text-accent">Shopify App Store</span>
-            </span>
-            <h1 className="font-display font-light text-white mb-7 leading-[1.05]" style={{ fontSize: 'var(--font-size-h1)' }}>
-              Apps We've Built for the{' '}
-              <em className="font-serif-italic text-white/50">Shopify Ecosystem</em>
-            </h1>
-            <p className="text-xl text-white/60 leading-relaxed max-w-3xl font-light mb-10">
-              Proprietary Shopify apps designed and developed by Task19 Technologies — trusted by hundreds of merchants worldwide to grow revenue, improve loyalty, and automate operations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 items-start">
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white text-sm font-display">
-                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                4.8+ avg. rating across all apps
+      {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper h-screen min-h-[600px]">
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={0}
+          slidesPerView={1}
+          autoplay={{ delay: 5500, disableOnInteraction: false }}
+          pagination={{ clickable: true, el: '.hero-pagination' }}
+          loop
+          className="hero-swiper absolute inset-0 w-full h-full"
+        >
+          {appsHeroSlides.map((slide, i) => (
+            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
+              {/* Background image with cinematic gradient */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <img
+                  src={slide.bg}
+                  alt={slide.label}
+                  className="w-full h-full object-cover object-center"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                />
+                <div className="absolute inset-0" style={{
+                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
+                }}></div>
               </div>
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white text-sm font-display">
-                350+ active merchants
+
+              {/* Content */}
+              <div className="absolute inset-0 z-10 flex flex-col justify-center">
+                <div className="container relative flex flex-col items-center text-center px-4 mx-auto">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-8"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">!</div>
+                    <span className="text-white/90 text-sm font-medium">{slide.label}</span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="max-w-4xl mx-auto"
+                  >
+                    <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+                      {slide.title}
+                    </h1>
+                  </motion.div>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="absolute bottom-8 left-0 right-0 z-20 pointer-events-none">
+          <div className="container flex justify-center">
+            <div className="hero-pagination flex gap-2 pointer-events-auto" />
+          </div>
         </div>
       </section>
 
-      {/* Apps Detail Sections */}
-      {apps.map((app, i) => {
-        const Icon = app.icon
-        const isEven = i % 2 === 0
-        return (
-          <section key={app.id} className={`section ${isEven ? 'bg-surface' : 'bg-secondary'}`}>
-            <div className="container">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center`}>
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className={isEven ? '' : 'lg:order-2'}
-                >
-                  <div className="flex items-center gap-3 mb-5">
-                    <span
-                      className="inline-block px-3 py-1 text-xs font-display font-medium tracking-wider uppercase text-white"
-                      style={{ backgroundColor: app.color }}
-                    >
-                      {app.badge}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                      <span className="text-sm font-display font-medium text-text-primary">{app.rating}</span>
-                      <span className="text-xs text-text-muted">({app.reviews} reviews)</span>
-                    </div>
-                  </div>
-                  <p className="font-display text-xs font-medium tracking-[0.2em] uppercase mb-3" style={{ color: app.color }}>
-                    {app.tagline}
-                  </p>
-                  <h2 className="font-display font-light text-text-primary mb-5 leading-snug" style={{ fontSize: 'var(--font-size-h3)' }}>
-                    {app.name}
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed mb-7 font-light text-lg">
-                    {app.desc}
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                    {app.features.map((f, j) => (
-                      <div key={j} className="flex gap-2.5 items-start">
-                        <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: app.color }} />
-                        <span className="text-sm text-text-secondary">{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <a
-                      href={app.shopifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-display font-semibold text-sm transition-all duration-300 hover:opacity-90"
-                      style={{ backgroundColor: app.color }}
-                    >
-                      Install App <ExternalLink className="w-4 h-4" />
-                    </a>
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 px-7 py-3.5 border border-border text-text-primary font-display font-medium text-sm hover:border-accent hover:text-accent transition-all duration-300"
-                    >
-                      Learn More <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </motion.div>
+      {/* ── Apps Detail Sections ── */}
+      <div className="bg-surface py-12 lg:py-20 flex flex-col gap-12 lg:gap-16">
+        {apps.map((app, i) => {
+          const isEven = i % 2 === 0
+          return (
+            <section key={app.id} className="section bg-surface pt-0 pb-0">
+              <div className="container max-w-6xl mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
 
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className={isEven ? '' : 'lg:order-1'}
-                >
-                  <div className="relative">
-                    <div className="border border-border overflow-hidden">
+                  {/* Text Content in Border Box */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className={`order-2 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
+                  >
+                    <div className="bg-white p-6 md:p-10" style={{ border: '1px solid #e5e7eb', borderRadius: '24px' }}>
+
+                      {/* Pill style badges (Strategy our work style) */}
+                      <div className="flex flex-wrap items-center gap-3 mb-6">
+                        <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+                          <span className="font-medium" style={{ fontSize: '13px', color: app.color }}>{app.badge}</span>
+                        </div>
+                        <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+                          <div className="flex items-center gap-1">
+                            <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                            <span className="text-[13px] font-medium text-gray-800">{app.rating}</span>
+                            <span className="text-[13px] text-gray-500">({app.reviews})</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="font-display text-xs font-semibold tracking-[0.2em] uppercase mb-2" style={{ color: app.color }}>
+                        {app.tagline}
+                      </p>
+                      <h2 className="font-display font-bold text-gray-900 mb-5 leading-tight" style={{ fontSize: '32px' }}>
+                        {app.name}
+                      </h2>
+                      <p className="text-gray-500 leading-relaxed mb-8 font-light" style={{ fontSize: '16px' }}>
+                        {app.desc}
+                      </p>
+
+                      {/* Features List styled beautifully */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-10">
+                        {app.features.map((f, j) => (
+                          <div key={j} className="flex gap-3 items-start">
+                            <div className="flex-shrink-0 mt-0.5 rounded-full p-1" style={{ backgroundColor: `${app.color}15` }}>
+                              <CheckCircle className="w-4 h-4" style={{ color: app.color }} />
+                            </div>
+                            <span className="text-sm text-gray-600 font-light leading-snug">{f}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <a
+                          href={app.shopifyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80"
+                          style={{ backgroundColor: app.color, color: '#fff', borderRadius: '14px', padding: '12px 24px' }}
+                        >
+                          <span>Install App</span> <ExternalLink className="w-4 h-4 ml-2" />
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Visual Image with rounded corners only */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? 30 : -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className={`order-1 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                  >
+                    <div className="overflow-hidden shadow-sm" style={{ borderRadius: '24px', border: '1px solid #e5e7eb' }}>
                       <img
                         src={app.image}
                         alt={app.name}
-                        className="w-full aspect-[4/3] object-cover"
+                        className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-105"
                         loading="lazy"
                       />
                     </div>
-                    <div
-                      className="absolute -bottom-4 -right-4 w-16 h-16 flex items-center justify-center"
-                      style={{ backgroundColor: app.color }}
-                    >
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-        )
-      })}
+                  </motion.div>
 
-      {/* Apps Grid Overview */}
-      <section className="section bg-primary">
-        <div className="container">
-          <SectionHeading
-            label="All Apps"
-            title="Our Complete App Portfolio"
-            subtitle="Every app is built with Shopify's official APIs and designed to integrate seamlessly with any Shopify theme."
-            light
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border border-border-dark">
-            {apps.map((app, i) => {
-              const Icon = app.icon
-              return (
-                <motion.div
-                  key={app.id}
-                  className="border-r border-border-dark last:border-r-0 p-8 hover:bg-white/5 transition-colors duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <div className="w-12 h-12 flex items-center justify-center mb-5" style={{ backgroundColor: `${app.color}20` }}>
-                    <Icon className="w-5 h-5" style={{ color: app.color }} />
-                  </div>
-                  <p className="text-xs font-display font-medium tracking-[0.2em] uppercase mb-2" style={{ color: app.color }}>
-                    {app.tagline}
-                  </p>
-                  <h3 className="font-display text-base font-medium text-white mb-2 leading-snug">{app.name}</h3>
-                  <div className="flex items-center justify-between mt-4">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                      <span className="text-xs text-white/50 font-medium">{app.rating}</span>
-                    </div>
-                    <a
-                      href={app.shopifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-white/40 hover:text-white flex items-center gap-1 transition-colors duration-200"
-                    >
-                      Install <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Custom App Development Promo */}
-      <section className="section bg-surface">
-        <div className="container">
-          <div className="border border-border p-10 md:p-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <span className="inline-flex items-center gap-3 mb-5">
-                  <span className="h-px w-8 bg-accent" />
-                  <span className="font-display text-xs font-medium tracking-[0.25em] uppercase text-accent">Custom Development</span>
-                </span>
-                <h2 className="font-display font-light text-text-primary mb-5 leading-snug" style={{ fontSize: 'var(--font-size-h3)' }}>
-                  Need a Custom Shopify App?
-                </h2>
-                <p className="text-text-secondary leading-relaxed font-light text-lg mb-6">
-                  When the App Store doesn't have what you need, we build it. Our team has extensive experience building private and public Shopify apps — from simple automation tools to complex marketplace integrations.
-                </p>
-                <div className="flex gap-4">
-                  <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-display font-semibold text-sm hover:bg-primary-light transition-all duration-300">
-                    Discuss Your App <ArrowRight className="w-4 h-4" />
-                  </Link>
                 </div>
               </div>
-              <div className="space-y-4">
-                {[
-                  'Private apps for backend business automation',
-                  'Public Shopify App Store submissions',
-                  'Custom integrations with ERPs, CRMs, and fulfilment',
-                  'B2B and Shopify Plus-specific features',
-                  'Full UI development using Shopify Polaris',
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-3 items-start">
-                    <CheckCircle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-text-secondary">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
+          )
+        })}
+      </div>
 
-      <CTASection
-        title="Ready to Supercharge Your Shopify Store?"
-        subtitle="Install one of our apps or get in touch to discuss a custom development solution."
-        primaryText="Get a Free Consultation"
-        secondaryText="Browse Services"
-        secondaryTo="/services/shopify"
-      />
+      {/* ── CTA / Ready To Build Section ── */}
+      {/* <CTASection
+        title="Need a Custom Shopify App?"
+        subtitle="When the App Store doesn't have what you need, we build it. Our team builds private and public Shopify apps using Polaris."
+        primaryText="Discuss Your App"
+        primaryTo="/contact"
+        eyebrow="Custom Development"
+      /> */}
     </>
   )
 }

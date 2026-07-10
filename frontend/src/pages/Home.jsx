@@ -458,7 +458,7 @@ export default function Home() {
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
                 These focused capabilities connect clearly to the problems growing stores actually need solved.
               </p>
-              <Link to="/services/shopify" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+              <Link to="/services" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
                 All Services <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
