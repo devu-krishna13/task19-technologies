@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -27,6 +28,20 @@ const portfolioHeroSlides = [
 ]
 
 export default function Portfolio() {
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  // Extract unique categories (industries) from the portfolio items
+  const categories = useMemo(() => {
+    const allCategories = portfolioItems.map(item => item.industry || item.category).filter(Boolean)
+    return ['All', ...new Set(allCategories)]
+  }, [])
+
+  // Filter items based on active category
+  const filteredItems = useMemo(() => {
+    if (activeFilter === 'All') return portfolioItems
+    return portfolioItems.filter(item => (item.industry || item.category) === activeFilter)
+  }, [activeFilter])
+
   return (
     <>
       <Helmet>
@@ -101,33 +116,58 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── Portfolio Items Grid Section ── */}
-      <section className="section bg-surface" style={{ paddingTop: '80px', paddingBottom: '96px' }}>
-        <div className="container">
+      {/* ── Filter Bar ── */}
+      <section className="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
+        <div className="container max-w-6xl mx-auto px-4 py-5">
+          <div className="flex items-center justify-start lg:justify-center gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveFilter(category)}
+                className="whitespace-nowrap transition-all duration-300 hover:text-black"
+                style={{
+                  padding: '8px 24px',
+                  borderRadius: '9999px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  border: `1px solid ${activeFilter === category ? '#000000' : '#e5e7eb'}`,
+                  backgroundColor: activeFilter === category ? '#000000' : '#ffffff',
+                  color: activeFilter === category ? '#ffffff' : '#6b7280',
+                  boxShadow: activeFilter === category ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          {/* Grid Layout (Cards Styled Exactly Like Homepage Recent Portfolio) */}
+      {/* ── All Portfolio Items ── */}
+      <section className="section bg-white" style={{ paddingTop: '64px', paddingBottom: '128px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">
-              {portfolioItems.map((item, i) => (
+              {filteredItems.map((item, i) => (
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
                   className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-                  style={{ borderRadius: '24px' }} // Exactly like homepage cards
+                  style={{ borderRadius: '24px' }}
                 >
                   <a
                     href={item.externalLink || `/portfolio/${item.slug}`}
-                    target={item.externalLink ? "_blank" : "_self"}
-                    rel={item.externalLink ? "noopener noreferrer" : undefined}
+                    target={item.externalLink ? '_blank' : '_self'}
+                    rel={item.externalLink ? 'noopener noreferrer' : undefined}
                     className="absolute inset-0 z-10"
                     aria-label={item.title}
                   />
 
-                  {/* Image container styled exactly like home */}
                   <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
                     <img
                       src={item.image}
@@ -140,7 +180,6 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  {/* Info block styled exactly like home */}
                   <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
                     <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '22px' }}>
                       {item.title}
@@ -153,12 +192,16 @@ export default function Portfolio() {
                       <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                     </div>
                   </div>
-
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
 
+          {filteredItems.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-gray-500 text-lg">No projects found for this category.</p>
+            </div>
+          )}
         </div>
       </section>
     </>

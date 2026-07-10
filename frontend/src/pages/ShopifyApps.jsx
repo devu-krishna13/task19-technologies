@@ -5,7 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import { ArrowRight, Star, ExternalLink, CheckCircle } from 'lucide-react'
+import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, CheckCircle } from 'lucide-react'
+import SectionHeading from '../components/ui/SectionHeading'
 import CTASection from '../components/ui/CTASection'
 
 const appsHeroSlides = [
@@ -26,6 +27,7 @@ const apps = [
     id: 'profit-saver',
     name: 'Profit Saver: 7-Tier Loyalty',
     tagline: 'Customer Loyalty & Rewards',
+    icon: BarChart3,
     color: '#013ad6',
     rating: '4.9',
     reviews: '120+',
@@ -40,12 +42,13 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'Top Rated',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=400&fit=crop',
   },
   {
     id: 'page-booster',
     name: 'Page Booster – Product Blocks',
     tagline: 'Upsells & Product Features',
+    icon: Layers,
     color: '#7c3aed',
     rating: '4.8',
     reviews: '80+',
@@ -60,12 +63,13 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=400&fit=crop',
   },
   {
     id: 'marginmate',
     name: 'MarginMate Custom Pricing',
     tagline: 'Custom Pricing Engine',
+    icon: Zap,
     color: '#06b6d4',
     rating: '4.7',
     reviews: '45+',
@@ -80,12 +84,13 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'B2B Essential',
-    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=640&h=400&fit=crop',
   },
   {
     id: 'variant-image',
     name: 'Task19 Variant Image Manager',
     tagline: 'Product Variant Images',
+    icon: ShoppingBag,
     color: '#10b981',
     rating: '4.9',
     reviews: '95+',
@@ -100,7 +105,7 @@ const apps = [
     ],
     shopifyUrl: 'https://apps.shopify.com/',
     badge: 'Conversion Booster',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=640&h=400&fit=crop',
   },
 ]
 
@@ -184,7 +189,7 @@ export default function ShopifyApps() {
               <div className="container max-w-6xl mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
 
-                  {/* Text Content in Border Box */}
+                  {/* Text Content */}
                   <motion.div
                     initial={{ opacity: 0, x: isEven ? -30 : 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -194,7 +199,6 @@ export default function ShopifyApps() {
                   >
                     <div className="bg-white p-6 md:p-10" style={{ border: '1px solid #e5e7eb', borderRadius: '24px' }}>
 
-                      {/* Pill style badges (Strategy our work style) */}
                       <div className="flex flex-wrap items-center gap-3 mb-6">
                         <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
                           <span className="font-medium" style={{ fontSize: '13px', color: app.color }}>{app.badge}</span>
@@ -218,7 +222,6 @@ export default function ShopifyApps() {
                         {app.desc}
                       </p>
 
-                      {/* Features List styled beautifully */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-10">
                         {app.features.map((f, j) => (
                           <div key={j} className="flex gap-3 items-start">
@@ -244,7 +247,7 @@ export default function ShopifyApps() {
                     </div>
                   </motion.div>
 
-                  {/* Visual Image with rounded corners only */}
+                  {/* Visual Image */}
                   <motion.div
                     initial={{ opacity: 0, x: isEven ? 30 : -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -269,13 +272,115 @@ export default function ShopifyApps() {
         })}
       </div>
 
-      {/* ── CTA / Ready To Build Section ── */}
-      {/* <CTASection
-        title="Need a Custom Shopify App?"
-        subtitle="When the App Store doesn't have what you need, we build it. Our team builds private and public Shopify apps using Polaris."
-        primaryText="Discuss Your App"
+      {/* ── Apps Grid Overview ──
+      <section className="bg-gray-50 border-t border-gray-100" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="mb-16">
+            <div className="mb-6">
+              <div className="inline-block bg-white border border-gray-200" style={{ borderRadius: '9999px', padding: '6px 16px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>All Apps</span>
+              </div>
+            </div>
+            <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-5" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>
+              Our Complete App Portfolio
+            </h2>
+            <p className="text-gray-500 font-light text-[18px] max-w-2xl">
+              Every app is built with Shopify's official APIs and designed to integrate seamlessly with any Shopify theme.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {apps.map((app) => {
+              const Icon = app.icon
+              return (
+                <motion.div
+                  key={app.id}
+                  className="bg-white border border-gray-100 p-8 flex flex-col hover:shadow-lg transition-all duration-300"
+                  style={{ borderRadius: '24px' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center mb-6">
+                    <Icon className="w-5 h-5 text-gray-900" />
+                  </div>
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2">
+                    {app.tagline}
+                  </p>
+                  <h3 className="font-display text-lg font-bold text-gray-900 mb-6 leading-snug">{app.name}</h3>
+                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-gray-50">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                      <span className="text-sm font-medium text-gray-900">{app.rating}</span>
+                    </div>
+                    <a
+                      href={app.shopifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-gray-500 hover:text-black flex items-center gap-1.5 transition-colors duration-200"
+                    >
+                      Install <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section> */}
+
+      {/* ── Custom App Promo ──
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="bg-gray-50 border border-gray-100 p-10 md:p-16" style={{ borderRadius: '32px' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="mb-6">
+                  <div className="inline-block bg-white border border-gray-200" style={{ borderRadius: '9999px', padding: '6px 16px' }}>
+                    <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Custom Development</span>
+                  </div>
+                </div>
+                <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-5" style={{ fontSize: 'clamp(2rem, 3vw, 3rem)' }}>
+                  Need a Custom Shopify App?
+                </h2>
+                <p className="text-gray-500 leading-relaxed font-light text-[18px] mb-8">
+                  When the App Store doesn't have what you need, we build it. Our team has extensive experience building private and public Shopify apps — from simple automation tools to complex marketplace integrations.
+                </p>
+                <div className="flex gap-4">
+                  <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-black text-white font-medium text-[15px] rounded-full hover:bg-gray-800 transition-all duration-300">
+                    Discuss Your App <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="bg-white border border-gray-100 p-8 shadow-sm" style={{ borderRadius: '24px' }}>
+                <div className="space-y-5">
+                  {[
+                    'Private apps for backend business automation',
+                    'Public Shopify App Store submissions',
+                    'Custom integrations with ERPs, CRMs, and fulfilment',
+                    'B2B and Shopify Plus-specific features',
+                    'Full UI development using Shopify Polaris',
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 items-start">
+                      <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-3.5 h-3.5 text-black" />
+                      </div>
+                      <span className="text-[15px] font-medium text-gray-700 pt-0.5">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+      {/* 
+      <CTASection
+        title="Ready to Scale Your Shopify Store?"
+        subtitle="Install one of our apps or get in touch with our engineering team for custom e-commerce solutions."
+        primaryText="Get in Touch"
         primaryTo="/contact"
-        eyebrow="Custom Development"
       /> */}
     </>
   )
