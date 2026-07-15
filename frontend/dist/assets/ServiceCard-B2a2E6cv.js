@@ -1,7 +1,0 @@
-import{j as e,m as i}from"./animations-C5vGWgGT.js";import{L as s}from"./vendor-DY4SC9m7.js";import{A as l}from"./ui-C5e2FRDE.js";function m({icon:r,title:t,description:a,to:n,index:o=0}){return e.jsx(i.div,{initial:{opacity:0,y:40},whileInView:{opacity:1,y:0},viewport:{once:!0,margin:"-40px"},transition:{duration:.5,delay:o*.1,ease:[.4,0,.2,1]},children:e.jsxs(s,{to:n,className:`group relative flex flex-col p-8 h-full bg-surface border border-border rounded-none
-                   hover:border-accent/30 transition-all duration-500`,children:[e.jsx("div",{className:`w-14 h-14 flex items-center justify-center mb-6 rounded-none
-                        bg-secondary text-text-primary transition-all duration-500
-                        group-hover:bg-accent group-hover:text-white group-hover:scale-105`,children:r&&e.jsx(r,{className:"w-6 h-6",strokeWidth:1.5})}),e.jsx("h3",{className:`font-display text-xl font-medium mb-3 text-text-primary
-                       group-hover:text-accent transition-colors duration-300`,children:t}),e.jsx("p",{className:"text-sm text-text-secondary leading-relaxed mb-8 flex-1",children:a}),e.jsxs("div",{className:`flex items-center gap-2 text-sm font-semibold text-accent
-                        opacity-0 translate-x-[-8px] group-hover:opacity-100
-                        group-hover:translate-x-0 transition-all duration-300`,children:[e.jsx("span",{children:"Learn More"}),e.jsx(l,{className:"w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"})]})]})})}export{m as S};
