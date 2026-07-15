@@ -187,7 +187,7 @@ export default function ShopifyApps() {
           return (
             <section key={app.id} className="section bg-surface pt-0 pb-0">
               <div className="container max-w-6xl mx-auto px-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16" style={{ alignItems: 'stretch' }}>
 
                   {/* Text Content */}
                   <motion.div
@@ -196,8 +196,9 @@ export default function ShopifyApps() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className={`order-2 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
+                    style={{ height: '100%' }}
                   >
-                    <div className="bg-white p-6 md:p-10" style={{ border: '1px solid #e5e7eb', borderRadius: '24px' }}>
+                    <div className="bg-white p-6 md:p-10" style={{ border: '1px solid #e5e7eb', borderRadius: '24px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px' }}>
 
                       <div className="flex flex-wrap items-center gap-3 mb-6">
                         <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
@@ -233,12 +234,12 @@ export default function ShopifyApps() {
                         ))}
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex flex-col sm:flex-row gap-4 mt-auto sm:mt-0">
                         <a
                           href={app.shopifyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80"
+                          className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80 w-fit"
                           style={{ backgroundColor: app.color, color: '#fff', borderRadius: '14px', padding: '12px 24px' }}
                         >
                           <span>Install App</span> <ExternalLink className="w-4 h-4 ml-2" />
@@ -254,12 +255,14 @@ export default function ShopifyApps() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className={`order-1 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                    style={{ height: '100%' }}
                   >
-                    <div className="overflow-hidden shadow-sm" style={{ borderRadius: '24px', border: '1px solid #e5e7eb' }}>
+                    <div className="overflow-hidden shadow-sm flex flex-col" style={{ borderRadius: '24px', border: '1px solid #e5e7eb', height: '100%' }}>
                       <img
                         src={app.image}
                         alt={app.name}
-                        className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-105"
+                        className="w-full object-cover transition-transform duration-700 hover:scale-105 aspect-[4/3] lg:aspect-auto"
+                        style={{ height: '100%' }}
                         loading="lazy"
                       />
                     </div>

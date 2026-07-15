@@ -158,7 +158,10 @@ export default function Contact() {
                     key={i}
                     href={s.href}
                     aria-label={s.label}
-                    className="w-[42px] h-[42px] rounded-full bg-white text-[#555555] hover:text-white hover:bg-[#2E5FC6] flex items-center justify-center transition-all duration-300 shadow-sm"
+                    className="w-[42px] h-[42px] rounded-full bg-white hover:text-white hover:bg-[#2E5FC6] flex items-center justify-center transition-all duration-300 shadow-sm"
+                    style={{ color: '#555555' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.backgroundColor = '#2E5FC6'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#555555'; e.currentTarget.style.backgroundColor = '#ffffff'; }}
                   >
                     <s.icon className="w-4 h-4" />
                   </a>
@@ -167,7 +170,10 @@ export default function Contact() {
             </div>
 
             {/* Right Column (62%): Professional Contact Form */}
-            <div className="w-full lg:w-[62%] bg-white rounded-xl p-8 md:p-12 lg:p-14 shadow-[0_10px_40px_rgba(0,0,0,0.04)]">
+            <div 
+              className="w-full lg:w-[62%] bg-white"
+              style={{ padding: '48px', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.04)', border: '1px solid #f3f4f6' }}
+            >
               <div className="mb-8">
                 <h4 className="font-display font-bold text-[#111111] text-2xl mb-2">Send Us a Message</h4>
                 <p className="text-[#555555] text-[15px] font-light">Fill out the form below and our team will get back to you within 24 hours.</p>
@@ -186,6 +192,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="First Name *"
                       className={inputStyle}
+                      style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                     />
                   </div>
                   <div>
@@ -197,6 +204,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Last Name *"
                       className={inputStyle}
+                      style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                     />
                   </div>
                 </div>
@@ -212,6 +220,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Email *"
                       className={inputStyle}
+                      style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                     />
                   </div>
                   <div>
@@ -222,6 +231,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Phone Number"
                       className={inputStyle}
+                      style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                     />
                   </div>
                 </div>
@@ -236,6 +246,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Company"
                       className={inputStyle}
+                      style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                     />
                   </div>
                   <div>
@@ -247,6 +258,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Subject *"
                       className={inputStyle}
+                      style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                     />
                   </div>
                 </div>
@@ -260,6 +272,7 @@ export default function Contact() {
                     onChange={handleChange}
                     placeholder="Large Message *"
                     className={textareaStyle}
+                    style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '14px 16px', width: '100%', outline: 'none' }}
                   ></textarea>
                 </div>
 
@@ -272,7 +285,8 @@ export default function Contact() {
                     style={{
                       width: '180px',
                       height: '54px',
-                      borderRadius: '6px',
+                      borderRadius: '8px',
+                      padding: '14px 32px',
                       background: isSuccess
                         ? '#10B981'
                         : 'linear-gradient(90deg, #59C5F6, #2E5FC6)',
