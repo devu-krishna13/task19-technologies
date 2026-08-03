@@ -20,6 +20,7 @@ const QATesting = lazy(() => import('./pages/services/QATesting'))
 const Maintenance = lazy(() => import('./pages/services/Maintenance'))
 const DigitalTransformation = lazy(() => import('./pages/services/DigitalTransformation'))
 const ShopifyApps = lazy(() => import('./pages/ShopifyApps'))
+const Products = lazy(() => import('./pages/Products'))
 const Industries = lazy(() => import('./pages/Industries'))
 const Technologies = lazy(() => import('./pages/Technologies'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
@@ -76,6 +77,7 @@ export default function App() {
             <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
             <Route path="/contact-us/" element={<Navigate to="/contact" replace />} />
             {/* Other pages */}
+            <Route path="/products" element={<Products />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/technologies" element={<Technologies />} />
             <Route path="/portfolio" element={<Portfolio />} />

@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Twitter, Send, CheckCircle2, Loader2 } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Twitter, Loader2, CheckCircle2 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
-    phone: '',
+    title: '',
     company: '',
     subject: '',
+    email: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -24,221 +25,230 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 1200))
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSuccess(true)
     setFormData({
       firstName: '',
       lastName: '',
-      email: '',
-      phone: '',
+      title: '',
       company: '',
       subject: '',
+      email: '',
       message: ''
     })
     setTimeout(() => setIsSuccess(false), 5000)
   }
 
-  const inputStyle = "w-full h-[58px] bg-white border border-[#E1E5EB] rounded-[8px] px-6 text-base text-[#111111] placeholder-[#949AA5] focus:outline-none focus:border-[#2E5FC6] focus:ring-1 focus:ring-[#2E5FC6] transition-all shadow-sm"
-  const textareaStyle = "w-full min-h-[200px] bg-white border border-[#E1E5EB] rounded-[8px] p-6 text-base text-[#111111] placeholder-[#949AA5] focus:outline-none focus:border-[#2E5FC6] focus:ring-1 focus:ring-[#2E5FC6] transition-all shadow-sm resize-none"
+  // Animation on mount
+  useEffect(() => {
+    // Component mounted
+  }, [])
+
+  const inputClasses = "w-full border-[1.4px] border-transparent rounded-[10px] px-[16px] py-[13px] text-[13.5px] text-[#14142B] bg-[#F1F3FA] outline-none transition-all duration-200 placeholder:text-[#A6A9C4] focus:border-[#4859F4] focus:bg-[#FFFFFF]"
+  const textareaClasses = `${inputClasses} resize-none h-[110px]`
 
   return (
-    <>
+    <div className="bg-[#FFFFFF] min-h-screen overflow-hidden selection:bg-[#4859F4] selection:text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
       <Helmet>
         <title>Contact Us — Task19 Technologies</title>
-        <meta name="description" content="Get in touch with Task19 Technologies in Ernakulam, Kerala. Let's start a conversation about your digital product." />
+        <meta name="description" content="Get in touch with Task19 Technologies. Let's start a conversation about your next digital product." />
         <link rel="canonical" href="https://task19.com/contact" />
       </Helmet>
 
-      {/* ── Hero Section (Untouched) ── */}
-      <section className="relative h-[450px] flex items-center justify-center pt-20 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80')` }}>
-        <div className="absolute inset-0 bg-black/45"></div>
-        <div className="relative z-10 text-center">
-          <h1 className="text-white font-serif-italic m-0" style={{ fontSize: '3em', padding: '40px 0px' }}>
-            Contact Us
-          </h1>
+      {/* ── Hero Section ── */}
+      <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <picture>
+            <source media="(max-width: 768px)" srcSet="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&crop=center&w=800&h=1200&q=90" />
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
+              alt="Contact Us Background"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="absolute inset-0" style={{
+            background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
+          }}></div>
+        </div>
+
+        <div className="absolute inset-0 z-10 flex flex-col justify-center pt-24 md:pt-20">
+          <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto w-full">
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
+            >
+              <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
+              <span className="text-white/90 text-[12px] md:text-sm font-medium">Get In Touch</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="max-w-4xl mx-auto w-full"
+            >
+              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-4 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 4.5rem)' }}>
+                Let's Start a<br /><em className="font-serif-italic not-italic text-white/40">Conversation.</em>
+              </h1>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ── SECTION 1: CONTACT INTRODUCTION ── */}
-      <section className="w-full bg-white text-center" style={{ paddingTop: '70px', paddingBottom: '60px' }}>
-        <div className="container max-w-[700px] mx-auto px-4">
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#2E5FC6] mb-3">
-            CONTACT
-          </span>
-          <h2 className="font-display font-bold text-[#111111] text-3xl md:text-[40px] leading-tight mb-5">
-            Let's Start a Conversation
-          </h2>
-          <p className="text-[#555555] text-base md:text-[17px] leading-relaxed font-light">
-            Have a project in mind? We'd love to hear from you. Whether you're looking for web development, mobile applications, UI/UX design, Shopify, WordPress, or custom software solutions, our team is ready to help.
-          </p>
-        </div>
-      </section>
+      {/* ── Main Contact Section ── */}
+      <section className="pt-[30px] pb-[40px] lg:pt-[40px] lg:pb-[60px] bg-[#FFFFFF]">
+        <div className="max-w-[1200px] mx-auto px-[24px] lg:px-[40px]">
+          <div className="flex flex-col lg:flex-row justify-between gap-[40px] lg:gap-[120px] items-start">
 
-      {/* ── SECTION 2: CONTACT DETAILS + FORM ── */}
-      <section className="w-full bg-[#F7F9FC]" style={{ paddingTop: '70px', paddingBottom: '70px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            {/* Left Column - Contact Info */}
+            <div className="w-full lg:w-1/2 max-w-[500px] flex flex-col">
+              <h4 className="text-[22px] md:text-[24px] font-bold text-[#10152F] leading-[1.15] max-w-[320px] mb-[16px]">
+                Contact Information
+              </h4>
+              <p className="text-[14px] text-[#707070] leading-[28px] max-w-[360px] mb-[28px]">
+                Our expert development service provides fast and efficient creation of digital solutions. Our certified professionals will ensure your project is executed flawlessly and safely.
+              </p>
 
-            {/* Left Column (38%) */}
-            <div className="w-full lg:w-[38%] flex flex-col justify-between">
-              <div>
-                <h3 className="font-display font-bold text-[#111111] text-2xl md:text-3xl mb-4">
-                  Contact Details
-                </h3>
-                <p className="text-[#555555] text-[15px] leading-relaxed mb-6">
-                  Please let us know if you have any questions, want to discuss your project, or would like more information about our services.
-                </p>
-
-                {/* Divider Line */}
-                <div className="w-[80px] h-[3px] rounded-full bg-gradient-to-r from-[#59C5F6] to-[#2E5FC6] mb-8" />
-
-                {/* Contact Items */}
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2E5FC6] flex-shrink-0 shadow-sm">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold tracking-wider uppercase text-[#888888] mb-1">Office Address</p>
-                      <p className="text-[#111111] text-[15px] leading-snug font-medium">
-                        Kathrikadavu Junction, Ernakulam, Kerala 682017, India
-                      </p>
-                    </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
+                {/* Address */}
+                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                  <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
+                    <MapPin className="w-[16px] h-[16px] stroke-[1.2px]" />
                   </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2E5FC6] flex-shrink-0 shadow-sm">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold tracking-wider uppercase text-[#888888] mb-1">Phone</p>
-                      <a href="tel:+917012639646" style={{ color: '#111111' }} className="block font-semibold text-base text-[#111111] hover:!text-[#2E5FC6] transition-colors">
-                        +91 70126 39646
-                      </a>
-                    </div>
+                  <div className="flex flex-col overflow-hidden">
+                    <span className="text-[15px] font-semibold text-[#10152F] leading-tight mb-[2px] truncate">Our Address</span>
+                    <span className="text-[12px] text-[#6F7482] leading-[18px] truncate">
+                      Kathrikadavu, Kerala
+                    </span>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2E5FC6] flex-shrink-0 shadow-sm">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold tracking-wider uppercase text-[#888888] mb-1">Email</p>
-                      <a href="mailto:info@task19.com" style={{ color: '#111111' }} className="block font-semibold text-base text-[#111111] hover:!text-[#2E5FC6] transition-colors">
-                        info@task19.com
-                      </a>
-                    </div>
+                {/* Phone */}
+                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                  <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
+                    <Phone className="w-[16px] h-[16px] stroke-[1.2px]" />
                   </div>
+                  <div className="flex flex-col overflow-hidden">
+                    <span className="text-[15px] font-semibold text-[#10152F] leading-tight mb-[2px] truncate">Phone Number</span>
+                    <span className="text-[12px] text-[#6F7482] leading-[18px] truncate">
+                      +91 70126 39646
+                    </span>
+                  </div>
+                </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2E5FC6] flex-shrink-0 shadow-sm">
-                      <Clock className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold tracking-wider uppercase text-[#888888] mb-1">Working Hours</p>
-                      <p className="text-[#111111] text-[15px] font-medium">
-                        Monday – Friday<br />
-                        <span className="text-[#555555] font-normal">9:00 AM – 6:00 PM</span>
-                      </p>
-                    </div>
+                {/* Email */}
+                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                  <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
+                    <Mail className="w-[16px] h-[16px] stroke-[1.2px]" />
+                  </div>
+                  <div className="flex flex-col overflow-hidden">
+                    <span className="text-[15px] font-semibold text-[#10152F] leading-tight mb-[2px] truncate">Email Address</span>
+                    <span className="text-[12px] text-[#6F7482] leading-[18px] truncate">
+                      info@task19.com
+                    </span>
+                  </div>
+                </div>
+
+                {/* Working Time */}
+                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                  <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
+                    <Clock className="w-[16px] h-[16px] stroke-[1.2px]" />
+                  </div>
+                  <div className="flex flex-col overflow-hidden">
+                    <span className="text-[15px] font-semibold text-[#10152F] leading-tight mb-[2px] truncate">Working Time</span>
+                    <span className="text-[12px] text-[#6F7482] leading-[18px] truncate">
+                      Mon - Fri 9AM - 6PM
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Social Icons inside 42px circles */}
-              <div className="flex items-center gap-3 mt-10">
-                {[
-                  { icon: Facebook, label: 'Facebook', href: '#' },
-                  { icon: Linkedin, label: 'LinkedIn', href: '#' },
-                  { icon: Instagram, label: 'Instagram', href: '#' },
-                  { icon: Twitter, label: 'Twitter', href: '#' }
-                ].map((s, i) => (
-                  <a
-                    key={i}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="w-[42px] h-[42px] rounded-full bg-white text-[#555555] hover:text-white hover:bg-[#2E5FC6] flex items-center justify-center transition-all duration-300 shadow-sm"
-                  >
-                    <s.icon className="w-4 h-4" />
-                  </a>
-                ))}
+              <div className="mt-[20px]">
+                <div className="text-[17px] font-semibold text-[#10152F] mb-[4px]">Follow The Social Media:</div>
+                <div className="text-[13px] text-[#707070] leading-[22px] max-w-[420px] mb-[10px]">Ensure your business is ready for the digital future with our expert consulting.</div>
+                <div className="flex gap-[10px]">
+                  {[
+                    { icon: Facebook, href: '#' },
+                    { icon: Twitter, href: '#' },
+                    { icon: Linkedin, href: '#' },
+                    { icon: Instagram, href: '#' }
+                  ].map((social, i) => (
+                    <a
+                      key={i}
+                      href={social.href}
+                      className="group w-[30px] h-[30px] rounded-full bg-[#FFFFFF] border border-[#ECECEC] shadow-[0_2px_8px_rgba(0,0,0,0.04)] flex items-center justify-center hover:bg-[#4859F4] transition-colors duration-200"
+                    >
+                      <social.icon className="w-[14px] h-[14px] text-[#4859F4] group-hover:text-[#FFFFFF]" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Right Column (62%): Professional Contact Form */}
-            <div className="w-full lg:w-[62%] bg-white rounded-xl p-8 md:p-12 lg:p-14 shadow-[0_10px_40px_rgba(0,0,0,0.04)]">
-              <div className="mb-8">
-                <h4 className="font-display font-bold text-[#111111] text-2xl mb-2">Send Us a Message</h4>
-                <p className="text-[#555555] text-[15px] font-light">Fill out the form below and our team will get back to you within 24 hours.</p>
-              </div>
+            {/* Right Column - Form */}
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+              <div className="bg-[#FFFFFF] rounded-[16px] p-[32px] md:p-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-[#F4F5F9] w-full max-w-[500px]">
+                <h4 className="text-[22px] md:text-[24px] font-bold text-[#10152F] leading-[1.15] mb-[24px]">
+                  Book An Appointment
+                </h4>
 
-              <form onSubmit={handleSubmit} className="space-y-7">
+                <form onSubmit={handleSubmit} className="flex flex-col">
+                  <div className="flex flex-col sm:flex-row gap-[20px] mb-[20px]">
+                    <div className="flex-1 min-w-0">
+                      <input
+                        type="text"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        placeholder="First Name *"
+                        className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <input
+                        type="text"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        placeholder="Last Name *"
+                        className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
+                      />
+                    </div>
+                  </div>
 
-                {/* Row 1 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <input
-                      type="text"
-                      name="firstName"
-                      required
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder="First Name *"
-                      className={inputStyle}
-                    />
+                  <div className="flex flex-col sm:flex-row gap-[20px] mb-[20px]">
+                    <div className="flex-1 min-w-0">
+                      <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        placeholder="Title"
+                        className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        placeholder="Company / Position"
+                        className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      type="text"
-                      name="lastName"
-                      required
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Last Name *"
-                      className={inputStyle}
-                    />
-                  </div>
-                </div>
 
-                {/* Row 2 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Email *"
-                      className={inputStyle}
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Phone Number"
-                      className={inputStyle}
-                    />
-                  </div>
-                </div>
-
-                {/* Row 3 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Company"
-                      className={inputStyle}
-                    />
-                  </div>
-                  <div>
+                  <div className="mb-[20px]">
                     <input
                       type="text"
                       name="subject"
@@ -246,116 +256,69 @@ export default function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Subject *"
-                      className={inputStyle}
+                      className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
                     />
                   </div>
-                </div>
 
-                {/* Row 4 */}
-                <div>
-                  <textarea
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Large Message *"
-                    className={textareaStyle}
-                  ></textarea>
-                </div>
+                  <div className="mb-[20px]">
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Email *"
+                      className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
+                    />
+                  </div>
 
-                {/* Submit Button */}
-                <div className="pt-2">
+                  <div className="mb-[28px]">
+                    <textarea
+                      name="message"
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Your Message *"
+                      className="w-full h-[120px] rounded-[8px] px-[18px] py-[16px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20 resize-none"
+                    ></textarea>
+                  </div>
+
                   <button
                     type="submit"
                     disabled={isSubmitting || isSuccess}
-                    className="flex items-center justify-center font-semibold text-white transition-all duration-300 hover:brightness-105 shadow-md cursor-pointer border-0"
-                    style={{
-                      width: '180px',
-                      height: '54px',
-                      borderRadius: '6px',
-                      background: isSuccess
-                        ? '#10B981'
-                        : 'linear-gradient(90deg, #59C5F6, #2E5FC6)',
-                      fontSize: '14px',
-                      letterSpacing: '0.05em'
-                    }}
+                    className={`w-full h-[48px] rounded-[8px] text-[13px] font-bold tracking-[0.5px] uppercase !text-white transition-all duration-300 flex items-center justify-center gap-[8px] ${
+                      isSuccess 
+                        ? '!bg-[#10b981] hover:!bg-[#059669]' 
+                        : '!bg-[#013ad6] hover:!bg-[#012a9c] hover:shadow-[0_6px_20px_rgba(1,58,214,0.3)] hover:-translate-y-[1px]'
+                    }`}
                   >
                     {isSubmitting ? (
-                      <span className="flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> SENDING</span>
+                      <><Loader2 className="w-[14px] h-[14px] animate-spin" /> SENDING...</>
                     ) : isSuccess ? (
-                      <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> SENT!</span>
+                      <><CheckCircle2 className="w-[14px] h-[14px]" /> BOOKED</>
                     ) : (
-                      'SEND MESSAGE'
+                      "APPOINTMENT NOW"
                     )}
                   </button>
-                </div>
-
-              </form>
+                </form>
+              </div>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 3: OFFICE LOCATION ── */}
-      <section className="w-full bg-white" style={{ paddingTop: '70px', paddingBottom: '70px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="font-display font-bold text-[#111111] text-3xl md:text-[38px] leading-tight mb-4">
-              Visit Our Office
-            </h2>
-            <p className="text-[#555555] text-base leading-relaxed font-light">
-              You're always welcome to visit our office during business hours. Schedule a meeting with our experts and let's discuss your next project.
-            </p>
-          </div>
-
-          <div
-            className="w-full overflow-hidden border border-gray-100"
-            style={{ height: '380px', borderRadius: '12px' }}
-          >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.17646537651!2d76.29548451479426!3d9.993425575742491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d500ff502bd%3A0x86bd61da433f48a!2sKathrikadavu%2C%20Kaloor%2C%20Ernakulam%2C%20Kerala%20682017!5e0!3m2!1sen!2sin!4v1633000000000!5m2!1sen!2sin"
-              className="w-full h-full border-0 block"
-              allowFullScreen=""
-              loading="lazy"
-              title="Task19 Office Location"
-            ></iframe>
-          </div>
-        </div>
+      {/* ── Full Width Map Section ── */}
+      <section className="w-full h-[400px] md:h-[500px] lg:h-[600px] bg-[#F1F3FA]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.17646537651!2d76.29548451479426!3d9.993425575742491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d500ff502bd%3A0x86bd61da433f48a!2sKathrikadavu%2C%20Kaloor%2C%20Ernakulam%2C%20Kerala%20682017!5e0!3m2!1sen!2sin!4v1633000000000!5m2!1sen!2sin"
+          className="w-full h-full border-0 block grayscale hover:grayscale-0 transition-all duration-700"
+          allowFullScreen=""
+          loading="lazy"
+          title="Task19 Office Location"
+        ></iframe>
       </section>
 
-      {/* ── SECTION 4: CALL TO ACTION ── */}
-      {/* <section
-        className="w-full text-center text-white"
-        style={{
-          background: 'linear-gradient(135deg, #0D1B4C 0%, #1B3B92 100%)',
-          paddingTop: '70px',
-          paddingBottom: '70px'
-        }}
-      >
-        <div className="container max-w-3xl mx-auto px-4">
-          <h2 className="font-display font-bold text-white text-3xl md:text-[40px] leading-tight mb-5">
-            Ready to Build Your Next Digital Product?
-          </h2>
-          <p className="text-white/80 text-base md:text-lg leading-relaxed font-light mb-8 max-w-xl mx-auto">
-            Let's work together to create innovative digital experiences that grow your business.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="px-8 py-3.5 rounded-[6px] bg-white text-[#0D1B4C] font-semibold text-sm hover:bg-white/90 transition-all shadow-md"
-            >
-              Start Your Project
-            </Link>
-            <Link
-              to="/contact"
-              className="px-8 py-3.5 rounded-[6px] border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-all"
-            >
-              Schedule a Call
-            </Link>
-          </div>
-        </div>
-      </section> */}
-    </>
+    </div>
   )
 }

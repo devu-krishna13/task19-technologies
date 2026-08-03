@@ -110,7 +110,7 @@ export default function ShopifyServices() {
       </Helmet>
 
       {/* ── Page Hero ── */}
-      <section className="section relative overflow-hidden" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 1) 80%)', paddingTop: '160px', paddingBottom: '96px' }}>
+      <section className="section relative overflow-hidden min-h-[500px] h-[85svh] md:h-[auto] flex items-center pt-32 pb-24 md:pt-40 md:pb-24" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 1) 80%)' }}>
         <div className="container relative z-10 max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -118,18 +118,18 @@ export default function ShopifyServices() {
             transition={{ duration: 0.7 }}
             className="max-w-4xl"
           >
-            <div className="mb-8">
-              <div className="inline-block bg-white/10 backdrop-blur-md" style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
-                <span className="font-medium text-white" style={{ fontSize: '14px' }}>Shopify Services</span>
+            <div className="mb-6 md:mb-8">
+              <div className="inline-block bg-white/10 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-1.5" style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px' }}>
+                <span className="font-medium text-white text-[12px] md:text-[14px]">Shopify Services</span>
               </div>
             </div>
             
-            <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)' }}>
+            <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 4.5rem)' }}>
               Shopify Expertise That<br />
               <span className="text-white/60 font-light">Drives Revenue</span>
             </h1>
             
-            <p className="font-light leading-relaxed max-w-2xl mb-10" style={{ fontSize: '20px', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="font-light leading-relaxed max-w-2xl mb-8 md:mb-10 text-[16px] md:text-[20px]" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               From D2C store launches to complex app development — our Shopify specialists deliver e-commerce solutions that convert browsers into buyers and buyers into loyal customers.
             </p>
 

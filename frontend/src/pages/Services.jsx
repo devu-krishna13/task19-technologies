@@ -13,17 +13,20 @@ const servicesHeroSlides = [
   {
     label: 'Shopify Store Development',
     title: <>Shopify Expertise That<br /><em className="font-serif-italic not-italic text-white/40">Drives Revenue.</em></>,
-    bg: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgDesktop: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
   {
     label: 'CRO & Customization',
     title: <>Maximize E-commerce Conversions<br /><em className="font-serif-italic not-italic text-white/40">Through Audit & Design.</em></>,
-    bg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
   {
     label: 'Custom App Development',
     title: <>Shopify Apps & Integrations<br /><em className="font-serif-italic not-italic text-white/40">Without Boundaries.</em></>,
-    bg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgDesktop: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
 ]
 
@@ -176,7 +179,7 @@ export default function Services() {
       </Helmet>
 
       {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper h-screen min-h-[600px]">
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}
@@ -190,30 +193,33 @@ export default function Services() {
             <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
               {/* Background image with cinematic gradient */}
               <div className="absolute inset-0 z-0 overflow-hidden">
-                <img
-                  src={slide.bg}
-                  alt={slide.label}
-                  className="w-full h-full object-cover object-center"
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
+                  <img
+                    src={slide.bgDesktop}
+                    alt={slide.label}
+                    className="w-full h-full object-cover object-center"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </picture>
                 <div className="absolute inset-0" style={{
                   background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
                 }}></div>
               </div>
 
-              {/* Content — Centered absolutely */}
-              <div className="absolute inset-0 z-10 flex flex-col justify-center">
-                <div className="container relative flex flex-col items-center text-center px-4 mx-auto">
+              {/* Content */}
+              <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
+                <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
 
                   {/* Top Badge (slide.label) */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-8"
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
                   >
-                    <div className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">!</div>
-                    <span className="text-white/90 text-sm font-medium">{slide.label}</span>
+                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
+                    <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
                   </motion.div>
 
                   {/* Main Headline (slide.title) */}
@@ -221,9 +227,9 @@ export default function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto"
+                    className="max-w-4xl mx-auto w-full"
                   >
-                    <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
                       {slide.title}
                     </h1>
                   </motion.div>

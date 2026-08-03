@@ -8,22 +8,24 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import { portfolioItems } from '../constants/data'
 
-// Portfolio Hero Slides styled exactly like Homepage Hero Slides
 const portfolioHeroSlides = [
   {
-    label: 'Case Study: Paintemic',
-    title: <>E-Commerce Re-Imagined.<br /><em className="font-serif-italic not-italic text-white/40">Paintemic.</em></>,
-    bg: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    label: 'Our Portfolio',
+    title: <>Crafting Digital Experiences<br /><em className="font-serif-italic not-italic text-white/40">That Drive Growth.</em></>,
+    bgDesktop: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
   {
-    label: 'Case Study: DSNY Online',
-    title: <>Seamless Fashion Experience.<br /><em className="font-serif-italic not-italic text-white/40">DSNY Online.</em></>,
-    bg: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    label: 'E-Commerce Excellence',
+    title: <>High-Performance Stores<br /><em className="font-serif-italic not-italic text-white/40">Built to Scale.</em></>,
+    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
   {
-    label: 'Case Study: Riza UAE',
-    title: <>High-Performance Commerce.<br /><em className="font-serif-italic not-italic text-white/40">Riza UAE.</em></>,
-    bg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    label: 'Digital Transformation',
+    title: <>Empowering Brands with<br /><em className="font-serif-italic not-italic text-white/40">Modern Technology.</em></>,
+    bgDesktop: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
 ]
 
@@ -51,7 +53,7 @@ export default function Portfolio() {
       </Helmet>
 
       {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper h-screen min-h-[600px]">
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}
@@ -65,40 +67,40 @@ export default function Portfolio() {
             <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
               {/* Background image with cinematic gradient */}
               <div className="absolute inset-0 z-0 overflow-hidden">
-                <img
-                  src={slide.bg}
-                  alt={slide.label}
-                  className="w-full h-full object-cover object-center"
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
+                  <img
+                    src={slide.bgDesktop}
+                    alt={slide.label}
+                    className="w-full h-full object-cover object-center"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </picture>
                 <div className="absolute inset-0" style={{
                   background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
                 }}></div>
               </div>
 
-              {/* Content — Centered absolutely */}
-              <div className="absolute inset-0 z-10 flex flex-col justify-center">
-                <div className="container relative flex flex-col items-center text-center px-4 mx-auto">
-
-                  {/* Top Badge (slide.label) */}
+              {/* Content */}
+              <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
+                <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-8"
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
                   >
-                    <div className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">!</div>
-                    <span className="text-white/90 text-sm font-medium">{slide.label}</span>
+                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
+                    <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
                   </motion.div>
 
-                  {/* Main Headline (slide.title) */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto"
+                    className="max-w-4xl mx-auto w-full"
                   >
-                    <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
                       {slide.title}
                     </h1>
                   </motion.div>
@@ -146,8 +148,8 @@ export default function Portfolio() {
 
       {/* ── All Portfolio Items ── */}
       <section className="section bg-white" style={{ paddingTop: '64px', paddingBottom: '128px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="container max-w-5xl mx-auto px-4">
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
               {filteredItems.map((item, i) => (
                 <motion.div
@@ -157,40 +159,44 @@ export default function Portfolio() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
-                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-                  style={{ borderRadius: '24px' }}
+                  className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
                 >
                   <a
                     href={item.externalLink || `/portfolio/${item.slug}`}
                     target={item.externalLink ? '_blank' : '_self'}
                     rel={item.externalLink ? 'noopener noreferrer' : undefined}
-                    className="absolute inset-0 z-10"
+                    className="absolute inset-0 z-20"
                     aria-label={item.title}
                   />
 
-                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute top-4 left-4 backdrop-blur-md px-3 py-1.5" style={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '9999px' }}>
-                      <span className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">{item.industry || item.category}</span>
+                  {/* Content Section */}
+                  <div className="p-6 md:p-8 flex flex-col flex-grow">
+                    
+                    {/* Row 1: Badge & Link Icon */}
+                    <div className="flex items-center justify-between mb-3 relative z-30 pointer-events-none">
+                      <div className="flex gap-2">
+                        {item.industry && (
+                          <span className="px-2.5 py-1 bg-blue-50 text-[#013Ad6] text-[10px] font-bold uppercase tracking-wider rounded-md">
+                            {item.industry}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Premium Circle Icon Link */}
+                      <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#013Ad6] group-hover:border-[#013Ad6] group-hover:text-white transition-all duration-300">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
-                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '22px' }}>
+                    {/* Row 2: Brand Name */}
+                    <h3 className="text-lg font-display font-bold text-[#10152F] mb-2 group-hover:text-[#013Ad6] transition-colors">
                       {item.title}
-                    </h6>
-                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '15px' }}>
+                    </h3>
+                    
+                    {/* Row 3: Description */}
+                    <p className="text-gray-500 text-xs leading-relaxed flex-grow line-clamp-2">
                       {item.shortDesc}
                     </p>
-                    <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
-                      View Website
-                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </div>
                   </div>
                 </motion.div>
               ))}

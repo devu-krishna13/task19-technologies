@@ -18,16 +18,16 @@ export default function CaseStudy() {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-40 pb-0 section-dark relative overflow-hidden">
+      <section className="pt-32 pb-0 md:pt-40 md:pb-0 section-dark relative overflow-hidden min-h-[400px] md:min-h-[auto] flex items-end">
         <div className="absolute inset-0 bg-gradient-to-br from-primary to-surface-dark" />
         <div className="container relative z-10">
           <Link to="/portfolio" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors duration-300 font-display text-sm">
             <ArrowLeft className="w-4 h-4" /> Back to Portfolio
           </Link>
-          <motion.div className="max-w-4xl pb-20" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="inline-block font-display text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4">{item.category}</span>
-            <h1 className="font-display font-bold text-white mb-4" style={{ fontSize: 'var(--font-size-h1)' }}>{item.title}</h1>
-            <p className="text-xl text-white/60 leading-relaxed">{item.shortDesc}</p>
+          <motion.div className="max-w-4xl pb-16 md:pb-20" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <span className="inline-block font-display text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3 md:mb-4">{item.category}</span>
+            <h1 className="font-display font-bold text-white mb-3 md:mb-4 leading-[1.15] md:leading-[1.1]" style={{ fontSize: 'clamp(2.25rem, 8vw, 4rem)' }}>{item.title}</h1>
+            <p className="text-base md:text-xl text-white/60 leading-relaxed">{item.shortDesc}</p>
           </motion.div>
         </div>
       </section>

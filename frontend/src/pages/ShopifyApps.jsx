@@ -9,16 +9,23 @@ import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, Ch
 import SectionHeading from '../components/ui/SectionHeading'
 import CTASection from '../components/ui/CTASection'
 
+import profitSaverImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/profit_saver_app_1785745430744.png';
+import pageBoosterImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/page_booster_app_1785745440728.png';
+import marginMateImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/marginmate_app_1785745451429.png';
+import variantImageImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/variant_image_app_1785745463136.png';
+
 const appsHeroSlides = [
   {
     label: 'Shopify App Store',
     title: <>Apps We've Built for the<br /><em className="font-serif-italic not-italic text-white/40">Shopify Ecosystem.</em></>,
-    bg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgDesktop: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
   {
     label: 'Merchant Solutions',
     title: <>Automate Operations &<br /><em className="font-serif-italic not-italic text-white/40">Grow Revenue Faster.</em></>,
-    bg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   }
 ]
 
@@ -40,9 +47,9 @@ const apps = [
       'Email notifications for milestones',
       'Seamless Shopify theme integration',
     ],
-    shopifyUrl: 'https://apps.shopify.com/',
+    shopifyUrl: 'https://task19.com/shopify-apps/profit-saver/',
     badge: 'Top Rated',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=400&fit=crop',
+    image: profitSaverImg,
   },
   {
     id: 'page-booster',
@@ -61,9 +68,9 @@ const apps = [
       'Mobile-responsive block layouts',
       'Analytics on block performance',
     ],
-    shopifyUrl: 'https://apps.shopify.com/',
+    shopifyUrl: 'https://task19.com/shopify-apps/page-booster/',
     badge: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=400&fit=crop',
+    image: pageBoosterImg,
   },
   {
     id: 'marginmate',
@@ -82,9 +89,9 @@ const apps = [
       'Price lock for specific collections',
       'Admin dashboard and reporting',
     ],
-    shopifyUrl: 'https://apps.shopify.com/',
+    shopifyUrl: 'https://task19.com/shopify-apps/marginmate-custom-pricing/',
     badge: 'B2B Essential',
-    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=640&h=400&fit=crop',
+    image: marginMateImg,
   },
   {
     id: 'variant-image',
@@ -103,9 +110,9 @@ const apps = [
       'No code or theme editing required',
       'Mobile-optimized gallery display',
     ],
-    shopifyUrl: 'https://apps.shopify.com/',
+    shopifyUrl: 'https://task19.com/shopify-apps/variant-image-manager/',
     badge: 'Conversion Booster',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=640&h=400&fit=crop',
+    image: variantImageImg,
   },
 ]
 
@@ -119,7 +126,7 @@ export default function ShopifyApps() {
       </Helmet>
 
       {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper h-screen min-h-[600px]">
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}
@@ -133,37 +140,40 @@ export default function ShopifyApps() {
             <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
               {/* Background image with cinematic gradient */}
               <div className="absolute inset-0 z-0 overflow-hidden">
-                <img
-                  src={slide.bg}
-                  alt={slide.label}
-                  className="w-full h-full object-cover object-center"
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
+                  <img
+                    src={slide.bgDesktop}
+                    alt={slide.label}
+                    className="w-full h-full object-cover object-center"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </picture>
                 <div className="absolute inset-0" style={{
                   background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
                 }}></div>
               </div>
 
               {/* Content */}
-              <div className="absolute inset-0 z-10 flex flex-col justify-center">
-                <div className="container relative flex flex-col items-center text-center px-4 mx-auto">
+              <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
+                <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-8"
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
                   >
-                    <div className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold">!</div>
-                    <span className="text-white/90 text-sm font-medium">{slide.label}</span>
+                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
+                    <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
                   </motion.div>
 
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto"
+                    className="max-w-4xl mx-auto w-full"
                   >
-                    <h1 className="font-display font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
                       {slide.title}
                     </h1>
                   </motion.div>
@@ -180,96 +190,84 @@ export default function ShopifyApps() {
         </div>
       </section>
 
-      {/* ── Apps Detail Sections ── */}
-      <div className="bg-surface py-12 lg:py-20 flex flex-col gap-12 lg:gap-16">
-        {apps.map((app, i) => {
-          const isEven = i % 2 === 0
-          return (
-            <section key={app.id} className="section bg-surface pt-0 pb-0">
-              <div className="container max-w-6xl mx-auto px-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
-
-                  {/* Text Content */}
-                  <motion.div
-                    initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className={`order-2 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
-                  >
-                    <div className="bg-white p-6 md:p-10" style={{ border: '1px solid #e5e7eb', borderRadius: '24px' }}>
-
-                      <div className="flex flex-wrap items-center gap-3 mb-6">
-                        <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-                          <span className="font-medium" style={{ fontSize: '13px', color: app.color }}>{app.badge}</span>
-                        </div>
-                        <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-                          <div className="flex items-center gap-1">
-                            <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                            <span className="text-[13px] font-medium text-gray-800">{app.rating}</span>
-                            <span className="text-[13px] text-gray-500">({app.reviews})</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <p className="font-display text-xs font-semibold tracking-[0.2em] uppercase mb-2" style={{ color: app.color }}>
-                        {app.tagline}
-                      </p>
-                      <h2 className="font-display font-bold text-gray-900 mb-5 leading-tight" style={{ fontSize: '32px' }}>
-                        {app.name}
-                      </h2>
-                      <p className="text-gray-500 leading-relaxed mb-8 font-light" style={{ fontSize: '16px' }}>
-                        {app.desc}
-                      </p>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-10">
-                        {app.features.map((f, j) => (
-                          <div key={j} className="flex gap-3 items-start">
-                            <div className="flex-shrink-0 mt-0.5 rounded-full p-1" style={{ backgroundColor: `${app.color}15` }}>
-                              <CheckCircle className="w-4 h-4" style={{ color: app.color }} />
-                            </div>
-                            <span className="text-sm text-gray-600 font-light leading-snug">{f}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <a
-                          href={app.shopifyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80"
-                          style={{ backgroundColor: app.color, color: '#fff', borderRadius: '14px', padding: '12px 24px' }}
-                        >
-                          <span>Install App</span> <ExternalLink className="w-4 h-4 ml-2" />
-                        </a>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Visual Image */}
-                  <motion.div
-                    initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className={`order-1 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
-                  >
-                    <div className="overflow-hidden shadow-sm" style={{ borderRadius: '24px', border: '1px solid #e5e7eb' }}>
-                      <img
-                        src={app.image}
-                        alt={app.name}
-                        className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                  </motion.div>
-
+      {/* ── Apps Grid Section (Stacked Cards) ── */}
+      <div className="bg-surface py-16 lg:py-32">
+        <div className="container max-w-[1200px] mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {apps.map((app, i) => (
+              <motion.div
+                key={app.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group relative bg-white rounded-[24px] border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 overflow-hidden flex flex-col h-full"
+              >
+                {/* Image Section */}
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-gray-100">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+                  <img 
+                    src={app.image} 
+                    alt={app.name}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                    loading="lazy"
+                  />
+                  {/* Badges overlaid on image */}
+                  <div className="absolute top-6 left-6 z-20 flex gap-2">
+                    <span className="px-4 py-1.5 bg-white/95 backdrop-blur-sm text-[12px] font-bold rounded-full shadow-sm" style={{color: app.color}}>{app.badge}</span>
+                  </div>
                 </div>
-              </div>
-            </section>
-          )
-        })}
+
+                {/* Content Section */}
+                <div className="p-8 md:p-10 flex flex-col flex-grow relative z-20 bg-white">
+                  {/* Rating */}
+                  <div className="flex items-center gap-1.5 mb-5">
+                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    <span className="text-[14px] font-bold text-gray-900">{app.rating}</span>
+                    <span className="text-[14px] text-gray-500 font-medium">({app.reviews})</span>
+                  </div>
+
+                  <p className="font-display text-[11px] font-bold tracking-[0.2em] uppercase mb-3" style={{color: app.color}}>
+                    {app.tagline}
+                  </p>
+                  
+                  <h3 className="font-display font-bold text-gray-900 text-[26px] leading-[1.3] mb-4">
+                    {app.name}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-[1.7] mb-8 text-[15px] font-light">
+                    {app.desc}
+                  </p>
+
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-1 gap-y-3 mb-10 flex-grow">
+                    {app.features.map((f, j) => (
+                      <div key={j} className="flex gap-3 items-start">
+                        <div className="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: `${app.color}15` }}>
+                          <CheckCircle className="w-3 h-3" style={{ color: app.color }} />
+                        </div>
+                        <span className="text-[14px] text-gray-700 font-medium leading-snug">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer Action */}
+                  <div className="pt-6 border-t border-gray-100 mt-auto">
+                    <a 
+                      href={app.shopifyUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
+                      style={{color: app.color}}
+                    >
+                      Install App <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ── Apps Grid Overview ──

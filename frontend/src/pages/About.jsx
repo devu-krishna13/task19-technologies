@@ -26,24 +26,24 @@ export default function About() {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-40 pb-28 bg-primary relative overflow-hidden">
+      <section className="pt-32 pb-24 md:pt-40 md:pb-28 bg-primary relative overflow-hidden min-h-[450px] h-[75svh] md:h-auto flex items-center">
         <div className="absolute inset-0 bg-dot-pattern opacity-30" />
-        <div className="container relative z-10">
+        <div className="container relative z-10 w-full">
           <motion.div
             className="max-w-4xl"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-flex items-center gap-3 mb-7">
-              <span className="h-px w-10 bg-accent" />
-              <span className="font-display text-xs font-medium tracking-[0.3em] uppercase text-accent">About Us</span>
+            <span className="inline-flex items-center gap-2 md:gap-3 mb-5 md:mb-7">
+              <span className="h-px w-6 md:w-10 bg-accent" />
+              <span className="font-display text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase text-accent">About Us</span>
             </span>
-            <h1 className="font-display font-light text-white mb-7 leading-[1.05]" style={{ fontSize: 'var(--font-size-h1)' }}>
+            <h1 className="font-display font-light text-white mb-5 md:mb-7 leading-[1.15] md:leading-[1.05]" style={{ fontSize: 'clamp(2.25rem, 8vw, 4rem)' }}>
               Eight Years of Building<br />
               <em className="font-serif-italic text-white/50">Digital Futures That Matter</em>
             </h1>
-            <p className="text-xl text-white/60 leading-relaxed max-w-3xl font-light">
+            <p className="text-base md:text-xl text-white/60 leading-relaxed max-w-3xl font-light">
               We started as a small team with a big belief: exceptional technology, delivered by people who genuinely care, can transform any e-commerce business. Eight years and 200+ projects later, that belief has never been stronger.
             </p>
           </motion.div>

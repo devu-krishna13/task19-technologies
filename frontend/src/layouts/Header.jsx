@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Portfolio', to: '/portfolio' },
   { label: 'Services', to: '/services' },
+  { label: 'Products', to: '/products' },
   { label: 'Apps', to: '/shopify-apps' },
   { label: 'Contact', to: '/contact' },
 ]
@@ -42,8 +43,8 @@ export default function Header() {
         <div className="container mx-auto">
           <div className="flex items-center justify-between gap-4">
             {/* Logo Pill */}
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="flex items-center gap-3 bg-white h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ paddingLeft: '12px', paddingRight: '32px' }}
               aria-label="Task19 Technologies Home"
@@ -96,69 +97,72 @@ export default function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-[80px] left-0 right-0 bottom-0 z-[90] bg-[#070D1E] pt-6 px-8 sm:px-12 pb-10 lg:hidden overflow-y-auto border-t border-white/10 shadow-2xl"
+            className="fixed inset-0 z-[90] bg-[#050f28]/98 backdrop-blur-xl pt-[110px] px-6 pb-8 lg:hidden overflow-y-auto flex flex-col justify-start"
           >
-            {/* Mobile Nav Links Container */}
-            <div className="max-w-md mx-auto">
-              <nav className="flex flex-col gap-1.5">
-              {navLinks.map((link) => (
-                <Link
+            {/* Nav Links */}
+            <div className="flex flex-col">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 + 0.1, duration: 0.4 }}
                   key={link.label}
-                  to={link.to}
-                  style={{ color: location.pathname === link.to ? '#38BDF8' : '#FFFFFF' }}
-                  className="group flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/5"
-                  onClick={() => setMobileOpen(false)}
                 >
-                  <span className="font-display font-semibold text-lg tracking-normal">
-                    {link.label}
-                  </span>
-                  <ArrowRight className="w-4 h-4 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                </Link>
+                  <Link
+                    to={link.to}
+                    className="group flex items-center justify-between py-5 border-b border-white/10 transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span
+                      className="font-display font-medium text-[20px] tracking-tight transition-colors duration-300"
+                      style={{ color: location.pathname === link.to ? '#ffffff' : 'rgba(255,255,255,0.6)' }}
+                    >
+                      {link.label}
+                    </span>
+                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                      <ArrowRight className="w-5 h-5 text-white" />
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
-
-              {/* Divider */}
-              <div className="w-full h-[1px] bg-white/10 my-5" />
-
-              {/* Mobile Contact Info */}
-              <div className="px-4 space-y-6 text-center">
-                <a 
-                  href="tel:+917012639646" 
-                  style={{ color: '#FFFFFF' }} 
-                  className="flex items-center justify-center gap-3 text-base font-medium text-white/80 hover:text-[#38BDF8] transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 text-[#38BDF8]" />
-                  </div>
-                  <span>+91 70126 39646</span>
-                </a>
-
-                <a 
-                  href="mailto:info@task19.com" 
-                  style={{ color: '#FFFFFF' }} 
-                  className="flex items-center justify-center gap-3 text-base font-medium text-white/80 hover:text-[#38BDF8] transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-4 h-4 text-[#38BDF8]" />
-                  </div>
-                  <span>info@task19.com</span>
-                </a>
-
-                <Link
-                  to="/contact"
-                  style={{ color: '#FFFFFF' }}
-                  className="mt-8 flex items-center justify-center gap-2 h-12 bg-gradient-to-r from-[#38BDF8] to-[#2E5FC6] text-white text-sm font-semibold rounded-full hover:brightness-110 transition-all shadow-lg"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Start a Project
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </Link>
-              </div>
-            </nav>
             </div>
+
+            {/* Mobile Contact & CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="mt-8 flex flex-col gap-6"
+            >
+              <div className="flex flex-col gap-4">
+                <a href="tel:+917012639646" className="flex items-center gap-4 text-white/70 hover:text-white transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-base font-medium">+91 70126 39646</span>
+                </a>
+                <a href="mailto:info@task19.com" className="flex items-center gap-4 text-white/70 hover:text-white transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-base font-medium">info@task19.com</span>
+                </a>
+              </div>
+
+              <Link
+                to="/contact"
+                className="flex items-center justify-center gap-2 h-14 bg-white text-[15px] font-medium rounded-2xl hover:bg-gray-100 transition-colors mt-2"
+                onClick={() => setMobileOpen(false)}
+                style={{ color: '#000000' }}
+              >
+                Start a Project
+                <ArrowRight className="w-4 h-4" style={{ color: '#000000' }} />
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

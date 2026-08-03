@@ -48,17 +48,17 @@ export default function Industries() {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-40 pb-24 section-dark bg-grid-pattern">
+      <section className="pt-32 pb-24 md:pt-40 md:pb-24 section-dark bg-grid-pattern min-h-[400px] h-[65svh] md:h-auto flex items-center">
         <div className="container">
           <motion.div className="max-w-3xl" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="inline-flex items-center gap-3 mb-6">
-              <span className="h-px w-12 bg-accent" />
-              <span className="font-display text-xs font-semibold tracking-[0.3em] uppercase text-accent">Industries</span>
+            <span className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+              <span className="h-px w-8 md:w-12 bg-accent" />
+              <span className="font-display text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase text-accent">Industries</span>
             </span>
-            <h1 className="font-display font-bold text-white mb-6" style={{ fontSize: 'var(--font-size-h1)' }}>
+            <h1 className="font-display font-bold text-white mb-4 md:mb-6 leading-[1.15] md:leading-[1.1]" style={{ fontSize: 'clamp(2.25rem, 8vw, 4rem)' }}>
               Deep Expertise Across <span className="text-gradient">Key Verticals</span>
             </h1>
-            <p className="text-xl text-white/60 leading-relaxed">
+            <p className="text-base md:text-xl text-white/60 leading-relaxed">
               We don't just write code — we understand the unique challenges, regulations, and opportunities of every industry we serve. That domain knowledge is what sets our solutions apart.
             </p>
           </motion.div>

@@ -49,34 +49,34 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#050f28', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      <div className="container" style={{ paddingTop: '80px', paddingBottom: '48px' }}>
+      <div className="container py-12 md:py-20">
 
         {/* Top CTA Banner */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10" style={{ marginBottom: '96px' }}>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 md:gap-10 mb-12 md:mb-20">
           <div>
-            <h4 className="font-display font-bold leading-tight" style={{ fontSize: '40px', color: '#ffffff', tracking: '-0.02em' }}>
+            <h4 className="font-display font-bold leading-tight text-[32px] md:text-[40px] text-white tracking-[-0.02em]">
               Get started now!
             </h4>
-            <p style={{ color: '#9ca3af', fontSize: '18px', marginTop: '16px' }}>It takes less than a minute of your time.</p>
+            <p className="text-gray-400 text-base md:text-lg mt-2 md:mt-4">It takes less than a minute of your time.</p>
           </div>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90"
-            style={{ backgroundColor: '#ffffff', color: '#000000', borderRadius: '14px', padding: '14px 32px', fontSize: '15px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
+            className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90 bg-white rounded-xl md:rounded-2xl px-6 py-3 md:px-8 md:py-3.5 text-sm md:text-[15px] shadow-sm"
+            style={{ color: '#000000' }}
           >
-            Request a quote <span className="ml-3 font-normal text-[15px]">→</span>
+            Request a quote <span className="ml-2 md:ml-3 font-normal">→</span>
           </Link>
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8" style={{ marginBottom: '80px' }}>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-8 lg:gap-8 mb-12 md:mb-20">
           {/* Company */}
           <div>
-            <h4 className="font-display font-bold mb-6" style={{ fontSize: '15px', color: '#ffffff' }}>Company</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Company</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {companyLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>
+                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100 text-[13px] md:text-sm text-white/70">
                     {link.label}
                   </Link>
                 </li>
@@ -86,11 +86,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-display font-bold mb-6" style={{ fontSize: '15px', color: '#ffffff' }}>Services</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Services</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {serviceLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>
+                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100 text-[13px] md:text-sm text-white/70">
                     {link.label}
                   </Link>
                 </li>
@@ -100,11 +100,11 @@ export default function Footer() {
 
           {/* Other */}
           <div>
-            <h4 className="font-display font-bold mb-6" style={{ fontSize: '15px', color: '#ffffff' }}>Other</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Other</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {otherLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>
+                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100 text-[13px] md:text-sm text-white/70">
                     {link.label}
                   </Link>
                 </li>
@@ -114,12 +114,12 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-display font-bold mb-6" style={{ fontSize: '15px', color: '#ffffff' }}>Connect</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Connect</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {connectInfo.map((info) => (
-                <li key={info.label} className="grid grid-cols-[135px_1fr] items-start gap-2">
-                  <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>{info.label}</span>
-                  <span style={{ fontSize: '14px', color: '#ffffff', fontWeight: '500' }}>{info.value}</span>
+                <li key={info.label} className="flex flex-col xl:grid xl:grid-cols-[120px_1fr] items-start gap-1 xl:gap-2">
+                  <span className="text-[12px] md:text-[13px] text-white/50 xl:text-white/70">{info.label}</span>
+                  <span className="text-[13px] md:text-sm text-white font-medium">{info.value}</span>
                 </li>
               ))}
             </ul>
@@ -127,12 +127,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-6" style={{ paddingTop: '32px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full lg:w-auto" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)' }}>
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full lg:w-auto text-[12px] md:text-[13px] text-white/50">
             <span>TASK19 © {new Date().getFullYear()} All rights reserved</span>
-            <div className="flex items-center gap-6">
-              <Link to="/privacy-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.5)' }}>Privacy Policy</Link>
-              <Link to="/terms" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.5)' }}>Terms & Conditions</Link>
+            <div className="flex items-center gap-4 md:gap-6">
+              <Link to="/privacy-policy" className="transition-colors hover:opacity-100 text-white/50">Privacy Policy</Link>
+              <Link to="/terms" className="transition-colors hover:opacity-100 text-white/50">Terms & Conditions</Link>
             </div>
           </div>
 

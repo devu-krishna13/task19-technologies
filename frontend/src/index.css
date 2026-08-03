@@ -87,12 +87,14 @@
 }
 
 /* ── Base Styles ── */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 html {
@@ -445,7 +447,7 @@ ol {
 .hero-section-wrapper {
   position: relative;
   width: 100%;
-  height: 100svh; /* full portrait on mobile */
+  height: 450px; /* matched to contact page hero dimension on mobile */
 }
 
 @media (min-width: 640px) {
