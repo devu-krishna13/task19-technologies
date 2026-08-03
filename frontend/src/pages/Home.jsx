@@ -583,10 +583,7 @@ export default function Home() {
                     <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '14px' }}>
                       {service.shortDesc}
                     </p>
-                    <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
-                      Learn More
-                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </div>
+
                   </div>
                 </motion.div>
               );
