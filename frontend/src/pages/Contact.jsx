@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Twitter, Loader2, CheckCircle2 } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Loader2, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
+
+const XIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    title: '',
-    company: '',
-    subject: '',
+    fullName: '',
     email: '',
-    message: ''
+    phone: '',
+    company: '',
+    currency: 'USD',
+    budget: '',
+    servicesRequired: '',
+    timeline: '',
+    details: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -30,13 +38,15 @@ export default function Contact() {
     setIsSubmitting(false)
     setIsSuccess(true)
     setFormData({
-      firstName: '',
-      lastName: '',
-      title: '',
-      company: '',
-      subject: '',
+      fullName: '',
       email: '',
-      message: ''
+      phone: '',
+      company: '',
+      currency: 'USD',
+      budget: '',
+      servicesRequired: '',
+      timeline: '',
+      details: ''
     })
     setTimeout(() => setIsSuccess(false), 5000)
   }
@@ -109,29 +119,32 @@ export default function Contact() {
 
             {/* Left Column - Contact Info */}
             <div className="w-full lg:w-1/2 max-w-[500px] flex flex-col">
-              <h4 className="text-[22px] md:text-[24px] font-bold text-[#10152F] leading-[1.15] max-w-[320px] mb-[16px]">
+              <h4 className="text-[22px] md:text-[24px] font-bold text-[#10152F] leading-[1.15] mb-[16px]">
                 Contact Information
               </h4>
-              <p className="text-[14px] text-[#707070] leading-[28px] max-w-[360px] mb-[28px]">
+              <p className="text-[14px] text-[#707070] leading-[28px] mb-[28px]">
                 Our expert development service provides fast and efficient creation of digital solutions. Our certified professionals will ensure your project is executed flawlessly and safely.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
                 {/* Address */}
-                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
-                  <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
+                <div className="sm:col-span-2 bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[16px] min-h-[64px] flex items-start gap-[14px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                  <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0 mt-[2px]">
                     <MapPin className="w-[16px] h-[16px] stroke-[1.2px]" />
                   </div>
-                  <div className="flex flex-col overflow-hidden">
-                    <span className="text-[15px] font-semibold text-[#10152F] leading-tight mb-[2px] truncate">Our Address</span>
-                    <span className="text-[12px] text-[#6F7482] leading-[18px] truncate">
-                      Kathrikadavu, Kerala
+                  <div className="flex flex-col">
+                    <span className="text-[15px] font-semibold text-[#10152F] leading-tight mb-[4px]">Task19 Technologies</span>
+                    <span className="text-[11px] font-bold text-[#10152F] opacity-60 mb-[6px] uppercase tracking-wider">(Betatask Private Limited)</span>
+                    <span className="text-[13px] text-[#6F7482] leading-[1.6]">
+                      KSUM 1st Floor, Govt Cyber Park<br />
+                      Calicut, Kerala, India<br />
+                      Locations: Kochi & Calicut
                     </span>
                   </div>
                 </div>
 
                 {/* Phone */}
-                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] w-full flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
                   <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
                     <Phone className="w-[16px] h-[16px] stroke-[1.2px]" />
                   </div>
@@ -144,7 +157,7 @@ export default function Contact() {
                 </div>
 
                 {/* Email */}
-                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] w-full flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
                   <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
                     <Mail className="w-[16px] h-[16px] stroke-[1.2px]" />
                   </div>
@@ -157,7 +170,7 @@ export default function Contact() {
                 </div>
 
                 {/* Working Time */}
-                <div className="bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] max-w-full sm:max-w-[230px] flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
+                <div className="sm:col-span-2 bg-[#FFFFFF] border border-[#ECECEC] rounded-[10px] p-[12px_16px] h-[64px] w-full flex items-center gap-[12px] shadow-[0_5px_15px_rgba(0,0,0,0.03)]">
                   <div className="w-[40px] h-[40px] min-w-[40px] rounded-[10px] bg-[#F5F6FA] flex items-center justify-center text-[#4859F4] shrink-0">
                     <Clock className="w-[16px] h-[16px] stroke-[1.2px]" />
                   </div>
@@ -175,10 +188,11 @@ export default function Contact() {
                 <div className="text-[13px] text-[#707070] leading-[22px] max-w-[420px] mb-[10px]">Ensure your business is ready for the digital future with our expert consulting.</div>
                 <div className="flex gap-[10px]">
                   {[
-                    { icon: Facebook, href: '#' },
-                    { icon: Twitter, href: '#' },
-                    { icon: Linkedin, href: '#' },
-                    { icon: Instagram, href: '#' }
+                    { icon: Facebook, href: 'https://www.facebook.com/share/1BUtfhNHxW/' },
+                    { icon: XIcon, href: 'https://x.com/Task19_' },
+                    { icon: Linkedin, href: 'https://www.linkedin.com/company/task19-technologies/' },
+                    { icon: Instagram, href: 'https://www.instagram.com/tasknineteen/' },
+                    { icon: Youtube, href: 'http://www.youtube.com/@Task19Technologies' }
                   ].map((social, i) => (
                     <a
                       key={i}
@@ -196,7 +210,7 @@ export default function Contact() {
             <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
               <div className="bg-[#FFFFFF] rounded-[16px] p-[32px] md:p-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-[#F4F5F9] w-full max-w-[500px]">
                 <h4 className="text-[22px] md:text-[24px] font-bold text-[#10152F] leading-[1.15] mb-[24px]">
-                  Book An Appointment
+                  Request a Quote
                 </h4>
 
                 <form onSubmit={handleSubmit} className="flex flex-col">
@@ -204,22 +218,22 @@ export default function Contact() {
                     <div className="flex-1 min-w-0">
                       <input
                         type="text"
-                        name="firstName"
+                        name="fullName"
                         required
-                        value={formData.firstName}
+                        value={formData.fullName}
                         onChange={handleChange}
-                        placeholder="First Name *"
+                        placeholder="Full Name *"
                         className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
                       <input
-                        type="text"
-                        name="lastName"
+                        type="email"
+                        name="email"
                         required
-                        value={formData.lastName}
+                        value={formData.email}
                         onChange={handleChange}
-                        placeholder="Last Name *"
+                        placeholder="Email Address *"
                         className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
                       />
                     </div>
@@ -228,11 +242,12 @@ export default function Contact() {
                   <div className="flex flex-col sm:flex-row gap-[20px] mb-[20px]">
                     <div className="flex-1 min-w-0">
                       <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
+                        type="tel"
+                        name="phone"
+                        required
+                        value={formData.phone}
                         onChange={handleChange}
-                        placeholder="Title"
+                        placeholder="Phone / WhatsApp Number *"
                         className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
                       />
                     </div>
@@ -248,39 +263,103 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="mb-[20px]">
-                    <input
-                      type="text"
-                      name="subject"
+                  <div className="flex flex-col sm:flex-row gap-[20px] mb-[20px]">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex h-[48px] rounded-[8px] bg-[#F1F3FA] focus-within:ring-2 focus-within:ring-[#4859F4]/20 transition-colors duration-200 overflow-hidden">
+                        <div className="relative border-r border-[#E2E8F0]">
+                          <select
+                            name="currency"
+                            value={formData.currency}
+                            onChange={handleChange}
+                            className="h-full pl-[14px] pr-[28px] text-[13px] font-semibold text-[#10152F] bg-transparent outline-none appearance-none cursor-pointer"
+                          >
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="INR">INR</option>
+                            <option value="AUD">AUD</option>
+                            <option value="CAD">CAD</option>
+                          </select>
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-[10px] pointer-events-none">
+                            <svg className="w-[12px] h-[12px] text-[#9AA2B1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                          </div>
+                        </div>
+                        <input
+                          type="number"
+                          name="budget"
+                          required
+                          value={formData.budget}
+                          onChange={handleChange}
+                          placeholder="Budget *"
+                          className="flex-1 min-w-0 h-full px-[14px] text-[13px] text-[#10152F] bg-transparent outline-none placeholder:text-[13px] placeholder:text-[#9AA2B1] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          style={{ MozAppearance: 'textfield' }}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0 relative">
+                      <select
+                        name="servicesRequired"
+                        required
+                        value={formData.servicesRequired}
+                        onChange={handleChange}
+                        className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 focus:ring-2 focus:ring-[#4859F4]/20 appearance-none cursor-pointer"
+                        style={{ color: formData.servicesRequired ? '#10152F' : '#9AA2B1' }}
+                      >
+                        <option value="" disabled>Services Required *</option>
+                        <option value="Shopify Store">Shopify Store</option>
+                        <option value="WooCommerce Store">WooCommerce Store</option>
+                        <option value="WordPress Website">WordPress Website</option>
+                        <option value="Custom E-Commerce">Custom E-Commerce</option>
+                        <option value="Custom Web App">Custom Web App</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                        <option value="SEO & Marketing">SEO & Marketing</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-[14px] pointer-events-none">
+                        <svg className="w-[14px] h-[14px] text-[#9AA2B1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-[20px] relative">
+                    <select
+                      name="timeline"
                       required
-                      value={formData.subject}
+                      value={formData.timeline}
                       onChange={handleChange}
-                      placeholder="Subject *"
-                      className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
-                    />
+                      className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 focus:ring-2 focus:ring-[#4859F4]/20 appearance-none cursor-pointer"
+                      style={{ color: formData.timeline ? '#10152F' : '#9AA2B1' }}
+                    >
+                      <option value="" disabled>Project Timeline *</option>
+                      <option value="ASAP">ASAP</option>
+                      <option value="Within 1 Month">Within 1 Month</option>
+                      <option value="1-3 Months">1-3 Months</option>
+                      <option value="3-6 Months">3-6 Months</option>
+                      <option value="Flexible">Flexible</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-[14px] pointer-events-none">
+                      <svg className="w-[14px] h-[14px] text-[#9AA2B1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
                   </div>
 
                   <div className="mb-[20px]">
-                    <input
-                      type="email"
-                      name="email"
+                    <textarea
+                      name="details"
                       required
-                      value={formData.email}
+                      value={formData.details}
                       onChange={handleChange}
-                      placeholder="Email *"
-                      className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20"
-                    />
+                      placeholder="Project Details & Requirements *"
+                      className="w-full h-[120px] rounded-[8px] px-[18px] py-[16px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20 resize-none"
+                    ></textarea>
                   </div>
 
                   <div className="mb-[28px]">
-                    <textarea
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Your Message *"
-                      className="w-full h-[120px] rounded-[8px] px-[18px] py-[16px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 placeholder:text-[13px] placeholder:text-[#9AA2B1] focus:ring-2 focus:ring-[#4859F4]/20 resize-none"
-                    ></textarea>
+                    <label className="block text-[11px] font-bold text-[#9AA2B1] mb-2 uppercase tracking-wider">Attach a Document (Optional)</label>
+                    <input
+                      type="file"
+                      name="attachment"
+                      className="w-full text-[13px] text-[#9AA2B1] file:mr-4 file:py-2.5 file:px-4 file:rounded-[6px] file:border-0 file:text-[12px] file:font-bold file:bg-[#013ad6]/10 file:text-[#013ad6] hover:file:bg-[#013ad6]/20 transition-all cursor-pointer"
+                    />
                   </div>
 
                   <button
@@ -295,9 +374,9 @@ export default function Contact() {
                     {isSubmitting ? (
                       <><Loader2 className="w-[14px] h-[14px] animate-spin" /> SENDING...</>
                     ) : isSuccess ? (
-                      <><CheckCircle2 className="w-[14px] h-[14px]" /> BOOKED</>
+                      <><CheckCircle2 className="w-[14px] h-[14px]" /> REQUEST SENT</>
                     ) : (
-                      "APPOINTMENT NOW"
+                      "REQUEST QUOTE"
                     )}
                   </button>
                 </form>
@@ -311,7 +390,7 @@ export default function Contact() {
       {/* ── Full Width Map Section ── */}
       <section className="w-full h-[400px] md:h-[500px] lg:h-[600px] bg-[#F1F3FA]">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.17646537651!2d76.29548451479426!3d9.993425575742491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d500ff502bd%3A0x86bd61da433f48a!2sKathrikadavu%2C%20Kaloor%2C%20Ernakulam%2C%20Kerala%20682017!5e0!3m2!1sen!2sin!4v1633000000000!5m2!1sen!2sin"
+          src="https://maps.google.com/maps?q=Govt%20Cyberpark,%20Nellikode,%20Calicut&t=&z=15&ie=UTF8&iwloc=&output=embed"
           className="w-full h-full border-0 block grayscale hover:grayscale-0 transition-all duration-700"
           allowFullScreen=""
           loading="lazy"

@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'Services', to: '/services' },
   { label: 'Products', to: '/products' },
   { label: 'Apps', to: '/shopify-apps' },
+  { label: 'Blog', to: '/blog' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -58,7 +59,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav Pill */}
-            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg" style={{ paddingLeft: '80px', paddingRight: '80px', gap: '40px' }} aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg" style={{ paddingLeft: '64px', paddingRight: '64px', gap: '32px' }} aria-label="Main navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}

@@ -95,22 +95,22 @@
     padding: 0;
     box-sizing: border-box;
   }
-}
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 
-body {
-  font-family: var(--font-body);
-  font-size: var(--font-size-body);
-  line-height: 1.7;
-  color: #ffffff;
-  background-color: var(--color-surface);
-  overflow-x: hidden;
+  body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    line-height: 1.7;
+    color: #ffffff;
+    background-color: var(--color-surface);
+    overflow-x: hidden;
+  }
 }
 
 /* ── Typography ── */
@@ -238,25 +238,27 @@ a {
   background: var(--color-accent);
 }
 
-/* ── Image Defaults ── */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+@layer base {
+  /* ── Image Defaults ── */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
 
-/* ── Button Reset ── */
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
+  /* ── Button Reset ── */
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+  }
 
-/* ── List Reset ── */
-ul,
-ol {
-  list-style: none;
+  /* ── List Reset ── */
+  ul,
+  ol {
+    list-style: none;
+  }
 }
 
 /* ── Animations ── */

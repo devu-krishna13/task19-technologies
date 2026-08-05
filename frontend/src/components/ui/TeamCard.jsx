@@ -1,42 +1,52 @@
 import { motion } from 'framer-motion'
+import { Linkedin } from 'lucide-react'
 
-export default function TeamCard({ name, role, bio, photo, social, index = 0 }) {
+const XIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
+
+export default function TeamCard({ name, role, bio, image, photo, social, index = 0 }) {
+  const imgUrl = image || photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=050f28&color=fff&size=400`
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group h-full bg-surface border border-border overflow-hidden hover:border-accent/30 hover:shadow-xl transition-all duration-500 flex flex-col"
+      className="group relative flex flex-col h-full bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 rounded-[24px]"
     >
-      <div className="overflow-hidden aspect-[3/4]">
+      <div className="aspect-[4/4] overflow-hidden bg-gray-50 relative shrink-0">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050f28]/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <img
-          src={photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=f5f5f5&color=141414&size=400`}
+          src={imgUrl}
           alt={name}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-      </div>
-      <div className="p-6 flex flex-1 flex-col">
-        <h3 className="font-display text-lg font-semibold text-text-primary mb-1">{name}</h3>
-        <p className="text-sm font-medium text-accent mb-3">{role}</p>
-        {bio && <p className="text-sm text-text-secondary leading-relaxed flex-1">{bio}</p>}
+        
         {social && (
-          <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border">
+          <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
             {social.linkedin && (
-              <a href={social.linkedin} target="_blank" rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors duration-300">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white text-[#013Ad6] flex items-center justify-center hover:bg-[#013Ad6] hover:text-white transition-colors duration-300 shadow-lg">
+                <Linkedin className="w-4 h-4" />
               </a>
             )}
             {social.twitter && (
-              <a href={social.twitter} target="_blank" rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors duration-300">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.738l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300 shadow-lg">
+                <XIcon className="w-4 h-4" />
               </a>
             )}
           </div>
         )}
+      </div>
+      
+      <div className="flex flex-col flex-grow p-6 md:p-8">
+        <h3 className="font-display text-[20px] font-bold text-gray-900 mb-2 group-hover:text-[#013Ad6] transition-colors">{name}</h3>
+        <p className="text-[12px] font-bold tracking-widest uppercase text-[#013Ad6] mb-4">{role}</p>
+        <p className="text-[14px] text-gray-500 leading-relaxed line-clamp-4">{bio}</p>
       </div>
     </motion.div>
   )

@@ -26,6 +26,9 @@ import {
   ShieldCheck,
   Layers3,
   Rocket,
+  ShoppingCart,
+  RefreshCw,
+  LayoutTemplate,
 } from 'lucide-react'
 
 /* ── Hero Slides ── */
@@ -75,6 +78,24 @@ const specializedSolutions = [
     icon: ShieldCheck,
     title: 'Custom Shopify Apps',
     description: 'Build private or public apps when generic plugins create limits, bloat, or operational friction.',
+  },
+]
+
+const wordpressSolutions = [
+  {
+    icon: LayoutTemplate,
+    title: 'Custom WordPress Builds',
+    description: 'We develop fast, scalable, and secure WordPress websites tailored to your unique brand identity and operational needs.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Seamless Migrations',
+    description: 'Transition from legacy platforms to WordPress or WooCommerce with zero data loss and minimal downtime.',
+  },
+  {
+    icon: ShoppingCart,
+    title: 'WooCommerce Optimization',
+    description: 'Enhance your WooCommerce store for higher conversions, lightning-fast checkouts, and seamless third-party integrations.',
   },
 ]
 
@@ -259,211 +280,6 @@ export default function Home() {
           <div className="container flex justify-center">
             <div className="hero-pagination flex gap-2 pointer-events-auto" />
           </div>
-        </div>
-      </section>
-
-      {/* ═══ RECENT PORTFOLIO ═══ */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-
-          {/* Header */}
-          <div className="mb-6">
-            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Our Work</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
-            <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
-                Recent Portfolio
-              </h2>
-            </div>
-            <div className="flex flex-col items-start lg:items-end justify-center h-full">
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
-                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
-              >
-                <span>Explore All Portfolio</span>
-                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolioItems.slice(0, 6).map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-                className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
-              >
-                <a
-                  href={item.externalLink || `/portfolio/${item.slug}`}
-                  target={item.externalLink ? "_blank" : "_self"}
-                  rel={item.externalLink ? "noopener noreferrer" : undefined}
-                  className="absolute inset-0 z-20" 
-                  aria-label={item.title}
-                />
-
-                {/* Content Section */}
-                <div className="p-6 md:p-8 flex flex-col flex-grow">
-                  
-                  {/* Row 1: Badge & Link Icon */}
-                  <div className="flex items-center justify-between mb-3 relative z-30 pointer-events-none">
-                    <div className="flex gap-2">
-                      {item.industry && (
-                        <span className="px-2.5 py-1 bg-blue-50 text-[#013Ad6] text-[10px] font-bold uppercase tracking-wider rounded-md">
-                          {item.industry}
-                        </span>
-                      )}
-                    </div>
-                    
-                    {/* Premium Circle Icon Link */}
-                    <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#013Ad6] group-hover:border-[#013Ad6] group-hover:text-white transition-all duration-300">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </div>
-                  </div>
-
-                  {/* Row 2: Brand Name */}
-                  <h3 className="text-lg font-display font-bold text-[#10152F] mb-2 group-hover:text-[#013Ad6] transition-colors">
-                    {item.title}
-                  </h3>
-                  
-                  {/* Row 3: Description */}
-                  <p className="text-gray-500 text-xs leading-relaxed flex-grow line-clamp-2">
-                    {item.shortDesc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ STRATEGY ═══ */}
-      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '32px', paddingBottom: '32px' }}>
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
-            <div className="lg:sticky lg:top-32 self-start">
-              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
-                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Strategy</span>
-              </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
-                Stop Leaving Revenue<br />On The Table
-              </h2>
-              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
-                In the competitive Direct-to-Consumer (D2C) landscape, your e-commerce platform is your most critical asset. We solve the technical and strategic hurdles that limit growth.
-              </p>
-              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                Discuss Your Project <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '8px' }}>
-              {[
-                { title: 'Conversion Bottlenecks', desc: 'A beautiful site is useless if it doesn\'t sell. We focus on conversion rate optimization (CRO) from the ground up.' },
-                { title: 'Scalability Issues', desc: 'We build infrastructure—from code to hosting—that can handle flash sales, high traffic, and rapid product expansion without breaking.' },
-                { title: 'Feature Gaps', desc: 'When off-the-shelf apps aren\'t enough, we develop custom solutions that fit your unique business logic perfectly.' },
-                { title: 'Proven Results & Trust', desc: 'We partner with D2C brands to deliver measurable growth. Our solutions are designed to be high-performance, maintainable, and revenue-focused.' }
-              ].map((item, i, arr) => (
-                <motion.div
-                  key={i}
-                  className="transition-all duration-300"
-                  style={{ padding: '24px 0', borderBottom: i < arr.length - 1 ? '1px solid #e5e7eb' : 'none' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <div className="flex items-center gap-5 mb-3">
-                    <div className="flex flex-shrink-0 items-center justify-center rounded-full" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
-                      <span className="font-display font-bold" style={{ fontSize: '18px', color: '#111827' }}>0{i + 1}</span>
-                    </div>
-                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
-                  </div>
-                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ TECHNOLOGIES (WAC Clean Layout Style) ═══ */}
-      <section className="section" style={{ backgroundColor: '#050f28', color: '#fff', paddingTop: '48px', paddingBottom: '48px' }}>
-        <div className="container px-4 mx-auto w-full">
-
-          {/* Header */}
-          <div className="mb-6">
-            <div className="inline-block" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
-              <span className="font-medium text-white" style={{ fontSize: '14px' }}>Tech Stack</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '48px' }}>
-            <div>
-              <h2
-                className="font-display font-bold text-white leading-tight tracking-tight"
-                style={{ fontSize: '42px', margin: 0 }}
-              >
-                Technologies
-              </h2>
-            </div>
-            <div>
-              <p className="font-light leading-relaxed max-w-xl"
-                style={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '18px',
-                  margin: 0
-                }}>
-                Shopify, WooCommerce & Custom App Development expertise for seamless e-commerce.
-              </p>
-            </div>
-          </div>
-
-          {/* Logo Grid */}
-          <div
-            className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 items-center justify-items-center"
-            style={{ gap: '48px 24px', marginBottom: '48px' }}
-          >
-            {techLogos.map((tech, i) => (
-              <motion.div
-                key={tech.name}
-                className="w-full flex items-center justify-center"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: (i % 5) * 0.05 }}
-              >
-                <div
-                  className="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-300 [&_svg]:h-full [&_svg]:w-auto"
-                  style={{
-                    height: '42px',
-                    filter: 'brightness(0) invert(1)',
-                  }}
-                >
-                  {tech.svg}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* View all button */}
-          <div className="flex justify-center">
-            <Link
-              to="/technologies"
-              className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90"
-              style={{ backgroundColor: '#fff', color: '#000', borderRadius: '9999px', padding: '14px 28px', fontSize: '15px' }}
-            >
-              <span>View all technologies</span>
-              <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </Link>
-          </div>
-
         </div>
       </section>
 
@@ -658,6 +474,255 @@ export default function Home() {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TECHNOLOGIES (WAC Clean Layout Style) ═══ */}
+      <section className="section" style={{ backgroundColor: '#050f28', color: '#fff', paddingTop: '48px', paddingBottom: '48px' }}>
+        <div className="container px-4 mx-auto w-full">
+
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-white" style={{ fontSize: '14px' }}>Tech Stack</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '48px' }}>
+            <div>
+              <h2
+                className="font-display font-bold text-white leading-tight tracking-tight"
+                style={{ fontSize: '42px', margin: 0 }}
+              >
+                Technologies
+              </h2>
+            </div>
+            <div>
+              <p className="font-light leading-relaxed max-w-xl"
+                style={{
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '18px',
+                  margin: 0
+                }}>
+                Shopify, WooCommerce & Custom App Development expertise for seamless e-commerce.
+              </p>
+            </div>
+          </div>
+
+          {/* Logo Grid */}
+          <div
+            className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 items-center justify-items-center"
+            style={{ gap: '48px 24px', marginBottom: '48px' }}
+          >
+            {techLogos.map((tech, i) => (
+              <motion.div
+                key={tech.name}
+                className="w-full flex items-center justify-center"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: (i % 5) * 0.05 }}
+              >
+                <div
+                  className="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-300 [&_svg]:h-full [&_svg]:w-auto"
+                  style={{
+                    height: '42px',
+                    filter: 'brightness(0) invert(1)',
+                  }}
+                >
+                  {tech.svg}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View all button */}
+          <div className="flex justify-center">
+            <Link
+              to="/technologies"
+              className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90"
+              style={{ backgroundColor: '#fff', color: '#000', borderRadius: '9999px', padding: '14px 28px', fontSize: '15px' }}
+            >
+              <span>View all technologies</span>
+              <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ═══ WORDPRESS SOLUTIONS ═══ */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '60px', paddingBottom: '60px' }}>
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
+            <div className="lg:sticky lg:top-32 self-start">
+              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>WordPress Expertise</span>
+              </div>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+                Mastering WordPress & WooCommerce
+              </h2>
+              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
+                From custom theme development to complex WooCommerce setups, we build digital experiences that are flexible, powerful, and easy to manage.
+              </p>
+              <Link to="/services" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                Explore WordPress Services <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1" style={{ gap: '16px', paddingTop: '8px' }}>
+              {wordpressSolutions.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  className="bg-white transition-all duration-300 hover:shadow-md"
+                  style={{ borderRadius: '16px', border: '1px solid #f3f4f6', boxShadow: '0 2px 12px rgba(0,0,0,0.04)', padding: '20px 32px' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <div className="flex items-center gap-5 mb-4">
+                    <div className="flex flex-shrink-0 items-center justify-center rounded-full transition-transform duration-300" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
+                      <item.icon className="w-5 h-5" style={{ color: '#000' }} />
+                    </div>
+                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
+                  </div>
+                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ RECENT PORTFOLIO ═══ */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Our Work</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+                Recent Portfolio
+              </h2>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/portfolio"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>Explore All Portfolio</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {portfolioItems.slice(0, 6).map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
+              >
+                <a
+                  href={item.externalLink || `/portfolio/${item.slug}`}
+                  target={item.externalLink ? "_blank" : "_self"}
+                  rel={item.externalLink ? "noopener noreferrer" : undefined}
+                  className="absolute inset-0 z-20" 
+                  aria-label={item.title}
+                />
+
+                {/* Content Section */}
+                <div className="p-6 md:p-8 flex flex-col flex-grow">
+                  
+                  {/* Row 1: Badge & Link Icon */}
+                  <div className="flex items-center justify-between mb-3 relative z-30 pointer-events-none">
+                    <div className="flex gap-2">
+                      {item.industry && (
+                        <span className="px-2.5 py-1 bg-blue-50 text-[#013Ad6] text-[10px] font-bold uppercase tracking-wider rounded-md">
+                          {item.industry}
+                        </span>
+                      )}
+                    </div>
+                    
+                    {/* Premium Circle Icon Link */}
+                    <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#013Ad6] group-hover:border-[#013Ad6] group-hover:text-white transition-all duration-300">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </div>
+                  </div>
+
+                  {/* Row 2: Brand Name */}
+                  <h3 className="text-lg font-display font-bold text-[#10152F] mb-2 group-hover:text-[#013Ad6] transition-colors">
+                    {item.title}
+                  </h3>
+                  
+                  {/* Row 3: Description */}
+                  <p className="text-gray-500 text-xs leading-relaxed flex-grow line-clamp-2">
+                    {item.shortDesc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ STRATEGY ═══ */}
+      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '32px', paddingBottom: '32px' }}>
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
+            <div className="lg:sticky lg:top-32 self-start">
+              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Strategy</span>
+              </div>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+                Stop Leaving Revenue<br />On The Table
+              </h2>
+              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
+                In the competitive Direct-to-Consumer (D2C) landscape, your e-commerce platform is your most critical asset. We solve the technical and strategic hurdles that limit growth.
+              </p>
+              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                Discuss Your Project <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '8px' }}>
+              {[
+                { title: 'Conversion Bottlenecks', desc: 'A beautiful site is useless if it doesn\'t sell. We focus on conversion rate optimization (CRO) from the ground up.' },
+                { title: 'Scalability Issues', desc: 'We build infrastructure—from code to hosting—that can handle flash sales, high traffic, and rapid product expansion without breaking.' },
+                { title: 'Feature Gaps', desc: 'When off-the-shelf apps aren\'t enough, we develop custom solutions that fit your unique business logic perfectly.' },
+                { title: 'Proven Results & Trust', desc: 'We partner with D2C brands to deliver measurable growth. Our solutions are designed to be high-performance, maintainable, and revenue-focused.' }
+              ].map((item, i, arr) => (
+                <motion.div
+                  key={i}
+                  className="transition-all duration-300"
+                  style={{ padding: '24px 0', borderBottom: i < arr.length - 1 ? '1px solid #e5e7eb' : 'none' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <div className="flex items-center gap-5 mb-3">
+                    <div className="flex flex-shrink-0 items-center justify-center rounded-full" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
+                      <span className="font-display font-bold" style={{ fontSize: '18px', color: '#111827' }}>0{i + 1}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
+                  </div>
+                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

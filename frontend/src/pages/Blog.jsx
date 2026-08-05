@@ -24,73 +24,64 @@ export default function Blog() {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-32 pb-24 md:pt-40 md:pb-24 section-dark bg-dot-pattern min-h-[400px] h-[65svh] md:h-auto flex items-center">
-        <div className="container">
-          <motion.div className="max-w-3xl" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-              <span className="h-px w-8 md:w-12 bg-accent" />
-              <span className="font-display text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase text-accent">Insights</span>
-            </span>
-            <h1 className="font-display font-bold text-white mb-4 md:mb-6 leading-[1.15] md:leading-[1.1]" style={{ fontSize: 'clamp(2.25rem, 8vw, 4rem)' }}>
-              Ideas Worth <span className="text-gradient">Building On</span>
-            </h1>
-            <p className="text-base md:text-xl text-white/60 leading-relaxed">
-              Practical insights on e-commerce strategy, technical architecture, and digital growth — written by practitioners who build these solutions every day.
-            </p>
-          </motion.div>
+      <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <picture>
+            <source media="(max-width: 768px)" srcSet="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&crop=center&w=800&h=1200&q=90" />
+            <img
+              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
+              alt="Blog Background"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="absolute inset-0" style={{
+            background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
+          }}></div>
+        </div>
+
+        <div className="absolute inset-0 z-10 flex flex-col justify-center pt-24 md:pt-20">
+          <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto w-full">
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
+            >
+              <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
+              <span className="text-white/90 text-[12px] md:text-sm font-medium">Insights & Resources</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="max-w-4xl mx-auto w-full"
+            >
+              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-4 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 4.5rem)' }}>
+                Ideas Worth<br /><em className="font-serif-italic not-italic text-white/40">Building On.</em>
+              </h1>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="section bg-surface">
-        <div className="container">
-          {blogPosts[0] && activeCategory === 'All' && (
-            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-0 border border-border mb-12 bg-secondary">
-              <div className="overflow-hidden">
-                <img
-                  src={blogPosts[0].image}
-                  alt={blogPosts[0].title}
-                  className="w-full h-full min-h-[320px] object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-8 md:p-10 flex flex-col justify-center">
-                <span className="text-xs font-display font-medium tracking-[0.2em] uppercase text-accent mb-4">
-                  Featured Insight
-                </span>
-                <h2 className="font-display font-light text-text-primary mb-4" style={{ fontSize: 'var(--font-size-h3)' }}>
-                  {blogPosts[0].title}
-                </h2>
-                <p className="text-text-secondary leading-relaxed mb-6">
-                  {blogPosts[0].excerpt}
-                </p>
-                <div className="flex items-center gap-4 text-xs text-text-muted mb-6">
-                  <span>{blogPosts[0].date}</span>
-                  <span className="w-1 h-1 bg-text-muted rounded-full" />
-                  <span>{blogPosts[0].readTime}</span>
-                </div>
-                <div>
-                  <Link
-                    to={`/blog/${blogPosts[0].slug}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-display font-semibold hover:bg-primary-light transition-all duration-300"
-                  >
-                    Read Featured Article
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
+      <section className="py-12 md:py-16 bg-[#FFFFFF]">
+        <div className="max-w-[1200px] mx-auto px-[24px] lg:px-[40px]">
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-12">
+          <div className="flex overflow-x-auto gap-3 md:gap-4 mb-10 md:mb-14 md:flex-wrap justify-start md:justify-start pb-2 -mx-[24px] px-[24px] lg:-mx-[40px] lg:px-[40px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 font-display text-sm font-medium transition-all duration-300 border
+                className={`whitespace-nowrap flex-shrink-0 flex items-center justify-center h-[48px] px-6 md:px-8 rounded-full text-[15px] font-medium transition-all duration-300 border focus:outline-none select-none
                   ${activeCategory === cat
-                    ? 'bg-accent text-white border-accent'
-                    : 'bg-surface text-text-secondary border-border hover:border-accent/40'
+                    ? 'bg-black text-white border-black hover:bg-black hover:text-white'
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900'
                   }`}
               >
                 {cat}
@@ -99,28 +90,25 @@ export default function Blog() {
           </div>
 
           {filtered.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {filtered.map((post, i) => (
-                <BlogCard key={post.slug} {...post} index={i} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+                {filtered.map((post, i) => (
+                  <BlogCard key={post.slug} {...post} index={i} />
+                ))}
+              </div>
+              <div className="mt-12 md:mt-16 flex justify-center">
+                <button className="px-8 py-3 rounded-full border border-gray-200 bg-white text-[13px] font-bold tracking-wide uppercase text-gray-900 hover:bg-gray-900 hover:text-white active:bg-gray-900 active:text-white transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none select-none">
+                  View More Articles
+                </button>
+              </div>
+            </>
           ) : (
             <div className="text-center py-20">
-              <p className="text-text-muted">No articles found in this category.</p>
+              <p className="text-[15px] text-[#6F7482]">No articles found in this category.</p>
             </div>
           )}
         </div>
       </section>
-
-      <CTASection
-        eyebrow="Editorial Requests"
-        title="Want Us to Write About a Topic?"
-        subtitle="Have a question about e-commerce tech, digital strategy, or Shopify development? We'd love to write about it."
-        primaryText="Suggest a Topic"
-        primaryTo="/contact"
-        secondaryText="Our Services"
-        secondaryTo="/services"
-      />
     </>
   )
 }

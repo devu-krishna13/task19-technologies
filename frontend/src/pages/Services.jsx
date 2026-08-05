@@ -28,6 +28,12 @@ const servicesHeroSlides = [
     bgDesktop: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
     bgMobile: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
+  {
+    label: 'WordPress & WooCommerce',
+    title: <>Content & Commerce<br /><em className="font-serif-italic not-italic text-white/40">Built on WordPress.</em></>,
+    bgDesktop: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgMobile: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+  },
 ]
 
 const featureImages = [
@@ -141,6 +147,32 @@ const shopifyServices = [
       {
         title: 'Secure API Connections',
         desc: 'Connecting storefronts to HubSpot, Salesforce, custom CRM, and logistics solutions via secure APIs.'
+      }
+    ]
+  },
+  {
+    id: 'WordPress',
+    tagline: 'PHASE 05 — CONTENT & COMMERCE',
+    shortName: 'WORDPRESS',
+    color: '#3b82f6', // Blue
+    title: 'Custom WordPress Development',
+    desc: 'Design and develop fast, secure, and scalable WordPress websites perfectly tailored to your brand’s content and operational needs.',
+    featuresGrid: [
+      {
+        title: 'Custom Theme Development',
+        desc: 'Building bespoke WordPress themes from scratch with clean code, ensuring optimal performance and flexibility.'
+      },
+      {
+        title: 'Platform Migrations',
+        desc: 'Safely transitioning your existing site to WordPress without losing SEO rankings or critical data.'
+      },
+      {
+        title: 'Speed & Security Optimization',
+        desc: 'Implementing caching strategies, CDNs, and robust security measures to protect your content and users.'
+      },
+      {
+        title: 'Headless WordPress Architecture',
+        desc: 'Decoupling the frontend from the backend to deliver lightning-fast experiences using modern JavaScript frameworks.'
       }
     ]
   }

@@ -11,6 +11,8 @@ const ShopifyServices = lazy(() => import('./pages/services/ShopifyServices'))
 const WebDevelopment = lazy(() => import('./pages/services/WebDevelopment'))
 const MobileAppDevelopment = lazy(() => import('./pages/services/MobileAppDevelopment'))
 const UIUXDesign = lazy(() => import('./pages/services/UIUXDesign'))
+const WooCommerceDevelopment = lazy(() => import('./pages/services/WooCommerceDevelopment'))
+const CustomShopifyApps = lazy(() => import('./pages/services/CustomShopifyApps'))
 const SoftwareDevelopment = lazy(() => import('./pages/services/SoftwareDevelopment'))
 const EnterpriseSolutions = lazy(() => import('./pages/services/EnterpriseSolutions'))
 const CloudSolutions = lazy(() => import('./pages/services/CloudSolutions'))
@@ -31,7 +33,11 @@ const Careers = lazy(() => import('./pages/Careers'))
 const Contact = lazy(() => import('./pages/Contact'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Terms = lazy(() => import('./pages/Terms'))
-const Sitemap = lazy(() => import('./pages/Sitemap'))
+const Partnership = lazy(() => import('./pages/Partnership'))
+const Awards = lazy(() => import('./pages/Awards'))
+const Testimonials = lazy(() => import('./pages/Testimonials'))
+const Clients = lazy(() => import('./pages/Clients'))
+const Feedback = lazy(() => import('./pages/Feedback'))
 
 export default function App() {
   const location = useLocation()
@@ -51,8 +57,8 @@ export default function App() {
             {/* Shopify-focused services */}
             <Route path="/services/shopify" element={<ShopifyServices />} />
             <Route path="/services/shopify-cro" element={<ShopifyServices />} />
-            <Route path="/services/woocommerce" element={<ShopifyServices />} />
-            <Route path="/services/shopify-apps-dev" element={<ShopifyServices />} />
+            <Route path="/services/woocommerce" element={<WooCommerceDevelopment />} />
+            <Route path="/services/shopify-apps-dev" element={<CustomShopifyApps />} />
             {/* Standard services */}
             <Route path="/services/web-development" element={<WebDevelopment />} />
             <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
@@ -88,7 +94,11 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/partnership" element={<Partnership />} />
+            <Route path="/awards" element={<Awards />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </Suspense>
       </AnimatePresence>

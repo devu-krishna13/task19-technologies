@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Linkedin, Twitter, Facebook, Instagram, Youtube } from 'lucide-react'
+import { ArrowRight, Linkedin, Facebook, Instagram, Youtube } from 'lucide-react'
+
+const XIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 const companyLinks = [
   { label: 'About Us', to: '/about' },
@@ -23,27 +29,25 @@ const otherLinks = [
   { label: 'Partnership', to: '/partnership' },
   { label: 'Awards and Recognitions', to: '/awards' },
   { label: 'Insights', to: '/blog' },
-  { label: 'Resource Augmentation', to: '/resources' },
   { label: 'Testimonials', to: '/testimonials' },
   { label: 'Our Clients', to: '/clients' },
   { label: 'Submit Feedback', to: '/feedback' },
-  { label: 'Sitemap', to: '/sitemap' },
 ]
 
 const connectInfo = [
-  { label: 'General Enquiry', value: '+91 70126 39646' },
-  { label: 'Sales Enquiry', value: '+91 70126 39647' },
-  { label: 'Email', value: 'info@task19.com' },
-  { label: 'HR Enquiry', value: '+91 70126 39648' },
-  { label: 'Whatsapp (Sales)', value: '+91 70126 39649' },
+  { label: 'Sales Enquiry', value: 'Sales@task19.com' },
+  { label: 'General Enquiry', value: 'info@task19.com' },
+  { label: 'HR Enquiry', value: 'Hr@task19.com' },
+  { label: 'Whatsapp (Sales)', value: '+91 70126 39646' },
+  { label: 'Locations', value: 'Kochi & Calicut, India' },
 ]
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://www.linkedin.com/company/task19', label: 'LinkedIn' },
-  { icon: Youtube, href: '#', label: 'Youtube' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/task19-technologies/', label: 'LinkedIn' },
+  { icon: Youtube, href: 'http://www.youtube.com/@Task19Technologies', label: 'Youtube' },
+  { icon: Instagram, href: 'https://www.instagram.com/tasknineteen/', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/share/1BUtfhNHxW/', label: 'Facebook' },
+  { icon: XIcon, href: 'https://x.com/Task19_', label: 'X' },
 ]
 
 export default function Footer() {
