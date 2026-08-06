@@ -22,6 +22,10 @@ const QATesting = lazy(() => import('./pages/services/QATesting'))
 const Maintenance = lazy(() => import('./pages/services/Maintenance'))
 const DigitalTransformation = lazy(() => import('./pages/services/DigitalTransformation'))
 const ShopifyApps = lazy(() => import('./pages/ShopifyApps'))
+const ProfitSaverApp = lazy(() => import('./pages/ProfitSaverApp'))
+const PageBoosterApp = lazy(() => import('./pages/PageBoosterApp'))
+const MarginMateApp = lazy(() => import('./pages/MarginMateApp'))
+const VariantImageApp = lazy(() => import('./pages/VariantImageApp'))
 const Products = lazy(() => import('./pages/Products'))
 const Industries = lazy(() => import('./pages/Industries'))
 const Technologies = lazy(() => import('./pages/Technologies'))
@@ -73,6 +77,10 @@ export default function App() {
             <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
             {/* Shopify Apps page */}
             <Route path="/shopify-apps" element={<ShopifyApps />} />
+            <Route path="/shopify-apps/profit-saver" element={<ProfitSaverApp />} />
+            <Route path="/shopify-apps/page-booster" element={<PageBoosterApp />} />
+            <Route path="/shopify-apps/marginmate" element={<MarginMateApp />} />
+            <Route path="/shopify-apps/variant-image" element={<VariantImageApp />} />
             {/* WordPress-style URL redirects */}
             <Route path="/shopify-services" element={<Navigate to="/services/shopify" replace />} />
             <Route path="/shopify-services/" element={<Navigate to="/services/shopify" replace />} />

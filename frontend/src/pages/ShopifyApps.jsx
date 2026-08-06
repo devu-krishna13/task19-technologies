@@ -9,11 +9,6 @@ import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, Ch
 import SectionHeading from '../components/ui/SectionHeading'
 import CTASection from '../components/ui/CTASection'
 
-import profitSaverImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/profit_saver_app_1785745430744.png';
-import pageBoosterImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/page_booster_app_1785745440728.png';
-import marginMateImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/marginmate_app_1785745451429.png';
-import variantImageImg from 'C:/Users/GOPIKRISHNAN/.gemini/antigravity/brain/6c9f05c3-e11a-4ab3-9422-091b1c8761c2/variant_image_app_1785745463136.png';
-
 const appsHeroSlides = [
   {
     label: 'Shopify App Store',
@@ -47,9 +42,10 @@ const apps = [
       'Email notifications for milestones',
       'Seamless Shopify theme integration',
     ],
-    shopifyUrl: 'https://task19.com/shopify-apps/profit-saver/',
+    shopifyUrl: '/shopify-apps/profit-saver',
+    isInternal: true,
     badge: 'Top Rated',
-    image: profitSaverImg,
+    image: '/profit.webp',
   },
   {
     id: 'page-booster',
@@ -68,9 +64,10 @@ const apps = [
       'Mobile-responsive block layouts',
       'Analytics on block performance',
     ],
-    shopifyUrl: 'https://task19.com/shopify-apps/page-booster/',
+    shopifyUrl: '/shopify-apps/page-booster',
+    isInternal: true,
     badge: 'Best Seller',
-    image: pageBoosterImg,
+    image: '/page booster.webp',
   },
   {
     id: 'marginmate',
@@ -89,9 +86,10 @@ const apps = [
       'Price lock for specific collections',
       'Admin dashboard and reporting',
     ],
-    shopifyUrl: 'https://task19.com/shopify-apps/marginmate-custom-pricing/',
+    shopifyUrl: '/shopify-apps/marginmate',
+    isInternal: true,
     badge: 'B2B Essential',
-    image: marginMateImg,
+    image: '/margin.webp',
   },
   {
     id: 'variant-image',
@@ -110,9 +108,10 @@ const apps = [
       'No code or theme editing required',
       'Mobile-optimized gallery display',
     ],
-    shopifyUrl: 'https://task19.com/shopify-apps/variant-image-manager/',
+    shopifyUrl: '/shopify-apps/variant-image',
+    isInternal: true,
     badge: 'Conversion Booster',
-    image: variantImageImg,
+    image: '/variant.webp',
   },
 ]
 
@@ -253,15 +252,25 @@ export default function ShopifyApps() {
 
                   {/* Footer Action */}
                   <div className="pt-6 border-t border-gray-100 mt-auto">
-                    <a 
-                      href={app.shopifyUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
-                      style={{color: app.color}}
-                    >
-                      Install App <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
-                    </a>
+                    {app.isInternal ? (
+                      <Link 
+                        to={app.shopifyUrl} 
+                        className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
+                        style={{color: app.color}}
+                      >
+                        View Details <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
+                      </Link>
+                    ) : (
+                      <a 
+                        href={app.shopifyUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
+                        style={{color: app.color}}
+                      >
+                        Install App <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>
