@@ -291,7 +291,7 @@ export default function Home() {
               <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
                 <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Specialized Solutions</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
                 Focused Services for Commerce Teams
               </h2>
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
@@ -340,7 +340,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
             <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
                 Full-Stack E-Commerce Solutions
               </h2>
               <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
@@ -421,7 +421,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
             <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
                 Modern UI Needs More Than Pretty Screens
               </h2>
             </div>
@@ -492,8 +492,8 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '48px' }}>
             <div>
               <h2
-                className="font-display font-bold text-white leading-tight tracking-tight"
-                style={{ fontSize: '42px', margin: 0 }}
+                className="font-display font-bold text-white leading-tight tracking-tight text-[20px] md:text-[42px]"
+                style={{ margin: 0 }}
               >
                 Technologies
               </h2>
@@ -560,7 +560,7 @@ export default function Home() {
               <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
                 <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>WordPress Expertise</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
                 Mastering WordPress & WooCommerce
               </h2>
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
@@ -609,7 +609,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
             <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
                 Recent Portfolio
               </h2>
             </div>
@@ -686,7 +686,7 @@ export default function Home() {
               <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
                 <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Strategy</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
                 Stop Leaving Revenue<br />On The Table
               </h2>
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
@@ -731,7 +731,7 @@ export default function Home() {
       <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-gray-900 mb-4" style={{ fontSize: '42px', letterSpacing: '-0.02em' }}>
+            <h2 className="font-display font-bold text-gray-900 mb-4 text-[20px] md:text-[42px]" style={{ letterSpacing: '-0.02em' }}>
               Client Success Stories
             </h2>
             <div className="flex items-center justify-center gap-2 font-medium text-gray-800">
@@ -837,7 +837,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '40px' }}>
             <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight" style={{ fontSize: '42px', margin: 0 }}>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight text-[20px] md:text-[42px]" style={{ margin: 0 }}>
                 Insights & News
               </h2>
             </div>
@@ -915,7 +915,7 @@ export default function Home() {
               <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
                 <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Common questions</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
                 Frequently<br />asked questions
               </h2>
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>

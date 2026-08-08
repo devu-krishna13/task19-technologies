@@ -264,36 +264,22 @@ export default function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-[20px] mb-[20px]">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex h-[48px] rounded-[8px] bg-[#F1F3FA] focus-within:ring-2 focus-within:ring-[#4859F4]/20 transition-colors duration-200 overflow-hidden">
-                        <div className="relative border-r border-[#E2E8F0]">
-                          <select
-                            name="currency"
-                            value={formData.currency}
-                            onChange={handleChange}
-                            className="h-full pl-[14px] pr-[28px] text-[13px] font-semibold text-[#10152F] bg-transparent outline-none appearance-none cursor-pointer"
-                          >
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="INR">INR</option>
-                            <option value="AUD">AUD</option>
-                            <option value="CAD">CAD</option>
-                          </select>
-                          <div className="absolute inset-y-0 right-0 flex items-center pr-[10px] pointer-events-none">
-                            <svg className="w-[12px] h-[12px] text-[#9AA2B1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                          </div>
-                        </div>
-                        <input
-                          type="number"
-                          name="budget"
-                          required
-                          value={formData.budget}
-                          onChange={handleChange}
-                          placeholder="Budget *"
-                          className="flex-1 min-w-0 h-full px-[14px] text-[13px] text-[#10152F] bg-transparent outline-none placeholder:text-[13px] placeholder:text-[#9AA2B1] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                          style={{ MozAppearance: 'textfield' }}
-                        />
+                    <div className="flex-1 min-w-0 relative">
+                      <select
+                        name="budget"
+                        required
+                        value={formData.budget}
+                        onChange={handleChange}
+                        className="w-full h-[48px] rounded-[8px] px-[18px] text-[13px] text-[#10152F] bg-[#F1F3FA] outline-none transition-colors duration-200 focus:ring-2 focus:ring-[#4859F4]/20 appearance-none cursor-pointer"
+                        style={{ color: formData.budget ? '#10152F' : '#9AA2B1' }}
+                      >
+                        <option value="" disabled>Budget *</option>
+                        <option value="$2000">$2000</option>
+                        <option value="$5000">$5000</option>
+                        <option value="$8000 or above">$8000 or above</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-[14px] pointer-events-none">
+                        <svg className="w-[14px] h-[14px] text-[#9AA2B1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                       </div>
                     </div>
                     <div className="flex-1 min-w-0 relative">

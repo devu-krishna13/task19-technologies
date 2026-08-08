@@ -296,7 +296,7 @@ export default function Services() {
                 {/* Title and Description Row */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
                   <div>
-                    <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px', margin: 0 }}>
+                    <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
                       {service.title}
                     </h2>
                     <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
@@ -355,7 +355,7 @@ export default function Services() {
               <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
                 <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Common questions</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight" style={{ fontSize: '42px', marginBottom: '24px' }}>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
                 Frequently<br />asked questions
               </h2>
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>

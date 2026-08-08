@@ -10,7 +10,7 @@ export default function FAQAccordion({ items }) {
   }
 
   return (
-    <div className="w-full" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div className="w-full flex flex-col gap-3 md:gap-4">
       {items.map((item, index) => {
         const isOpen = activeIndex === index
         return (
@@ -21,8 +21,7 @@ export default function FAQAccordion({ items }) {
           >
             <button
               onClick={() => toggleAccordion(index)}
-              className="flex w-full items-center justify-between text-left focus:outline-none"
-              style={{ padding: '24px' }}
+              className="flex w-full items-center justify-between text-left focus:outline-none p-4 md:p-5"
             >
               <span className="font-display font-bold transition-colors duration-300 pr-4" style={{ fontSize: '17px', color: '#111827' }}>
                 {item.question}
@@ -44,7 +43,7 @@ export default function FAQAccordion({ items }) {
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="leading-relaxed" style={{ padding: '0 24px 24px 24px', color: '#4b5563', fontSize: '15px' }}>
+                  <div className="leading-relaxed px-4 pb-4 md:px-5 md:pb-5" style={{ color: '#4b5563', fontSize: '15px' }}>
                     {item.answer}
                   </div>
                 </motion.div>

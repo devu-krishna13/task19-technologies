@@ -5,21 +5,21 @@ import { ArrowRight, CheckCircle } from 'lucide-react'
 import FAQAccordion from '../ui/FAQAccordion'
 import CTASection from '../ui/CTASection'
 
-export default function ServicePageTemplate({ 
-  metaTitle, 
-  metaDesc, 
-  heroBadge, 
-  heroTitle, 
-  heroSubtitle, 
-  heroDesc, 
+export default function ServicePageTemplate({
+  metaTitle,
+  metaDesc,
+  heroBadge,
+  heroTitle,
+  heroSubtitle,
+  heroDesc,
   heroImage,
-  serviceTitle, 
-  serviceDesc, 
-  features, 
-  results, 
+  serviceTitle,
+  serviceDesc,
+  features,
+  results,
   icon: Icon,
   faqs,
-  ctaTitle, 
+  ctaTitle,
   ctaSubtitle
 }) {
   return (
@@ -35,8 +35,8 @@ export default function ServicePageTemplate({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent z-10" />
-          <img 
-            src={heroImage} 
+          <img
+            src={heroImage}
             alt={heroTitle}
             className="w-full h-full object-cover opacity-60"
           />
@@ -54,12 +54,12 @@ export default function ServicePageTemplate({
                 <span className="font-medium text-white text-[12px] md:text-[14px]">{heroBadge}</span>
               </div>
             </div>
-            
+
             <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>
               {heroTitle}<br />
               <span className="text-white/60 font-light">{heroSubtitle}</span>
             </h1>
-            
+
             <p className="font-light leading-relaxed max-w-2xl mb-8 md:mb-10 text-[16px] md:text-[20px]" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               {heroDesc}
             </p>
@@ -80,9 +80,9 @@ export default function ServicePageTemplate({
       <section className="bg-white py-12 md:py-16 overflow-hidden">
         <div className="container max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-            
+
             {/* Left: Text & Features */}
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -94,19 +94,19 @@ export default function ServicePageTemplate({
                   Core Capabilities
                 </span>
               </div>
-              
+
               <h4 className="font-display font-bold text-gray-900 mb-6">
                 {serviceTitle}
               </h4>
-              
+
               <p className="text-gray-500 text-[18px] md:text-[20px] font-light leading-relaxed mb-12">
                 {serviceDesc}
               </p>
 
               <div className="space-y-6 mb-12">
                 {features.map((f, j) => (
-                  <motion.div 
-                    key={j} 
+                  <motion.div
+                    key={j}
                     className="flex items-start gap-4 group"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ export default function ServicePageTemplate({
             </motion.div>
 
             {/* Right: Image & Floating Results */}
-            <motion.div 
+            <motion.div
               className="lg:w-1/2 relative mt-12 lg:mt-0"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -138,16 +138,16 @@ export default function ServicePageTemplate({
             >
               {/* Main Image */}
               <div className="relative aspect-[4/3] rounded-[32px] overflow-hidden shadow-lg border border-gray-100 mb-8">
-                <img 
-                  src={heroImage} 
-                  alt="Service Illustration" 
+                <img
+                  src={heroImage}
+                  alt="Service Illustration"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/5" />
               </div>
 
               {/* Key Highlights */}
-              <motion.div 
+              <motion.div
                 className="mt-8 bg-[#f8f9fc] border border-gray-100 p-6 md:p-8 rounded-[24px]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export default function ServicePageTemplate({
                   </div>
                   <h5 className="font-display text-xl font-bold text-gray-900">Key Highlights</h5>
                 </div>
-                
+
                 <ul className="space-y-4">
                   {[
                     '8000+ social media community members',
@@ -181,7 +181,7 @@ export default function ServicePageTemplate({
                 </ul>
               </motion.div>
             </motion.div>
-            
+
           </div>
         </div>
       </section>
@@ -197,7 +197,7 @@ export default function ServicePageTemplate({
                     <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Questions & Answers</span>
                   </div>
                 </div>
-                <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-5" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>
+                <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-5" style={{ fontSize: '25px' }}>
                   Service FAQs
                 </h2>
                 <p className="text-gray-500 font-light text-[18px] mb-8 max-w-md">
@@ -207,7 +207,7 @@ export default function ServicePageTemplate({
                   Ask a Question <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-              
+
               <div className="bg-white border border-gray-100 p-8 shadow-sm" style={{ borderRadius: '24px' }}>
                 <FAQAccordion items={faqs} />
               </div>

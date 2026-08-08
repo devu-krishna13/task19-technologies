@@ -87,7 +87,7 @@ export default function About() {
               <div className="inline-block bg-white mb-6 border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
                 <span className="font-medium text-gray-800 text-sm uppercase tracking-wider">Since 2017</span>
               </div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-6" style={{ fontSize: '42px' }}>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-6 text-[20px] md:text-[42px]">
                 A Brief Story of Task19
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6 text-lg">
@@ -163,7 +163,7 @@ export default function About() {
       <section className="pb-12 md:pb-16 pt-0 bg-[#f8f9fc]">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: '42px' }}>
+            <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]">
               Core Capabilities
             </h2>
             <p className="text-gray-500 font-light max-w-2xl mx-auto text-[18px]">
@@ -208,7 +208,7 @@ export default function About() {
       {/* ── CTA ── */}
       <section className="py-12 md:py-16 bg-white">
         <div className="container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-6" style={{ fontSize: '42px' }}>
+          <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-6 text-[20px] md:text-[42px]">
             Let's Build Together
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">

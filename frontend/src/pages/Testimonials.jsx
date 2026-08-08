@@ -52,7 +52,7 @@ export default function Testimonials() {
       {/* Testimonials Grid Section */}
       <section className="py-12 md:py-16 container max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="font-display font-bold text-gray-900 mb-4" style={{ fontSize: '42px', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-bold text-gray-900 mb-4 text-[20px] md:text-[42px]" style={{ letterSpacing: '-0.02em' }}>
             Client Success Stories
           </h2>
           <div className="flex items-center justify-center gap-2 font-medium text-gray-800">
