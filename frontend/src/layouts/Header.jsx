@@ -40,7 +40,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-4 left-0 right-0 z-[100] transition-all duration-500 px-4 md:px-8`}>
+      <header className={`fixed top-4 left-0 right-0 transition-all duration-500 px-4 md:px-8`} style={{ zIndex: 100 }}>
         <div className="container mx-auto">
           <div className="flex items-center justify-between gap-4">
             {/* Logo Pill */}
@@ -84,7 +84,9 @@ export default function Header() {
 
             {/* Mobile Toggle Pill */}
             <button
-              className="lg:hidden flex items-center justify-center w-14 h-14 bg-[#0D1B4C] rounded-full shadow-lg text-white hover:bg-[#1B3B92] transition-colors border border-white/20"
+              type="button"
+              className="lg:hidden flex items-center justify-center w-14 h-14 rounded-full shadow-lg text-white transition-colors border border-white/20"
+              style={{ backgroundColor: '#0D1B4C' }}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -98,11 +100,13 @@ export default function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            key="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[90] bg-[#050f28]/98 backdrop-blur-xl pt-[110px] px-6 pb-8 lg:hidden overflow-y-auto flex flex-col justify-start"
+            className="fixed inset-0 bg-[#050f28] bg-opacity-95 backdrop-blur-xl pt-28 px-6 pb-8 lg:hidden overflow-y-auto flex flex-col justify-start"
+            style={{ zIndex: 90 }}
           >
             {/* Nav Links */}
             <div className="flex flex-col">
