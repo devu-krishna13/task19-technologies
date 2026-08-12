@@ -1,20 +1,67 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import SectionHeading from '../components/ui/SectionHeading'
 import BlogCard from '../components/ui/BlogCard'
-import CTASection from '../components/ui/CTASection'
-import { blogPosts } from '../constants/data'
+// import { blogPosts } from '../constants/data' // Removed hardcoded data
 
-const categories = ['All', 'Strategy & Growth', 'Technical Expertise', 'Migration & Scalability']
+const categories = ['All', 'Latest Updates', 'Strategy & Growth', 'Technical Expertise']
+
+const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
+const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
+
+// Helper to transform API blog data to match our frontend format
+const transformBlog = (apiBlog) => {
+  const firstSectionWithText = apiBlog.sections?.find(s => s.text_content) || {};
+  
+  const image = apiBlog.cover_image 
+    ? `https://blogs.task19.com${apiBlog.cover_image}` 
+    : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+  
+  const slug = apiBlog.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  const dateObj = new Date(apiBlog.created_at);
+  
+  return {
+    ...apiBlog,
+    title: apiBlog.title,
+    slug: slug,
+    image: image,
+    excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : 'Read this amazing article on our blog.'),
+    category: 'Latest Updates', // Default since API doesn't provide it
+    date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+    readTime: '5 min read',
+  };
+}
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All')
+  const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch(API_URL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'X-API-KEY': API_KEY
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.blogs) {
+        setBlogs(data.blogs.map(transformBlog))
+      }
+      setLoading(false)
+    })
+    .catch(err => {
+      console.error(err)
+      setLoading(false)
+    })
+  }, [])
 
   const filtered = activeCategory === 'All'
-    ? blogPosts
-    : blogPosts.filter(p => p.category === activeCategory)
+    ? blogs
+    : blogs.filter(p => p.category === activeCategory)
 
   return (
     <>
@@ -89,7 +136,11 @@ export default function Blog() {
             ))}
           </div>
 
-          {filtered.length > 0 ? (
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-[15px] text-[#6F7482]">Loading articles...</p>
+            </div>
+          ) : filtered.length > 0 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
                 {filtered.map((post, i) => (

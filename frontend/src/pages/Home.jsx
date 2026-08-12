@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -205,7 +206,54 @@ const valuePillars = [
   }
 ]
 
+const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
+const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
+
+const transformBlog = (apiBlog) => {
+  const firstSectionWithText = apiBlog.sections?.find(s => s.text_content) || {};
+  
+  const image = apiBlog.cover_image 
+    ? `https://blogs.task19.com${apiBlog.cover_image}` 
+    : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+  
+  const slug = apiBlog.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  const dateObj = new Date(apiBlog.created_at);
+  
+  return {
+    ...apiBlog,
+    title: apiBlog.title,
+    slug: slug,
+    image: image,
+    excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
+    category: 'Latest Updates',
+    date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+    readTime: '5 min read',
+  };
+}
+
 export default function Home() {
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [blogsLoading, setBlogsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(API_URL, {
+      headers: {
+        'Accept': 'application/json',
+        'X-API-KEY': API_KEY
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.blogs) {
+        setRecentBlogs(data.blogs.map(transformBlog).slice(0, 3));
+      }
+      setBlogsLoading(false);
+    })
+    .catch(err => {
+      console.error(err);
+      setBlogsLoading(false);
+    });
+  }, []);
   return (
     <>
       <Helmet>
@@ -854,17 +902,11 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              ...blogPosts,
-              {
-                slug: 'headless-commerce-architecture-2026',
-                title: 'Architecting High-Performance Headless Commerce for Enterprise Brands',
-                category: 'Architecture',
-                date: 'September 19, 2022',
-                readTime: '6 min read',
-                image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=360&fit=crop'
-              }
-            ].slice(0, 3).map((post, i) => (
+            {blogsLoading ? (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-10">
+                <p className="text-gray-500">Loading insights...</p>
+              </div>
+            ) : recentBlogs.map((post, i) => (
               <motion.div
                 key={post.slug}
                 initial={{ opacity: 0, y: 30 }}

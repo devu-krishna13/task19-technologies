@@ -1,15 +1,101 @@
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react'
 import BlogCard from '../components/ui/BlogCard'
 import CTASection from '../components/ui/CTASection'
-import { blogPosts } from '../constants/data'
+
+const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
+const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
+
+const generateSlug = (title) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
 export default function BlogPost() {
   const { slug } = useParams()
-  const post = blogPosts.find(p => p.slug === slug) || blogPosts[0]
-  const related = blogPosts.filter(p => p.slug !== post.slug).slice(0, 2)
+  const [post, setPost] = useState(null)
+  const [related, setRelated] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch(API_URL, {
+      headers: {
+        'Accept': 'application/json',
+        'X-API-KEY': API_KEY
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.blogs) {
+        const matchedPost = data.blogs.find(b => generateSlug(b.title) === slug) || data.blogs[0];
+        
+        if (matchedPost) {
+          const firstSectionWithText = matchedPost.sections?.find(s => s.text_content) || {};
+          
+          const image = matchedPost.cover_image 
+            ? `https://blogs.task19.com${matchedPost.cover_image}` 
+            : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+            
+          const dateObj = new Date(matchedPost.created_at);
+            
+          setPost({
+            ...matchedPost,
+            title: matchedPost.title,
+            slug: generateSlug(matchedPost.title),
+            image: image,
+            excerpt: matchedPost.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
+            category: 'Latest Updates',
+            date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+            readTime: '5 min read',
+            author_name: matchedPost.author_name,
+            author_title: matchedPost.author_title,
+            author_avatar: matchedPost.author_avatar ? `https://blogs.task19.com${matchedPost.author_avatar}` : null
+          })
+        }
+        
+        const relatedPosts = data.blogs
+          .filter(b => generateSlug(b.title) !== slug)
+          .slice(0, 2)
+          .map(b => {
+            const firstSectionWithText = b.sections?.find(s => s.text_content) || {};
+            const image = b.cover_image ? `https://blogs.task19.com${b.cover_image}` : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+            const dateObj = new Date(b.created_at);
+            
+            return {
+              title: b.title,
+              slug: generateSlug(b.title),
+              image: image,
+              excerpt: b.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
+              category: 'Latest Updates',
+              date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+              readTime: '5 min read'
+            }
+          })
+        setRelated(relatedPosts)
+      }
+      setLoading(false)
+    })
+    .catch(err => {
+      console.error(err)
+      setLoading(false)
+    })
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="pt-40 pb-24 min-h-screen flex items-center justify-center bg-surface">
+        <p className="text-gray-500">Loading article...</p>
+      </div>
+    )
+  }
+
+  if (!post) {
+    return (
+      <div className="pt-40 pb-24 min-h-screen flex items-center justify-center bg-surface">
+        <p className="text-gray-500">Article not found.</p>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -42,44 +128,57 @@ export default function BlogPost() {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             <article className="lg:col-span-2">
-              <img src={post.image} alt={post.title} className="w-full object-cover mb-10 shadow-lg" loading="lazy" />
+              {post.image && (
+                <img src={post.image} alt={post.title} className="w-full h-auto max-h-[500px] object-cover mb-10 shadow-lg rounded-[20px]" loading="lazy" />
+              )}
               <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-text-secondary leading-relaxed mb-6">{post.excerpt}</p>
-                <h2 className="font-display text-2xl font-bold text-text-primary mt-10 mb-4">The Core Problem</h2>
-                <p className="text-text-secondary leading-relaxed mb-6">
-                  In the competitive Direct-to-Consumer landscape, the gap between a store that generates revenue and one that struggles to convert comes down to a handful of critical technical factors. Understanding these bottlenecks is the first step to eliminating them.
-                </p>
-                <h2 className="font-display text-2xl font-bold text-text-primary mt-10 mb-4">The Path Forward</h2>
-                <p className="text-text-secondary leading-relaxed mb-6">
-                  Each of these challenges has proven solutions. The key is approaching them systematically, with the right technical expertise, and an unwavering focus on the metric that matters most: revenue generated per visitor.
-                </p>
-                <p className="text-text-secondary leading-relaxed">
-                  At Task19 Technologies, we've helped dozens of brands identify and eliminate these conversion killers. The results speak for themselves: clients typically see a 30–150% improvement in conversion rates within 90 days of implementing our recommendations.
-                </p>
+                {post.sections?.map((section, idx) => (
+                  <div key={idx} className="mb-8">
+                    {section.image_path && (
+                      <img 
+                        src={`https://blogs.task19.com${section.image_path}`} 
+                        alt={`Section ${idx}`} 
+                        className="w-full h-auto max-h-[500px] object-cover mb-6 shadow-lg rounded-[20px]" 
+                        loading="lazy" 
+                      />
+                    )}
+                    {section.text_content && (
+                      <div 
+                        className="text-lg text-text-secondary leading-relaxed space-y-4"
+                        dangerouslySetInnerHTML={{ __html: section.text_content.replace(/\n/g, '<br/>') }}
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
             </article>
 
             <aside>
               <div className="sticky top-28 space-y-8">
-                <div className="p-6 bg-secondary border border-border">
+                <div className="p-6 bg-secondary border border-border rounded-[20px]">
                   <h3 className="font-display font-bold text-text-primary mb-4">About the Author</h3>
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src="https://ui-avatars.com/api/?name=Task19+Team&background=2563eb&color=fff&size=48" alt="Task19 Team" className="w-12 h-12 rounded-full" />
+                  <div className="flex items-center gap-4 mb-4">
+                    <img src={post.author_avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.author_name || 'Task19 Team')}&background=2563eb&color=fff&size=48`} alt={post.author_name || "Task19 Team"} className="w-14 h-14 rounded-full object-cover shadow-md" />
                     <div>
-                      <p className="font-display font-semibold text-text-primary text-sm">Task19 Team</p>
-                      <p className="text-xs text-text-muted">Digital Commerce Experts</p>
+                      <p className="font-display font-semibold text-text-primary text-[15px]">{post.author_name || "Task19 Team"}</p>
+                      <p className="text-xs text-text-muted mt-1">{post.author_title || "Digital Commerce Experts"}</p>
                     </div>
                   </div>
                   <p className="text-sm text-text-secondary leading-relaxed">
                     Our team of e-commerce specialists writes about practical strategies for D2C growth, technical architecture, and digital transformation.
                   </p>
                 </div>
-                <div className="p-6 bg-accent text-white">
-                  <h3 className="font-display font-bold mb-3">Need Help With Your Store?</h3>
-                  <p className="text-sm text-white/80 mb-4">Get a free technical audit and discover what's holding your store back.</p>
-                  <Link to="/contact" className="inline-flex items-center gap-2 text-sm font-display font-semibold bg-white text-accent px-4 py-2 hover:bg-secondary transition-colors duration-300">
-                    Get Free Audit
-                  </Link>
+                <div className="p-6 md:p-8 rounded-[24px] bg-gradient-to-br from-gray-900 to-black border border-gray-800 shadow-[0_0_40px_rgba(1,58,214,0.15)] relative overflow-hidden group mt-8">
+                  {/* Subtle accent glow */}
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#013ad6]/30 blur-[50px] rounded-full group-hover:bg-[#013ad6]/40 transition-all duration-500 pointer-events-none"></div>
+                  
+                  <div className="relative z-10">
+                    <h3 className="font-display font-bold text-white mb-3 text-xl">Need Help With Your Store?</h3>
+                    <p className="text-[14px] text-gray-400 mb-6 leading-relaxed">Get a free technical audit and discover exactly what's holding your revenue back.</p>
+                    <Link to="/contact" className="inline-flex items-center justify-center w-full gap-2 text-[14px] font-display font-bold bg-white px-6 py-3 hover:bg-gray-200 transition-colors duration-300 rounded-full shadow-sm" style={{ color: '#000000' }}>
+                      Get Free Audit
+                    </Link>
+                  </div>
                 </div>
               </div>
             </aside>
@@ -92,7 +191,7 @@ export default function BlogPost() {
           <div className="container">
             <h2 className="font-display text-2xl font-bold text-text-primary mb-10">Related Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {related.map((post, i) => <BlogCard key={post.slug} {...post} index={i} />)}
+              {related.map((p, i) => <BlogCard key={p.slug} {...p} index={i} />)}
             </div>
           </div>
         </section>
