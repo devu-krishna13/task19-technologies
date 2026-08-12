@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import SectionHeading from '../components/ui/SectionHeading'
 import BlogCard from '../components/ui/BlogCard'
 import CTASection from '../components/ui/CTASection'
@@ -43,6 +44,43 @@ export default function Blog() {
       {/* Blog Grid */}
       <section className="section bg-surface">
         <div className="container">
+          {blogPosts[0] && activeCategory === 'All' && (
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-0 border border-border mb-12 bg-secondary">
+              <div className="overflow-hidden">
+                <img
+                  src={blogPosts[0].image}
+                  alt={blogPosts[0].title}
+                  className="w-full h-full min-h-[320px] object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-8 md:p-10 flex flex-col justify-center">
+                <span className="text-xs font-display font-medium tracking-[0.2em] uppercase text-accent mb-4">
+                  Featured Insight
+                </span>
+                <h2 className="font-display font-light text-text-primary mb-4" style={{ fontSize: 'var(--font-size-h3)' }}>
+                  {blogPosts[0].title}
+                </h2>
+                <p className="text-text-secondary leading-relaxed mb-6">
+                  {blogPosts[0].excerpt}
+                </p>
+                <div className="flex items-center gap-4 text-xs text-text-muted mb-6">
+                  <span>{blogPosts[0].date}</span>
+                  <span className="w-1 h-1 bg-text-muted rounded-full" />
+                  <span>{blogPosts[0].readTime}</span>
+                </div>
+                <div>
+                  <Link
+                    to={`/blog/${blogPosts[0].slug}`}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-display font-semibold hover:bg-primary-light transition-all duration-300"
+                  >
+                    Read Featured Article
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Category Filter */}
           <div className="flex flex-wrap gap-2 mb-12">
             {categories.map(cat => (
@@ -75,6 +113,7 @@ export default function Blog() {
       </section>
 
       <CTASection
+        eyebrow="Editorial Requests"
         title="Want Us to Write About a Topic?"
         subtitle="Have a question about e-commerce tech, digital strategy, or Shopify development? We'd love to write about it."
         primaryText="Suggest a Topic"

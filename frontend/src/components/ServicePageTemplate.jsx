@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { CheckCircle, ArrowRight } from 'lucide-react'
-import Button from '../../components/ui/Button'
-import SectionHeading from '../../components/ui/SectionHeading'
-import FAQAccordion from '../../components/ui/FAQAccordion'
-import CTASection from '../../components/ui/CTASection'
-import ServiceCard from '../../components/ui/ServiceCard'
-import { servicesForCards } from '../../constants/services'
+import Button from './ui/Button'
+import SectionHeading from './ui/SectionHeading'
+import FAQAccordion from './ui/FAQAccordion'
+import CTASection from './ui/CTASection'
+import ServiceCard from './ui/ServiceCard'
+import { servicesForCards } from '../constants/services'
 
 export default function ServicePageTemplate({ service }) {
   const relatedServices = servicesForCards

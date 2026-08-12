@@ -7,7 +7,7 @@ export default function TeamCard({ name, role, bio, photo, social, index = 0 }) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group bg-surface border border-border overflow-hidden hover:border-accent/30 hover:shadow-xl transition-all duration-500"
+      className="group h-full bg-surface border border-border overflow-hidden hover:border-accent/30 hover:shadow-xl transition-all duration-500 flex flex-col"
     >
       <div className="overflow-hidden aspect-[3/4]">
         <img
@@ -17,10 +17,10 @@ export default function TeamCard({ name, role, bio, photo, social, index = 0 }) 
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-1 flex-col">
         <h3 className="font-display text-lg font-semibold text-text-primary mb-1">{name}</h3>
         <p className="text-sm font-medium text-accent mb-3">{role}</p>
-        {bio && <p className="text-sm text-text-secondary leading-relaxed">{bio}</p>}
+        {bio && <p className="text-sm text-text-secondary leading-relaxed flex-1">{bio}</p>}
         {social && (
           <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border">
             {social.linkedin && (

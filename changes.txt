@@ -1,0 +1,90 @@
+Design Comparison: Video vs. webandcrafts.com
+1. Summary
+The recorded site follows a similar overall structure to webandcrafts.com (WAC) — hero, offerings, proof, team, insights, footer — but WAC executes each section with more visual weight, more consistency, and proof placed earlier on the page. The recorded site is noticeably thinner: fewer sections, a single static hero instead of a rotating one, no client logos or case studies, plain-text stats, and a lighter footer.
+Design Element	Seen in Video?	Gap vs. webandcrafts.com	Priority
+Rotating hero banner (multiple slides)	Weak	Video shows one static hero slide; WAC rotates 4 slides (offering, case study, event, brand statement).	P1
+Case studies / real project proof	Missing	No named case studies appear anywhere in the recording; WAC shows a 6-card case study grid early on the homepage.	P1
+Client logo wall	Missing	No client logos appear in the recording at all; WAC displays 14 recognizable brand logos.	P1
+Testimonials	Weak	A testimonial carousel appears briefly with inconsistent card content (one card shorter than the others); WAC shows 3 full, evenly-styled testimonial cards with photos.	P2
+Stats / numbers section	Weak	Numbers shown as plain text lines directly under the header with little spacing; WAC presents stats as large-numeral cards with generous spacing, placed after proof sections.	P2
+Service/offering cards	Weak	Cards are text-only, no icon or consistent image system; WAC pairs each offering with a custom image tile.	P2
+Team / culture section	Weak	A team grid appears with uneven card heights (one card visibly taller than the others); WAC's culture section uses consistent card sizing.	P3
+Blog / insights section	Weak	Cards use generic abstract stock-style imagery that doesn't relate to the article topic; WAC uses topic-relevant photography.	P2
+Footer depth	Weak	Footer in the recording shows only a logo, a few links, and social icons; WAC's footer runs a full 4-column layout with contact details and legal links.	P1
+CTA consistency	Weak	The same CTA button pair appears to repeat twice in slightly different styles within the same section on at least 3 pages; WAC uses one clear, consistently styled CTA per section.	P2
+
+
+Video: Dark sticky header, 5 flat nav links, plain-text "Contact Us" with no button styling.
+WAC: Grouped nav (Services mega-menu, Industries, Works, About, Careers) + a persistent, high-contrast filled "Contact" button.
+Gap: Contact doesn't stand out from the other links the way WAC's does.
+
+3.2 Hero Section [0:10–0:14] — High
+
+Video: One static hero — headline, paragraph, single "Get Free Audit" button, stats packed close beneath.
+WAC: Rotating multi-slide hero cycling brand statement → case study metric → event → offer.
+Gap: One claim per visit vs. WAC's several angles in the same space.
+
+3.3 Proof / Case Studies Placement [0:14–0:20] — High
+
+Video: Section right after the hero is service-offering cards (a pitch), not finished work.
+WAC: Section right after the hero is a 6-card grid of real, named case studies with industry tags.
+Gap: Recorded site leads with a pitch before any proof; WAC leads with proof first.
+
+3.4 Stats / Numbers [0:20] — Medium
+
+Video: Four stats in plain text, cramped directly under the sticky header.
+WAC: Large-numeral cards with generous padding, placed after the proof section.
+Gap: Feels cramped and premature vs. WAC's spacious, earned placement.
+
+3.5 Testimonials [0:20–0:25] — Medium
+
+Video: 3-card carousel, but cards look unevenly filled (two show a closing quote line, one appears cut off).
+WAC: 3 evenly-sized cards, each with photo, full quote, name, title, company, industry tag.
+Gap: Same idea, inconsistent execution vs. WAC's uniform layout.
+
+3.6 Feature/Value Section [0:40–0:53] — Medium
+
+Video: "Stop Leaving Revenue on the Table" — 3-point pitch next to a dashboard graphic with an artificial, generated look.
+WAC: "What We Do" — 6 pillar tiles, each with a custom, purpose-made image.
+Gap: Recorded graphic reads as synthetic/stock, undercutting credibility.
+
+3.7 Client Logos — High
+
+Video: No client logos anywhere in the 93-second recording.
+WAC: Row of 14 recognizable client logos, prominently placed.
+Gap: Clearest gap — a fast, high-value trust element that's entirely absent.
+
+3.8 Blog/Insights Cards [1:20–1:32] — Medium
+
+Video: Abstract, generic thumbnails unrelated to their headlines.
+WAC: Imagery tied to the specific article topic.
+Gap: Reads as stock filler vs. WAC's curated, editorial feel.
+
+3.9 Repeated CTA Blocks [0:29–0:31, 0:55–0:57, 1:24–1:26] — Medium
+
+Video: Same CTA pair appears to render twice, different sizes/positions, same closing section — seen identically on About, Portfolio, Blog.
+WAC: One single, clearly-styled closing CTA per page.
+Gap: Two versions of the same action dilutes which button to click; reads as an unresolved layout bug.
+
+3.10 Team Section [1:05] — Low
+
+Video: 4-person grid; third card visibly taller due to extra bio text, breaking row alignment.
+WAC: Consistently sized frames regardless of caption length.
+Gap: Noticeable alignment inconsistency next to WAC's evenness.
+
+3.11 Footer [1:32–1:33] — High
+
+Video: Logo, short blurb, contact details, 3 link columns, social icons — shorter, less structured.
+WAC: Full 4-column footer (Company/Services/Other) + Connect block with multiple contact lines, 7 social icons, Privacy/Terms/Sitemap.
+Gap: Recorded footer covers noticeably less ground, no visible legal links.
+
+3.12 Pop-up/Exit Form [1:30] — Medium
+
+Video: Pop-up with lead form + "Trusted by Industry Leaders" shown as plain text, not logos.
+WAC: No sitewide exit pop-up; relies on persistent header CTA + closing CTA instead.
+Gap: Extra interruption whose trust badges aren't real logos, weakening intended credibility.
+
+4. Priority Fixes
+High: case-studies section after hero · client logo wall · rotating hero · fuller footer
+Medium: restyle/reposition stats · consistent testimonial cards · replace generic imagery · fix duplicated CTA · fix pop-up trust badges
+Low: fix team-card height alignment · distinct header Contact button style

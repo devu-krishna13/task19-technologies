@@ -12,15 +12,15 @@ export default function ServiceCard({ icon: Icon, title, description, to, index 
     >
       <Link
         to={to}
-        className="group relative flex flex-col p-8 h-full bg-surface border border-border rounded-2xl
-                   hover:border-accent/20 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-500"
+        className="group relative flex flex-col p-8 h-full bg-surface border border-border rounded-none
+                   hover:border-accent/30 transition-all duration-500"
       >
-        <div className="w-14 h-14 flex items-center justify-center mb-6 rounded-xl
+        <div className="w-14 h-14 flex items-center justify-center mb-6 rounded-none
                         bg-secondary text-text-primary transition-all duration-500
                         group-hover:bg-accent group-hover:text-white group-hover:scale-105">
           {Icon && <Icon className="w-6 h-6" strokeWidth={1.5} />}
         </div>
-        <h3 className="font-display text-xl font-bold mb-3 text-text-primary
+        <h3 className="font-display text-xl font-medium mb-3 text-text-primary
                        group-hover:text-accent transition-colors duration-300">
           {title}
         </h3>

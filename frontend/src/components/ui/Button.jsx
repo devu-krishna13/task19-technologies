@@ -27,8 +27,7 @@ export default function Button({
 }) {
   const classes = `
     inline-flex items-center justify-center font-display font-semibold tracking-wide
-    transition-all duration-300 ease-out rounded-full
-    hover:-translate-y-0.5
+    transition-all duration-300 ease-out rounded-none
     ${variants[variant]} ${sizes[size]} ${className}
   `.trim()
 

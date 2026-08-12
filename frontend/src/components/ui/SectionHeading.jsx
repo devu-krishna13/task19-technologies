@@ -18,16 +18,19 @@ export default function SectionHeading({
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
     >
       {label && (
-        <span className="inline-block font-display text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-accent">
-          {label}
+        <span className="inline-flex items-center gap-3 mb-5">
+          <span className="h-px w-8 bg-accent" />
+          <span className="font-display text-xs font-medium tracking-[0.25em] uppercase text-accent">
+            {label}
+          </span>
         </span>
       )}
-      <h2 className={`font-display font-bold leading-[1.1] mb-4 ${light ? 'text-white' : 'text-text-primary'}`}
+      <h2 className={`font-display font-light leading-[1.1] mb-5 ${light ? 'text-white' : 'text-text-primary'}`}
           style={{ fontSize: 'var(--font-size-h2)' }}>
         {title}
       </h2>
       {subtitle && (
-        <p className={`text-xl md:text-2xl font-body font-light leading-relaxed mt-6 ${light ? 'text-white/70' : 'text-text-secondary'}`}>
+        <p className={`text-lg md:text-xl font-body font-light leading-relaxed mt-5 ${light ? 'text-white/60' : 'text-text-secondary'}`}>
           {subtitle}
         </p>
       )}
