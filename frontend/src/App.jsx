@@ -21,6 +21,11 @@ const DevOps = lazy(() => import('./pages/services/DevOps'))
 const QATesting = lazy(() => import('./pages/services/QATesting'))
 const Maintenance = lazy(() => import('./pages/services/Maintenance'))
 const DigitalTransformation = lazy(() => import('./pages/services/DigitalTransformation'))
+const D2CStoreSetup = lazy(() => import('./pages/services/D2CStoreSetup'))
+const CRO = lazy(() => import('./pages/services/CRO'))
+const WooCommerceMigrationPhase = lazy(() => import('./pages/services/WooCommerceMigration'))
+const CustomShopifyAppsPhase = lazy(() => import('./pages/services/ShopifyApps'))
+const WordPressPhase = lazy(() => import('./pages/services/WordPress'))
 const ShopifyApps = lazy(() => import('./pages/ShopifyApps'))
 const ProfitSaverApp = lazy(() => import('./pages/ProfitSaverApp'))
 const PageBoosterApp = lazy(() => import('./pages/PageBoosterApp'))
@@ -58,6 +63,11 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/d2c-store-setup" element={<D2CStoreSetup />} />
+            <Route path="/services/cro-customization" element={<CRO />} />
+            <Route path="/services/woocommerce-migration" element={<WooCommerceMigrationPhase />} />
+            <Route path="/services/custom-shopify-apps" element={<CustomShopifyAppsPhase />} />
+            <Route path="/services/wordpress-development" element={<WordPressPhase />} />
             {/* Shopify-focused services */}
             <Route path="/services/shopify" element={<ShopifyServices />} />
             <Route path="/services/shopify-cro" element={<ShopifyServices />} />

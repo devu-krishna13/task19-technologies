@@ -53,6 +53,7 @@ const shopifyServices = [
     color: '#b45309', // Warm amber/brown
     title: 'Shopify D2C Developer Setup & Strategy',
     desc: 'We architect and build high-performing Shopify stores from the ground up for direct-to-consumer brands, structuring every decision around conversion and growth from day one.',
+    linkTo: '/services/d2c-store-setup',
     featuresGrid: [
       {
         title: 'Platform Architecture Consulting',
@@ -79,6 +80,7 @@ const shopifyServices = [
     color: '#7c3aed', // Purple
     title: 'Shopify Customization & CRO Strategy',
     desc: 'Transform an underperforming store into a conversion engine. We audit, redesign, and optimize your storefront to lift average order value and scale conversion metrics.',
+    linkTo: '/services/cro-customization',
     featuresGrid: [
       {
         title: 'Performance & Speed Audits',
@@ -105,6 +107,7 @@ const shopifyServices = [
     color: '#06b6d4', // Cyan
     title: 'WooCommerce Development & Transition',
     desc: 'Build secure, scalable WooCommerce environments, or migrate existing platforms with complete data preservation and zero catalog downtime.',
+    linkTo: '/services/woocommerce-migration',
     featuresGrid: [
       {
         title: 'Zero-Loss Database Export',
@@ -131,6 +134,7 @@ const shopifyServices = [
     color: '#10b981', // Green
     title: 'Custom Shopify App Development',
     desc: 'Create custom apps when standard integrations fall short. From private automations to public SaaS apps listed on the Shopify App Store.',
+    linkTo: '/services/custom-shopify-apps',
     featuresGrid: [
       {
         title: 'Private Store Automations',
@@ -157,6 +161,7 @@ const shopifyServices = [
     color: '#3b82f6', // Blue
     title: 'Custom WordPress Development',
     desc: 'Design and develop fast, secure, and scalable WordPress websites perfectly tailored to your brand’s content and operational needs.',
+    linkTo: '/services/wordpress-development',
     featuresGrid: [
       {
         title: 'Custom Theme Development',
@@ -299,9 +304,14 @@ export default function Services() {
                     <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
                       {service.title}
                     </h2>
-                    <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
+                    <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0, marginTop: '16px' }}>
                       {service.desc}
                     </p>
+                    <div className="mt-8">
+                      <Link to={service.linkTo} className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#000', color: '#fff', borderRadius: '14px', padding: '12px 24px' }}>
+                        Explore Phase <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
