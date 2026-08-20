@@ -121,7 +121,7 @@ export default function Portfolio() {
       {/* ── Filter Bar ── */}
       <section className="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
         <div className="container max-w-6xl mx-auto px-4 py-5">
-          <div className="flex items-center justify-start lg:justify-center gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div className="flex flex-wrap items-center justify-center gap-3 pb-2">
             {categories.map((category) => (
               <button
                 key={category}
@@ -161,10 +161,8 @@ export default function Portfolio() {
                   transition={{ duration: 0.4 }}
                   className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
                 >
-                  <a
-                    href={item.externalLink || `/portfolio/${item.slug}`}
-                    target={item.externalLink ? '_blank' : '_self'}
-                    rel={item.externalLink ? 'noopener noreferrer' : undefined}
+                  <Link
+                    to={`/portfolio/${item.slug}`}
                     className="absolute inset-0 z-20"
                     aria-label={item.title}
                   />
