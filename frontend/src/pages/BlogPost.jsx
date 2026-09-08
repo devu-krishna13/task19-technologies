@@ -43,7 +43,7 @@ export default function BlogPost() {
             title: matchedPost.title,
             slug: generateSlug(matchedPost.title),
             image: image,
-            excerpt: matchedPost.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
+            excerpt: matchedPost.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
             category: matchedPost.category?.name || 'Latest Updates',
             date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
             readTime: '5 min read',
@@ -65,7 +65,7 @@ export default function BlogPost() {
               title: b.title,
               slug: generateSlug(b.title),
               image: image,
-              excerpt: b.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
+              excerpt: b.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
               category: b.category?.name || 'Latest Updates',
               date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
               readTime: '5 min read'

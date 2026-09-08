@@ -224,7 +224,7 @@ const transformBlog = (apiBlog) => {
     title: apiBlog.title,
     slug: slug,
     image: image,
-    excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
+    excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
     category: 'Latest Updates',
     date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
     readTime: '5 min read',
