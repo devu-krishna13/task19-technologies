@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom'
 import BlogCard from '../components/ui/BlogCard'
 // import { blogPosts } from '../constants/data' // Removed hardcoded data
 
-const categories = ['All', 'Latest Updates', 'Strategy & Growth', 'Technical Expertise']
-
 const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
 const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
 
@@ -27,7 +25,7 @@ const transformBlog = (apiBlog) => {
     slug: slug,
     image: image,
     excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : 'Read this amazing article on our blog.'),
-    category: 'Latest Updates', // Default since API doesn't provide it
+    category: apiBlog.category?.name || 'Latest Updates',
     date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
     readTime: '5 min read',
   };
@@ -37,6 +35,7 @@ export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(true)
+  const [dynamicCategories, setDynamicCategories] = useState(['All', 'Latest Updates'])
 
   useEffect(() => {
     fetch(API_URL, {
@@ -49,7 +48,23 @@ export default function Blog() {
     .then(res => res.json())
     .then(data => {
       if (data && data.blogs) {
-        setBlogs(data.blogs.map(transformBlog))
+        const transformedBlogs = data.blogs.map(transformBlog);
+        setBlogs(transformedBlogs);
+        
+        // Extract unique categories from the API response
+        const apiCategories = new Set(transformedBlogs.map(b => b.category));
+        
+        // Always start with 'All' and 'Latest Updates'
+        const uniqueCategories = ['All', 'Latest Updates'];
+        
+        // Add any additional dynamic categories
+        apiCategories.forEach(cat => {
+          if (cat !== 'Latest Updates') {
+            uniqueCategories.push(cat);
+          }
+        });
+        
+        setDynamicCategories(uniqueCategories);
       }
       setLoading(false)
     })
@@ -121,7 +136,7 @@ export default function Blog() {
 
           {/* Category Filter */}
           <div className="flex overflow-x-auto gap-3 md:gap-4 mb-10 md:mb-14 md:flex-wrap justify-start md:justify-start pb-2 -mx-[24px] px-[24px] lg:-mx-[40px] lg:px-[40px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-            {categories.map(cat => (
+            {dynamicCategories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}

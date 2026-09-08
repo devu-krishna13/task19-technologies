@@ -38,13 +38,13 @@ export default function BlogPost() {
             
           const dateObj = new Date(matchedPost.created_at);
             
-          setPost({
+            setPost({
             ...matchedPost,
             title: matchedPost.title,
             slug: generateSlug(matchedPost.title),
             image: image,
             excerpt: matchedPost.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
-            category: 'Latest Updates',
+            category: matchedPost.category?.name || 'Latest Updates',
             date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
             readTime: '5 min read',
             author_name: matchedPost.author_name,
@@ -66,7 +66,7 @@ export default function BlogPost() {
               slug: generateSlug(b.title),
               image: image,
               excerpt: b.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.substring(0, 150) + '...' : ''),
-              category: 'Latest Updates',
+              category: b.category?.name || 'Latest Updates',
               date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
               readTime: '5 min read'
             }
