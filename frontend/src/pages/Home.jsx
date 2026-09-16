@@ -331,6 +331,87 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ SERVICES ═══ */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+          
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>What We Do</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
+                Full-Stack E-Commerce Solutions
+              </h2>
+              <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
+                A balanced mix of platform expertise, growth engineering, and custom product work for brands that need more than a template rollout.
+              </p>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>Explore All Services</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {servicesForCards.slice(0, 8).map((service, i) => {
+              const dummyImages = [
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+                "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+                "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80",
+                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+                "/cloud_solutions.jpg",
+                "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+              ];
+              return (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                  style={{ borderRadius: '24px' }}
+                >
+                  <Link to={`/services/${service.slug}`} className="absolute inset-0 z-10" aria-label={service.title} />
+
+                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
+                    <img
+                      src={dummyImages[i] || dummyImages[0]}
+                      alt={service.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '24px' }}>
+                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '18px' }}>
+                      {service.title}
+                    </h6>
+                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '14px' }}>
+                      {service.shortDesc}
+                    </p>
+
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ SPECIALIZED SOLUTIONS ═══ */}
       <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="container">
@@ -375,86 +456,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SERVICES ═══ */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-          
-          {/* Header */}
-          <div className="mb-6">
-            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>What We Do</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
-            <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
-                Full-Stack E-Commerce Solutions
-              </h2>
-              <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
-                A balanced mix of platform expertise, growth engineering, and custom product work for brands that need more than a template rollout.
-              </p>
-            </div>
-            <div className="flex flex-col items-start lg:items-end justify-center h-full">
-              <Link
-                to="/services"
-                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
-                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
-              >
-                <span>Explore All Services</span>
-                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {servicesForCards.slice(0, 8).map((service, i) => {
-              const dummyImages = [
-                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-                "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
-              ];
-              return (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-                  style={{ borderRadius: '24px' }}
-                >
-                  <Link to={`/services/${service.slug}`} className="absolute inset-0 z-10" aria-label={service.title} />
-
-                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
-                    <img
-                      src={dummyImages[i] || dummyImages[0]}
-                      alt={service.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '24px' }}>
-                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '18px' }}>
-                      {service.title}
-                    </h6>
-                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '14px' }}>
-                      {service.shortDesc}
-                    </p>
-
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* ═══ VALUE SECTION ═══ */}
       <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
@@ -683,10 +684,8 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
                 className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
               >
-                <a
-                  href={item.externalLink || `/portfolio/${item.slug}`}
-                  target={item.externalLink ? "_blank" : "_self"}
-                  rel={item.externalLink ? "noopener noreferrer" : undefined}
+                <Link
+                  to={`/portfolio/${item.slug}`}
                   className="absolute inset-0 z-20" 
                   aria-label={item.title}
                 />
