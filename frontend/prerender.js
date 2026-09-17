@@ -17,7 +17,7 @@ const routes = [
   '/portfolio'
 ];
 
-const PORT = 5174;
+const PORT = 5177;
 const DIST_DIR = path.resolve(__dirname, 'dist');
 
 async function prerender() {

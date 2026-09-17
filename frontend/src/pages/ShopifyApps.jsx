@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -45,7 +45,7 @@ const apps = [
     shopifyUrl: '/shopify-apps/profit-saver',
     isInternal: true,
     badge: 'Top Rated',
-    image: '/profit.webp',
+    image: '/profitsaverdashboard.jpeg',
   },
   {
     id: 'page-booster',
@@ -67,7 +67,7 @@ const apps = [
     shopifyUrl: '/shopify-apps/page-booster',
     isInternal: true,
     badge: 'Best Seller',
-    image: '/page booster.webp',
+    image: '/pageboosternew.jpeg',
   },
   {
     id: 'marginmate',
@@ -89,7 +89,7 @@ const apps = [
     shopifyUrl: '/shopify-apps/marginmate',
     isInternal: true,
     badge: 'B2B Essential',
-    image: '/margin.webp',
+    image: '/marginmatecutompricing.jpeg',
   },
   {
     id: 'variant-image',
@@ -111,11 +111,13 @@ const apps = [
     shopifyUrl: '/shopify-apps/variant-image',
     isInternal: true,
     badge: 'Conversion Booster',
-    image: '/variant.webp',
+    image: '/variantimagemanager.jpeg',
   },
 ]
 
 export default function ShopifyApps() {
+  const navigate = useNavigate()
+
   return (
     <>
       <Helmet>
@@ -200,7 +202,8 @@ export default function ShopifyApps() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative bg-white rounded-[24px] border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 overflow-hidden flex flex-col h-full"
+                onClick={() => app.isInternal ? navigate(app.shopifyUrl) : window.open(app.shopifyUrl, '_blank')}
+                className="group relative bg-white rounded-[24px] border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 overflow-hidden flex flex-col h-full cursor-pointer"
               >
                 {/* Image Section */}
                 <div className="relative w-full aspect-[16/10] overflow-hidden bg-gray-100">
@@ -252,25 +255,12 @@ export default function ShopifyApps() {
 
                   {/* Footer Action */}
                   <div className="pt-6 border-t border-gray-100 mt-auto">
-                    {app.isInternal ? (
-                      <Link 
-                        to={app.shopifyUrl} 
-                        className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
-                        style={{color: app.color}}
-                      >
-                        View Details <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
-                      </Link>
-                    ) : (
-                      <a 
-                        href={app.shopifyUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
-                        style={{color: app.color}}
-                      >
-                        Install App <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
-                      </a>
-                    )}
+                    <div 
+                      className="inline-flex items-center font-bold text-[14px] transition-colors hover:opacity-80 uppercase tracking-wide" 
+                      style={{color: app.color}}
+                    >
+                      {app.isInternal ? 'View Details' : 'Install App'} <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
+                    </div>
                   </div>
                 </div>
               </motion.div>
