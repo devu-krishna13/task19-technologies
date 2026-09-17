@@ -11,26 +11,14 @@ import CTASection from '../components/ui/CTASection'
 
 const servicesHeroSlides = [
   {
-    label: 'Shopify Store Development',
-    title: <>Shopify Expertise That<br /><em className="font-serif-italic not-italic text-white/40">Drives Revenue.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    label: 'E-Commerce & CRO Strategy',
+    title: <><span className="whitespace-nowrap">Shopify & WooCommerce</span><br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
+    bgDesktop: '/service-d2c.jpg',
+    bgMobile: '/service-d2c.jpg',
   },
   {
-    label: 'CRO & Customization',
-    title: <>Maximize E-commerce Conversions<br /><em className="font-serif-italic not-italic text-white/40">Through Audit & Design.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-  {
-    label: 'Custom App Development',
-    title: <>Shopify Apps & Integrations<br /><em className="font-serif-italic not-italic text-white/40">Without Boundaries.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-  {
-    label: 'WordPress & WooCommerce',
-    title: <>Content & Commerce<br /><em className="font-serif-italic not-italic text-white/40">Built on WordPress.</em></>,
+    label: 'Custom Apps & Platforms',
+    title: <>Custom App & Web<br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
     bgDesktop: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
     bgMobile: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
   },
@@ -266,7 +254,7 @@ export default function Services() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="max-w-4xl mx-auto w-full"
                   >
-                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
+                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 5rem)' }}>
                       {slide.title}
                     </h1>
                   </motion.div>

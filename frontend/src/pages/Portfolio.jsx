@@ -11,21 +11,15 @@ import { portfolioItems } from '../constants/data'
 const portfolioHeroSlides = [
   {
     label: 'Our Portfolio',
-    title: <>Crafting Digital Experiences<br /><em className="font-serif-italic not-italic text-white/40">That Drive Growth.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    title: <><span className="whitespace-nowrap">Digital Experiences</span><br /><em className="font-serif-italic not-italic text-white">That Drive Growth.</em></>,
+    bgDesktop: '/portfolio-hero-1.jpg',
+    bgMobile: '/portfolio-hero-1.jpg',
   },
   {
     label: 'E-Commerce Excellence',
-    title: <>High-Performance Stores<br /><em className="font-serif-italic not-italic text-white/40">Built to Scale.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-  {
-    label: 'Digital Transformation',
-    title: <>Empowering Brands with<br /><em className="font-serif-italic not-italic text-white/40">Modern Technology.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    title: <><span className="whitespace-nowrap">High-Performance Stores</span><br /><em className="font-serif-italic not-italic text-white">Built to Scale.</em></>,
+    bgDesktop: '/portfolio-hero-2.jpg',
+    bgMobile: '/portfolio-hero-2.jpg',
   },
 ]
 
@@ -100,7 +94,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="max-w-4xl mx-auto w-full"
                   >
-                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
+                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 5rem)' }}>
                       {slide.title}
                     </h1>
                   </motion.div>

@@ -36,6 +36,7 @@ export default function Blog() {
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(true)
   const [dynamicCategories, setDynamicCategories] = useState(['All', 'Latest Updates'])
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     fetch(API_URL, {
@@ -77,6 +78,23 @@ export default function Blog() {
   const filtered = activeCategory === 'All'
     ? blogs
     : blogs.filter(p => p.category === activeCategory)
+
+  // Reset to first page when category changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [activeCategory])
+
+  const itemsPerPage = 6
+  const totalPages = Math.ceil(filtered.length / itemsPerPage)
+  const currentCards = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page)
+      // Scroll to the top of the grid
+      window.scrollTo({ top: 350, behavior: 'smooth' })
+    }
+  }
 
   return (
     <>
@@ -158,15 +176,44 @@ export default function Blog() {
           ) : filtered.length > 0 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                {filtered.map((post, i) => (
+                {currentCards.map((post, i) => (
                   <BlogCard key={post.slug} {...post} index={i} />
                 ))}
               </div>
-              <div className="mt-12 md:mt-16 flex justify-center">
-                <button className="px-8 py-3 rounded-full border border-gray-200 bg-white text-[13px] font-bold tracking-wide uppercase text-gray-900 hover:bg-gray-900 hover:text-white active:bg-gray-900 active:text-white transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none select-none">
-                  View More Articles
-                </button>
-              </div>
+              
+              {totalPages > 1 && (
+                <div className="mt-12 md:mt-16 flex justify-center items-center gap-2">
+                  <button 
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none select-none"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                  </button>
+                  
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`w-10 h-10 rounded-full border flex items-center justify-center text-sm font-medium transition-all duration-300 focus:outline-none select-none
+                        ${currentPage === page 
+                          ? 'border-gray-900 bg-gray-900 text-white shadow-md' 
+                          : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                        }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+
+                  <button 
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none select-none"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                  </button>
+                </div>
+              )}
             </>
           ) : (
             <div className="text-center py-20">

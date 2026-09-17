@@ -35,32 +35,18 @@ import {
 /* ── Hero Slides ── */
 const heroSlides = [
   {
-    label: 'Innovation & Strategy',
-    title: <>Experiences Powered by<br /><em className="font-serif-italic not-italic text-white/40">Intelligence.</em></>,
-    cta: 'Watch the Future',
-    bgDesktop: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    label: 'E-Commerce Experts',
+    title: <>Shopify & WordPress<br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
+    cta: 'Explore Platforms',
+    bgDesktop: '/herobanner.png',
+    bgMobile: '/herobannermb.png',
   },
   {
-    label: 'AI Solutions',
-    title: <>AI Precision. Human Intuition.<br /><em className="font-serif-italic not-italic text-white/40">Real Results.</em></>,
-    cta: 'Explore AI Services',
-    bgDesktop: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-  {
-    label: 'Industry Leaders',
-    title: <>Tech, Marketing, Industry<br />Leaders, <em className="font-serif-italic not-italic text-white/40">One Stage!</em></>,
+    label: 'Custom Solutions',
+    title: <>Tailored Custom<br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
     cta: 'See Our Work',
-    bgDesktop: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-  {
-    label: 'Digital Transformation',
-    title: <>Helping You Take the<br /><em className="font-serif-italic not-italic text-white/40">Digital Leap</em></>,
-    cta: 'Get Free Audit',
-    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    bgDesktop: '/hero-banner.png',
+    bgMobile: '/hero-banner-mb.png',
   },
 ]
 
@@ -120,7 +106,7 @@ const valuePillars = [
     name: 'WooCommerce',
     svg: (
       <svg className="h-10 md:h-12 w-auto text-white/80 group-hover:text-white transition-colors duration-300 scale-[2.5] md:scale-[3]" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M.754 9.58a.754.754 0 00-.754.758v2.525c0 .42.339.758.758.758h3.135l1.431.799-.326-.799h2.373a.757.757 0 00.758-.758v-2.525a.757.757 0 00-.758-.758H.754zm2.709.445h.03c.065.001.124.023.179.067a.26.26 0 01.103.19.29.29 0 01-.033.16c-.13.239-.236.64-.322 1.199-.083.541-.114.965-.094 1.267a.392.392 0 01-.039.219.213.213 0 01-.176.12c-.086.006-.177-.034-.263-.124-.31-.316-.555-.788-.735-1.416-.216.425-.375.744-.478.957-.196.376-.363.568-.502.578-.09.007-.166-.069-.233-.228-.17-.436-.352-1.277-.548-2.524a.297.297 0 01.054-.222c.047-.064.116-.095.21-.102.169-.013.265.065.288.238.103.695.217 1.284.336 1.766l.727-1.387c.066-.126.15-.192.25-.199.146-.01.237.083.273.28.083.441.188.817.315 1.136.086-.844.233-1.453.44-1.828a.255.255 0 01.218-.147zm1.293.36c.056 0 .116.006.18.02.232.05.411.177.53.386.107.18.161.395.161.654 0 .343-.087.654-.26.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.158-.659c0-.342.085-.655.258-.937.202-.333.462-.498.78-.498zm2.084 0c.056 0 .116.006.18.02.236.05.411.177.53.386.107.18.16.395.16.654 0 .343-.086.654-.259.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.16-.659c0-.342.087-.655.26-.937.202-.333.462-.498.78-.498zm4.437.047c-.305 0-.546.102-.718.304-.173.203-.256.49-.256.856 0 .395.086.697.256.906.17.21.418.316.744.316.315 0 .559-.107.728-.316.17-.21.256-.504.256-.883s-.087-.673-.26-.879c-.176-.202-.424-.304-.75-.304zm-1.466.002a1.13 1.13 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.505.336.861.336.103 0 .22-.016.346-.052v-.54c-.117.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm12.414 0a1.135 1.135 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.506.336.861.336.103 0 .22-.016.346-.052v-.54c-.116.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm-9.598.06l-.29 2.264h.579l.156-1.559.395 1.559h.412l.379-1.555.164 1.555h.603l-.304-2.264h-.791l-.12.508c-.03.13-.06.264-.087.4l-.067.352a29.97 29.97 0 00-.258-1.26h-.771zm2.768 0l-.29 2.264h.579l.156-1.559.396 1.559h.412l.375-1.555.165 1.555h.603l-.305-2.264h-.789l-.119.508c-.03.13-.06.264-.086.4l-.066.352c-.063-.352-.15-.771-.26-1.26h-.771zm3.988 0v2.264h.611v-1.031h.012l.494 1.03h.645l-.489-1.019a.61.61 0 00.37-.552.598.598 0 00-.25-.506c-.167-.123-.394-.186-.68-.186h-.713zm3.377 0v2.264H24v-.483h-.63v-.414h.54v-.468h-.54v-.416h.626v-.483H22.76zm-4.793.004v2.264h1.24v-.483h-.627v-.416h.541v-.468h-.54v-.415h.622v-.482h-1.236zm2.025.432c.146.003.25.025.313.072.063.046.091.12.091.227 0 .156-.135.236-.404.24v-.54zm-15.22.011c-.104 0-.205.069-.301.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.016-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm2.083 0c-.103 0-.204.069-.3.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.013-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm4.428.006c.233 0 .354.218.354.66-.004.273-.038.46-.098.553a.293.293 0 01-.262.139.266.266 0 01-.242-.139c-.056-.093-.084-.28-.084-.562 0-.436.11-.65.332-.65Z"/>
+        <path d="M.754 9.58a.754.754 0 00-.754.758v2.525c0 .42.339.758.758.758h3.135l1.431.799-.326-.799h2.373a.757.757 0 00.758-.758v-2.525a.757.757 0 00-.758-.758H.754zm2.709.445h.03c.065.001.124.023.179.067a.26.26 0 01.103.19.29.29 0 01-.033.16c-.13.239-.236.64-.322 1.199-.083.541-.114.965-.094 1.267a.392.392 0 01-.039.219.213.213 0 01-.176.12c-.086.006-.177-.034-.263-.124-.31-.316-.555-.788-.735-1.416-.216.425-.375.744-.478.957-.196.376-.363.568-.502.578-.09.007-.166-.069-.233-.228-.17-.436-.352-1.277-.548-2.524a.297.297 0 01.054-.222c.047-.064.116-.095.21-.102.169-.013.265.065.288.238.103.695.217 1.284.336 1.766l.727-1.387c.066-.126.15-.192.25-.199.146-.01.237.083.273.28.083.441.188.817.315 1.136.086-.844.233-1.453.44-1.828a.255.255 0 01.218-.147zm1.293.36c.056 0 .116.006.18.02.232.05.411.177.53.386.107.18.161.395.161.654 0 .343-.087.654-.26.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.158-.659c0-.342.085-.655.258-.937.202-.333.462-.498.78-.498zm2.084 0c.056 0 .116.006.18.02.236.05.411.177.53.386.107.18.16.395.16.654 0 .343-.086.654-.259.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.16-.659c0-.342.087-.655.26-.937.202-.333.462-.498.78-.498zm4.437.047c-.305 0-.546.102-.718.304-.173.203-.256.49-.256.856 0 .395.086.697.256.906.17.21.418.316.744.316.315 0 .559-.107.728-.316.17-.21.256-.504.256-.883s-.087-.673-.26-.879c-.176-.202-.424-.304-.75-.304zm-1.466.002a1.13 1.13 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.505.336.861.336.103 0 .22-.016.346-.052v-.54c-.117.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm12.414 0a1.135 1.135 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.506.336.861.336.103 0 .22-.016.346-.052v-.54c-.116.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm-9.598.06l-.29 2.264h.579l.156-1.559.395 1.559h.412l.379-1.555.164 1.555h.603l-.304-2.264h-.791l-.12.508c-.03.13-.06.264-.087.4l-.067.352a29.97 29.97 0 00-.258-1.26h-.771zm2.768 0l-.29 2.264h.579l.156-1.559.396 1.559h.412l.375-1.555.165 1.555h.603l-.305-2.264h-.789l-.119.508c-.03.13-.06.264-.086.4l-.066.352c-.063-.352-.15-.771-.26-1.26h-.771zm3.988 0v2.264h.611v-1.031h.012l.494 1.03h.645l-.489-1.019a.61.61 0 00.37-.552.598.598 0 00-.25-.506c-.167-.123-.394-.186-.68-.186h-.713zm3.377 0v2.264H24v-.483h-.63v-.414h.54v-.468h-.54v-.416h.626v-.483H22.76zm-4.793.004v2.264h1.24v-.483h-.627v-.416h.541v-.468h-.54v-.415h.622v-.482h-1.236zm2.025.432c.146.003.25.025.313.072.063.046.091.12.091.227 0 .156-.135.236-.404.24v-.54zm-15.22.011c-.104 0-.205.069-.301.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.016-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm2.083 0c-.103 0-.204.069-.3.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.013-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm4.428.006c.233 0 .354.218.354.66-.004.273-.038.46-.098.553a.293.293 0 01-.262.139.266.266 0 01-.242-.139c-.056-.093-.084-.28-.084-.562 0-.436.11-.65.332-.65Z" />
       </svg>
     )
   },
@@ -211,14 +197,14 @@ const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
 
 const transformBlog = (apiBlog) => {
   const firstSectionWithText = apiBlog.sections?.find(s => s.text_content) || {};
-  
-  const image = apiBlog.cover_image 
-    ? `https://blogs.task19.com${apiBlog.cover_image}` 
+
+  const image = apiBlog.cover_image
+    ? `https://blogs.task19.com${apiBlog.cover_image}`
     : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
-  
+
   const slug = apiBlog.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
   const dateObj = new Date(apiBlog.created_at);
-  
+
   return {
     ...apiBlog,
     title: apiBlog.title,
@@ -242,17 +228,17 @@ export default function Home() {
         'X-API-KEY': API_KEY
       }
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data && data.blogs) {
-        setRecentBlogs(data.blogs.map(transformBlog).slice(0, 3));
-      }
-      setBlogsLoading(false);
-    })
-    .catch(err => {
-      console.error(err);
-      setBlogsLoading(false);
-    });
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.blogs) {
+          setRecentBlogs(data.blogs.map(transformBlog).slice(0, 3));
+        }
+        setBlogsLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setBlogsLoading(false);
+      });
   }, []);
   return (
     <>
@@ -263,7 +249,14 @@ export default function Home() {
       </Helmet>
 
       {/* ═══ ROTATING HERO ═══ */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
+      <style>{`
+        @media (max-width: 767px) {
+          .home-hero-section.hero-section-wrapper { height: auto !important; min-height: 0 !important; display: flex; flex-direction: column; }
+          .home-hero-section .hero-swiper { height: auto !important; position: relative !important; }
+          .home-hero-section .swiper-slide { height: auto !important; }
+        }
+      `}</style>
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper home-hero-section min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}
@@ -274,28 +267,25 @@ export default function Home() {
           className="hero-swiper absolute inset-0 w-full h-full"
         >
           {heroSlides.map((slide, i) => (
-            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
-              {/* Background image with cinematic gradient */}
-              <div className="absolute inset-0 z-0 overflow-hidden">
-                <picture>
+            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center bg-black">
+              {/* Background image responsive scale */}
+              <div className="w-full h-auto md:h-full md:absolute md:inset-0 z-0 overflow-hidden">
+                <picture className="w-full h-auto md:h-full block">
                   <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
                   <img
                     src={slide.bgDesktop}
                     alt={slide.label}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-auto aspect-square md:aspect-auto md:h-full object-cover object-center block"
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
                 </picture>
-                <div className="absolute inset-0" style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
-                }}></div>
               </div>
 
               {/* Content — Centered absolutely */}
+              {/*
               <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
                 <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
 
-                  {/* Top Badge (slide.label) */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +296,6 @@ export default function Home() {
                     <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
                   </motion.div>
 
-                  {/* Main Headline (slide.title) */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -320,6 +309,7 @@ export default function Home() {
 
                 </div>
               </div>
+              */}
             </SwiperSlide>
           ))}
         </Swiper>
@@ -334,7 +324,7 @@ export default function Home() {
       {/* ═══ SERVICES ═══ */}
       <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container max-w-6xl mx-auto px-4">
-          
+
           {/* Header */}
           <div className="mb-6">
             <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
@@ -686,13 +676,13 @@ export default function Home() {
               >
                 <Link
                   to={`/portfolio/${item.slug}`}
-                  className="absolute inset-0 z-20" 
+                  className="absolute inset-0 z-20"
                   aria-label={item.title}
                 />
 
                 {/* Content Section */}
                 <div className="p-6 md:p-8 flex flex-col flex-grow">
-                  
+
                   {/* Row 1: Badge & Link Icon */}
                   <div className="flex items-center justify-between mb-3 relative z-30 pointer-events-none">
                     <div className="flex gap-2">
@@ -702,10 +692,10 @@ export default function Home() {
                         </span>
                       )}
                     </div>
-                    
+
                     {/* Premium Circle Icon Link */}
                     <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#013Ad6] group-hover:border-[#013Ad6] group-hover:text-white transition-all duration-300">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10" /></svg>
                     </div>
                   </div>
 
@@ -713,7 +703,7 @@ export default function Home() {
                   <h3 className="text-lg font-display font-bold text-[#10152F] mb-2 group-hover:text-[#013Ad6] transition-colors">
                     {item.title}
                   </h3>
-                  
+
                   {/* Row 3: Description */}
                   <p className="text-gray-500 text-xs leading-relaxed flex-grow line-clamp-2">
                     {item.shortDesc}
