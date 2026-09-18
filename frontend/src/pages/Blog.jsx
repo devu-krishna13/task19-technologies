@@ -73,8 +73,9 @@ export default function Blog() {
       console.error(err)
       setLoading(false)
     })
-  }, [])
+  }, []) // Fetch ONLY once on mount
 
+  // Filter locally
   const filtered = activeCategory === 'All'
     ? blogs
     : blogs.filter(p => p.category === activeCategory)
@@ -85,7 +86,7 @@ export default function Blog() {
   }, [activeCategory])
 
   const itemsPerPage = 6
-  const totalPages = Math.ceil(filtered.length / itemsPerPage)
+  const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1
   const currentCards = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
 
   const handlePageChange = (page) => {
