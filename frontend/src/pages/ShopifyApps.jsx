@@ -8,22 +8,18 @@ import 'swiper/css/pagination'
 import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, CheckCircle } from 'lucide-react'
 import SectionHeading from '../components/ui/SectionHeading'
 import CTASection from '../components/ui/CTASection'
-
-import shopifyHero1 from '../assets/shopify-apps-hero-1.jpg'
-import shopifyHero2 from '../assets/shopify-apps-hero-2.jpg'
-
 const appsHeroSlides = [
   {
     label: 'Profit Saver & Page Booster',
     title: <><span className="whitespace-nowrap">Drive Loyalty &</span><br /><em className="font-serif-italic not-italic text-white">Boost Conversions.</em></>,
-    bgDesktop: shopifyHero1,
-    bgMobile: shopifyHero1,
+    bgDesktop: '/shopify-apps-hero-1.jpg',
+    bgMobile: '/shopify-apps-hero-1.jpg',
   },
   {
     label: 'MarginMate & Variant Image Manager',
     title: <><span className="whitespace-nowrap">Advanced Custom Pricing &</span><br /><em className="font-serif-italic not-italic text-white">Variant Galleries.</em></>,
-    bgDesktop: shopifyHero2,
-    bgMobile: shopifyHero2,
+    bgDesktop: '/shopify-apps-hero-2.jpg',
+    bgMobile: '/shopify-apps-hero-2.jpg',
   }
 ]
 

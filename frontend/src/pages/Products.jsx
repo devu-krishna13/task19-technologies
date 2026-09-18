@@ -37,14 +37,12 @@ const productsData = [
   }
 ]
 
-import productsHeroImg from '../assets/products-hero.jpg'
-
 const productsHeroSlides = [
   {
-    label: 'Batchwise • GoSlot • Vespr',
-    title: <><span className="whitespace-nowrap">Next-Gen SaaS &</span><br /><em className="font-serif-italic not-italic text-white">E-commerce Platforms.</em></>,
-    bgDesktop: productsHeroImg,
-    bgMobile: productsHeroImg,
+    label: 'Our Products',
+    title: <><span className="whitespace-nowrap">Digital Solutions</span><br /><em className="font-serif-italic not-italic text-white">For Every Industry.</em></>,
+    bgDesktop: '/products-hero.jpg',
+    bgMobile: '/products-hero.jpg',
   }
 ]
 

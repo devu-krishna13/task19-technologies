@@ -10,8 +10,6 @@ const XIcon = (props) => (
   </svg>
 )
 
-import contactHeroImg from '../assets/contact-hero.jpg'
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -73,9 +71,9 @@ export default function Contact() {
       <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
-            <source media="(max-width: 768px)" srcSet={contactHeroImg} />
+            <source media="(max-width: 768px)" srcSet="/contact-hero.jpg" />
             <img
-              src={contactHeroImg}
+              src="/contact-hero.jpg"
               alt="Contact Us Background"
               className="w-full h-full object-cover object-center"
               loading="eager"

@@ -31,7 +31,6 @@ const transformBlog = (apiBlog) => {
   };
 }
 
-import blogHeroImg from '../assets/blog-hero.jpg'
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [blogs, setBlogs] = useState([])
@@ -108,9 +107,9 @@ export default function Blog() {
       <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
-            <source media="(max-width: 768px)" srcSet={blogHeroImg} />
+            <source media="(max-width: 768px)" srcSet="/blog-hero.jpg" />
             <img
-              src={blogHeroImg}
+              src="/blog-hero.jpg"
               alt="Blog Background"
               className="w-full h-full object-cover object-center"
               loading="eager"
