@@ -18,6 +18,13 @@ export default function BlogPost() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const cachedData = sessionStorage.getItem('blogs_data');
+    if (cachedData) {
+      const data = JSON.parse(cachedData);
+      processPostData(data);
+      return;
+    }
+
     fetch(API_URL, {
       headers: {
         'Accept': 'application/json',
@@ -26,60 +33,65 @@ export default function BlogPost() {
     })
     .then(res => res.json())
     .then(data => {
-      if (data && data.blogs) {
-        const matchedPost = data.blogs.find(b => generateSlug(b.title) === slug) || data.blogs[0];
-        
-        if (matchedPost) {
-          const firstSectionWithText = matchedPost.sections?.find(s => s.text_content) || {};
-          
-          const image = matchedPost.cover_image 
-            ? `https://blogs.task19.com${matchedPost.cover_image}` 
-            : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
-            
-          const dateObj = new Date(matchedPost.created_at);
-            
-            setPost({
-            ...matchedPost,
-            title: matchedPost.title,
-            slug: generateSlug(matchedPost.title),
-            image: image,
-            excerpt: matchedPost.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
-            category: matchedPost.category?.name || 'Latest Updates',
-            date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-            readTime: '5 min read',
-            author_name: matchedPost.author_name,
-            author_title: matchedPost.author_title,
-            author_avatar: matchedPost.author_avatar ? `https://blogs.task19.com${matchedPost.author_avatar}` : null
-          })
-        }
-        
-        const relatedPosts = data.blogs
-          .filter(b => generateSlug(b.title) !== slug)
-          .slice(0, 2)
-          .map(b => {
-            const firstSectionWithText = b.sections?.find(s => s.text_content) || {};
-            const image = b.cover_image ? `https://blogs.task19.com${b.cover_image}` : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
-            const dateObj = new Date(b.created_at);
-            
-            return {
-              title: b.title,
-              slug: generateSlug(b.title),
-              image: image,
-              excerpt: b.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
-              category: b.category?.name || 'Latest Updates',
-              date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-              readTime: '5 min read'
-            }
-          })
-        setRelated(relatedPosts)
-      }
-      setLoading(false)
+      sessionStorage.setItem('blogs_data', JSON.stringify(data));
+      processPostData(data);
     })
     .catch(err => {
       console.error(err)
       setLoading(false)
     })
   }, [slug])
+
+  const processPostData = (data) => {
+    if (data && data.blogs) {
+      const matchedPost = data.blogs.find(b => generateSlug(b.title) === slug) || data.blogs[0];
+      
+      if (matchedPost) {
+        const firstSectionWithText = matchedPost.sections?.find(s => s.text_content) || {};
+        
+        const image = matchedPost.cover_image 
+          ? `https://blogs.task19.com${matchedPost.cover_image}` 
+          : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+          
+        const dateObj = new Date(matchedPost.created_at);
+          
+          setPost({
+          ...matchedPost,
+          title: matchedPost.title,
+          slug: generateSlug(matchedPost.title),
+          image: image,
+          excerpt: matchedPost.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
+          category: matchedPost.category?.name || 'Latest Updates',
+          date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+          readTime: '5 min read',
+          author_name: matchedPost.author_name,
+          author_title: matchedPost.author_title,
+          author_avatar: matchedPost.author_avatar ? `https://blogs.task19.com${matchedPost.author_avatar}` : null
+        })
+      }
+      
+      const relatedPosts = data.blogs
+        .filter(b => generateSlug(b.title) !== slug)
+        .slice(0, 2)
+        .map(b => {
+          const firstSectionWithText = b.sections?.find(s => s.text_content) || {};
+          const image = b.cover_image ? `https://blogs.task19.com${b.cover_image}` : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+          const dateObj = new Date(b.created_at);
+          
+          return {
+            title: b.title,
+            slug: generateSlug(b.title),
+            image: image,
+            excerpt: b.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
+            category: b.category?.name || 'Latest Updates',
+            date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+            readTime: '5 min read'
+          }
+        })
+      setRelated(relatedPosts)
+    }
+    setLoading(false)
+  }
 
   if (loading) {
     return (

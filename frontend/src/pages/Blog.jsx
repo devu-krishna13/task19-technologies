@@ -39,6 +39,13 @@ export default function Blog() {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
+    const cachedData = sessionStorage.getItem('blogs_data');
+    if (cachedData) {
+      const data = JSON.parse(cachedData);
+      processBlogData(data);
+      return;
+    }
+
     fetch(API_URL, {
       method: 'GET',
       headers: {
@@ -48,32 +55,33 @@ export default function Blog() {
     })
     .then(res => res.json())
     .then(data => {
-      if (data && data.blogs) {
-        const transformedBlogs = data.blogs.map(transformBlog);
-        setBlogs(transformedBlogs);
-        
-        // Extract unique categories from the API response
-        const apiCategories = new Set(transformedBlogs.map(b => b.category));
-        
-        // Always start with 'All' and 'Latest Updates'
-        const uniqueCategories = ['All', 'Latest Updates'];
-        
-        // Add any additional dynamic categories
-        apiCategories.forEach(cat => {
-          if (cat !== 'Latest Updates') {
-            uniqueCategories.push(cat);
-          }
-        });
-        
-        setDynamicCategories(uniqueCategories);
-      }
-      setLoading(false)
+      sessionStorage.setItem('blogs_data', JSON.stringify(data));
+      processBlogData(data);
     })
     .catch(err => {
       console.error(err)
       setLoading(false)
     })
-  }, []) // Fetch ONLY once on mount
+  }, [])
+
+  const processBlogData = (data) => {
+    if (data && data.blogs) {
+      const transformedBlogs = data.blogs.map(transformBlog);
+      setBlogs(transformedBlogs);
+      
+      const apiCategories = new Set(transformedBlogs.map(b => b.category));
+      const uniqueCategories = ['All', 'Latest Updates'];
+      
+      apiCategories.forEach(cat => {
+        if (cat !== 'Latest Updates') {
+          uniqueCategories.push(cat);
+        }
+      });
+      
+      setDynamicCategories(uniqueCategories);
+    }
+    setLoading(false)
+  } // Fetch ONLY once on mount
 
   // Filter locally
   const filtered = activeCategory === 'All'
