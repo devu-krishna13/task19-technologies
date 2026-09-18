@@ -9,18 +9,21 @@ import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, Ch
 import SectionHeading from '../components/ui/SectionHeading'
 import CTASection from '../components/ui/CTASection'
 
+import shopifyHero1 from '../assets/shopify-apps-hero-1.jpg'
+import shopifyHero2 from '../assets/shopify-apps-hero-2.jpg'
+
 const appsHeroSlides = [
   {
-    label: 'Shopify App Store',
-    title: <>Apps We've Built for the<br /><em className="font-serif-italic not-italic text-white/40">Shopify Ecosystem.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    label: 'Profit Saver & Page Booster',
+    title: <><span className="whitespace-nowrap">Drive Loyalty &</span><br /><em className="font-serif-italic not-italic text-white">Boost Conversions.</em></>,
+    bgDesktop: shopifyHero1,
+    bgMobile: shopifyHero1,
   },
   {
-    label: 'Merchant Solutions',
-    title: <>Automate Operations &<br /><em className="font-serif-italic not-italic text-white/40">Grow Revenue Faster.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
+    label: 'MarginMate & Variant Image Manager',
+    title: <><span className="whitespace-nowrap">Advanced Custom Pricing &</span><br /><em className="font-serif-italic not-italic text-white">Variant Galleries.</em></>,
+    bgDesktop: shopifyHero2,
+    bgMobile: shopifyHero2,
   }
 ]
 
@@ -174,7 +177,7 @@ export default function ShopifyApps() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="max-w-4xl mx-auto w-full"
                   >
-                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
+                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 5rem)' }}>
                       {slide.title}
                     </h1>
                   </motion.div>

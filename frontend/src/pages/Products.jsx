@@ -37,19 +37,15 @@ const productsData = [
   }
 ]
 
+import productsHeroImg from '../assets/products-hero.jpg'
+
 const productsHeroSlides = [
   {
-    label: 'Batchwise Academy',
-    title: <><span className="whitespace-nowrap">Virtual Academy</span><br /><em className="font-serif-italic not-italic text-white">Management.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-  {
-    label: 'GoSlot & Vespr',
-    title: <><span className="whitespace-nowrap">Digital Storefront</span><br /><em className="font-serif-italic not-italic text-white">Platforms.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
+    label: 'Batchwise • GoSlot • Vespr',
+    title: <><span className="whitespace-nowrap">Next-Gen SaaS &</span><br /><em className="font-serif-italic not-italic text-white">E-commerce Platforms.</em></>,
+    bgDesktop: productsHeroImg,
+    bgMobile: productsHeroImg,
+  }
 ]
 
 export default function Products() {

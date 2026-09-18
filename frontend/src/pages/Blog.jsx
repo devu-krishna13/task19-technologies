@@ -31,6 +31,7 @@ const transformBlog = (apiBlog) => {
   };
 }
 
+import blogHeroImg from '../assets/blog-hero.jpg'
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [blogs, setBlogs] = useState([])
@@ -107,9 +108,9 @@ export default function Blog() {
       <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
-            <source media="(max-width: 768px)" srcSet="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&crop=center&w=800&h=1200&q=90" />
+            <source media="(max-width: 768px)" srcSet={blogHeroImg} />
             <img
-              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
+              src={blogHeroImg}
               alt="Blog Background"
               className="w-full h-full object-cover object-center"
               loading="eager"
@@ -131,7 +132,7 @@ export default function Blog() {
               className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
             >
               <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
-              <span className="text-white/90 text-[12px] md:text-sm font-medium">Insights & Resources</span>
+              <span className="text-white/90 text-[12px] md:text-sm font-medium">Tech & E-commerce Blog</span>
             </motion.div>
 
             <motion.div
@@ -140,8 +141,8 @@ export default function Blog() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="max-w-4xl mx-auto w-full"
             >
-              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-4 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 4.5rem)' }}>
-                Ideas Worth<br /><em className="font-serif-italic not-italic text-white/40">Building On.</em>
+              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-4 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 4.5rem)' }}>
+                <span className="whitespace-nowrap">Digital Strategies &</span><br /><em className="font-serif-italic not-italic text-white">Actionable Insights.</em>
               </h1>
             </motion.div>
           </div>
