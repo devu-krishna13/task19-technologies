@@ -12,8 +12,8 @@ const portfolioHeroSlides = [
   {
     label: 'Our Portfolio',
     title: <><span className="whitespace-nowrap">Digital Experiences</span><br /><em className="font-serif-italic not-italic text-white">That Drive Growth.</em></>,
-    bgDesktop: '/portfolio-hero-1.jpg',
-    bgMobile: '/portfolio-hero-1.jpg',
+    bgDesktop: '/portfolio-hero-1.png',
+    bgMobile: '/portfolio-hero-1.png',
   },
   {
     label: 'E-Commerce Excellence',
