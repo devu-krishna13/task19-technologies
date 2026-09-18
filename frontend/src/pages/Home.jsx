@@ -256,7 +256,7 @@ export default function Home() {
           .home-hero-section .swiper-slide { height: auto !important; }
         }
       `}</style>
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper home-hero-section min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper home-hero-section min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}

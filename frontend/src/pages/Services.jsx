@@ -204,7 +204,7 @@ export default function Services() {
       </Helmet>
 
       {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
+      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={0}

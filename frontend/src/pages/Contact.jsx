@@ -68,7 +68,7 @@ export default function Contact() {
       </Helmet>
 
       {/* ── Hero Section ── */}
-      <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[500px] h-[100svh] md:h-screen md:min-h-[700px]">
+      <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
             <source media="(max-width: 768px)" srcSet="/contact-hero.jpg" />
