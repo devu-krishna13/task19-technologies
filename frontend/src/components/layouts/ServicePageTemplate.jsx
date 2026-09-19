@@ -38,12 +38,9 @@ export default function ServicePageTemplate({
         orbColor1="bg-blue-300/20"
         orbColor2="bg-indigo-300/20"
       >
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex justify-center items-center mt-4">
           <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-black transition-all duration-300 hover:scale-105">
             Get Free Consultation <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link to="/portfolio" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium rounded-full hover:bg-gray-50 transition-all duration-300 hover:scale-105">
-            View Case Studies
           </Link>
         </div>
       </PageHero>
