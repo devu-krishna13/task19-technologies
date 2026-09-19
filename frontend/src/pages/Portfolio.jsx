@@ -42,7 +42,7 @@ export default function Portfolio() {
       {/* ── Filter Bar ── */}
       <section className="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
         <div className="container max-w-6xl mx-auto px-4 py-5">
-          <div className="flex flex-wrap items-center justify-center gap-3 pb-2">
+          <div className="flex overflow-x-auto flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-3 pb-2 pt-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {categories.map((category) => (
               <button
                 key={category}

@@ -70,7 +70,7 @@ export default function Contact() {
       {/* ── Hero Section ── */}
       <PageHero
         badgeText="Partner With Us"
-        title={<><span className="whitespace-nowrap text-gray-900">Let's Build Something</span><br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Extraordinary.</span></>}
+        title={<><span className="text-gray-900">Let's Build Something</span><br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Extraordinary.</span></>}
         description="Get in touch with our team to start a conversation about your next digital product."
         orbColor1="bg-blue-300/20"
         orbColor2="bg-indigo-300/20"

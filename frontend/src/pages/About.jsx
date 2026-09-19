@@ -92,24 +92,24 @@ export default function About() {
           <div className="bg-white rounded-[32px] p-8 md:p-12 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-10 md:gap-16">
             
             {/* Left Side: Content */}
-            <div className="w-full md:w-2/3 text-center md:text-left flex flex-col items-center md:items-start">
-              <svg className="w-8 h-8 text-[#013Ad6] mb-6 opacity-60 mx-auto md:mx-0" fill="currentColor" viewBox="0 0 24 24">
+            <div className="w-full md:w-2/3 text-left flex flex-col items-start">
+              <svg className="w-8 h-8 text-[#013Ad6] mb-6 opacity-60" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
               </svg>
-              <p className="text-gray-700 text-lg md:text-[19px] leading-relaxed mb-6 font-light">
+              <p className="text-gray-700 text-[16px] md:text-[19px] leading-relaxed mb-6 font-light">
                 "When I started Task19 Technologies in 2017, my goal was simple: to build a company that creates real impact through technology. Today, I'm proud to say that we've helped startups, e-commerce sellers, and businesses turn their ideas into powerful digital solutions."
               </p>
-              <p className="text-gray-700 text-lg md:text-[19px] leading-relaxed mb-6 font-light">
+              <p className="text-gray-700 text-[16px] md:text-[19px] leading-relaxed mb-6 font-light">
                 Our expertise in SaaS platforms, mobile apps, and e-commerce systems has allowed us to serve 100+ active users and partner with clients across India and the GCC. Every product we build is rooted in our commitment to usability, performance, and business value.
               </p>
-              <p className="text-gray-700 text-lg md:text-[19px] leading-relaxed font-medium">
+              <p className="text-gray-700 text-[16px] md:text-[19px] leading-relaxed font-medium">
                 At Task19, we're more than just developers - we're partners in growth, innovation, and long-term success.
               </p>
             </div>
 
             {/* Right Side: Profile */}
-            <div className="w-full md:w-1/3 flex flex-col items-center justify-center text-center pl-0 md:pl-8 md:border-l border-gray-100">
-              <div className="w-32 h-32 md:w-40 md:h-40 mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gray-50">
+            <div className="w-full md:w-1/3 flex flex-col items-center md:items-start md:justify-center text-center md:text-left pt-6 md:pt-0 md:pl-8 border-t md:border-t-0 md:border-l border-gray-100">
+              <div className="w-24 h-24 md:w-40 md:h-40 mb-4 md:mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gray-50">
                 <img 
                   src="/images (3).jpg" 
                   alt="Afsal"
@@ -120,9 +120,9 @@ export default function About() {
                   }}
                 />
               </div>
-              <h4 className="font-display font-bold text-2xl text-gray-900 mb-1">Afsal</h4>
-              <p className="text-[#013Ad6] text-sm uppercase tracking-widest font-bold">Director</p>
-              <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">Task19 Technologies</p>
+              <h4 className="font-display font-bold text-xl md:text-2xl text-gray-900 mb-1">Afsal</h4>
+              <p className="text-[#013Ad6] text-xs md:text-sm uppercase tracking-widest font-bold">Director</p>
+              <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest mt-1">Task19 Technologies</p>
             </div>
 
           </div>
@@ -141,7 +141,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {[
               { title: 'SaaS Product Development', icon: Cloud },
               { title: 'Custom Software Development', icon: Code },
@@ -150,13 +150,13 @@ export default function About() {
               { title: 'Web Application Development', icon: Layers },
               { title: 'Marketing & Automations', icon: Briefcase }
             ].map((service, i) => (
-              <div key={i} className="bg-white p-8 rounded-[24px] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex items-start gap-4">
-                <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#013Ad6] shrink-0">
-                  <service.icon className="w-6 h-6" />
+              <div key={i} className="bg-white p-5 md:p-8 rounded-[20px] md:rounded-[24px] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-start gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#013Ad6] shrink-0">
+                  <service.icon className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-[17px] text-gray-900 mb-1">{service.title}</h4>
-                  {service.desc && <p className="text-gray-500 text-sm font-medium">{service.desc}</p>}
+                  <h5 className="font-display font-bold text-[14px] md:text-[17px] text-gray-900 mb-1 leading-tight">{service.title}</h5>
+                  {service.desc && <p className="text-gray-500 text-[12px] md:text-sm font-medium leading-snug">{service.desc}</p>}
                 </div>
               </div>
             ))}
