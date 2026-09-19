@@ -6,7 +6,15 @@ import { Menu, X, ArrowRight, Phone, Mail } from 'lucide-react'
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Services', to: '/services' },
+  { 
+    label: 'Services', 
+    to: '/services',
+    children: [
+      { label: 'WordPress Development', to: '/services/wordpress-development' },
+      { label: 'Shopify Development', to: '/services/shopify-development' },
+      { label: 'Custom Development', to: '/services/custom-development' }
+    ]
+  },
   { label: 'Products', to: '/products' },
   { label: 'Apps', to: '/shopify-apps' },
   { label: 'Blog', to: '/blog' },
@@ -59,16 +67,36 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav Pill */}
-            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg" style={{ paddingLeft: '64px', paddingRight: '64px', gap: '32px' }} aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg relative" style={{ paddingLeft: '64px', paddingRight: '64px', gap: '32px' }} aria-label="Main navigation">
               {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  className="font-body text-[15px] font-medium transition-colors duration-300 hover:opacity-70 whitespace-nowrap"
-                  style={{ color: location.pathname === link.to ? '#2563eb' : '#000' }}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.label} className="relative group h-full flex items-center">
+                  <Link
+                    to={link.to}
+                    className="font-body text-[15px] font-medium transition-colors duration-300 hover:opacity-70 whitespace-nowrap flex items-center gap-1"
+                    style={{ color: location.pathname === link.to || (link.children && location.pathname.startsWith('/services/')) ? '#2563eb' : '#000' }}
+                  >
+                    {link.label}
+                    {link.children && (
+                      <svg className="w-4 h-4 ml-0.5 opacity-50 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
+                    )}
+                  </Link>
+                  {link.children && (
+                    <div className="absolute top-[100%] left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden py-3" style={{ zIndex: 110 }}>
+                      {link.children.map(child => (
+                        <Link 
+                          key={child.label} 
+                          to={child.to}
+                          className="block px-6 py-3 text-[15px] font-medium transition-colors whitespace-nowrap"
+                          style={{ color: '#000' }}
+                          onMouseOver={(e) => e.target.style.color = '#2563eb'}
+                          onMouseOut={(e) => e.target.style.color = '#000'}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
 
@@ -120,7 +148,9 @@ export default function Header() {
                   <Link
                     to={link.to}
                     className="group flex items-center justify-between py-5 border-b border-white/10 transition-colors"
-                    onClick={() => setMobileOpen(false)}
+                    onClick={() => {
+                      if (!link.children) setMobileOpen(false);
+                    }}
                   >
                     <span
                       className="font-display font-medium text-[20px] tracking-tight transition-colors duration-300"
@@ -128,10 +158,26 @@ export default function Header() {
                     >
                       {link.label}
                     </span>
-                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                      <ArrowRight className="w-5 h-5 text-white" />
-                    </div>
+                    {!link.children && (
+                      <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                        <ArrowRight className="w-5 h-5 text-white" />
+                      </div>
+                    )}
                   </Link>
+                  {link.children && (
+                    <div className="pl-6 pb-4 pt-4 border-b border-white/10 flex flex-col gap-5 bg-white/5 rounded-b-xl">
+                       {link.children.map(child => (
+                         <Link
+                           key={child.label}
+                           to={child.to}
+                           className="font-display font-medium text-[16px] text-white/70 hover:text-white transition-colors block"
+                           onClick={() => setMobileOpen(false)}
+                         >
+                           <span className="opacity-50 mr-2">—</span> {child.label}
+                         </Link>
+                       ))}
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>

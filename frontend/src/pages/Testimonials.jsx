@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-
+import PageHero from '../components/ui/PageHero'
 export default function Testimonials() {
   return (
     <div className="bg-[#FFFFFF] min-h-screen">
@@ -12,42 +12,13 @@ export default function Testimonials() {
       </Helmet>
       
       {/* ── Hero Section ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[70svh] md:h-[80vh] flex items-center">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
-            alt="Testimonials Background"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.3) 0%, rgba(5, 15, 35, 0.95) 80%)'
-          }}></div>
-        </div>
-
-        <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
-          <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-6 md:mb-8"
-            >
-              <span className="text-white/90 text-[12px] md:text-sm font-medium">Success Stories</span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-4xl mx-auto w-full"
-            >
-              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 4.5rem)' }}>
-                Client <em className="font-serif-italic not-italic text-white/40">Testimonials.</em>
-              </h1>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badgeText="Success Stories"
+        title={<>Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Testimonials.</span></>}
+        description="Read what our clients have to say about partnering with Task19 Technologies."
+        orbColor1="bg-blue-300/20"
+        orbColor2="bg-indigo-300/20"
+      />
 
       {/* Testimonials Grid Section */}
       <section className="py-12 md:py-16 container max-w-6xl mx-auto px-4">

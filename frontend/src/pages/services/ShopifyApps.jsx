@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, Cpu, Smartphone, Blocks } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+import PageHero from '../../components/ui/PageHero';
 const features = [
   {
     title: 'Private Store Automations',
@@ -32,35 +32,13 @@ export default function ShopifyApps() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-20 overflow-hidden bg-primary">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
-            alt="Shopify Apps Development"
-            className="w-full h-full object-cover object-center opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
-        </div>
-        
-        <div className="container relative z-10 px-4 mx-auto max-w-5xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-6 text-white text-sm font-medium">
-              PHASE 04 — INTEGRATION
-            </div>
-            <h1 className="font-display font-bold text-white leading-tight tracking-tight mb-6 text-4xl md:text-6xl lg:text-7xl break-words">
-              Custom Shopify Apps<br />& Private Solutions
-            </h1>
-            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Create custom apps when standard integrations fall short. From private automations to public SaaS apps listed on the Shopify App Store.
-            </p>
-
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        badgeText="PHASE 04 — INTEGRATION"
+        title={<>Custom Shopify Apps <br />& <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Private Solutions.</span></>}
+        description="Create custom apps when standard integrations fall short. From private automations to public SaaS apps listed on the Shopify App Store."
+        orbColor1="bg-emerald-300/20"
+        orbColor2="bg-teal-300/20"
+      />
 
       {/* Why Choose Us / Key Benefits */}
       <section className="py-12 md:py-16 bg-white">

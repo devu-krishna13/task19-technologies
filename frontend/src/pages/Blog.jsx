@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import BlogCard from '../components/ui/BlogCard'
-// import { blogPosts } from '../constants/data' // Removed hardcoded data
+import PageHero from '../components/ui/PageHero'
 
 const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
 const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
@@ -113,49 +113,13 @@ export default function Blog() {
       </Helmet>
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <picture>
-            <source media="(max-width: 768px)" srcSet="/blog-hero.jpg" />
-            <img
-              src="/blog-hero.jpg"
-              alt="Blog Background"
-              className="w-full h-full object-cover object-center"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </picture>
-          <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
-          }}></div>
-        </div>
-
-        <div className="absolute inset-0 z-10 flex flex-col justify-center pt-24 md:pt-20">
-          <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto w-full">
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
-            >
-              <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
-              <span className="text-white/90 text-[12px] md:text-sm font-medium">Tech & E-commerce Blog</span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-4xl mx-auto w-full"
-            >
-              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-4 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 4.5rem)' }}>
-                <span className="whitespace-nowrap">Digital Strategies &</span><br /><em className="font-serif-italic not-italic text-white">Actionable Insights.</em>
-              </h1>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badgeText="Tech & E-commerce Blog"
+        title={<><span className="whitespace-nowrap text-gray-900">Digital Strategies &</span><br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Actionable Insights.</span></>}
+        description="Expert insights on e-commerce development, Shopify optimization, digital transformation, and technology trends from the Task19 Technologies team."
+        orbColor1="bg-blue-300/20"
+        orbColor2="bg-indigo-300/20"
+      />
 
       {/* Blog Grid */}
       <section className="py-12 md:py-16 bg-[#FFFFFF]">

@@ -9,6 +9,7 @@ const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const ShopifyServices = lazy(() => import('./pages/services/ShopifyServices'))
 const WebDevelopment = lazy(() => import('./pages/services/WebDevelopment'))
+const CustomDevelopment = lazy(() => import('./pages/services/CustomDevelopment'))
 const MobileAppDevelopment = lazy(() => import('./pages/services/MobileAppDevelopment'))
 const UIUXDesign = lazy(() => import('./pages/services/UIUXDesign'))
 const WooCommerceDevelopment = lazy(() => import('./pages/services/WooCommerceDevelopment'))
@@ -26,13 +27,12 @@ const CRO = lazy(() => import('./pages/services/CRO'))
 const WooCommerceMigrationPhase = lazy(() => import('./pages/services/WooCommerceMigration'))
 const CustomShopifyAppsPhase = lazy(() => import('./pages/services/ShopifyApps'))
 const WordPressPhase = lazy(() => import('./pages/services/WordPress'))
-const ShopifyApps = lazy(() => import('./pages/ShopifyApps'))
+const ShopifyApps = lazy(() => import('./pages/Apps'))
 const ProfitSaverApp = lazy(() => import('./pages/ProfitSaverApp'))
 const PageBoosterApp = lazy(() => import('./pages/PageBoosterApp'))
 const MarginMateApp = lazy(() => import('./pages/MarginMateApp'))
 const VariantImageApp = lazy(() => import('./pages/VariantImageApp'))
 const Products = lazy(() => import('./pages/Products'))
-const Industries = lazy(() => import('./pages/Industries'))
 const Technologies = lazy(() => import('./pages/Technologies'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const CaseStudy = lazy(() => import('./pages/CaseStudy'))
@@ -68,6 +68,8 @@ export default function App() {
             <Route path="/services/woocommerce-migration" element={<WooCommerceMigrationPhase />} />
             <Route path="/services/custom-shopify-apps" element={<CustomShopifyAppsPhase />} />
             <Route path="/services/wordpress-development" element={<WordPressPhase />} />
+            <Route path="/services/shopify-development" element={<ShopifyServices />} />
+            <Route path="/services/custom-development" element={<CustomDevelopment />} />
             {/* Shopify-focused services */}
             <Route path="/services/shopify" element={<ShopifyServices />} />
             <Route path="/services/shopify-cro" element={<ShopifyServices />} />
@@ -102,7 +104,6 @@ export default function App() {
             <Route path="/contact-us/" element={<Navigate to="/contact" replace />} />
             {/* Other pages */}
             <Route path="/products" element={<Products />} />
-            <Route path="/industries" element={<Industries />} />
             <Route path="/technologies" element={<Technologies />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/portfolio/:slug" element={<CaseStudy />} />

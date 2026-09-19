@@ -10,16 +10,16 @@ const XIcon = (props) => (
 const companyLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Services', to: '/services' },
-  { label: 'Industries', to: '/industries' },
+  { label: 'Products', to: '/products' },
   { label: 'Works', to: '/portfolio' },
   { label: 'Careers', to: '/careers' },
   { label: 'Contact Us', to: '/contact' },
 ]
 
 const serviceLinks = [
-  { label: 'Shopify Store Development', to: '/services/shopify' },
-  { label: 'WooCommerce Development', to: '/services/woocommerce' },
-  { label: 'Custom Shopify Apps', to: '/services/shopify-apps-dev' },
+  { label: 'WordPress Development', to: '/services/wordpress-development' },
+  { label: 'Shopify Development', to: '/services/shopify-development' },
+  { label: 'Custom Development', to: '/services/custom-development' },
   { label: 'Web Development', to: '/services/web-development' },
   { label: 'Mobile App Development', to: '/services/mobile-app-development' },
   { label: 'UI/UX Design', to: '/services/ui-ux-design' },

@@ -86,6 +86,42 @@ const wordpressSolutions = [
   },
 ]
 
+const shopifySolutions = [
+  {
+    icon: LayoutTemplate,
+    title: 'Custom Shopify Stores',
+    description: 'We build beautiful, fast-loading Shopify stores that are easy for you to manage and designed to help you sell more.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Safe Store Migrations',
+    description: 'Moving from another platform? We safely transfer all your products, customers, and orders to Shopify without losing any data.',
+  },
+  {
+    icon: Blocks,
+    title: 'Custom Shopify Apps',
+    description: 'Need a special feature? If standard plugins can’t do it, we build custom apps to make your store work exactly how you want.',
+  },
+]
+
+const customDevSolutions = [
+  {
+    icon: Blocks,
+    title: 'Web App Development',
+    description: 'We build powerful, scalable web apps from scratch using modern frameworks to solve your unique business challenges.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile App Development',
+    description: 'Native and cross-platform mobile applications that deliver beautiful, high-performance experiences for iOS and Android users.',
+  },
+  {
+    icon: Layers3,
+    title: 'System Integrations',
+    description: 'Connect your tools seamlessly. We build secure custom APIs that make your software, databases, and third-party services talk to each other.',
+  },
+]
+
 const valuePillars = [
   { icon: Gauge, title: 'Performance-Led Builds', description: 'Core Web Vitals, fast interactions, and resilient storefront behavior are part of the baseline.' },
   { icon: Layers3, title: 'Reusable Design Systems', description: 'We build reusable sections, cards, and page patterns so growth does not create visual inconsistency.' },
@@ -248,274 +284,184 @@ export default function Home() {
         <link rel="canonical" href="https://task19.com" />
       </Helmet>
 
-      {/* ═══ ROTATING HERO ═══ */}
-      <style>{`
-        @media (max-width: 767px) {
-          .home-hero-section.hero-section-wrapper { height: auto !important; min-height: 0 !important; display: flex; flex-direction: column; }
-          .home-hero-section .hero-swiper { height: auto !important; position: relative !important; }
-          .home-hero-section .swiper-slide { height: auto !important; }
-        }
-      `}</style>
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper home-hero-section min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={0}
-          slidesPerView={1}
-          autoplay={{ delay: 5500, disableOnInteraction: false }}
-          pagination={{ clickable: true, el: '.hero-pagination' }}
-          loop
-          className="hero-swiper absolute inset-0 w-full h-full"
-        >
-          {heroSlides.map((slide, i) => (
-            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center bg-black">
-              {/* Background image responsive scale */}
-              <div className="w-full h-auto md:h-full md:absolute md:inset-0 z-0 overflow-hidden">
-                <picture className="w-full h-auto md:h-full block">
-                  <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
-                  <img
-                    src={slide.bgDesktop}
-                    alt={slide.label}
-                    className="w-full h-auto aspect-square md:aspect-auto md:h-full object-cover object-center block"
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                  />
-                </picture>
-              </div>
-
-              {/* Content — Centered absolutely */}
-              {/*
-              <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
-                <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
-                  >
-                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
-                    <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto w-full"
-                  >
-                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 5rem)' }}>
-                      {slide.title}
-                    </h1>
-                  </motion.div>
-
-                </div>
-              </div>
-              */}
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="absolute bottom-8 left-0 right-0 z-20 pointer-events-none">
-          <div className="container flex justify-center">
-            <div className="hero-pagination flex gap-2 pointer-events-auto" />
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SERVICES ═══ */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-
-          {/* Header */}
-          <div className="mb-6">
-            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>What We Do</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
-            <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
-                Full-Stack E-Commerce Solutions
-              </h2>
-              <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0 }}>
-                A balanced mix of platform expertise, growth engineering, and custom product work for brands that need more than a template rollout.
-              </p>
-            </div>
-            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+      {/* ═══ STATIC HERO ═══ */}
+      <section className="relative flex items-center justify-center overflow-hidden min-h-[80vh] bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="container relative z-10 px-4 sm:px-6 mx-auto text-center mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-block mb-6 px-4 py-1.5 rounded-full border border-gray-200 bg-white/50 backdrop-blur-sm shadow-sm"
+          >
+            <span className="text-sm font-medium text-gray-700">E-Commerce & Web Development Experts</span>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-4xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display text-gray-900 leading-tight tracking-tight mb-6">
+              Shopify, WordPress & <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">Custom Solutions</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+              We build high-performance e-commerce stores, tailor-made applications, and digital experiences that drive revenue and scale your business.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
-                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gray-900 text-white font-medium text-lg transition-transform hover:scale-105 hover:bg-black hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
               >
-                <span>Explore All Services</span>
-                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                Explore Services
+              </Link>
+              <Link
+                to="/portfolio"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-medium text-lg transition-transform hover:scale-105 hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)]"
+              >
+                View Our Work
               </Link>
             </div>
+          </motion.div>
+        </div>
+        
+        {/* Gradient Orbs for modern aesthetic */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300/20 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-[100px] pointer-events-none"></div>
+      </section>
+
+      {/* ═══ WHAT WE DO ═══ */}
+      <section className="section bg-slate-50 py-24">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="text-left max-w-3xl mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-900 mb-6">
+              What We Do
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed font-light">
+              We help brands grow by creating beautiful, fast, and reliable digital experiences. Whether you need a brand new store or want to improve your current setup, we've got you covered.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {servicesForCards.slice(0, 8).map((service, i) => {
-              const dummyImages = [
-                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-                "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
-                "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
-                "/cloud_solutions.jpg",
-                "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
-              ];
-              return (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-                  style={{ borderRadius: '24px' }}
-                >
-                  <Link to={`/services/${service.slug}`} className="absolute inset-0 z-10" aria-label={service.title} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/40 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-blue-600 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 group-hover:scale-110 transition-transform duration-300">
+                <ShoppingCart className="w-7 h-7" />
+              </div>
+              <h5 className="text-lg font-bold text-gray-900 mb-3">Shopify Development</h5>
+              <p className="text-gray-600 leading-relaxed font-light">
+                We build highly optimized and scalable Shopify stores tailored to your brand, ensuring fast checkouts and a seamless shopping experience.
+              </p>
+            </motion.div>
 
-                  <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
-                    <img
-                      src={dummyImages[i] || dummyImages[0]}
-                      alt={service.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/40 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-emerald-600 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 group-hover:scale-110 transition-transform duration-300">
+                <LayoutTemplate className="w-7 h-7" />
+              </div>
+              <h5 className="text-lg font-bold text-gray-900 mb-3">WooCommerce Development</h5>
+              <p className="text-gray-600 leading-relaxed font-light">
+                We craft powerful WooCommerce solutions on WordPress that are easy to manage and customized to fit your unique business needs perfectly.
+              </p>
+            </motion.div>
 
-                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '24px' }}>
-                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '18px' }}>
-                      {service.title}
-                    </h6>
-                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 mb-6" style={{ fontSize: '14px' }}>
-                      {service.shortDesc}
-                    </p>
-
-                  </div>
-                </motion.div>
-              );
-            })}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/40 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-indigo-600 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 group-hover:scale-110 transition-transform duration-300">
+                <Gauge className="w-7 h-7" />
+              </div>
+              <h5 className="text-lg font-bold text-gray-900 mb-3">Custom Development</h5>
+              <p className="text-gray-600 leading-relaxed font-light">
+                From specialized web applications to complex API integrations, we engineer custom solutions designed for speed, security, and growth.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ═══ SPECIALIZED SOLUTIONS ═══ */}
-      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '60px', paddingBottom: '60px' }}>
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
-            <div className="lg:sticky lg:top-32 self-start">
-              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
-                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Specialized Solutions</span>
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-blue-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-blue-600 tracking-widest uppercase">Expertise</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
-                Focused Services for Commerce Teams
-              </h2>
-              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
-                These focused capabilities connect clearly to the problems growing stores actually need solved.
-              </p>
-              <Link to="/services" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                All Services <ArrowRight className="w-4 h-4 ml-1" />
+              <Link 
+                to="/services" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore All Services</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              Specialized Solutions
+            </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              Focused technical capabilities built for growing commerce teams. We solve complex operational challenges with precision.
+            </p>
+          </div>
 
-            <div className="grid grid-cols-1" style={{ gap: '16px', paddingTop: '8px' }}>
-              {specializedSolutions.map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  className="bg-white transition-all duration-300 hover:shadow-md"
-                  style={{ borderRadius: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', padding: '20px 32px' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <div className="flex items-center gap-5 mb-4">
-                    <div className="flex flex-shrink-0 items-center justify-center rounded-full transition-transform duration-300" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
-                      <item.icon className="w-5 h-5" style={{ color: '#000' }} />
-                    </div>
-                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {specializedSolutions.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
                   </div>
-                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
 
-      {/* ═══ VALUE SECTION ═══ */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container max-w-6xl mx-auto px-4">
-
-          {/* Header */}
-          <div className="mb-6">
-            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Why Task19</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
-            <div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
-                Modern UI Needs More Than Pretty Screens
-              </h2>
-            </div>
-            <div className="flex flex-col items-start lg:items-end justify-center h-full">
-              <p className="font-light leading-relaxed max-w-xl text-gray-500 lg:text-right" style={{ fontSize: '18px', margin: 0 }}>
-                The strongest section design comes from alignment between messaging, interaction quality, visual rhythm, and reusable implementation.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {valuePillars.map((item, i) => {
-              const valueImages = [
-                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=800&q=80"
-              ];
-              const imageUrl = valueImages[i] || valueImages[0];
-
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-                  style={{ borderRadius: '24px' }}
-                >
-                  <div className="aspect-[16/10] overflow-hidden bg-gray-100 relative shrink-0">
-                    <img
-                      src={imageUrl}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
-                    <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-3" style={{ fontSize: '22px' }}>
-                      {item.title}
-                    </h6>
-                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3" style={{ fontSize: '15px' }}>
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* ═══ TECHNOLOGIES (WAC Clean Layout Style) ═══ */}
       <section className="section" style={{ backgroundColor: '#050f28', color: '#fff', paddingTop: '48px', paddingBottom: '48px' }}>
@@ -592,51 +538,196 @@ export default function Home() {
       </section>
 
       {/* ═══ WORDPRESS SOLUTIONS ═══ */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '60px', paddingBottom: '60px' }}>
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
-            <div className="lg:sticky lg:top-32 self-start">
-              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
-                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>WordPress Expertise</span>
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-slate-50 to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-purple-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-purple-600 tracking-widest uppercase">WordPress Expertise</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
-                Mastering WordPress & WooCommerce
-              </h2>
-              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
-                From custom theme development to complex WooCommerce setups, we build digital experiences that are flexible, powerful, and easy to manage.
-              </p>
-              <Link to="/services" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                Explore WordPress Services <ArrowRight className="w-4 h-4 ml-1" />
+              <Link 
+                to="/services/wordpress-development" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore WordPress</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              WordPress & WooCommerce
+            </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              From custom theme development to complex WooCommerce setups, we build digital experiences that are flexible, powerful, and easy to manage.
+            </p>
+          </div>
 
-            <div className="grid grid-cols-1" style={{ gap: '16px', paddingTop: '8px' }}>
-              {wordpressSolutions.map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  className="bg-white transition-all duration-300 hover:shadow-md"
-                  style={{ borderRadius: '16px', border: '1px solid #f3f4f6', boxShadow: '0 2px 12px rgba(0,0,0,0.04)', padding: '20px 32px' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <div className="flex items-center gap-5 mb-4">
-                    <div className="flex flex-shrink-0 items-center justify-center rounded-full transition-transform duration-300" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
-                      <item.icon className="w-5 h-5" style={{ color: '#000' }} />
-                    </div>
-                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {wordpressSolutions.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-purple-50 group-hover:text-purple-600 group-hover:border-purple-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
                   </div>
-                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.description}</p>
-                </motion.div>
-              ))}
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-purple-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SHOPIFY SOLUTIONS ═══ */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-emerald-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-emerald-600 tracking-widest uppercase">Shopify Expertise</span>
+              </div>
+              <Link 
+                to="/services/shopify-development" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore Shopify</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              Shopify Development
+            </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              We build and grow Shopify stores that look amazing, load fast, and make selling online completely effortless for your team.
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {shopifySolutions.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-emerald-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CUSTOM DEVELOPMENT ═══ */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-slate-50 to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-indigo-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-indigo-600 tracking-widest uppercase">Custom Dev Expertise</span>
+              </div>
+              <Link 
+                to="/services/custom-development" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore Custom Dev</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              Custom Development
+            </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              From complex web platforms to native mobile apps, we engineer robust, fully custom solutions tailored exactly to your business needs.
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {customDevSolutions.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-indigo-50 group-hover:text-indigo-600 group-hover:border-indigo-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-indigo-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ═══ RECENT PORTFOLIO ═══ */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+      <section className="section bg-slate-50" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container max-w-6xl mx-auto px-4">
 
           {/* Header */}
@@ -716,50 +807,39 @@ export default function Home() {
       </section>
 
       {/* ═══ STRATEGY ═══ */}
-      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '32px', paddingBottom: '32px' }}>
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
-            <div className="lg:sticky lg:top-32 self-start">
-              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
-                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Strategy</span>
+      <section className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          <div className="flex flex-col gap-12 max-w-4xl mx-auto">
+            
+            {/* Centered Header */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center gap-2 mb-4">
+                <span className="w-8 h-[1px] bg-amber-500"></span>
+                <span className="text-sm font-semibold text-amber-500 tracking-widest uppercase">Why Choose Us</span>
+                <span className="w-8 h-[1px] bg-amber-500"></span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
-                Stop Leaving Revenue<br />On The Table
+              
+              <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-6">
+                Why Partner With <br className="hidden sm:block"/> Task19 Technologies
               </h2>
-              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
-                In the competitive Direct-to-Consumer (D2C) landscape, your e-commerce platform is your most critical asset. We solve the technical and strategic hurdles that limit growth.
+              
+              <p className="text-lg text-gray-600 font-light leading-relaxed mx-auto max-w-2xl">
+                We don't just build websites; we engineer digital growth engines. Our approach combines deep technical expertise with a relentless focus on your business goals.
               </p>
-              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                Discuss Your Project <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '8px' }}>
-              {[
-                { title: 'Conversion Bottlenecks', desc: 'A beautiful site is useless if it doesn\'t sell. We focus on conversion rate optimization (CRO) from the ground up.' },
-                { title: 'Scalability Issues', desc: 'We build infrastructure—from code to hosting—that can handle flash sales, high traffic, and rapid product expansion without breaking.' },
-                { title: 'Feature Gaps', desc: 'When off-the-shelf apps aren\'t enough, we develop custom solutions that fit your unique business logic perfectly.' },
-                { title: 'Proven Results & Trust', desc: 'We partner with D2C brands to deliver measurable growth. Our solutions are designed to be high-performance, maintainable, and revenue-focused.' }
-              ].map((item, i, arr) => (
-                <motion.div
-                  key={i}
-                  className="transition-all duration-300"
-                  style={{ padding: '24px 0', borderBottom: i < arr.length - 1 ? '1px solid #e5e7eb' : 'none' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <div className="flex items-center gap-5 mb-3">
-                    <div className="flex flex-shrink-0 items-center justify-center rounded-full" style={{ width: '48px', height: '48px', backgroundColor: '#f3f4f6' }}>
-                      <span className="font-display font-bold" style={{ fontSize: '18px', color: '#111827' }}>0{i + 1}</span>
-                    </div>
-                    <h3 className="font-display font-bold text-gray-900 m-0" style={{ fontSize: '20px' }}>{item.title}</h3>
-                  </div>
-                  <p className="leading-relaxed" style={{ color: '#4b5563', fontSize: '15px', paddingLeft: '68px', margin: 0 }}>{item.desc}</p>
-                </motion.div>
-              ))}
+
+            
+            <div className="text-center mt-4">
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gray-900 text-white font-medium text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-xl group"
+              >
+                <span>Discuss Your Project</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
+            
           </div>
         </div>
       </section>

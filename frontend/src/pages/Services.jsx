@@ -1,171 +1,111 @@
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import { ArrowRight } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import PageHero from '../components/ui/PageHero'
+import { 
+  ArrowRight, 
+  LayoutTemplate, Settings, Sliders, FileCode2,
+  Zap, FlaskConical, Smartphone, TrendingUp,
+  Database, Puzzle, Briefcase, RefreshCw,
+  Bot, Rocket, CreditCard, Link as LinkIcon,
+  Layout, ArrowRightLeft, ShieldCheck, Cpu,
+  Code2, Server
+} from 'lucide-react'
 import FAQAccordion from '../components/ui/FAQAccordion'
-import CTASection from '../components/ui/CTASection'
 
-const servicesHeroSlides = [
-  {
-    label: 'E-Commerce & CRO Strategy',
-    title: <><span className="whitespace-nowrap">Shopify & WooCommerce</span><br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
-    bgDesktop: '/service-d2c.jpg',
-    bgMobile: '/service-d2c.jpg',
-  },
-  {
-    label: 'Custom Apps & Platforms',
-    title: <>Custom App & Web<br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
-    bgDesktop: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-    bgMobile: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=800&h=1200&q=90',
-  },
-]
 
-const featureImages = [
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-  "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
-  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80"
-];
-
-const shopifyServices = [
-  {
-    id: 'D2C Store Setup',
-    tagline: 'PHASE 01 — FOUNDATION',
-    shortName: 'FOUNDATION',
-    color: '#b45309', // Warm amber/brown
-    title: 'Shopify D2C Developer Setup & Strategy',
-    desc: 'We architect and build high-performing Shopify stores from the ground up for direct-to-consumer brands, structuring every decision around conversion and growth from day one.',
-    linkTo: '/services/d2c-store-setup',
-    featuresGrid: [
-      {
-        title: 'Platform Architecture Consulting',
-        desc: 'Guidance on choosing the right plan — Standard, Advanced, or Shopify Plus — for where your brand is headed.'
-      },
-      {
-        title: 'Developer Environment Setup',
-        desc: 'Secure development, staging, and live environments configured for a clean, dependable release process.'
-      },
-      {
-        title: 'Core Store Configuration',
-        desc: 'Shipping profiles, payment gateways, tax rules, multi-currency, and localisation — set up right, once.'
-      },
-      {
-        title: 'Code Structure & Theme Strategy',
-        desc: 'Scalable Liquid, sound version control, and theme practices your future team can actually build on.'
-      }
-    ]
-  },
-  {
-    id: 'CRO',
-    tagline: 'PHASE 02 — OPTIMIZATION',
-    shortName: 'OPTIMIZE',
-    color: '#7c3aed', // Purple
-    title: 'Shopify Customization & CRO Strategy',
-    desc: 'Transform an underperforming store into a conversion engine. We audit, redesign, and optimize your storefront to lift average order value and scale conversion metrics.',
-    linkTo: '/services/cro-customization',
-    featuresGrid: [
-      {
-        title: 'Performance & Speed Audits',
-        desc: 'Analyzing Core Web Vitals, server response times, and script loads to eliminate friction points.'
-      },
-      {
-        title: 'A/B Testing Implementation',
-        desc: 'Launching layout experiments on collection and detail pages to identify high-converting designs.'
-      },
-      {
-        title: 'Frictionless Mobile UX',
-        desc: 'Streamlining navigation headers, slide-out carts, and filter setups optimized for mobile buyers.'
-      },
-      {
-        title: 'Strategic AOV Uplift Tools',
-        desc: 'Configuring custom bundle checkouts, cart recommendations, and threshold progress bars.'
-      }
-    ]
-  },
-  {
-    id: 'WooCommerce',
-    tagline: 'PHASE 03 — MIGRATION',
-    shortName: 'MIGRATE',
-    color: '#06b6d4', // Cyan
-    title: 'WooCommerce Development & Transition',
-    desc: 'Build secure, scalable WooCommerce environments, or migrate existing platforms with complete data preservation and zero catalog downtime.',
-    linkTo: '/services/woocommerce-migration',
-    featuresGrid: [
-      {
-        title: 'Zero-Loss Database Export',
-        desc: 'Preserving orders, customer details, products, and historic coupons with validated mapping models.'
-      },
-      {
-        title: 'Plugin & Theme Customization',
-        desc: 'Writing clean custom plugins and custom themes to support subscription and membership portals.'
-      },
-      {
-        title: 'B2B & Wholesale Engine',
-        desc: 'Setting up custom tier pricing, bulk order lists, customer registration checks, and tax exemptions.'
-      },
-      {
-        title: 'ERP & Inventory Sync',
-        desc: 'Automating inventory updates and order syncs with external systems using WooCommerce APIs.'
-      }
-    ]
-  },
-  {
-    id: 'ShopifyApps',
-    tagline: 'PHASE 04 — INTEGRATION',
-    shortName: 'INTEGRATE',
-    color: '#10b981', // Green
-    title: 'Custom Shopify App Development',
-    desc: 'Create custom apps when standard integrations fall short. From private automations to public SaaS apps listed on the Shopify App Store.',
-    linkTo: '/services/custom-shopify-apps',
-    featuresGrid: [
-      {
-        title: 'Private Store Automations',
-        desc: 'Automating internal workflows, third-party stock syncing, and advanced metadata operations.'
-      },
-      {
-        title: 'Shopify App Store Launch',
-        desc: 'Designing and building public apps using React, Node.js, and official Shopify Polaris guidelines.'
-      },
-      {
-        title: 'Plus Checkout Customization',
-        desc: 'Implementing custom checkout validators, functions, and delivery rules for Shopify Plus stores.'
-      },
-      {
-        title: 'Secure API Connections',
-        desc: 'Connecting storefronts to HubSpot, Salesforce, custom CRM, and logistics solutions via secure APIs.'
-      }
-    ]
-  },
+const allServices = [
   {
     id: 'WordPress',
-    tagline: 'PHASE 05 — CONTENT & COMMERCE',
-    shortName: 'WORDPRESS',
-    color: '#3b82f6', // Blue
+    tagline: 'PHASE 01 — CONTENT & COMMERCE',
+    color: '#9333ea', // Purple
+    bgClass: 'bg-white',
     title: 'Custom WordPress Development',
     desc: 'Design and develop fast, secure, and scalable WordPress websites perfectly tailored to your brand’s content and operational needs.',
     linkTo: '/services/wordpress-development',
-    featuresGrid: [
+    featuresList: [
       {
         title: 'Custom Theme Development',
-        desc: 'Building bespoke WordPress themes from scratch with clean code, ensuring optimal performance and flexibility.'
+        desc: 'Building bespoke WordPress themes from scratch.',
+        icon: Layout
       },
       {
         title: 'Platform Migrations',
-        desc: 'Safely transitioning your existing site to WordPress without losing SEO rankings or critical data.'
+        desc: 'Transitioning existing sites without losing rankings.',
+        icon: ArrowRightLeft
       },
       {
-        title: 'Speed & Security Optimization',
-        desc: 'Implementing caching strategies, CDNs, and robust security measures to protect your content and users.'
+        title: 'Speed & Security',
+        desc: 'Implementing caching strategies and robust security.',
+        icon: ShieldCheck
       },
       {
-        title: 'Headless WordPress Architecture',
-        desc: 'Decoupling the frontend from the backend to deliver lightning-fast experiences using modern JavaScript frameworks.'
+        title: 'Headless Architecture',
+        desc: 'Decoupling frontend for lightning-fast experiences.',
+        icon: Cpu
+      }
+    ]
+  },
+  {
+    id: 'Shopify',
+    tagline: 'PHASE 02 — E-COMMERCE',
+    color: '#10b981', // Emerald
+    bgClass: 'bg-slate-50',
+    title: 'Shopify Store Development',
+    desc: 'We architect and build high-performing Shopify stores from the ground up for direct-to-consumer brands, structuring every decision around conversion and growth.',
+    linkTo: '/services/shopify-development',
+    featuresList: [
+      {
+        title: 'Platform Architecture',
+        desc: 'Guidance on choosing the right plan for your brand.',
+        icon: LayoutTemplate
+      },
+      {
+        title: 'Conversion Optimization',
+        desc: 'Transforming underperforming stores into conversion engines.',
+        icon: TrendingUp
+      },
+      {
+        title: 'App Integrations',
+        desc: 'Secure private apps and seamless ERP connections.',
+        icon: LinkIcon
+      },
+      {
+        title: 'Theme Strategy',
+        desc: 'Scalable Liquid and sound version control practices.',
+        icon: FileCode2
+      }
+    ]
+  },
+  {
+    id: 'CustomDev',
+    tagline: 'PHASE 03 — ENGINEERING',
+    color: '#3b82f6', // Blue
+    bgClass: 'bg-white',
+    title: 'Custom Software Development',
+    desc: 'When off-the-shelf solutions aren\'t enough, we engineer bespoke software, web applications, and scalable SaaS platforms tailored precisely to your unique challenges.',
+    linkTo: '/services/custom-development',
+    featuresList: [
+      {
+        title: 'Custom Web Apps',
+        desc: 'Highly scalable apps using React, Next.js, and Node.js.',
+        icon: Code2
+      },
+      {
+        title: 'SaaS Platforms',
+        desc: 'Multi-tenant architecture and secure billing integrations.',
+        icon: Server
+      },
+      {
+        title: 'Mobile App Development',
+        desc: 'Cross-platform native-like experiences with React Native.',
+        icon: Smartphone
+      },
+      {
+        title: 'API Integrations',
+        desc: 'Robust RESTful and GraphQL APIs for disparate systems.',
+        icon: Database
       }
     ]
   }
@@ -195,118 +135,61 @@ const faqs = [
 ]
 
 export default function Services() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
       <Helmet>
-        <title>Shopify & E-Commerce Development Services — Task19 Technologies</title>
-        <meta name="description" content="Expert Shopify development services including D2C store setup, CRO & customization, WooCommerce migration, and custom Shopify app development. Delivered by Task19 Technologies." />
+        <title>Our Services — Task19 Technologies</title>
+        <meta name="description" content="Expert development services including Custom WordPress, Shopify E-Commerce, and bespoke Custom Software Development. Delivered by Task19 Technologies." />
         <link rel="canonical" href="https://task19.com/services" />
       </Helmet>
 
-      {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={0}
-          slidesPerView={1}
-          autoplay={{ delay: 5500, disableOnInteraction: false }}
-          pagination={{ clickable: true, el: '.hero-pagination' }}
-          loop
-          className="hero-swiper absolute inset-0 w-full h-full"
-        >
-          {servicesHeroSlides.map((slide, i) => (
-            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
-              {/* Background image with cinematic gradient */}
-              <div className="absolute inset-0 z-0 overflow-hidden">
-                <picture>
-                  <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
-                  <img
-                    src={slide.bgDesktop}
-                    alt={slide.label}
-                    className="w-full h-full object-cover object-center"
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                  />
-                </picture>
-                <div className="absolute inset-0" style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
-                }}></div>
-              </div>
+      <PageHero 
+        badgeText="Premium Digital Agency"
+        title={<>Our Expert<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Services.</span></>}
+        description="We build high-performance e-commerce stores, tailor-made applications, and digital experiences that drive revenue."
+        orbColor1="bg-blue-400/20"
+        orbColor2="bg-purple-400/20"
+      />
 
-              {/* Content */}
-              <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
-                <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
-
-                  {/* Top Badge (slide.label) */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
-                  >
-                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
-                    <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
-                  </motion.div>
-
-                  {/* Main Headline (slide.title) */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto w-full"
-                  >
-                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 5rem)' }}>
-                      {slide.title}
-                    </h1>
-                  </motion.div>
-
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="absolute bottom-8 left-0 right-0 z-20 pointer-events-none">
-          <div className="container flex justify-center">
-            <div className="hero-pagination flex gap-2 pointer-events-auto" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Services Content List (Styled like Homepage Full-Stack Section) ── */}
-      <div className="bg-surface py-12 lg:py-16 flex flex-col gap-1 lg:gap-2">
-        {shopifyServices.map((service, index) => {
+      {/* ── Services Content List (Heading & Description + 4 Cards Grid) ── */}
+      <div className="flex flex-col">
+        {allServices.map((service, index) => {
           return (
-            <section key={service.id} className="section bg-surface pt-0 pb-0">
-              <div className="container max-w-6xl mx-auto px-4">
+            <section key={service.id} className={`py-12 md:py-16 relative overflow-hidden ${service.bgClass}`}>
+              <div className="container max-w-7xl mx-auto px-4 sm:px-6">
 
-                {/* Header (Pill) */}
-                <div className="mb-6">
-                  <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
-                    <span className="font-medium text-gray-800" style={{ fontSize: '14px', color: service.color }}>{service.tagline}</span>
+                {/* Section Header */}
+                <div className="flex flex-col items-center text-center mb-16 max-w-4xl mx-auto">
+                  <div className="inline-block bg-white border border-gray-100 rounded-full px-4 py-1.5 shadow-sm mb-6">
+                    <span className="font-semibold text-sm tracking-widest uppercase" style={{ color: service.color }}>{service.tagline}</span>
                   </div>
+                  
+                  <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight text-3xl md:text-5xl mb-6">
+                    {service.title}
+                  </h2>
+                  
+                  <p className="font-light leading-relaxed text-gray-600 text-lg md:text-xl mb-8">
+                    {service.desc}
+                  </p>
+                  
+                  <Link 
+                    to={service.linkTo} 
+                    className="inline-flex items-center justify-center font-medium transition-all hover:scale-105 hover:shadow-xl px-8 py-3.5 rounded-full text-white"
+                    style={{ backgroundColor: '#0f172a' }} // Dark button for contrast
+                  >
+                    Explore Phase <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
                 </div>
 
-                {/* Title and Description Row */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
-                  <div>
-                    <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
-                      {service.title}
-                    </h2>
-                    <p className="font-light leading-relaxed max-w-xl text-gray-500" style={{ fontSize: '18px', margin: 0, marginTop: '16px' }}>
-                      {service.desc}
-                    </p>
-                    <div className="mt-8">
-                      <Link to={service.linkTo} className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#000', color: '#fff', borderRadius: '14px', padding: '12px 24px' }}>
-                        Explore Phase <ArrowRight className="w-4 h-4 ml-2" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 4 Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {service.featuresGrid.map((feature, j) => {
-                    const imgIndex = (index * 4 + j) % featureImages.length;
+                {/* 4 Cards Grid (grid-cols-2 on mobile, md:grid-cols-4 on desktop) */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                  {service.featuresList.map((feature, j) => {
                     return (
                       <motion.div
                         key={j}
@@ -314,23 +197,30 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: j * 0.1 }}
-                        className="group relative flex flex-col h-full bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
-                        style={{ borderRadius: '24px' }}
+                        className="group relative bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
                       >
-                        <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative shrink-0">
-                          <img
-                            src={featureImages[imgIndex]}
-                            alt={feature.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          />
-                        </div>
-
-                        <div className="flex flex-col flex-grow relative z-0" style={{ padding: '24px' }}>
-                          <h6 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors mb-3" style={{ fontSize: '18px' }}>
+                        {/* Glow on hover */}
+                        <div 
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"
+                          style={{
+                            background: `linear-gradient(135deg, ${service.color}10 0%, transparent 100%)`
+                          }}
+                        ></div>
+                        
+                        <div className="relative z-10 flex flex-col h-full">
+                          <div 
+                            className="w-12 h-12 md:w-14 md:h-14 bg-slate-50 border border-gray-100 rounded-2xl flex items-center justify-center mb-6 text-gray-400 group-hover:scale-110 transition-all duration-300 shadow-sm"
+                          >
+                            {feature.icon && <feature.icon className="w-6 h-6 md:w-7 md:h-7" style={{ color: service.color }} />}
+                          </div>
+                          
+                          <h5 
+                            className="text-[15px] md:text-lg font-bold text-gray-900 mb-3 transition-colors leading-snug"
+                          >
                             {feature.title}
-                          </h6>
-                          <p className="text-gray-500 font-light leading-relaxed" style={{ fontSize: '14px' }}>
+                          </h5>
+                          
+                          <p className="text-gray-600 font-light leading-relaxed text-[13px] md:text-[14.5px] mt-auto hidden sm:block">
                             {feature.desc}
                           </p>
                         </div>
@@ -345,37 +235,34 @@ export default function Services() {
         })}
       </div>
 
-      {/* ── FAQ Section (Exactly Like Homepage FAQ) ── */}
-      <section className="section bg-secondary" style={{ backgroundColor: '#f9fafb', paddingTop: '96px', paddingBottom: '96px' }}>
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
+      {/* ── FAQ Section ── */}
+      <section className="section bg-slate-50 py-24 border-t border-gray-100">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
-                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Common questions</span>
+              <div className="inline-block bg-white border border-gray-100 rounded-full px-4 py-1.5 shadow-sm mb-6">
+                <span className="font-semibold text-sm tracking-widest uppercase text-gray-800">Common questions</span>
               </div>
-              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
+              <h2 className="font-display font-bold leading-tight text-gray-900 tracking-tight text-3xl md:text-5xl mb-6">
                 Frequently<br />asked questions
               </h2>
-              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
+              <p className="text-gray-600 font-light max-w-md text-lg mb-10">
                 Can't find what you're looking for? Reach out directly — we typically respond within 2 business hours.
               </p>
-              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                Contact Us <ArrowRight className="w-4 h-4 ml-1" />
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center font-medium transition-all hover:shadow-md bg-white border border-gray-200 text-gray-900 rounded-full px-6 py-3 hover:-translate-y-1"
+              >
+                Contact Us <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
-            <div style={{ paddingTop: '8px' }}><FAQAccordion items={faqs} /></div>
+            <div>
+              <FAQAccordion items={faqs} />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA / Ready To Build Section (Exactly Like Homepage CTA) ── */}
-      {/* <CTASection
-        title="Ready to Build Your Shopify Success Story?"
-        subtitle="Join 50+ brands that trust Task19 Technologies to power their e-commerce growth."
-        primaryText="Get Free Store Audit"
-        primaryTo="/contact"
-        eyebrow="Start Your Project"
-      /> */}
     </>
   )
 }

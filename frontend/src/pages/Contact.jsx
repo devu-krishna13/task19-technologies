@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Loader2, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
-
+import PageHero from '../components/ui/PageHero'
 const XIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -68,49 +68,13 @@ export default function Contact() {
       </Helmet>
 
       {/* ── Hero Section ── */}
-      <section className="relative overflow-hidden bg-[#050f28] hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <picture>
-            <source media="(max-width: 768px)" srcSet="/contact-hero.jpg" />
-            <img
-              src="/contact-hero.jpg"
-              alt="Contact Us Background"
-              className="w-full h-full object-cover object-center"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </picture>
-          <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
-          }}></div>
-        </div>
-
-        <div className="absolute inset-0 z-10 flex flex-col justify-center pt-24 md:pt-20">
-          <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto w-full">
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
-            >
-              <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
-              <span className="text-white/90 text-[12px] md:text-sm font-medium">Partner With Us</span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-4xl mx-auto w-full"
-            >
-              <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-4 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 4.5rem)' }}>
-                <span className="whitespace-nowrap">Let's Build Something</span><br /><em className="font-serif-italic not-italic text-white">Extraordinary.</em>
-              </h1>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badgeText="Partner With Us"
+        title={<><span className="whitespace-nowrap text-gray-900">Let's Build Something</span><br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Extraordinary.</span></>}
+        description="Get in touch with our team to start a conversation about your next digital product."
+        orbColor1="bg-blue-300/20"
+        orbColor2="bg-indigo-300/20"
+      />
 
       {/* ── Main Contact Section ── */}
       <section className="pt-[30px] pb-[40px] lg:pt-[40px] lg:pb-[60px] bg-[#FFFFFF]">

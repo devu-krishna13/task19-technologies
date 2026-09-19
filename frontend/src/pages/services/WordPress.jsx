@@ -1,152 +1,112 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { ArrowRight, LayoutTemplate, Shield, Zap, Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
+import { ArrowRight, LayoutTemplate, Shield, Zap, Search, Code, Smartphone, Database, Lock } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import PageHero from '../../components/ui/PageHero';
 const features = [
   {
-    title: 'Custom Theme Development',
-    desc: 'Building bespoke WordPress themes from scratch with clean code, ensuring optimal performance and flexibility.'
+    title: 'Custom WordPress Theme Development',
+    desc: 'We engineer bespoke, pixel-perfect WordPress themes from scratch. Our clean code approach ensures lightning-fast load times, optimal Core Web Vitals, and ultimate design flexibility tailored to your brand.',
+    icon: LayoutTemplate
   },
   {
-    title: 'Platform Migrations',
-    desc: 'Safely transitioning your existing site to WordPress without losing SEO rankings or critical data.'
-  },
-  {
-    title: 'Speed & Security Optimization',
-    desc: 'Implementing caching strategies, CDNs, and robust security measures to protect your content and users.'
+    title: 'WooCommerce & E-Commerce Solutions',
+    desc: 'Transform your WordPress site into a high-converting sales engine. We specialize in complex WooCommerce setups, custom payment gateways, and scalable digital storefronts.',
+    icon: Code
   },
   {
     title: 'Headless WordPress Architecture',
-    desc: 'Decoupling the frontend from the backend to deliver lightning-fast experiences using modern JavaScript frameworks.'
+    desc: 'Future-proof your tech stack by decoupling the frontend using React or Next.js. Deliver blazing-fast, app-like experiences while keeping the familiar WordPress CMS backend.',
+    icon: Smartphone
+  },
+  {
+    title: 'Platform Migrations & Upgrades',
+    desc: 'Safely and seamlessly migrate your existing website or legacy CMS to WordPress without losing critical data, user accounts, or your hard-earned search engine rankings.',
+    icon: Database
+  },
+  {
+    title: 'Advanced Speed Optimization',
+    desc: 'We implement rigorous caching strategies, CDN integrations, and database optimizations to guarantee your WordPress site loads instantly across all devices and global networks.',
+    icon: Zap
+  },
+  {
+    title: 'Enterprise Security & Maintenance',
+    desc: 'Protect your digital assets with robust firewalls, automated malware scanning, and hardened server environments designed specifically for enterprise WordPress deployments.',
+    icon: Lock
   }
 ];
 
 export default function WordPress() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
       <Helmet>
-        <title>Custom WordPress Development — Task19 Technologies</title>
-        <meta name="description" content="Design and develop fast, secure, and scalable WordPress websites perfectly tailored to your brand." />
+        <title>Custom WordPress Development Agency | Task19 Technologies</title>
+        <meta name="description" content="Expert WordPress development agency specializing in custom theme design, headless WordPress, WooCommerce solutions, and high-performance scalability." />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-20 overflow-hidden bg-primary">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
-            alt="WordPress Development"
-            className="w-full h-full object-cover object-center opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
-        </div>
-        
-        <div className="container relative z-10 px-4 mx-auto max-w-5xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 mb-6 text-white text-sm font-medium">
-              PHASE 05 — CONTENT & COMMERCE
-            </div>
-            <h1 className="font-display font-bold text-white leading-tight tracking-tight mb-6 text-4xl md:text-6xl lg:text-7xl break-words">
-              WordPress Development<br />& Scalability
-            </h1>
-            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Design and develop fast, secure, and scalable WordPress websites perfectly tailored to your brand's content and operational needs.
-            </p>
+      <PageHero
+        badgeText="WordPress Expertise"
+        title={<>Enterprise WordPress <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-500">Development.</span></>}
+        description="We design and engineer high-performance, secure, and scalable WordPress web applications that empower marketing teams and drive sustainable business growth."
+        orbColor1="bg-purple-300/20"
+        orbColor2="bg-indigo-300/20"
+      >
+        <Link 
+          to="/contact"
+          className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-black hover:shadow-xl transition-all hover:scale-105"
+        >
+          Discuss Your Project <ArrowRight className="ml-2 w-4 h-4" />
+        </Link>
+      </PageHero>
 
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Choose Us / Key Benefits */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row-reverse">
-            <div className="relative order-2 lg:order-1">
-              <img 
-                src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80" 
-                alt="WordPress Development" 
-                className="rounded-3xl shadow-2xl"
-              />
-              <div className="absolute -top-8 -right-8 bg-white p-6 rounded-2xl shadow-xl hidden md:block">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                    <LayoutTemplate className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 font-medium">Core Web Vitals</p>
-                    <p className="text-2xl font-bold text-gray-900">95+</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="order-1 lg:order-2">
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                WordPress Done Right
+      {/* What We Do Section */}
+      <section className="py-24 bg-white relative border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-left">
+              <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-900 mb-6">
+                What We Do
               </h2>
-              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                We don't rely on bloated page builders. We engineer custom WordPress solutions from the ground up, focusing on speed, security, and an intuitive authoring experience for your marketing team.
+              <p className="text-lg text-gray-600 leading-relaxed font-light mb-6">
+                At Task19 Technologies, we don't just install templates. We are a full-stack engineering team that leverages the power of WordPress to build custom, enterprise-grade digital platforms. 
               </p>
-              <ul className="space-y-6">
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-gray-900">Lightning Fast</h4>
-                    <p className="text-gray-600">Clean code and advanced caching setups to ensure your site loads instantly.</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-4">
-                    <Shield className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-gray-900">Enterprise Security</h4>
-                    <p className="text-gray-600">Hardened environments, routine updates, and robust firewall configurations.</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4">
-                    <Search className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-gray-900">SEO Optimized</h4>
-                    <p className="text-gray-600">Built with semantic HTML and schema markup to dominate search rankings.</p>
-                  </div>
-                </li>
-              </ul>
-              <div className="mt-10">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-medium rounded-xl hover:bg-gray-800 transition-colors"
-                >
-                  Request a Proposal <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </div>
+              <p className="text-lg text-gray-600 leading-relaxed font-light">
+                Whether you need a high-traffic media publishing site, an intricate WooCommerce ecosystem, or a headless WordPress setup using React, we engineer solutions from the ground up that are optimized for search engines, speed, and absolute security.
+              </p>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-100 to-indigo-50 rounded-[2rem] transform rotate-3"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?q=80&w=1170&auto=format&fit=crop" 
+                alt="WordPress Backend Dashboard" 
+                className="relative z-10 rounded-[2rem] shadow-2xl object-cover h-[400px] w-full"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Detail Section */}
-      <section id="wp-features" className="py-12 md:py-16 bg-surface">
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              A Platform Built Around Your Content
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="font-display text-4xl font-bold text-gray-900 mb-6">
+              Our WordPress Solutions
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              We leverage the flexibility of WordPress to build sites that are not just beautiful, but deeply integrated with your business operations.
+            <p className="text-gray-600 font-light text-lg leading-relaxed">
+              We eliminate the bloat of traditional page builders. Experience the difference of a meticulously coded, custom WordPress architecture designed for scale.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, i) => (
               <motion.div
                 key={i}
@@ -154,51 +114,38 @@ export default function WordPress() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white p-8 rounded-[24px] border border-gray-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group relative bg-white p-8 md:p-10 rounded-[32px] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-700">
-                  <LayoutTemplate className="w-6 h-6" />
+                {/* Glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[32px] pointer-events-none"></div>
+                
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-slate-50 border border-gray-100 rounded-2xl flex items-center justify-center mb-8 text-gray-400 group-hover:scale-110 group-hover:bg-purple-50 group-hover:text-purple-600 group-hover:border-purple-100 transition-all duration-300 shadow-sm">
+                    <feature.icon className="w-8 h-8" />
+                  </div>
+                  {/* Replaced h3 with h5 as requested */}
+                  <h5 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors leading-snug">{feature.title}</h5>
+                  <p className="text-gray-600 font-light leading-relaxed text-[15px]">{feature.desc}</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
-
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process / How it works */}
-      <section id="wp-process" className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-            Our Development Process
-          </h2>
-          <div className="space-y-12">
-            {[
-              { step: '01', title: 'Content Strategy & Design', desc: 'We align on the site architecture and design bespoke UI layouts tailored to your audience.' },
-              { step: '02', title: 'Custom Theme Build', desc: 'Translating designs into a highly optimized, lightweight WordPress theme utilizing modern standards.' },
-              { step: '03', title: 'Gutenberg Integration', desc: 'Configuring custom blocks so your team can easily build rich pages without touching code.' },
-              { step: '04', title: 'QA & Deployment', desc: 'Rigorous performance testing and SEO checks before executing a seamless launch.' }
-            ].map((item, idx) => (
-              <div key={idx} className="flex gap-6 items-start">
-                <div className="text-4xl font-display font-bold text-gray-200 shrink-0 mt-1">{item.step}</div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
-                  <p className="text-gray-600">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-16 text-center">
-             <Link
-                to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
-              >
-                Let's Build Your Site <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-          </div>
+      {/* CTA Section */}
+      <section className="py-24 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="text-4xl font-display font-bold text-gray-900 mb-6">Ready to scale your content?</h2>
+          <p className="text-lg text-gray-600 font-light mb-10 max-w-2xl mx-auto">
+            Partner with us to build a bespoke WordPress solution that drives organic traffic, engages users, and converts leads at scale.
+          </p>
+          <Link 
+            to="/contact"
+            className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-black hover:shadow-xl transition-all hover:scale-105"
+          >
+            Get Started <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
         </div>
       </section>
     </>

@@ -2,26 +2,10 @@ import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/pagination'
+import PageHero from '../components/ui/PageHero'
 import { portfolioItems } from '../constants/data'
 
-const portfolioHeroSlides = [
-  {
-    label: 'Our Portfolio',
-    title: <><span className="whitespace-nowrap">Digital Experiences</span><br /><em className="font-serif-italic not-italic text-white">That Drive Growth.</em></>,
-    bgDesktop: '/portfolio-hero-1.png',
-    bgMobile: '/portfolio-hero-1.png',
-  },
-  {
-    label: 'E-Commerce Excellence',
-    title: <><span className="whitespace-nowrap">High-Performance Stores</span><br /><em className="font-serif-italic not-italic text-white">Built to Scale.</em></>,
-    bgDesktop: '/portfolio-hero-2.jpg',
-    bgMobile: '/portfolio-hero-2.jpg',
-  },
-]
+
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('All')
@@ -46,71 +30,14 @@ export default function Portfolio() {
         <link rel="canonical" href="https://task19.com/portfolio" />
       </Helmet>
 
-      {/* ── Page Hero (Rotating Swiper Banner exactly like Home Hero) ── */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[400px] h-[55svh] md:h-screen md:min-h-[500px] max-h-[600px]">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={0}
-          slidesPerView={1}
-          autoplay={{ delay: 5500, disableOnInteraction: false }}
-          pagination={{ clickable: true, el: '.hero-pagination' }}
-          loop
-          className="hero-swiper absolute inset-0 w-full h-full"
-        >
-          {portfolioHeroSlides.map((slide, i) => (
-            <SwiperSlide key={i} className="relative w-full h-full flex items-center justify-center">
-              {/* Background image with cinematic gradient */}
-              <div className="absolute inset-0 z-0 overflow-hidden">
-                <picture>
-                  <source media="(max-width: 768px)" srcSet={slide.bgMobile} />
-                  <img
-                    src={slide.bgDesktop}
-                    alt={slide.label}
-                    className="w-full h-full object-cover object-center"
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                  />
-                </picture>
-                <div className="absolute inset-0" style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.4) 0%, rgba(5, 15, 35, 0.9) 80%)'
-                }}></div>
-              </div>
-
-              {/* Content */}
-              <div className="absolute inset-0 z-10 flex flex-col justify-center pt-20 md:pt-0">
-                <div className="container relative flex flex-col items-center text-center px-4 sm:px-6 mx-auto">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 md:px-4 md:py-1.5 mb-6 md:mb-8"
-                  >
-                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-white/20 text-white flex items-center justify-center text-[10px] md:text-xs font-bold">!</div>
-                    <span className="text-white/90 text-[12px] md:text-sm font-medium">{slide.label}</span>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="max-w-4xl mx-auto w-full"
-                  >
-                    <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(1.5rem, 7vw, 5rem)' }}>
-                      {slide.title}
-                    </h1>
-                  </motion.div>
-
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="absolute bottom-8 left-0 right-0 z-20 pointer-events-none">
-          <div className="container flex justify-center">
-            <div className="hero-pagination flex gap-2 pointer-events-auto" />
-          </div>
-        </div>
-      </section>
+      {/* ── Page Hero ── */}
+      <PageHero
+        badgeText="Our Portfolio"
+        title={<>Digital Experiences<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">That Drive Growth.</span></>}
+        description="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries."
+        orbColor1="bg-blue-300/20"
+        orbColor2="bg-emerald-300/20"
+      />
 
       {/* ── Filter Bar ── */}
       <section className="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">

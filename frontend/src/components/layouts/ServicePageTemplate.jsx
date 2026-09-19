@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import FAQAccordion from '../ui/FAQAccordion'
 import CTASection from '../ui/CTASection'
+import PageHero from '../ui/PageHero'
 
 export default function ServicePageTemplate({
   metaTitle,
@@ -29,52 +30,23 @@ export default function ServicePageTemplate({
         <meta name="description" content={metaDesc} />
       </Helmet>
 
-      {/* ── Page Hero (Like Home) ── */}
-      <section className="relative overflow-hidden bg-[#0a0a0b] min-h-[500px] h-[85svh] md:h-[90vh] flex items-center">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent z-10" />
-          <img
-            src={heroImage}
-            alt={heroTitle}
-            className="w-full h-full object-cover opacity-60"
-          />
+      {/* ── Page Hero ── */}
+      <PageHero
+        badgeText={heroBadge}
+        title={<>{heroTitle}<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">{heroSubtitle}</span></>}
+        description={heroDesc}
+        orbColor1="bg-blue-300/20"
+        orbColor2="bg-indigo-300/20"
+      >
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-black transition-all duration-300 hover:scale-105">
+            Get Free Consultation <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link to="/portfolio" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium rounded-full hover:bg-gray-50 transition-all duration-300 hover:scale-105">
+            View Case Studies
+          </Link>
         </div>
-
-        <div className="container relative z-20 max-w-7xl mx-auto px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-3xl"
-          >
-            <div className="mb-6 md:mb-8">
-              <div className="inline-block bg-white/10 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-1.5" style={{ border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px' }}>
-                <span className="font-medium text-white text-[12px] md:text-[14px]">{heroBadge}</span>
-              </div>
-            </div>
-
-            <h1 className="font-display font-bold text-white leading-[1.15] md:leading-[1.1] tracking-tight mb-6 md:mb-8" style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>
-              {heroTitle}<br />
-              <span className="text-white/60 font-light">{heroSubtitle}</span>
-            </h1>
-
-            <p className="font-light leading-relaxed max-w-2xl mb-8 md:mb-10 text-[16px] md:text-[20px]" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-              {heroDesc}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#013Ad6] text-white font-semibold text-[15px] rounded-full hover:bg-[#002bb5] transition-all duration-300">
-                Get Free Consultation <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/portfolio" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium text-[15px] rounded-full hover:bg-white/10 transition-all duration-300">
-                View Case Studies
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      </PageHero>
 
       {/* ── Core Service Content (Premium Split Layout) ── */}
       <section className="bg-white py-12 md:py-16 overflow-hidden">
