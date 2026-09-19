@@ -1032,7 +1032,7 @@ export default function Home() {
               <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
                 Can't find what you're looking for? Reach out directly — we typically respond within 2 business hours.
               </p>
-              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-80" style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', color: '#000', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90" style={{ backgroundColor: '#111827', color: '#fff', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
                 Contact Us <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>

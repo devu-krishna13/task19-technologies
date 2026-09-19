@@ -54,7 +54,7 @@ export default function ShopifyServices() {
       {/* Hero Section */}
       <PageHero
         badgeText="E-Commerce Leaders"
-        title={<>Shopify Store <br className="hidden md:block"/> Development</>}
+        title={<>Shopify Store <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Development.</span></>}
         description="We architect and build high-performing Shopify stores for direct-to-consumer brands, structuring every decision around conversion optimization and global growth."
         orbColor1="bg-emerald-300/20"
         orbColor2="bg-teal-300/20"

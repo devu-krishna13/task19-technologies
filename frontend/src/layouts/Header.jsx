@@ -24,6 +24,7 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState(null)
   const location = useLocation()
 
   useEffect(() => {
@@ -145,39 +146,57 @@ export default function Header() {
                   transition={{ delay: i * 0.05 + 0.1, duration: 0.4 }}
                   key={link.label}
                 >
-                  <Link
-                    to={link.to}
-                    className="group flex items-center justify-between py-5 border-b border-white/10 transition-colors"
-                    onClick={() => {
-                      if (!link.children) setMobileOpen(false);
-                    }}
-                  >
-                    <span
-                      className="font-display font-medium text-[20px] tracking-tight transition-colors duration-300"
-                      style={{ color: location.pathname === link.to ? '#ffffff' : 'rgba(255,255,255,0.6)' }}
+                  <div className="group flex items-center justify-between py-5 border-b border-white/10 transition-colors">
+                    <Link
+                      to={link.to}
+                      className="flex-grow"
+                      onClick={() => {
+                        if (!link.children) setMobileOpen(false);
+                      }}
                     >
-                      {link.label}
-                    </span>
-                    {!link.children && (
+                      <span
+                        className="font-display font-medium text-[20px] tracking-tight transition-colors duration-300"
+                        style={{ color: location.pathname === link.to ? '#ffffff' : 'rgba(255,255,255,0.6)' }}
+                      >
+                        {link.label}
+                      </span>
+                    </Link>
+                    {link.children ? (
+                      <button 
+                        onClick={() => setExpandedMobileMenu(expandedMobileMenu === link.label ? null : link.label)}
+                        className="w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                      >
+                        <svg className={`w-6 h-6 transition-transform duration-300 ${expandedMobileMenu === link.label ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
+                      </button>
+                    ) : (
                       <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                         <ArrowRight className="w-5 h-5 text-white" />
                       </div>
                     )}
-                  </Link>
-                  {link.children && (
-                    <div className="pl-6 pb-4 pt-4 border-b border-white/10 flex flex-col gap-5 bg-white/5 rounded-b-xl">
-                       {link.children.map(child => (
-                         <Link
-                           key={child.label}
-                           to={child.to}
-                           className="font-display font-medium text-[16px] text-white/70 hover:text-white transition-colors block"
-                           onClick={() => setMobileOpen(false)}
-                         >
-                           <span className="opacity-50 mr-2">—</span> {child.label}
-                         </Link>
-                       ))}
-                    </div>
-                  )}
+                  </div>
+                  <AnimatePresence>
+                    {link.children && expandedMobileMenu === link.label && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-6 pb-4 pt-4 border-b border-white/10 flex flex-col gap-5 bg-white/5 rounded-b-xl">
+                           {link.children.map(child => (
+                             <Link
+                               key={child.label}
+                               to={child.to}
+                               className="font-display font-medium text-[16px] text-white/70 hover:text-white transition-colors block"
+                               onClick={() => setMobileOpen(false)}
+                             >
+                               <span className="opacity-50 mr-2">—</span> {child.label}
+                             </Link>
+                           ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               ))}
             </div>

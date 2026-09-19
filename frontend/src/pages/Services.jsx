@@ -251,7 +251,7 @@ export default function Services() {
               </p>
               <Link 
                 to="/contact" 
-                className="inline-flex items-center justify-center font-medium transition-all hover:shadow-md bg-white border border-gray-200 text-gray-900 rounded-full px-6 py-3 hover:-translate-y-1"
+                className="inline-flex items-center justify-center font-medium transition-all hover:shadow-md bg-gray-900 text-white rounded-full px-6 py-3 hover:bg-black hover:-translate-y-1"
               >
                 Contact Us <ArrowRight className="w-4 h-4 ml-2" />
               </Link>

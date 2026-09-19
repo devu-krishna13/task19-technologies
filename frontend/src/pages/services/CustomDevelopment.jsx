@@ -54,7 +54,7 @@ export default function CustomDevelopment() {
       {/* Hero Section */}
       <PageHero
         badgeText="Engineering Excellence"
-        title={<>Custom Software <br className="hidden md:block"/> Development</>}
+        title={<>Custom Software <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">Development.</span></>}
         description="When off-the-shelf solutions aren't enough, we engineer bespoke software, web applications, and scalable SaaS platforms tailored precisely to your unique business challenges."
         orbColor1="bg-blue-300/20"
         orbColor2="bg-indigo-300/20"
