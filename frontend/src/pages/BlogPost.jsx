@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react'
 import BlogCard from '../components/ui/BlogCard'
 import CTASection from '../components/ui/CTASection'
+import { getFromIDB, saveToIDB } from '../utils/idb'
 
 const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
 const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
@@ -18,28 +19,28 @@ export default function BlogPost() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const cachedData = sessionStorage.getItem('blogs_data');
-    if (cachedData) {
-      const data = JSON.parse(cachedData);
-      processPostData(data);
-      return;
-    }
-
-    fetch(API_URL, {
-      headers: {
-        'Accept': 'application/json',
-        'X-API-KEY': API_KEY
+    getFromIDB('blogs_data').then(cachedData => {
+      if (cachedData) {
+        processPostData(cachedData);
+        return;
       }
-    })
-    .then(res => res.json())
-    .then(data => {
-      sessionStorage.setItem('blogs_data', JSON.stringify(data));
-      processPostData(data);
-    })
-    .catch(err => {
-      console.error(err)
-      setLoading(false)
-    })
+
+      fetch(API_URL, {
+        headers: {
+          'Accept': 'application/json',
+          'X-API-KEY': API_KEY
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        saveToIDB('blogs_data', data).catch(err => console.warn('Could not save to IDB', err));
+        processPostData(data);
+      })
+      .catch(err => {
+        console.error(err)
+        setLoading(false)
+      })
+    });
   }, [slug])
 
   const processPostData = (data) => {

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import BlogCard from '../components/ui/BlogCard'
 import PageHero from '../components/ui/PageHero'
+import { getFromIDB, saveToIDB } from '../utils/idb'
 
 const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
 const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
@@ -36,32 +37,32 @@ export default function Blog() {
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(true)
   const [dynamicCategories, setDynamicCategories] = useState(['All', 'Latest Updates'])
-  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsToShow, setItemsToShow] = useState(9)
 
   useEffect(() => {
-    const cachedData = sessionStorage.getItem('blogs_data');
-    if (cachedData) {
-      const data = JSON.parse(cachedData);
-      processBlogData(data);
-      return;
-    }
-
-    fetch(API_URL, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'X-API-KEY': API_KEY
+    getFromIDB('blogs_data').then(cachedData => {
+      if (cachedData) {
+        processBlogData(cachedData);
+        return;
       }
-    })
-    .then(res => res.json())
-    .then(data => {
-      sessionStorage.setItem('blogs_data', JSON.stringify(data));
-      processBlogData(data);
-    })
-    .catch(err => {
-      console.error(err)
-      setLoading(false)
-    })
+
+      fetch(API_URL, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'X-API-KEY': API_KEY
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        saveToIDB('blogs_data', data).catch(err => console.warn('Could not save to IDB', err));
+        processBlogData(data);
+      })
+      .catch(err => {
+        console.error(err)
+        setLoading(false)
+      })
+    });
   }, [])
 
   const processBlogData = (data) => {
@@ -88,21 +89,15 @@ export default function Blog() {
     ? blogs
     : blogs.filter(p => p.category === activeCategory)
 
-  // Reset to first page when category changes
+  // Reset to initial count when category changes
   useEffect(() => {
-    setCurrentPage(1)
+    setItemsToShow(9)
   }, [activeCategory])
 
-  const itemsPerPage = 6
-  const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1
-  const currentCards = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+  const currentCards = filtered.slice(0, itemsToShow)
 
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page)
-      // Scroll to the top of the grid
-      window.scrollTo({ top: 350, behavior: 'smooth' })
-    }
+  const handleLoadMore = () => {
+    setItemsToShow(prev => prev + 9)
   }
 
   return (
@@ -154,36 +149,13 @@ export default function Blog() {
                 ))}
               </div>
               
-              {totalPages > 1 && (
-                <div className="mt-12 md:mt-16 flex justify-center items-center gap-2">
+              {itemsToShow < filtered.length && (
+                <div className="mt-12 md:mt-16 flex justify-center">
                   <button 
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none select-none"
+                    onClick={handleLoadMore}
+                    className="px-8 py-3 rounded-full border border-gray-200 bg-white text-[15px] font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-300 focus:outline-none select-none shadow-sm hover:shadow"
                   >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                  </button>
-                  
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                    <button
-                      key={page}
-                      onClick={() => handlePageChange(page)}
-                      className={`w-10 h-10 rounded-full border flex items-center justify-center text-sm font-medium transition-all duration-300 focus:outline-none select-none
-                        ${currentPage === page 
-                          ? 'border-gray-900 bg-gray-900 text-white shadow-md' 
-                          : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                        }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-
-                  <button 
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 focus:outline-none select-none"
-                  >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    Load More Articles
                   </button>
                 </div>
               )}
