@@ -21,183 +21,230 @@ export default function About() {
         orbColor2="bg-indigo-300/20"
       />
 
-      {/* ── Key Highlights (Stats) ── */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { value: '7+', label: 'Years Experience' },
-              { value: '100+', label: 'Active Sellers' },
-              { value: '10+', label: 'SaaS Platforms' },
-              { value: '8k+', label: 'Community Members' }
-            ].map((stat, i) => (
-              <motion.div 
-                key={i} 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group flex flex-col p-8 bg-[#f8f9fc] rounded-[24px] border border-gray-100 hover:border-[#013Ad6]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300 text-center md:text-left"
-              >
-                <div className="font-display font-bold text-[#013Ad6] mb-2 text-4xl md:text-5xl leading-none">
-                  {stat.value}
-                </div>
-                <p className="text-sm font-bold tracking-widest uppercase text-gray-500 group-hover:text-gray-900 transition-colors duration-300 mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
+      {/* ── 1. Intro Split Section (Xicom Style) ── */}
+      <section className="py-10 md:py-16 bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
+          {/* Top bar with pill */}
+          <div className="flex flex-wrap items-center gap-4 mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-300 text-sm font-semibold tracking-wider text-gray-800 shadow-sm">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span> About Task19
+            </div>
+            <div className="h-px bg-gray-300 flex-grow max-w-xs hidden sm:block"></div>
+            <span className="text-gray-500 font-medium text-sm hidden sm:block">Est. 2017 &nbsp;·&nbsp; Kochi &nbsp;·&nbsp; Calicut</span>
           </div>
-        </div>
-      </section>
 
-      {/* ── Story, Vision & Mission ── */}
-      <section className="py-12 md:py-16 bg-white border-b border-gray-100">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="text-center lg:text-left flex flex-col items-center lg:items-start">
-              <div className="inline-block bg-white mb-6 border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
-                <span className="font-medium text-gray-800 text-sm uppercase tracking-wider">Since 2017</span>
-              </div>
-              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-6 text-[20px] md:text-[42px]">
-                A Brief Story of Task19
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+            <div className="lg:col-span-5">
+              <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-extrabold leading-[1.1] text-gray-900 tracking-tight">
+                A technology company built through <span className="text-[#013Ad6]">experience</span>, persistence, and continuous learning.
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-                Founded in 2017 and based in Kochi & Calicut, <strong>Task19 Technologies (Betatask Private Limited)</strong> is a dynamic software development company specializing in building powerful, scalable digital solutions for businesses worldwide.
-              </p>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                With over 7 years of experience, we have successfully designed and launched SaaS products, mobile applications, and custom software platforms across various industries including E-commerce, EdTech, Healthcare, and Retail & Wholesale.
-              </p>
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="flex flex-col gap-8">
-              <div className="bg-[#f8f9fc] p-8 md:p-10 rounded-[32px] border border-gray-100">
-                <h3 className="font-display font-bold text-[#111827] text-2xl mb-4">Our Vision</h3>
-                <p className="text-[#4b5563] leading-relaxed">
-                  To empower businesses of all sizes with smart, scalable digital products that drive growth, efficiency, and innovation.
-                </p>
+              <div className="mt-8 text-[14px] font-bold text-gray-500 uppercase tracking-widest border-t border-gray-200 pt-6">
+                Experience-Driven &nbsp;·&nbsp; Client-Focused &nbsp;·&nbsp; Trusted Since 2017
               </div>
-              <div className="bg-[#f8f9fc] p-8 md:p-10 rounded-[32px] border border-gray-100">
-                <h3 className="font-display font-bold text-[#111827] text-2xl mb-4">Our Mission</h3>
-                <p className="text-[#4b5563] leading-relaxed">
-                  To build user-centric, high-performance technology solutions that solve real-world problems with a strong focus on product-market fit, usability, and long-term value.
-                </p>
+            </div>
+
+            <div className="lg:col-span-7 pt-2 lg:pt-4">
+              <p className="text-[18px] md:text-[20px] text-gray-700 mb-6 leading-relaxed">
+                Our journey began in <strong className="font-bold text-gray-900">2012</strong>, when the Task19.com domain was registered. What started as an idea took its official shape on <strong className="font-bold text-gray-900">November 6, 2017</strong>, when Task19 Technologies began operations.
+              </p>
+              <p className="text-[18px] md:text-[20px] text-gray-700 mb-8 leading-relaxed">
+                We didn't start with mentors, investors, or a ready-made roadmap. We learned by doing—making mistakes, solving problems, adapting to change, and continuously improving. Those experiences shaped both our company and the way we work today.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mt-10">
+                <Link to="/contact" className="bg-[#013Ad6] hover:bg-[#002B9E] !text-white px-8 py-3.5 rounded font-bold transition-all text-[16px] shadow-md hover:shadow-lg">
+                  Start a project
+                </Link>
+                <a href="/pdf/Task19 Technologies Profile 2025 (2).pdf" target="_blank" rel="noopener noreferrer" className="border-2 border-gray-300 bg-white !text-gray-800 hover:bg-gray-50 px-8 py-3.5 rounded font-bold transition-colors flex items-center gap-2 text-[16px]">
+                  <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                  Download profile
+                </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Director's Note ── */}
-      <section className="py-12 md:py-16 bg-[#f8f9fc]">
-        <div className="container max-w-5xl mx-auto px-4">
-          <div className="bg-white rounded-[32px] p-8 md:p-12 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-10 md:gap-16">
-            
-            {/* Left Side: Content */}
-            <div className="w-full md:w-2/3 text-left flex flex-col items-start">
-              <svg className="w-8 h-8 text-[#013Ad6] mb-6 opacity-60" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-              </svg>
-              <p className="text-gray-700 text-[16px] md:text-[19px] leading-relaxed mb-6 font-light">
-                "When I started Task19 Technologies in 2017, my goal was simple: to build a company that creates real impact through technology. Today, I'm proud to say that we've helped startups, e-commerce sellers, and businesses turn their ideas into powerful digital solutions."
-              </p>
-              <p className="text-gray-700 text-[16px] md:text-[19px] leading-relaxed mb-6 font-light">
-                Our expertise in SaaS platforms, mobile apps, and e-commerce systems has allowed us to serve 100+ active users and partner with clients across India and the GCC. Every product we build is rooted in our commitment to usability, performance, and business value.
-              </p>
-              <p className="text-gray-700 text-[16px] md:text-[19px] leading-relaxed font-medium">
-                At Task19, we're more than just developers - we're partners in growth, innovation, and long-term success.
-              </p>
-            </div>
-
-            {/* Right Side: Profile */}
-            <div className="w-full md:w-1/3 flex flex-col items-center md:items-start md:justify-center text-center md:text-left pt-6 md:pt-0 md:pl-8 border-t md:border-t-0 md:border-l border-gray-100">
-              <div className="w-24 h-24 md:w-40 md:h-40 mb-4 md:mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gray-50">
-                <img 
-                  src="/images (3).jpg" 
-                  alt="Afsal"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "https://ui-avatars.com/api/?name=Afsal&background=013Ad6&color=fff";
-                  }}
-                />
-              </div>
-              <h4 className="font-display font-bold text-xl md:text-2xl text-gray-900 mb-1">Afsal</h4>
-              <p className="text-[#013Ad6] text-xs md:text-sm uppercase tracking-widest font-bold">Director</p>
-              <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest mt-1">Task19 Technologies</p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── Services & Core Capabilities ── */}
-      <section className="pb-12 md:pb-16 pt-0 bg-[#f8f9fc]">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]">
-              Core Capabilities
+      {/* ── 2. Leverage Block (Middle headline) ── */}
+      <section className="py-12 md:py-16 bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="flex justify-center mb-6">
+            <h2 className="text-[32px] md:text-[40px] font-bold text-center leading-tight text-gray-900 max-w-3xl">
+              What a <span className="text-[#013Ad6]">Successful Partnership</span> actually means at Task19
             </h2>
-            <p className="text-gray-500 font-light max-w-2xl mx-auto text-[18px]">
-              We offer a full spectrum of engineering and design services to build your next big product.
+          </div>
+          <div className="flex justify-center mb-10">
+            <div className="w-16 h-1 bg-red-600"></div>
+          </div>
+          <div className="text-center">
+            <p className="text-[20px] md:text-[24px] text-gray-700 font-medium leading-relaxed max-w-4xl mx-auto">
+              At Task19, we believe a successful technology partnership is about more than delivering software. Providing real value, responding on time, being available when clients need us, and taking responsibility for our work have always been at the heart of what we do.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-            {[
-              { title: 'SaaS Product Development', icon: Cloud },
-              { title: 'Custom Software Development', icon: Code },
-              { title: 'E-Commerce Solutions', desc: '(Shopify, WooCommerce)', icon: Globe },
-              { title: 'Mobile App Development', desc: '(React Native)', icon: Smartphone },
-              { title: 'Web Application Development', icon: Layers },
-              { title: 'Marketing & Automations', icon: Briefcase }
-            ].map((service, i) => (
-              <div key={i} className="bg-white p-5 md:p-8 rounded-[20px] md:rounded-[24px] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-start gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#013Ad6] shrink-0">
-                  <service.icon className="w-5 h-5 md:w-6 md:h-6" />
-                </div>
-                <div>
-                  <h5 className="font-display font-bold text-[14px] md:text-[17px] text-gray-900 mb-1 leading-tight">{service.title}</h5>
-                  {service.desc && <p className="text-gray-500 text-[12px] md:text-sm font-medium leading-snug">{service.desc}</p>}
-                </div>
+      {/* ── 3. Split Block (Sticky left, list right) ── */}
+      <section className="py-12 md:py-16 bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            <div className="lg:col-span-5 relative">
+              <div className="lg:sticky lg:top-32">
+                <h3 className="text-[28px] md:text-[36px] font-extrabold text-gray-900 mb-6 leading-tight">
+                  Core <span className="text-[#013Ad6]">Capabilities</span>
+                </h3>
+                <p className="text-[18px] md:text-[20px] text-gray-700 mb-6 leading-relaxed">
+                  This approach has helped us build long-term relationships, with many clients returning to us for their next projects.
+                </p>
+                <p className="text-[18px] md:text-[20px] text-gray-700 mb-6 leading-relaxed">
+                  Today, we build e-commerce solutions, Shopify stores and apps, SaaS products, web and mobile applications, and custom software solutions for businesses in India and international markets.
+                </p>
+                <p className="text-[18px] md:text-[20px] text-gray-900 leading-relaxed font-bold">
+                  What sets us apart is the engineering discipline behind our products. That's what turns an idea into a scalable solution.
+                </p>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-12 pt-12 border-t border-gray-200">
-            <h3 className="font-display font-bold text-2xl text-center text-gray-900 mb-8">Technologies We Use</h3>
-            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {['React.js', 'Tailwind CSS', 'Laravel', 'Node.js', 'React Native', 'Flutter', 'MongoDB', 'MySQL', 'AWS', 'DigitalOcean', 'Firebase', 'Stripe', 'Razorpay', 'Meta & Google APIs'].map((tech, i) => (
-                <span key={i} className="px-5 py-2.5 bg-white border border-gray-200 rounded-full text-sm font-semibold text-gray-700 shadow-sm hover:border-[#013Ad6] hover:text-[#013Ad6] transition-colors cursor-default">
-                  {tech}
-                </span>
-              ))}
+            </div>
+            
+            <div className="lg:col-span-7">
+              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                <div className="bg-[#f8f9fa] px-6 py-4 border-b border-gray-200">
+                  <p className="text-lg font-bold text-gray-900 m-0">What We Build</p>
+                </div>
+                <ul className="divide-y divide-gray-200">
+                  <li className="px-6 py-5 flex flex-col sm:flex-row sm:justify-between sm:items-center hover:bg-gray-50 transition-colors">
+                    <span className="font-bold text-gray-900 text-[18px] mb-2 sm:mb-0">E-Commerce Solutions</span>
+                    <span className="text-gray-500 font-medium text-sm">Shopify · WooCommerce</span>
+                  </li>
+                  <li className="px-6 py-5 flex flex-col sm:flex-row sm:justify-between sm:items-center hover:bg-gray-50 transition-colors">
+                    <span className="font-bold text-gray-900 text-[18px] mb-2 sm:mb-0">Mobile App Development</span>
+                    <span className="text-gray-500 font-medium text-sm">React Native · Flutter</span>
+                  </li>
+                  <li className="px-6 py-5 flex flex-col sm:flex-row sm:justify-between sm:items-center hover:bg-gray-50 transition-colors">
+                    <span className="font-bold text-gray-900 text-[18px] mb-2 sm:mb-0">Web Application Development</span>
+                    <span className="text-gray-500 font-medium text-sm">React.js · Laravel · Node.js</span>
+                  </li>
+                  <li className="px-6 py-5 flex flex-col sm:flex-row sm:justify-between sm:items-center hover:bg-gray-50 transition-colors">
+                    <span className="font-bold text-gray-900 text-[18px] mb-2 sm:mb-0">SaaS Product Development</span>
+                    <span className="text-gray-500 font-medium text-sm">Scalable Platforms</span>
+                  </li>
+                  <li className="px-6 py-5 flex flex-col sm:flex-row sm:justify-between sm:items-center hover:bg-gray-50 transition-colors">
+                    <span className="font-bold text-gray-900 text-[18px] mb-2 sm:mb-0">Digital Marketing & Automation</span>
+                    <span className="text-gray-500 font-medium text-sm">Integrations</span>
+                  </li>
+                  <li className="px-6 py-5 flex flex-col sm:flex-row sm:justify-between sm:items-center hover:bg-gray-50 transition-colors">
+                    <span className="font-bold text-gray-900 text-[18px] mb-2 sm:mb-0">Custom Software Development</span>
+                    <span className="text-gray-500 font-medium text-sm">Enterprise Solutions</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-6 text-[20px] md:text-[42px]">
-            Let's Build Together
-          </h2>
-          <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            Whether you're a startup founder looking to bring your MVP to life or a business looking for a reliable tech partner—Task19 Technologies is here to take your vision from idea to launch.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-12">
-            <div className="flex flex-col items-center">
-              <span className="text-xs uppercase tracking-widest font-bold text-gray-400 mb-1">Email Us</span>
-              <a href="mailto:info@task19.com" className="font-bold text-lg hover:underline" style={{ color: '#013Ad6' }}>info@task19.com</a>
-            </div>
-            <div className="hidden sm:block w-px h-10 bg-gray-200"></div>
-            <div className="flex flex-col items-center">
-              <span className="text-xs uppercase tracking-widest font-bold text-gray-400 mb-1">Locations</span>
-              <span className="font-bold text-lg text-gray-900">Kochi & Calicut, Kerala</span>
-            </div>
+      {/* ── 4. Grid Block (Leadership - Premium) ── */}
+      <section className="py-12 md:py-16 bg-gray-50 border-b border-gray-200 relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-gradient-to-b from-blue-50/50 to-transparent opacity-70 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 md:px-8 max-w-[1400px] relative z-10">
+          <div className="text-center mb-16 md:mb-20">
+            <span className="text-[#013Ad6] font-bold tracking-widest uppercase text-sm mb-3 block">Our Team</span>
+            <h2 className="text-[32px] md:text-[44px] font-extrabold text-gray-900 mb-4 tracking-tight">Leadership</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Task19 Technologies is led by directors committed to innovation, engineering excellence, and sustainable growth.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center gap-2 bg-[#013Ad6] text-white px-10 py-4 rounded-full font-bold uppercase tracking-wide hover:bg-[#002B9E] transition-colors shadow-lg">
-            Start Your Project <ArrowRight className="w-5 h-5" />
-          </Link>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            
+            {/* Director 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,58,214,0.08)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-blue-50 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-700"></div>
+              
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#013Ad6] to-[#002B9E] text-white flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-shadow duration-500">
+                <span className="text-2xl font-display font-bold">A</span>
+              </div>
+              
+              <h4 className="text-[22px] md:text-[24px] font-bold text-gray-900 mb-2 group-hover:text-[#013Ad6] transition-colors duration-300">Afsal Kabeer</h4>
+              <p className="text-[13px] font-bold uppercase tracking-widest text-[#013Ad6] mb-5">CEO & Director</p>
+              
+              <div className="h-px w-12 bg-gray-200 mb-5 group-hover:w-full group-hover:bg-blue-100 transition-all duration-500"></div>
+              
+              <p className="text-gray-600 leading-relaxed text-[15px]">Guiding the overall vision and strategic direction of the company with a focus on product-market fit.</p>
+            </motion.div>
+
+            {/* Director 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,58,214,0.08)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-gray-50 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-700"></div>
+              
+              <div className="w-16 h-16 rounded-2xl bg-gray-900 text-white flex items-center justify-center mb-8 shadow-lg shadow-gray-900/10 group-hover:bg-gradient-to-br group-hover:from-[#013Ad6] group-hover:to-[#002B9E] group-hover:shadow-blue-500/40 transition-all duration-500">
+                <span className="text-2xl font-display font-bold">F</span>
+              </div>
+              
+              <h4 className="text-[22px] md:text-[24px] font-bold text-gray-900 mb-2 group-hover:text-[#013Ad6] transition-colors duration-300">Faizal Haneef</h4>
+              <p className="text-[13px] font-bold uppercase tracking-widest text-gray-500 group-hover:text-[#013Ad6] transition-colors duration-300 mb-5">Director</p>
+              
+              <div className="h-px w-12 bg-gray-200 mb-5 group-hover:w-full group-hover:bg-blue-100 transition-all duration-500"></div>
+              
+              <p className="text-gray-600 leading-relaxed text-[15px]">Driving operational excellence and ensuring that our development pipelines remain robust and efficient.</p>
+            </motion.div>
+
+            {/* Director 3 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,58,214,0.08)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-gray-50 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-700"></div>
+              
+              <div className="w-16 h-16 rounded-2xl bg-gray-900 text-white flex items-center justify-center mb-8 shadow-lg shadow-gray-900/10 group-hover:bg-gradient-to-br group-hover:from-[#013Ad6] group-hover:to-[#002B9E] group-hover:shadow-blue-500/40 transition-all duration-500">
+                <span className="text-2xl font-display font-bold">H</span>
+              </div>
+              
+              <h4 className="text-[22px] md:text-[24px] font-bold text-gray-900 mb-2 group-hover:text-[#013Ad6] transition-colors duration-300">Haris Haneefa</h4>
+              <p className="text-[13px] font-bold uppercase tracking-widest text-gray-500 group-hover:text-[#013Ad6] transition-colors duration-300 mb-5">Director</p>
+              
+              <div className="h-px w-12 bg-gray-200 mb-5 group-hover:w-full group-hover:bg-blue-100 transition-all duration-500"></div>
+              
+              <p className="text-gray-600 leading-relaxed text-[15px]">Overseeing technological innovation and building the engineering disciplines that power our solutions.</p>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. Final Concluding Block ── */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="flex justify-center mb-6">
+            <h2 className="text-[32px] md:text-[40px] font-bold text-center leading-tight text-gray-900 max-w-3xl">
+              Deliver value, earn trust, and build relationships <span className="text-[#013Ad6]">that last.</span>
+            </h2>
+          </div>
+          <div className="flex justify-center mb-10">
+            <div className="w-16 h-1 bg-[#013Ad6]"></div>
+          </div>
+          <div className="text-center">
+            <p className="text-[20px] md:text-[24px] text-gray-700 font-medium leading-relaxed max-w-4xl mx-auto mb-10">
+              We have come a long way by learning, building, and evolving—and we continue with the same principle we started with.
+            </p>
+            <Link to="/contact" className="inline-block bg-[#013Ad6] hover:bg-[#002B9E] !text-white px-10 py-4 rounded font-bold transition-all text-[18px] shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-300">
+              Start Your Project
+            </Link>
+          </div>
         </div>
       </section>
     </div>
