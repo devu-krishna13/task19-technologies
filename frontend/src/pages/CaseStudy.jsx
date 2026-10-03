@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { CheckCircle, ArrowLeft, ExternalLink, Quote } from 'lucide-react'
 import { portfolioItems } from '../constants/data'
@@ -11,10 +11,11 @@ export default function CaseStudy() {
 
   return (
     <>
-      <Helmet>
-        <title>{item.title} Case Study — Task19 Technologies</title>
-        <meta name="description" content={item.shortDesc} />
-      </Helmet>
+      <SEO 
+        title="{item.title} Case Study — Task19 Technologies"
+        description=""
+        canonical="https://www.task19.com/casestudy"
+      />
 
       {/* ═══ XICOM-INSPIRED SPLIT HERO ═══ */}
       <section className="relative overflow-hidden bg-primary pt-32 pb-16 md:pt-40 md:pb-24 flex items-center min-h-[90svh] md:min-h-[700px]">

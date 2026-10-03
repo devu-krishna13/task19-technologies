@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import BlogCard from '../components/ui/BlogCard'
@@ -102,10 +102,11 @@ export default function Blog() {
 
   return (
     <>
-      <Helmet>
-        <title>Blog & Insights — Task19 Technologies</title>
-        <meta name="description" content="Expert insights on e-commerce development, Shopify optimization, digital transformation, and technology trends from the Task19 Technologies team." />
-      </Helmet>
+      <SEO 
+        title="Blog & Insights — Task19 Technologies"
+        description="Expert insights on e-commerce development, Shopify optimization, digital transformation, and technology trends from the Task19 Technologies team."
+        canonical="https://www.task19.com/blog"
+      />
 
       {/* Hero */}
       <PageHero

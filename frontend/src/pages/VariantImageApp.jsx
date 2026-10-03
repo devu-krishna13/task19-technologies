@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -36,10 +36,11 @@ export default function VariantImageApp() {
 
   return (
     <div className="bg-[#f6f6f7] text-[#202223] font-sans antialiased overflow-x-hidden">
-      <Helmet>
-        <title>Task19 Variant Image Manager - Product Variant Images for Shopify</title>
-        <meta name="description" content="Create stunning variant-specific image galleries for your Shopify store. Show customers exactly what they're getting with dynamic product images." />
-      </Helmet>
+      <SEO 
+        title="Task19 Variant Image Manager - Product Variant Images for Shopify"
+        description="Create stunning variant-specific image galleries for your Shopify store. Show customers exactly what they're getting with dynamic product images."
+        canonical="https://www.task19.com/variantimageapp"
+      />
 
       {/* Hero Section */}
       <section className="relative border-b border-[#e1e3e5] pt-24 lg:pt-32 pb-16 lg:pb-24 px-6 text-center overflow-hidden bg-white">

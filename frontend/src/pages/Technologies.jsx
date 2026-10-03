@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import SectionHeading from '../components/ui/SectionHeading'
 import { technologies, techCategories } from '../constants/data'
@@ -13,10 +13,11 @@ export default function Technologies() {
 
   return (
     <>
-      <Helmet>
-        <title>Technologies We Use — Task19 Technologies</title>
-        <meta name="description" content="Explore the modern technology stack Task19 Technologies uses to build high-performance web, mobile, cloud, and AI solutions." />
-      </Helmet>
+      <SEO 
+        title="Technologies We Use — Task19 Technologies"
+        description="Explore the modern technology stack Task19 Technologies uses to build high-performance web, mobile, cloud, and AI solutions."
+        canonical="https://www.task19.com/technologies"
+      />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[500px] h-[100svh] md:h-[60vh] md:min-h-[500px] flex items-center">

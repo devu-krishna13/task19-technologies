@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, CheckCircle } from 'lucide-react'
@@ -116,11 +116,11 @@ export default function ShopifyApps() {
 
   return (
     <>
-      <Helmet>
-        <title>Shopify Apps by Task19 Technologies — App Store</title>
-        <meta name="description" content="Shopify apps built by Task19 Technologies: Profit Saver Loyalty, Page Booster, MarginMate Custom Pricing, and Variant Image Manager." />
-        <link rel="canonical" href="https://task19.com/shopify-apps" />
-      </Helmet>
+      <SEO 
+        title="Shopify Apps by Task19 Technologies — App Store"
+        description="Shopify apps built by Task19 Technologies: Profit Saver Loyalty, Page Booster, MarginMate Custom Pricing, and Variant Image Manager."
+        canonical="https://www.task19.com/apps"
+      />
 
       {/* ── Page Hero ── */}
       <PageHero

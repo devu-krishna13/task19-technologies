@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowRight, Trophy, Star, Award, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -42,9 +42,11 @@ const awardsData = [
 export default function Awards() {
   return (
     <div className="bg-[#FFFFFF] min-h-screen">
-      <Helmet>
-        <title>Awards & Recognitions — Task19 Technologies</title>
-      </Helmet>
+      <SEO 
+        title="Awards & Recognitions — Task19 Technologies"
+        description=""
+        canonical="https://www.task19.com/awards"
+      />
       
       {/* ── Hero Section ── */}
       <PageHero

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
@@ -30,13 +30,11 @@ const sections = [
 export default function Terms() {
   return (
     <div className="bg-white min-h-screen">
-      <Helmet>
-        <title>Terms of Service — Task19 Technologies</title>
-        <meta
-          name="description"
-          content="Read the Task19 Technologies terms of service for website use, proposals, intellectual property, and general limitations."
-        />
-      </Helmet>
+      <SEO 
+        title="Terms of Service — Task19 Technologies"
+        description="Read the Task19 Technologies terms of service for website use, proposals, intellectual property, and general limitations."
+        canonical="https://www.task19.com/terms"
+      />
 
       {/* ── Hero Section ── */}
       <PageHero

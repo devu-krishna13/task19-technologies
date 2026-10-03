@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle } from 'lucide-react'
@@ -25,10 +25,11 @@ export default function ServicePageTemplate({
 }) {
   return (
     <>
-      <Helmet>
-        <title>{metaTitle}</title>
-        <meta name="description" content={metaDesc} />
-      </Helmet>
+      <SEO 
+        title="{metaTitle}"
+        description=""
+        canonical="https://www.task19.com/servicepagetemplate"
+      />
 
       {/* ── Page Hero ── */}
       <PageHero

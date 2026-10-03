@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Briefcase, Layers, FileText, HelpCircle } from 'lucide-react'
@@ -57,13 +57,11 @@ const sections = [
 export default function Sitemap() {
   return (
     <div className="bg-white min-h-screen">
-      <Helmet>
-        <title>Sitemap — Task19 Technologies</title>
-        <meta
-          name="description"
-          content="Browse the sitemap for Task19 Technologies and navigate quickly to our services, portfolio, blog, and legal pages."
-        />
-      </Helmet>
+      <SEO 
+        title="Sitemap — Task19 Technologies"
+        description="Browse the sitemap for Task19 Technologies and navigate quickly to our services, portfolio, blog, and legal pages."
+        canonical="https://www.task19.com/sitemap"
+      />
 
       {/* ── Hero Section ── */}
       <section className="relative overflow-hidden bg-primary hero-section-wrapper min-h-[400px] h-[50svh] flex items-center">

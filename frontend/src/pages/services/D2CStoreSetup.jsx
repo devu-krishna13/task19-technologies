@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Zap, Shield, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,10 +26,11 @@ const features = [
 export default function D2CStoreSetup() {
   return (
     <>
-      <Helmet>
-        <title>Shopify D2C Setup & Strategy — Task19 Technologies</title>
-        <meta name="description" content="We architect and build high-performing Shopify stores from the ground up for D2C brands." />
-      </Helmet>
+      <SEO 
+        title="Shopify D2C Setup & Strategy — Task19 Technologies"
+        description="We architect and build high-performing Shopify stores from the ground up for D2C brands."
+        canonical="https://www.task19.com/d2cstoresetup"
+      />
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-20 overflow-hidden bg-primary">

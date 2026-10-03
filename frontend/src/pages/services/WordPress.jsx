@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, LayoutTemplate, Shield, Zap, Search, Code, Smartphone, Database, Lock } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -46,10 +46,11 @@ export default function WordPress() {
 
   return (
     <>
-      <Helmet>
-        <title>Custom WordPress Development Agency | Task19 Technologies</title>
-        <meta name="description" content="Expert WordPress development agency specializing in custom theme design, headless WordPress, WooCommerce solutions, and high-performance scalability." />
-      </Helmet>
+      <SEO 
+        title="Custom WordPress Development Agency | Task19 Technologies"
+        description="Expert WordPress development agency specializing in custom theme design, headless WordPress, WooCommerce solutions, and high-performance scalability."
+        canonical="https://www.task19.com/wordpress"
+      />
 
       {/* Hero Section */}
       <PageHero

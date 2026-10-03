@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../components/SEO'
 import { motion } from 'framer-motion'
 import { ArrowRight, Code, Layers, Smartphone, Globe, Cloud, Briefcase } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -7,10 +7,18 @@ import PageHero from '../components/ui/PageHero'
 export default function About() {
   return (
     <div className="bg-white min-h-screen">
-      <Helmet>
-        <title>About Us — Task19 Technologies</title>
-        <meta name="description" content="Founded in 2017, Task19 Technologies is a dynamic software development company specializing in scalable SaaS, mobile apps, and custom software." />
-      </Helmet>
+      <SEO 
+        title="About Us — Task19 Technologies"
+        description="Founded in 2017, Task19 Technologies is a dynamic software development company specializing in scalable SaaS, mobile apps, and custom software."
+        canonical="https://www.task19.com/about"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About Task19 Technologies",
+          "description": "Founded in 2017, Task19 Technologies is a dynamic software development company specializing in scalable SaaS, mobile apps, and custom software.",
+          "url": "https://www.task19.com/about"
+        }}
+      />
 
       {/* ── Hero Section ── */}
       <PageHero

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom'
 import PageHero from '../components/ui/PageHero'
 import { portfolioItems } from '../constants/data'
@@ -24,11 +24,11 @@ export default function Portfolio() {
 
   return (
     <>
-      <Helmet>
-        <title>Recent Portfolio — Task19 Technologies</title>
-        <meta name="description" content="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries." />
-        <link rel="canonical" href="https://task19.com/portfolio" />
-      </Helmet>
+      <SEO 
+        title="Recent Portfolio — Task19 Technologies"
+        description="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries."
+        canonical="https://www.task19.com/portfolio"
+      />
 
       {/* ── Page Hero ── */}
       <PageHero

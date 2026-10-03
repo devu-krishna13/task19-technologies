@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import PageHero from '../components/ui/PageHero'
@@ -143,11 +143,11 @@ export default function Services() {
 
   return (
     <>
-      <Helmet>
-        <title>Our Services — Task19 Technologies</title>
-        <meta name="description" content="Expert development services including Custom WordPress, Shopify E-Commerce, and bespoke Custom Software Development. Delivered by Task19 Technologies." />
-        <link rel="canonical" href="https://task19.com/services" />
-      </Helmet>
+      <SEO 
+        title="Our Services — Task19 Technologies"
+        description="Expert development services including Custom WordPress, Shopify E-Commerce, and bespoke Custom Software Development. Delivered by Task19 Technologies."
+        canonical="https://www.task19.com/services"
+      />
 
       <PageHero 
         badgeText="Premium Digital Agency"

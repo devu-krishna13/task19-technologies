@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -7,9 +7,11 @@ import PageHero from '../components/ui/PageHero'
 export default function Feedback() {
   return (
     <div className="bg-[#FFFFFF] min-h-screen">
-      <Helmet>
-        <title>Submit Feedback — Task19 Technologies</title>
-      </Helmet>
+      <SEO 
+        title="Submit Feedback — Task19 Technologies"
+        description=""
+        canonical="https://www.task19.com/feedback"
+      />
       
       {/* ── Hero Section ── */}
       <PageHero

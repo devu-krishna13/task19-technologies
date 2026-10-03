@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Loader2, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -61,11 +61,11 @@ export default function Contact() {
 
   return (
     <div className="bg-[#FFFFFF] min-h-screen overflow-hidden selection:bg-[#4859F4] selection:text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      <Helmet>
-        <title>Contact Us — Task19 Technologies</title>
-        <meta name="description" content="Get in touch with Task19 Technologies. Let's start a conversation about your next digital product." />
-        <link rel="canonical" href="https://task19.com/contact" />
-      </Helmet>
+      <SEO 
+        title="Contact Us — Task19 Technologies"
+        description="Get in touch with Task19 Technologies. Let's start a conversation about your next digital product."
+        canonical="https://www.task19.com/contact"
+      />
 
       {/* ── Hero Section ── */}
       <PageHero

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, Cpu, Smartphone, Blocks } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,10 +26,11 @@ const features = [
 export default function ShopifyApps() {
   return (
     <>
-      <Helmet>
-        <title>Custom Shopify App Development — Task19 Technologies</title>
-        <meta name="description" content="Create custom apps when standard integrations fall short. From private automations to public SaaS apps." />
-      </Helmet>
+      <SEO 
+        title="Custom Shopify App Development — Task19 Technologies"
+        description="Create custom apps when standard integrations fall short. From private automations to public SaaS apps."
+        canonical="https://www.task19.com/shopifyapps"
+      />
 
       {/* Hero Section */}
       <PageHero

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code2, Server, Database, Smartphone, Cloud, Layers } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -46,10 +46,11 @@ export default function CustomDevelopment() {
 
   return (
     <>
-      <Helmet>
-        <title>Custom Software Development & SaaS | Task19 Technologies</title>
-        <meta name="description" content="Bespoke software development agency specializing in scalable web apps, SaaS platforms, API integrations, and cross-platform mobile development." />
-      </Helmet>
+      <SEO 
+        title="Custom Software Development & SaaS | Task19 Technologies"
+        description="Bespoke software development agency specializing in scalable web apps, SaaS platforms, API integrations, and cross-platform mobile development."
+        canonical="https://www.task19.com/customdevelopment"
+      />
 
       {/* Hero Section */}
       <PageHero

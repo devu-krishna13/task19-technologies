@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, RefreshCw, Database, Lock, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,10 +26,11 @@ const features = [
 export default function WooCommerceMigration() {
   return (
     <>
-      <Helmet>
-        <title>WooCommerce Development & Migration — Task19 Technologies</title>
-        <meta name="description" content="Build secure WooCommerce environments or migrate seamlessly with zero downtime." />
-      </Helmet>
+      <SEO 
+        title="WooCommerce Development & Migration — Task19 Technologies"
+        description="Build secure WooCommerce environments or migrate seamlessly with zero downtime."
+        canonical="https://www.task19.com/woocommercemigration"
+      />
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-20 overflow-hidden bg-primary">

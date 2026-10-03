@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
@@ -34,13 +34,11 @@ const sections = [
 export default function PrivacyPolicy() {
   return (
     <div className="bg-white min-h-screen">
-      <Helmet>
-        <title>Privacy Policy — Task19 Technologies</title>
-        <meta
-          name="description"
-          content="Read the privacy policy for Task19 Technologies and how we collect, use, and protect information shared with us."
-        />
-      </Helmet>
+      <SEO 
+        title="Privacy Policy — Task19 Technologies"
+        description="Read the privacy policy for Task19 Technologies and how we collect, use, and protect information shared with us."
+        canonical="https://www.task19.com/privacypolicy"
+      />
 
       {/* ── Hero Section ── */}
       <PageHero

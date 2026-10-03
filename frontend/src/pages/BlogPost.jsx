@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react'
 import BlogCard from '../components/ui/BlogCard'
@@ -112,13 +112,11 @@ export default function BlogPost() {
 
   return (
     <>
-      <Helmet>
-        <title>{post.title} — Task19 Technologies Blog</title>
-        <meta name="description" content={post.excerpt} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.image} />
-      </Helmet>
+      <SEO 
+        title="{post.title} — Task19 Technologies Blog"
+        description=""
+        canonical="https://www.task19.com/blogpost"
+      />
 
       <section className="pt-40 pb-24 section-dark bg-grid-pattern">
         <div className="container">

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { MapPin, Clock, Briefcase, ChevronRight } from 'lucide-react'
@@ -28,10 +28,11 @@ const careerFaqs = [
 export default function Careers() {
   return (
     <>
-      <Helmet>
-        <title>Careers at Task19 Technologies — Join Our Team</title>
-        <meta name="description" content="Join Task19 Technologies and build your career in e-commerce, web development, mobile apps, AI, and digital transformation. Current openings in Ernakulam, Kerala." />
-      </Helmet>
+      <SEO 
+        title="Careers at Task19 Technologies — Join Our Team"
+        description="Join Task19 Technologies and build your career in e-commerce, web development, mobile apps, AI, and digital transformation. Current openings in Ernakulam, Kerala."
+        canonical="https://www.task19.com/careers"
+      />
 
       {/* Hero */}
       <PageHero

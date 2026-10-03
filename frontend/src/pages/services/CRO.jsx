@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, Activity, TrendingUp, Users, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,10 +26,11 @@ const features = [
 export default function CRO() {
   return (
     <>
-      <Helmet>
-        <title>Shopify Customization & CRO Strategy — Task19 Technologies</title>
-        <meta name="description" content="Transform an underperforming store into a conversion engine. We audit, redesign, and optimize your storefront." />
-      </Helmet>
+      <SEO 
+        title="Shopify Customization & CRO Strategy — Task19 Technologies"
+        description="Transform an underperforming store into a conversion engine. We audit, redesign, and optimize your storefront."
+        canonical="https://www.task19.com/cro"
+      />
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-20 overflow-hidden bg-primary">

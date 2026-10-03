@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import PageHero from '../components/ui/PageHero'
@@ -38,10 +38,11 @@ const productsData = [
 export default function Products() {
   return (
     <div className="bg-[#FFFFFF] min-h-screen overflow-hidden selection:bg-[#4859F4] selection:text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      <Helmet>
-        <title>Our Products — Task19 Technologies</title>
-        <meta name="description" content="Explore our premium digital products: Batchwise, GoSlot Store, and Vespr." />
-      </Helmet>
+      <SEO 
+        title="Our Products — Task19 Technologies"
+        description="Explore our premium digital products: Batchwise, GoSlot Store, and Vespr."
+        canonical="https://www.task19.com/products"
+      />
 
       {/* ── Page Hero ── */}
       <PageHero

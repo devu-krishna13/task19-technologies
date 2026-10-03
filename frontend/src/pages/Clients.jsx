@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -8,9 +8,11 @@ import PageHero from '../components/ui/PageHero'
 export default function Clients() {
   return (
     <div className="bg-[#FFFFFF] min-h-screen">
-      <Helmet>
-        <title>Our Clients — Task19 Technologies</title>
-      </Helmet>
+      <SEO 
+        title="Our Clients — Task19 Technologies"
+        description=""
+        canonical="https://www.task19.com/clients"
+      />
       
       {/* ── Hero Section ── */}
       <PageHero

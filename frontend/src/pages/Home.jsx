@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../components/SEO'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -278,11 +278,24 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Helmet>
-        <title>Task19 Technologies — Shopify & E-Commerce Development Experts</title>
-        <meta name="description" content="Task19 Technologies is a leading Shopify & WooCommerce development agency. We build high-performance e-commerce stores, custom Shopify apps, and digital solutions that drive revenue." />
-        <link rel="canonical" href="https://task19.com" />
-      </Helmet>
+      <SEO 
+        title="Task19 Technologies — Shopify & E-Commerce Development Experts"
+        description="Task19 Technologies is a leading Shopify & WooCommerce development agency. We build high-performance e-commerce stores, custom Shopify apps, and digital solutions that drive revenue."
+        canonical="https://www.task19.com"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Task19 Technologies",
+          "url": "https://www.task19.com",
+          "logo": "https://www.task19.com/favicon.svg",
+          "description": "Premier digital transformation partner delivering enterprise web development, mobile apps, cloud solutions, and AI-powered innovation.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-9495147819",
+            "contactType": "customer service"
+          }
+        }}
+      />
 
       {/* ═══ STATIC HERO ═══ */}
       <section className="relative flex items-center justify-center overflow-hidden min-h-[80vh] bg-gradient-to-br from-gray-50 via-white to-gray-100">

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion'
 import { CheckCircle, ArrowRight } from 'lucide-react'
 import Button from './ui/Button'
@@ -15,11 +15,11 @@ export default function ServicePageTemplate({ service }) {
 
   return (
     <>
-      <Helmet>
-        <title>{service.title} — Task19 Technologies</title>
-        <meta name="description" content={service.overview?.slice(0, 155)} />
-        <link rel="canonical" href={`https://task19.com${service.to}`} />
-      </Helmet>
+      <SEO 
+        title="{service.title} — Task19 Technologies"
+        description=""
+        canonical="https://www.task19.com/servicepagetemplate"
+      />
 
       {/* Hero */}
       <section className="pt-40 pb-24 section-dark bg-grid-pattern relative overflow-hidden">

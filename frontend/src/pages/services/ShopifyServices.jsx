@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShoppingCart, TrendingUp, Layers, Settings, Globe, BarChart } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -46,10 +46,11 @@ export default function ShopifyServices() {
 
   return (
     <>
-      <Helmet>
-        <title>Shopify Plus & E-Commerce Development | Task19 Technologies</title>
-        <meta name="description" content="Expert Shopify development agency specializing in custom D2C themes, Headless commerce, CRO, and seamless store migrations." />
-      </Helmet>
+      <SEO 
+        title="Shopify Plus & E-Commerce Development | Task19 Technologies"
+        description="Expert Shopify development agency specializing in custom D2C themes, Headless commerce, CRO, and seamless store migrations."
+        canonical="https://www.task19.com/shopifyservices"
+      />
 
       {/* Hero Section */}
       <PageHero
