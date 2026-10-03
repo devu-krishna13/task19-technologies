@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowRight, Star, ExternalLink, ShoppingBag, BarChart3, Layers, Zap, CheckCircle } from 'lucide-react'

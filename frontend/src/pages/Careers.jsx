@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { MapPin, Clock, Briefcase, ChevronRight } from 'lucide-react'

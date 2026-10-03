@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Loader2, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'

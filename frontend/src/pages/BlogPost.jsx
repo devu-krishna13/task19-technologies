@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react'
 import BlogCard from '../components/ui/BlogCard'

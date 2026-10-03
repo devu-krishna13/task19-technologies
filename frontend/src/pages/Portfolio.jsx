@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom'
 import PageHero from '../components/ui/PageHero'
 import { portfolioItems } from '../constants/data'

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import SectionHeading from '../components/ui/SectionHeading'
 import { technologies, techCategories } from '../constants/data'

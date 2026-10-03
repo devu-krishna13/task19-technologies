@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { CheckCircle, ArrowLeft, ExternalLink, Quote } from 'lucide-react'
 import { portfolioItems } from '../constants/data'

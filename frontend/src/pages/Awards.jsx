@@ -1,5 +1,5 @@
 import React from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowRight, Trophy, Star, Award, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'

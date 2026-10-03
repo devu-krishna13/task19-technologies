@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import PageHero from '../components/ui/PageHero'

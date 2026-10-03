@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO';
+import SEO from '../SEO';
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle } from 'lucide-react'

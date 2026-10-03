@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { CheckCircle, Shield, Settings, Users, Database, LayoutDashboard, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';

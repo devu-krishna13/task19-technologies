@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import BlogCard from '../components/ui/BlogCard'

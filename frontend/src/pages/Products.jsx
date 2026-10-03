@@ -1,5 +1,5 @@
 import React from 'react'
-import SEO from '../../components/SEO';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import PageHero from '../components/ui/PageHero'

@@ -31,8 +31,8 @@ async function prerender() {
     res.sendFile(path.resolve(DIST_DIR, 'index.html'));
   });
 
-  const server = app.listen(PORT, () => {
-    console.log(`Prerender server running on port ${PORT}`);
+  const server = app.listen(PORT, '127.0.0.1', () => {
+    console.log(`Prerender server running on http://127.0.0.1:${PORT}`);
   });
 
   // 2. Launch Puppeteer
@@ -42,7 +42,7 @@ async function prerender() {
   // 3. Visit each route and save HTML
   for (const route of routes) {
     console.log(`Prerendering ${route}...`);
-    await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0' });
+    await page.goto(`http://127.0.0.1:${PORT}${route}`, { waitUntil: 'networkidle2', timeout: 60000 });
     
     // Wait an extra second to ensure any API calls (like fetching blogs) finish
     await new Promise(resolve => setTimeout(resolve, 1000));
