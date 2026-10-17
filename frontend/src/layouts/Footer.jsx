@@ -11,6 +11,7 @@ const companyLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Services', to: '/services' },
   { label: 'Products', to: '/products' },
+  { label: 'Shopify Apps', to: '/shopify-apps' },
   { label: 'Works', to: '/portfolio' },
   { label: 'Careers', to: '/careers' },
   { label: 'Contact Us', to: '/contact' },

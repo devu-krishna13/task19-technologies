@@ -43,8 +43,8 @@ export default function ProfitSaverApp() {
     <div className="bg-[#f6f6f7] text-[#202223] font-sans antialiased overflow-x-hidden">
       <SEO 
         title="Profit Saver – 7-Tier Voucher Rewards for Shopify"
-        description=""
-        canonical="https://www.task19.com/profitsaverapp"
+        description="Automatically issue tiered discount vouchers when customers place orders. Zero complexity loyalty rewards with strict merchant budget caps."
+        canonical="https://www.task19.com/shopify-apps/profit-saver"
       />
 
       {/* Hero Section */}
@@ -68,7 +68,7 @@ export default function ProfitSaverApp() {
             <a href="https://apps.shopify.com/7-tier-loyalty" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-sm text-[15px]" style={{ color: '#ffffff' }}>
               Add to Shopify — Free to install
             </a>
-            <a href="https://tierloyaltycommon.task19.com/installation-guide" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
+            <a href="https://tierloyaltycommon.task19.com/installation-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
               See How It Works
             </a>
           </div>
@@ -317,7 +317,7 @@ export default function ProfitSaverApp() {
           <a href="https://apps.shopify.com/7-tier-loyalty" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]" style={{ color: '#ffffff' }}>
             Add to Shopify — Free to install
           </a>
-          <a href="https://tierloyaltycommon.task19.com/installation-guide" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
+          <a href="https://tierloyaltycommon.task19.com/installation-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
             View Install Guide
           </a>
         </div>

@@ -15,7 +15,13 @@ const staticPages = [
   '/services',
   '/portfolio',
   '/contact',
-  '/blog'
+  '/blog',
+  '/shopify-apps',
+  '/shopify-apps/profit-saver',
+  '/shopify-apps/page-booster',
+  '/shopify-apps/marginmate',
+  '/shopify-apps/variant-image',
+  '/shopify-apps/section-kit'
 ];
 
 async function generateSitemap() {

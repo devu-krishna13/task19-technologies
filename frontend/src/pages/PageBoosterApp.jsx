@@ -9,27 +9,27 @@ import 'swiper/css/pagination';
 
 const showcaseItems = [
   {
-    src: 'https://productdiscount.task19.com/screenshots/coupons.webp',
+    src: '/productdiscount/coupons.webp',
     title: 'Smart Coupons',
     desc: 'Beautiful, native discount widgets that drive urgency.',
   },
   {
-    src: 'https://productdiscount.task19.com/screenshots/delivery.webp',
+    src: '/productdiscount/delivery.webp',
     title: 'Delivery Dates',
     desc: 'Build trust with precise delivery estimates.',
   },
   {
-    src: 'https://productdiscount.task19.com/screenshots/bundles.webp',
+    src: '/productdiscount/bundles.webp',
     title: 'Product Bundles',
     desc: 'Increase AOV with seamless product groupings.',
   },
   {
-    src: 'https://productdiscount.task19.com/screenshots/ai_features.webp',
+    src: '/productdiscount/ai_features.webp',
     title: 'AI Feature Generator',
     desc: 'Automated benefit extraction from descriptions.',
   },
   {
-    src: 'https://productdiscount.task19.com/screenshots/home.webp',
+    src: '/productdiscount/home.webp',
     title: 'Admin Cockpit',
     desc: 'Manage everything from a sleek Polaris dashboard.',
   }
@@ -44,7 +44,7 @@ export default function PageBoosterApp() {
       <SEO 
         title="Page Booster: Product Blocks | Task19 Technologies"
         description="Show product-specific discount codes, delivery dates, product bundles, and AI-generated product features that build trust and drive sales on your Shopify store."
-        canonical="https://www.task19.com/pageboosterapp"
+        canonical="https://www.task19.com/shopify-apps/page-booster"
       />
 
       {/* Hero Section */}
@@ -67,7 +67,7 @@ export default function PageBoosterApp() {
             <a href="https://apps.shopify.com/product-discount-3" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-sm text-[15px]" style={{ color: '#ffffff' }}>
               Add to Shopify — It's Free
             </a>
-            <a href="https://productdiscount.task19.com/installation-guide" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
+            <a href="https://productdiscount.task19.com/installation-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
               See How It Works
             </a>
           </div>
@@ -99,8 +99,8 @@ export default function PageBoosterApp() {
           <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[12px] font-semibold bg-[#e3f1ed] text-[#008060] mb-3">
             How It Works
           </span>
-          <h3 className="text-[20px] font-[700] text-[#202223] mb-2">Rewards on autopilot</h3>
-          <p className="text-[15px] text-[#6d7175]">Three steps. No manual work after setup.</p>
+          <h3 className="text-[20px] font-[700] text-[#202223] mb-2">Boost conversions in 3 easy steps</h3>
+          <p className="text-[15px] text-[#6d7175]">Simple setup to make your product pages sell more.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -182,19 +182,19 @@ export default function PageBoosterApp() {
             className="w-full h-full pb-12 px-2"
           >
             {showcaseItems.map((item, index) => (
-              <SwiperSlide key={index} className="h-auto">
+              <SwiperSlide key={index} className="!h-auto flex">
                 <div 
-                  className="flex flex-col h-full bg-[#f9fafb] border border-[#e1e3e5] rounded-[12px] overflow-hidden group cursor-zoom-in hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all"
+                  className="flex flex-col w-full h-full bg-[#f9fafb] border border-[#e1e3e5] rounded-[12px] overflow-hidden group cursor-zoom-in hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all"
                   onClick={() => {
                     setActiveItem(item);
                     setLightboxOpen(true);
                   }}
                 >
-                  <div className="p-4 border-b border-[#e1e3e5] bg-[#f1f2f3] flex items-center justify-center aspect-[4/3] overflow-hidden relative">
+                  <div className="w-full aspect-[4/3] bg-[#f1f2f3] border-b border-[#e1e3e5] relative overflow-hidden flex items-center justify-center">
                     <img 
                       src={item.src} 
                       alt={item.title} 
-                      className="max-w-full max-h-full rounded shadow-[0_1px_3px_rgba(0,0,0,0.1)] object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                       <span className="bg-black/80 text-white px-3.5 py-1.5 rounded-full text-[12px] font-semibold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-300">
@@ -202,9 +202,9 @@ export default function PageBoosterApp() {
                       </span>
                     </div>
                   </div>
-                  <div className="p-5 flex-grow bg-white">
-                    <h5 className="text-[16px] font-bold text-[#202223] mb-2">{item.title}</h5>
-                    <p className="text-[13px] text-[#6d7175] leading-relaxed">{item.desc}</p>
+                  <div className="p-5 flex flex-col flex-grow bg-white min-h-[110px]">
+                    <h5 className="text-[16px] font-bold text-[#202223] mb-2 leading-snug">{item.title}</h5>
+                    <p className="text-[13px] text-[#6d7175] leading-relaxed flex-grow">{item.desc}</p>
                   </div>
                 </div>
               </SwiperSlide>
@@ -240,7 +240,7 @@ export default function PageBoosterApp() {
           <a href="https://apps.shopify.com/product-discount-3" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]" style={{ color: '#ffffff' }}>
             Add to Shopify — Free to install
           </a>
-          <a href="https://productdiscount.task19.com/installation-guide" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
+          <a href="https://productdiscount.task19.com/installation-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
             View Install Guide
           </a>
         </div>

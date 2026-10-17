@@ -49,7 +49,7 @@ export default function MarginMateApp() {
       <SEO 
         title="MarginMate Custom Pricing – Shopify App"
         description="High-performance custom pricing and automated loyalty rewards for Shopify merchants."
-        canonical="https://www.task19.com/marginmateapp"
+        canonical="https://www.task19.com/shopify-apps/marginmate"
       />
 
       {/* Hero Section */}
@@ -60,7 +60,7 @@ export default function MarginMateApp() {
         />
         <div className="relative z-10 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-[#e3f1ed] text-[#008060] border border-[#95c9b4] rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide uppercase mb-6 shadow-sm">
-            ✦ BUILD FOR YOUR CUSTOMERS
+            ✦ Built for Shopify Merchants
           </div>
           <h1 className="text-[36px] md:text-[44px] font-[700] leading-[1.2] tracking-tight text-[#202223] mb-5">
             Custom Pricing & <span className="text-[#008060]">Loyalty Rewards</span> Made Simple
@@ -72,7 +72,7 @@ export default function MarginMateApp() {
             <a href="https://apps.shopify.com/custom-pricing-and-loyalty" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-sm text-[15px]" style={{ color: '#ffffff' }}>
               Add to Shopify — It's Free
             </a>
-            <a href="https://custompricing.task19.com/installation" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
+            <a href="https://custompricing.task19.com/installation" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
               See How It Works
             </a>
           </div>
@@ -95,6 +95,31 @@ export default function MarginMateApp() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="max-w-[1200px] mx-auto px-6 py-16">
+        <div className="mb-10 text-center max-w-2xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[12px] font-semibold bg-[#e3f1ed] text-[#008060] mb-3">
+            How It Works
+          </span>
+          <h3 className="text-[20px] font-[700] text-[#202223] mb-2">Automated custom pricing in 3 steps</h3>
+          <p className="text-[15px] text-[#6d7175]">Create custom customer tiers and pricing rules in minutes.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { icon: '🏷️', title: '1. Create Customer Tiers', desc: 'Define your VIP, Wholesale, or Member tiers and assign customer tags automatically or manually.' },
+            { icon: '⚡', title: '2. Set Discount Rules', desc: 'Choose percentage, fixed price, or volume-tier rules across your entire catalog or specific collections.' },
+            { icon: '🛍️', title: '3. Automatic Storefront Sync', desc: 'Eligible customers see their personalized prices automatically upon login across your entire store.' }
+          ].map((item, i) => (
+            <div key={i} className="bg-white rounded-[12px] shadow-[0_1px_3px_0_rgba(63,63,68,0.15),_0_0_0_1px_rgba(63,63,68,0.05)] border border-[#e1e3e5] p-6">
+              <div className="text-[32px] mb-4">{item.icon}</div>
+              <h5 className="text-[16px] font-bold mb-2 text-[#202223]">{item.title}</h5>
+              <p className="text-[13px] text-[#6d7175] leading-[1.6]">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -218,7 +243,7 @@ export default function MarginMateApp() {
           <a href="https://apps.shopify.com/custom-pricing-and-loyalty" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]" style={{ color: '#ffffff' }}>
             Add to Shopify — Free to install
           </a>
-          <a href="https://custompricing.task19.com/installation" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
+          <a href="https://custompricing.task19.com/installation" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
             View Install Guide
           </a>
         </div>

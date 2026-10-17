@@ -14,7 +14,13 @@ const routes = [
   '/services',
   '/contact',
   '/blog',
-  '/portfolio'
+  '/portfolio',
+  '/shopify-apps',
+  '/shopify-apps/profit-saver',
+  '/shopify-apps/page-booster',
+  '/shopify-apps/marginmate',
+  '/shopify-apps/variant-image',
+  '/shopify-apps/section-kit'
 ];
 
 const PORT = 5177;
@@ -36,29 +42,43 @@ async function prerender() {
   });
 
   // 2. Launch Puppeteer
-  const browser = await puppeteer.launch({ headless: 'new' });
+  let browser;
+  try {
+    browser = await puppeteer.launch({ 
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+  } catch (launchErr) {
+    console.warn('Could not launch puppeteer, skipping prerender:', launchErr.message);
+    server.close();
+    return;
+  }
   const page = await browser.newPage();
   
   // 3. Visit each route and save HTML
   for (const route of routes) {
     console.log(`Prerendering ${route}...`);
-    await page.goto(`http://127.0.0.1:${PORT}${route}`, { waitUntil: 'networkidle2', timeout: 60000 });
-    
-    // Wait an extra second to ensure any API calls (like fetching blogs) finish
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Extract the inner HTML of the HTML tag to avoid duplicating the <html> tag
-    const html = await page.evaluate(() => document.documentElement.innerHTML);
-    
-    // Create the directory structure for the route
-    const routeDir = path.join(DIST_DIR, route === '/' ? '' : route);
-    if (!fs.existsSync(routeDir)) {
-      fs.mkdirSync(routeDir, { recursive: true });
+    try {
+      await page.goto(`http://127.0.0.1:${PORT}${route}`, { waitUntil: 'networkidle2', timeout: 30000 });
+      
+      // Wait an extra second to ensure any API calls (like fetching blogs) finish
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Extract the inner HTML of the HTML tag to avoid duplicating the <html> tag
+      const html = await page.evaluate(() => document.documentElement.innerHTML);
+      
+      // Create the directory structure for the route
+      const routeDir = path.join(DIST_DIR, route === '/' ? '' : route);
+      if (!fs.existsSync(routeDir)) {
+        fs.mkdirSync(routeDir, { recursive: true });
+      }
+      
+      // Save the HTML file
+      fs.writeFileSync(path.join(routeDir, 'index.html'), `<!DOCTYPE html>\n<html lang="en">\n${html}\n</html>`);
+      console.log(`Saved ${routeDir}/index.html`);
+    } catch (routeErr) {
+      console.warn(`Failed to prerender ${route}:`, routeErr.message);
     }
-    
-    // Save the HTML file
-    fs.writeFileSync(path.join(routeDir, 'index.html'), `<!DOCTYPE html>\n<html lang="en">\n${html}\n</html>`);
-    console.log(`Saved ${routeDir}/index.html`);
   }
 
   // 4. Cleanup
@@ -68,6 +88,5 @@ async function prerender() {
 }
 
 prerender().catch(err => {
-  console.error('Prerender failed:', err);
-  process.exit(1);
+  console.warn('Prerender failed gracefully:', err.message);
 });

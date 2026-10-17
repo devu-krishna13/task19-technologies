@@ -39,7 +39,7 @@ export default function VariantImageApp() {
       <SEO 
         title="Task19 Variant Image Manager - Product Variant Images for Shopify"
         description="Create stunning variant-specific image galleries for your Shopify store. Show customers exactly what they're getting with dynamic product images."
-        canonical="https://www.task19.com/variantimageapp"
+        canonical="https://www.task19.com/shopify-apps/variant-image"
       />
 
       {/* Hero Section */}
@@ -62,7 +62,7 @@ export default function VariantImageApp() {
             <a href="https://apps.shopify.com/variant-2" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] text-white px-8 py-3.5 rounded-lg font-semibold transition-all shadow-sm text-[15px]" style={{ color: '#ffffff' }}>
               Add to Shopify — It's Free
             </a>
-            <a href="https://variantappstore.task19.com/installation-guide" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
+            <a href="https://variantappstore.task19.com/installation-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] hover:bg-[#f1f2f3] text-[#6d7175] hover:text-[#202223] px-8 py-3.5 rounded-lg font-semibold transition-all text-[15px]">
               See How It Works
             </a>
           </div>
@@ -235,7 +235,7 @@ export default function VariantImageApp() {
           <a href="https://apps.shopify.com/variant-2" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-[#008060] hover:bg-[#006e52] px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]" style={{ color: '#ffffff' }}>
             Add to Shopify — Free to install
           </a>
-          <a href="https://variantappstore.task19.com/installation-guide" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
+          <a href="https://variantappstore.task19.com/installation-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-transparent border border-[#c9cccf] text-[#6d7175] hover:text-[#202223] hover:bg-white px-6 py-3 rounded-[8px] font-semibold transition-colors text-[14px]">
             View Install Guide
           </a>
         </div>

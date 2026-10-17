@@ -32,6 +32,7 @@ const ProfitSaverApp = lazy(() => import('./pages/ProfitSaverApp'))
 const PageBoosterApp = lazy(() => import('./pages/PageBoosterApp'))
 const MarginMateApp = lazy(() => import('./pages/MarginMateApp'))
 const VariantImageApp = lazy(() => import('./pages/VariantImageApp'))
+const SectionKitApp = lazy(() => import('./pages/SectionKitApp'))
 const Products = lazy(() => import('./pages/Products'))
 const Technologies = lazy(() => import('./pages/Technologies'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
@@ -93,6 +94,8 @@ export default function App() {
             <Route path="/shopify-apps/page-booster" element={<PageBoosterApp />} />
             <Route path="/shopify-apps/marginmate" element={<MarginMateApp />} />
             <Route path="/shopify-apps/variant-image" element={<VariantImageApp />} />
+            <Route path="/shopify-apps/section-kit" element={<SectionKitApp />} />
+            <Route path="/shopify-apps/sectionkit" element={<Navigate to="/shopify-apps/section-kit" replace />} />
             {/* WordPress-style URL redirects */}
             <Route path="/shopify-services" element={<Navigate to="/services/shopify" replace />} />
             <Route path="/shopify-services/" element={<Navigate to="/services/shopify" replace />} />
