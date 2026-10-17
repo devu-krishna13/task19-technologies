@@ -137,8 +137,7 @@ export default function Contact() {
     try {
       const data = new FormData()
       data.append('_subject', `New Quote Request: ${formData.fullName} - ${formData.servicesRequired}`)
-      data.append('_cc', 'afsalak89@gmail.com,nerajnerajlal@gmail.com')
-      data.append('_bcc', 'nerajnerajlal@gmail.com')
+      data.append('_cc', 'afsalak89@gmail.com')
       data.append('_template', 'table')
       data.append('_captcha', 'false')
       data.append('_honey', '') // Anti-spam honeypot
