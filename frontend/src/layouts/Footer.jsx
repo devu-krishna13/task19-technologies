@@ -13,7 +13,7 @@ const companyLinks = [
   { label: 'Products', to: '/products' },
   { label: 'Shopify Apps', to: '/shopify-apps' },
   { label: 'Works', to: '/portfolio' },
-  { label: 'Careers', to: '/careers' },
+  // { label: 'Careers', to: '/careers' },
   { label: 'Contact Us', to: '/contact' },
 ]
 
@@ -27,10 +27,11 @@ const serviceLinks = [
 ]
 
 const otherLinks = [
+  { label: 'Case Studies', to: '/case-studies' },
   { label: 'Partnership', to: '/partnership' },
   { label: 'Awards and Recognitions', to: '/awards' },
   { label: 'Insights', to: '/blog' },
-  { label: 'Testimonials', to: '/testimonials' },
+  // { label: 'Testimonials', to: '/testimonials' },
   { label: 'Our Clients', to: '/clients' },
   { label: 'Submit Feedback', to: '/feedback' },
 ]
@@ -57,16 +58,28 @@ export default function Footer() {
       <div className="container py-12 md:py-20">
 
         {/* Top CTA Banner */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 md:gap-10 mb-12 md:mb-20">
-          <div>
-            <h4 className="font-display font-bold leading-tight text-[32px] md:text-[40px] text-white tracking-[-0.02em]">
-              Get started now!
-            </h4>
-            <p className="text-gray-400 text-base md:text-lg mt-2 md:mt-4">It takes less than a minute of your time.</p>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 md:gap-10 mb-12 md:mb-20">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 lg:gap-14">
+            <div>
+              <h4 className="font-display font-bold leading-tight text-[32px] md:text-[40px] text-white tracking-[-0.02em]">
+                Get started now!
+              </h4>
+              <p className="text-gray-400 text-base md:text-lg mt-2 md:mt-4">It takes less than a minute of your time.</p>
+            </div>
+
+            {/* Shopify Badge in marked position */}
+            <div className="flex items-center sm:self-center">
+              <img
+                src="/Badge Select wht transp.svg"
+                alt="Shopify Select Partner"
+                className="h-12 md:h-16 lg:h-20 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity"
+              />
+            </div>
           </div>
+
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90 bg-white rounded-xl md:rounded-2xl px-6 py-3 md:px-8 md:py-3.5 text-sm md:text-[15px] shadow-sm"
+            className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90 bg-white rounded-xl md:rounded-2xl px-6 py-3 md:px-8 md:py-3.5 text-sm md:text-[15px] shadow-sm flex-shrink-0"
             style={{ color: '#000000' }}
           >
             Request a quote <span className="ml-2 md:ml-3 font-normal">→</span>

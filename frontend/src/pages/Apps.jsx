@@ -171,12 +171,13 @@ export default function ShopifyApps() {
 
                 {/* Content Section */}
                 <div className="p-7 md:p-8 flex flex-col flex-grow relative z-20 bg-white">
-                  {/* Rating */}
+                  {/* Rating - Hidden
                   <div className="flex items-center gap-1.5 mb-4">
                     <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                     <span className="text-[13px] font-bold text-gray-900">{app.rating}</span>
                     <span className="text-[13px] text-gray-500 font-medium">({app.reviews})</span>
                   </div>
+                  */}
 
                   <p className="font-display text-[11px] font-bold tracking-[0.18em] uppercase mb-2" style={{color: app.color}}>
                     {app.tagline}

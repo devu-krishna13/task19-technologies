@@ -857,7 +857,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ TESTIMONIALS (Featured Stories) ═══ */}
+      {/* ═══ TESTIMONIALS (Featured Stories) ═══ 
       <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -935,7 +935,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Fade overlay and button */}
             <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none flex items-end justify-center pb-8" style={{ background: 'linear-gradient(to top, #f9fafb 15%, rgba(249, 250, 251, 0) 100%)' }}>
               <Link
                 to="#"
@@ -943,7 +942,6 @@ export default function Home() {
                 style={{ backgroundColor: '#111827', fontSize: '15px', padding: '16px 36px', lineHeight: '1', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}
                 onClick={(e) => {
                   e.preventDefault();
-                  // In a real app this would route to a reviews page
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
@@ -953,6 +951,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      ═══ END TESTIMONIALS ═══ */}
 
       {/* ═══ BLOG ═══ */}
       <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '48px', paddingBottom: '48px' }}>

@@ -34,6 +34,7 @@ const sections = [
     icon: <FileText className="w-5 h-5" />,
     links: [
       ['Portfolio', '/portfolio'],
+      ['Case Studies', '/case-studies'],
       ['Industries', '/industries'],
       ['Technologies', '/technologies'],
       ['Client Success Stories', '/testimonials'],

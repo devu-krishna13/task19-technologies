@@ -283,35 +283,63 @@ export const portfolioItems = [
     id: 9, slug: 'cadfour',
 
     results: [
-      { metric: '4x', label: 'Faster Content Updates' },
-      { metric: '30%', label: 'Increase in Lead Generation' },
-      { metric: '100%', label: 'Custom Design Integration' }
+      { metric: '100%', label: 'Automated Contract Pricing' },
+      { metric: '< 5s', label: 'Passwordless OTP Login' },
+      { metric: '$24k+', label: 'Annual SaaS Overhead Saved' },
+      { metric: '1,000+', label: 'SKUs Dynamic Overrides' }
     ],
     testimonial: {
-      quote: "We needed a corporate platform that looked stunning but was incredibly easy for our marketing team to manage. Task19 delivered a custom WordPress solution that exceeded all expectations.",
-      author: "Director of Communications",
-      company: "Cadfour"
+      quote: "Before Task19, managing custom wholesale pricing for different restaurants was an operational headache involving separate spreadsheets and manual invoices. Task19 transformed our business. With their Shopify store design, the OTP login, and their Custom Pricing app, our clients log in, see their agreed prices instantly, and order without friction. Task19 is the ultimate e-commerce partner for any B2B brand.",
+      author: "Leadership Team",
+      company: "Cadfour Supplies (Toronto, Canada)"
     },
     faqs: [
-      { question: "Why choose custom WordPress over a pre-built theme?", answer: "Custom WordPress builds eliminate code bloat, ensuring lightning-fast load times. They are tailored exactly to your brand's unique design and provide a highly customized, secure backend tailored to your team's publishing workflow." },
-      { question: "Is WordPress secure for enterprise use?", answer: "Yes. When built correctly, hosted on enterprise infrastructure, and maintained with strict security protocols (like custom login URLs, minimal plugins, and automated vulnerability patching), WordPress is highly secure." }
+      { question: "How does customer-specific contract pricing work without Shopify Plus?", answer: "Task19 integrated its proprietary Wholesale B2B Custom Pricing App. The app leverages customer tags (such as VIP-Tier-1, Commercial-Wholesale) to dynamically intercept prices across product listings, collections, search, and carts, rendering agreed contract rates instantly without requiring manual coupon codes or high Shopify Plus subscription fees." },
+      { question: "Why was passwordless OTP authentication implemented?", answer: "Restaurant owners, executive chefs, and purchasing managers often order supplies on busy kitchen lines from mobile devices where password fatigue leads to abandoned reorders. With Canadian SMS and WhatsApp OTP verification, buyers log in in under 5 seconds and access their account pricing immediately." },
+      { question: "How does Cadfour manage bulk case vs. single pack ordering?", answer: "The custom theme features intuitive case vs. individual pack selectors with real-time per-unit price calculations, ensuring high-volume restaurant buyers and smaller caterers can both purchase efficiently without catalog clutter." }
     ],
-    title: 'Cadfour',
-    category: 'E-commerce',
-    client: 'Cadfour',
-    industry: 'Tech & Electronics',
-    shortDesc: 'A cutting-edge electronics retailer specializing in premium gadgets and tech accessories.',
+    title: 'Cadfour Supplies',
+    category: 'Shopify B2B',
+    client: 'Cadfour Supplies (Authorized Hotpack Distributor)',
+    headquarters: 'Greater Toronto Area (GTA), Ontario, Canada',
+    industry: 'Foodservice Packaging, Commercial Groceries & Sanitation',
+    targetMarket: 'Restaurants, Caterers, Cafes, Bakeries, Food Trucks & GTA Retailers',
+    coreApp: 'Wholesale B2B Custom Pricing & Loyalty by Task19',
+    appUrl: 'https://custompricing.task19.com',
+    pdfUrl: '/pdf/Cadfour-Case-Study-Task19.pdf',
+    shortDesc: 'How Task19 architected a high-velocity B2B Shopify store with custom contract pricing and passwordless OTP login.',
     image: '/portfolio-screenshots/cadfour-home.jpg',
     externalLink: 'https://cadfour.com/',
-    technologies: ['Next.js', 'Shopify Storefront API', 'Tailwind CSS'],
-    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
-    aboutProject: 'Cadfour is a cutting-edge electronics and tech retailer catering to early adopters and gadget enthusiasts. They curate and sell high-end tech accessories, smart home devices, and premium audio equipment, positioning themselves as a trusted authority in the fast-paced tech landscape.',
-    challenge: 'Tech consumers are notoriously demanding when it comes to digital experiences; a slow or buggy website instantly destroys a tech brands credibility. Cadfours original template-based site felt sluggish and generic, failing to match the innovative, futuristic nature of the products they were selling.',
-    solution: 'We built a state-of-the-art headless commerce solution using Next.js and the Shopify Storefront API. The new site features lightning-fast server-side rendering, dark-mode by default styling using Tailwind CSS, and complex product comparison tools. We also integrated a dynamic "Tech Specs" accordion system that pulls highly detailed metadata from the Shopify backend, providing power users with the deep technical information they crave.',
+    technologies: ['Shopify Liquid', 'Custom Pricing Engine', 'Passwordless OTP (SMS/WhatsApp)', 'Tailwind CSS', 'Alpine.js', 'B2B Variant Architecture'],
+    deliverables: [
+      'Full Storefront UI/UX Architecture',
+      'Custom Shopify Theme Engineering',
+      'Passwordless Phone/WhatsApp OTP Authentication',
+      'B2B Multi-Case Variant Logic',
+      'Proprietary Wholesale Pricing App Integration'
+    ],
+    features: [
+      'Customer-Tagged Contract Rule Matrices (VIP & Commercial Tiers)',
+      'Real-Time Storefront Automatic Price Replacement',
+      'Passwordless Phone & WhatsApp OTP Login in under 5s',
+      'Bulk Case vs. Individual Pack Selectors with Unit Breakdown',
+      'Volume & Quantity Discount Break Tiering',
+      'Integrated B2B Loyalty & Restock Points System',
+      'Dynamic GTA Delivery Eligibility & Countdown Timers'
+    ],
+    aboutProject: 'Cadfour Supplies is an authorized distributor of Hotpack and a premier wholesale foodservice supplier serving hundreds of commercial kitchens, franchised restaurants, caterers, bakeries, and retail businesses across the Greater Toronto Area (GTA), Ontario, Canada. Their multi-category commercial catalog spans thousands of mission-critical SKUs including commercial restaurant packaging, bulk canola oils, heavy produce bags, bakery staples, and commercial sanitation supplies.',
+    challenge: 'Prior to partnering with Task19, Cadfour faced major structural barriers: standard Shopify forced a single public retail price, while Shopify Plus demanded an exorbitant $2,000+/month overhead. Coupon workarounds leaked online and required endless manual invoicing. Furthermore, busy restaurant operators and chefs reordering late at night struggled with password recovery loops, leading to high cart abandonment and unstructured WhatsApp phone ordering.',
+    solution: 'Task19 Technologies engineered a full-stack enterprise B2B Shopify storefront paired with its proprietary Wholesale B2B Custom Pricing App. Customer accounts are tagged into tiered matrices that automatically override public prices across every page for logged-in buyers. A frictionless 5-second passwordless OTP authentication was built into the header, and intuitive bulk case selector pills allow chefs to reorder master cases in under 60 seconds.',
+    businessImpact: [
+      { title: 'Over $24,000 Saved Annually', desc: 'Bypassed mandatory enterprise Shopify Plus subscription costs while delivering automated tier pricing.' },
+      { title: '90% Reduction in Pricing Errors', desc: 'Automated contract matrices eliminated manual quote drafts, pricing disputes, and invoice revisions.' },
+      { title: 'Zero Login Friction', desc: 'Kitchen operators now reorder cases directly from prep lines on mobile devices in under 60 seconds.' },
+      { title: 'Substantially Increased AOV', desc: 'Transparent tiered volume breaks encouraged commercial buyers to bundle master cases for higher discounts.' }
+    ],
     screenshots: [
-      { title: 'Home Page', url: '/portfolio-screenshots/cadfour-home.jpg' },
-      { title: 'Shop Page', url: '/portfolio-screenshots/cadfour-shop.jpg' },
-      { title: 'Product Page', url: '/portfolio-screenshots/cadfour-product.jpg' }
+      { title: 'Storefront Homepage & GTA Delivery', url: '/portfolio-screenshots/cadfour-home.jpg' },
+      { title: 'Wholesale Catalog & Bulk Selection', url: '/portfolio-screenshots/cadfour-shop.jpg' },
+      { title: 'Product Specification & Tier Pricing', url: '/portfolio-screenshots/cadfour-product.jpg' }
     ]
   }
 ];

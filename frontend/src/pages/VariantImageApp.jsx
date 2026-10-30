@@ -9,23 +9,23 @@ import 'swiper/css/pagination';
 
 const showcaseItems = [
   {
-    src: 'https://variantappstore.task19.com/screenshot/products.webp',
-    title: 'Product Overview',
+    src: '/variantimagemanager.jpeg',
+    title: 'Product Overview & Mapping',
     desc: 'View all your Shopify products and their variant status at a glance. Filter by collection or status.',
   },
   {
-    src: 'https://variantappstore.task19.com/screenshot/drag_and_drop.webp',
-    title: 'Smart Drag & Drop',
+    src: '/variant.webp',
+    title: 'Smart Drag & Drop Gallery',
     desc: 'Easily assign images to variants by dragging them from your product images pool.',
   },
   {
-    src: 'https://variantappstore.task19.com/screenshot/manage.webp',
-    title: 'Variant Control',
+    src: '/variantimagemanager.jpeg',
+    title: 'Variant Control & Metadata',
     desc: 'Add specific descriptions and metadata for each variant to improve SEO and customer clarity.',
   },
   {
-    src: 'https://variantappstore.task19.com/screenshot/store_front.webp',
-    title: 'Dynamic Storefront',
+    src: '/variant.webp',
+    title: 'Dynamic Storefront Switching',
     desc: 'Show customers exactly what they select. Images update instantly when a variant is picked on your store.',
   }
 ];
@@ -74,14 +74,15 @@ export default function VariantImageApp() {
         <div className="max-w-[1200px] mx-auto px-6 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { val: '50%', label: 'Reduction in Returns' },
-              { val: '35%', label: 'Increase in Conversions' },
-              { val: '2min', label: 'Setup Time' },
-              { val: '100%', label: 'Theme Compatible' },
+              { val: 'OS 2.0', label: 'Theme App Blocks', sub: 'Native gallery integration' },
+              { val: '1-Click', label: 'Variant Mapping', sub: 'Drag-and-drop assigner' },
+              { val: '0', label: 'Code Required', sub: 'No liquid theme modifications' },
+              { val: '100%', label: 'Theme Compatible', sub: 'Works with Dawn & any OS 2.0' },
             ].map((stat, i) => (
               <div key={i} className="bg-white rounded-[12px] shadow-[0_1px_3px_0_rgba(63,63,68,0.15),_0_0_0_1px_rgba(63,63,68,0.05)] border border-[#e1e3e5] p-7 text-center">
-                <div className="text-[40px] font-extrabold text-[#008060] mb-1.5 leading-none">{stat.val}</div>
-                <div className="text-[13px] text-[#6d7175] font-medium">{stat.label}</div>
+                <div className="text-[36px] font-extrabold text-[#008060] mb-1.5 leading-none">{stat.val}</div>
+                <div className="text-[13px] text-[#202223] font-semibold">{stat.label}</div>
+                {stat.sub && <div className="text-[11px] text-[#6d7175] mt-1 font-medium">{stat.sub}</div>}
               </div>
             ))}
           </div>

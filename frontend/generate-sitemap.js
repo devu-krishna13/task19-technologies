@@ -14,6 +14,7 @@ const staticPages = [
   '/about',
   '/services',
   '/portfolio',
+  '/case-studies',
   '/contact',
   '/blog',
   '/shopify-apps',

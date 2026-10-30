@@ -15,6 +15,7 @@ const routes = [
   '/contact',
   '/blog',
   '/portfolio',
+  '/case-studies',
   '/shopify-apps',
   '/shopify-apps/profit-saver',
   '/shopify-apps/page-booster',

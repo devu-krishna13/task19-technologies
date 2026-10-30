@@ -79,14 +79,15 @@ export default function PageBoosterApp() {
         <div className="max-w-[1200px] mx-auto px-6 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { val: '10K+', label: 'Active Merchants' },
-              { val: '25%', label: 'Avg. Conversion Lift' },
-              { val: '1M+', label: 'Coupons Created' },
-              { val: '4.9★', label: 'App Store Rating' },
+              { val: 'OS 2.0', label: 'Theme App Blocks', sub: 'Native Shopify integration' },
+              { val: 'AI', label: 'Feature Generator', sub: 'Instant benefit bullet points' },
+              { val: '0', label: 'Lines of Code Needed', sub: '1-click install in theme editor' },
+              { val: '4-in-1', label: 'Conversion Widgets', sub: 'Coupons, delivery, AI & bundles' },
             ].map((stat, i) => (
               <div key={i} className="bg-white rounded-[12px] shadow-[0_1px_3px_0_rgba(63,63,68,0.15),_0_0_0_1px_rgba(63,63,68,0.05)] border border-[#e1e3e5] p-7 text-center">
-                <div className="text-[40px] font-extrabold text-[#008060] mb-1.5 leading-none">{stat.val}</div>
-                <div className="text-[13px] text-[#6d7175] font-medium">{stat.label}</div>
+                <div className="text-[36px] font-extrabold text-[#008060] mb-1.5 leading-none">{stat.val}</div>
+                <div className="text-[13px] text-[#202223] font-semibold">{stat.label}</div>
+                {stat.sub && <div className="text-[11px] text-[#6d7175] mt-1 font-medium">{stat.sub}</div>}
               </div>
             ))}
           </div>

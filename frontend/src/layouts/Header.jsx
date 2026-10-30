@@ -6,6 +6,7 @@ import { Menu, X, ArrowRight, Phone, Mail } from 'lucide-react'
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Case Studies', to: '/case-studies' },
   { 
     label: 'Services', 
     to: '/services',
@@ -68,13 +69,18 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav Pill */}
-            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg relative" style={{ paddingLeft: '64px', paddingRight: '64px', gap: '32px' }} aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center bg-white h-14 rounded-full shadow-lg relative px-8 xl:px-12 gap-5 xl:gap-7" aria-label="Main navigation">
               {navLinks.map((link) => (
                 <div key={link.label} className="relative group h-full flex items-center">
                   <Link
                     to={link.to}
                     className="font-body text-[15px] font-medium transition-colors duration-300 hover:opacity-70 whitespace-nowrap flex items-center gap-1"
-                    style={{ color: location.pathname === link.to || (link.children && location.pathname.startsWith('/services/')) ? '#2563eb' : '#000' }}
+                    style={{ 
+                      color: location.pathname === link.to || 
+                             (link.children && location.pathname.startsWith('/services/')) ||
+                             (link.to === '/case-studies' && (location.pathname.startsWith('/case-studies') || location.pathname.startsWith('/case-study/')))
+                             ? '#2563eb' : '#000' 
+                    }}
                   >
                     {link.label}
                     {link.children && (
@@ -156,7 +162,11 @@ export default function Header() {
                     >
                       <span
                         className="font-display font-medium text-[20px] tracking-tight transition-colors duration-300"
-                        style={{ color: location.pathname === link.to ? '#ffffff' : 'rgba(255,255,255,0.6)' }}
+                        style={{ 
+                          color: location.pathname === link.to ||
+                                 (link.to === '/case-studies' && (location.pathname.startsWith('/case-studies') || location.pathname.startsWith('/case-study/')))
+                                 ? '#ffffff' : 'rgba(255,255,255,0.6)' 
+                        }}
                       >
                         {link.label}
                       </span>
