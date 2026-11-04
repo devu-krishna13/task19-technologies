@@ -1,101 +1,134 @@
-import { motion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
-import { ArrowRight, ExternalLink } from 'lucide-react'
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom'
+import PageHero from '../components/ui/PageHero'
 import { portfolioItems } from '../constants/data'
-import CTASection from '../components/ui/CTASection'
+
+
 
 export default function Portfolio() {
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  // Extract unique categories (industries) from the portfolio items
+  const categories = useMemo(() => {
+    const allCategories = portfolioItems.map(item => item.industry || item.category).filter(Boolean)
+    return ['All', ...new Set(allCategories)]
+  }, [])
+
+  // Filter items based on active category
+  const filteredItems = useMemo(() => {
+    if (activeFilter === 'All') return portfolioItems
+    return portfolioItems.filter(item => (item.industry || item.category) === activeFilter)
+  }, [activeFilter])
+
   return (
     <>
-      <Helmet>
-        <title>Recent Portfolio — Task19 Technologies</title>
-        <meta name="description" content="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries." />
-      </Helmet>
+      <SEO 
+        title="Recent Portfolio — Task19 Technologies"
+        description="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries."
+        canonical="https://www.task19.com/portfolio"
+      />
 
       {/* ── Page Hero ── */}
-      <section className="pt-40 pb-20 bg-white border-b border-border">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-3 mb-6">
-              <span className="h-px w-8 bg-accent" />
-              <span className="font-display text-[10px] font-semibold tracking-[0.25em] uppercase text-accent">Our Work</span>
-            </span>
-            <h1 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
-              Recent Portfolio
-            </h1>
-            <p className="text-text-secondary text-xl font-light leading-relaxed max-w-2xl">
-              Trusted by brands across the globe. Here's a showcase of our recent Shopify and e-commerce projects — each built with precision, purpose, and a focus on results.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        badgeText="Our Portfolio"
+        title={<>Digital Experiences<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">That Drive Growth.</span></>}
+        description="Explore our recent portfolio of Shopify and e-commerce projects built for brands across fashion, retail, food, and marketplace industries."
+        orbColor1="bg-blue-300/20"
+        orbColor2="bg-emerald-300/20"
+      />
 
-      {/* ── All Portfolio Items ── */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {portfolioItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                className="group cursor-pointer"
+      {/* ── Filter Bar ── */}
+      <section className="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
+        <div className="container max-w-6xl mx-auto px-4 py-5">
+          <div className="flex overflow-x-auto flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-3 pb-2 pt-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveFilter(category)}
+                className="whitespace-nowrap transition-all duration-300 hover:text-black"
+                style={{
+                  padding: '8px 24px',
+                  borderRadius: '9999px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  border: `1px solid ${activeFilter === category ? '#000000' : '#e5e7eb'}`,
+                  backgroundColor: activeFilter === category ? '#000000' : '#ffffff',
+                  color: activeFilter === category ? '#ffffff' : '#6b7280',
+                  boxShadow: activeFilter === category ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none',
+                  cursor: 'pointer'
+                }}
               >
-                <a
-                  href={item.externalLink || `/portfolio/${item.slug}`}
-                  target={item.externalLink ? '_blank' : '_self'}
-                  rel={item.externalLink ? 'noopener noreferrer' : undefined}
-                  className="block"
-                >
-                  {/* Image */}
-                  <div
-                    className="w-full bg-[#f7f7f5] overflow-hidden relative"
-                    style={{ aspectRatio: '4/3' }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 p-4"
-                    />
-                    {/* Hover overlay with external link icon */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white w-12 h-12 flex items-center justify-center">
-                        <ExternalLink className="w-5 h-5 text-black" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Title bar */}
-                  <div className="pt-5 pb-3 flex items-center justify-between gap-4">
-                    <h2 className="font-display text-base font-semibold text-text-primary uppercase tracking-wide group-hover:text-accent transition-colors">
-                      {item.title}
-                    </h2>
-                    <span className="text-xs text-text-muted font-display uppercase tracking-wider shrink-0 border border-border px-2 py-1">
-                      {item.industry}
-                    </span>
-                  </div>
-                </a>
-              </motion.div>
+                {category}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      <CTASection
-        title="Ready to Build Your Store?"
-        subtitle="Whether you need a Shopify build, migration, or custom app — our team delivers results."
-        primaryText="Start Your Project"
-        primaryTo="/contact"
-        eyebrow="Let's Work Together"
-      />
+      {/* ── All Portfolio Items ── */}
+      <section className="section bg-white" style={{ paddingTop: '64px', paddingBottom: '128px' }}>
+        <div className="container max-w-5xl mx-auto px-4">
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {filteredItems.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
+                >
+                  <Link
+                    to={`/portfolio/${item.slug}`}
+                    className="absolute inset-0 z-20"
+                    aria-label={item.title}
+                  />
+
+                  {/* Content Section */}
+                  <div className="p-6 md:p-8 flex flex-col flex-grow">
+                    
+                    {/* Row 1: Badge & Link Icon */}
+                    <div className="flex items-center justify-between mb-3 relative z-30 pointer-events-none">
+                      <div className="flex gap-2">
+                        {item.industry && (
+                          <span className="px-2.5 py-1 bg-blue-50 text-[#013Ad6] text-[10px] font-bold uppercase tracking-wider rounded-md">
+                            {item.industry}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Premium Circle Icon Link */}
+                      <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#013Ad6] group-hover:border-[#013Ad6] group-hover:text-white transition-all duration-300">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                      </div>
+                    </div>
+
+                    {/* Row 2: Brand Name */}
+                    <h3 className="text-lg font-display font-bold text-[#10152F] mb-2 group-hover:text-[#013Ad6] transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    {/* Row 3: Description */}
+                    <p className="text-gray-500 text-xs leading-relaxed flex-grow line-clamp-2">
+                      {item.shortDesc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {filteredItems.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-gray-500 text-lg">No projects found for this category.</p>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   )
 }

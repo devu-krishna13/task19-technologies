@@ -1,0 +1,34 @@
+import { Package } from 'lucide-react'
+import ServicePageTemplate from '../../components/layouts/ServicePageTemplate'
+
+export default function WooCommerceDevelopment() {
+  return (
+    <ServicePageTemplate 
+      metaTitle="WooCommerce Development & Transition — Task19 Technologies"
+      metaDesc="Build secure, scalable WooCommerce environments, or migrate existing platforms with complete data preservation and zero catalog downtime."
+      heroBadge="PHASE 03 — MIGRATION"
+      heroTitle="WooCommerce"
+      heroSubtitle="Development"
+      heroDesc="Build secure, scalable WooCommerce environments, or migrate existing platforms with complete data preservation and zero catalog downtime."
+      heroImage="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
+      serviceTitle="WooCommerce Development & Transition"
+      serviceDesc="Build secure, scalable WooCommerce environments, or migrate existing platforms with complete data preservation and zero catalog downtime."
+      features={[
+        'Zero-Loss Database Export: Preserving orders, customer details, products, and historic coupons with validated mapping models.',
+        'Plugin & Theme Customization: Writing clean custom plugins and custom themes to support subscription and membership portals.',
+        'B2B & Wholesale Engine: Setting up custom tier pricing, bulk order lists, customer registration checks, and tax exemptions.',
+        'ERP & Inventory Sync: Automating inventory updates and order syncs with external systems using WooCommerce APIs.'
+      ]}
+      results={[
+        '100% data preservation on migrations',
+        'Enterprise-grade security protocols',
+        'Fully customized checkout workflows'
+      ]}
+      icon={Package}
+      faqs={[
+        { question: 'Can you migrate our store from Magento to WooCommerce?', answer: 'Yes. We have a proven migration process that preserves all product data, customer data, order history, and SEO rankings with zero downtime.' },
+        { question: 'Is WooCommerce scalable for thousands of products?', answer: 'Absolutely. With the right hosting architecture, caching strategy, and optimized database queries, WooCommerce can handle hundreds of thousands of SKUs seamlessly.' }
+      ]}
+    />
+  )
+}

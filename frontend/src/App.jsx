@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import MainLayout from './layouts/MainLayout'
@@ -9,8 +9,11 @@ const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const ShopifyServices = lazy(() => import('./pages/services/ShopifyServices'))
 const WebDevelopment = lazy(() => import('./pages/services/WebDevelopment'))
+const CustomDevelopment = lazy(() => import('./pages/services/CustomDevelopment'))
 const MobileAppDevelopment = lazy(() => import('./pages/services/MobileAppDevelopment'))
 const UIUXDesign = lazy(() => import('./pages/services/UIUXDesign'))
+const WooCommerceDevelopment = lazy(() => import('./pages/services/WooCommerceDevelopment'))
+const CustomShopifyApps = lazy(() => import('./pages/services/CustomShopifyApps'))
 const SoftwareDevelopment = lazy(() => import('./pages/services/SoftwareDevelopment'))
 const EnterpriseSolutions = lazy(() => import('./pages/services/EnterpriseSolutions'))
 const CloudSolutions = lazy(() => import('./pages/services/CloudSolutions'))
@@ -19,21 +22,41 @@ const DevOps = lazy(() => import('./pages/services/DevOps'))
 const QATesting = lazy(() => import('./pages/services/QATesting'))
 const Maintenance = lazy(() => import('./pages/services/Maintenance'))
 const DigitalTransformation = lazy(() => import('./pages/services/DigitalTransformation'))
-const ShopifyApps = lazy(() => import('./pages/ShopifyApps'))
-const Industries = lazy(() => import('./pages/Industries'))
+const D2CStoreSetup = lazy(() => import('./pages/services/D2CStoreSetup'))
+const CRO = lazy(() => import('./pages/services/CRO'))
+const WooCommerceMigrationPhase = lazy(() => import('./pages/services/WooCommerceMigration'))
+const CustomShopifyAppsPhase = lazy(() => import('./pages/services/ShopifyApps'))
+const WordPressPhase = lazy(() => import('./pages/services/WordPress'))
+const ShopifyApps = lazy(() => import('./pages/Apps'))
+const ProfitSaverApp = lazy(() => import('./pages/ProfitSaverApp'))
+const PageBoosterApp = lazy(() => import('./pages/PageBoosterApp'))
+const MarginMateApp = lazy(() => import('./pages/MarginMateApp'))
+const VariantImageApp = lazy(() => import('./pages/VariantImageApp'))
+const SectionKitApp = lazy(() => import('./pages/SectionKitApp'))
+const Products = lazy(() => import('./pages/Products'))
 const Technologies = lazy(() => import('./pages/Technologies'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const CaseStudy = lazy(() => import('./pages/CaseStudy'))
+const CaseStudies = lazy(() => import('./pages/CaseStudies'))
 const Blog = lazy(() => import('./pages/Blog'))
 const BlogPost = lazy(() => import('./pages/BlogPost'))
 const Careers = lazy(() => import('./pages/Careers'))
 const Contact = lazy(() => import('./pages/Contact'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Terms = lazy(() => import('./pages/Terms'))
-const Sitemap = lazy(() => import('./pages/Sitemap'))
+const Partnership = lazy(() => import('./pages/Partnership'))
+const Awards = lazy(() => import('./pages/Awards'))
+const Testimonials = lazy(() => import('./pages/Testimonials'))
+const Clients = lazy(() => import('./pages/Clients'))
+const Feedback = lazy(() => import('./pages/Feedback'))
 
 export default function App() {
   const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   return (
     <MainLayout>
       <AnimatePresence mode="wait">
@@ -42,11 +65,18 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/d2c-store-setup" element={<D2CStoreSetup />} />
+            <Route path="/services/cro-customization" element={<CRO />} />
+            <Route path="/services/woocommerce-migration" element={<WooCommerceMigrationPhase />} />
+            <Route path="/services/custom-shopify-apps" element={<CustomShopifyAppsPhase />} />
+            <Route path="/services/wordpress-development" element={<WordPressPhase />} />
+            <Route path="/services/shopify-development" element={<ShopifyServices />} />
+            <Route path="/services/custom-development" element={<CustomDevelopment />} />
             {/* Shopify-focused services */}
             <Route path="/services/shopify" element={<ShopifyServices />} />
             <Route path="/services/shopify-cro" element={<ShopifyServices />} />
-            <Route path="/services/woocommerce" element={<ShopifyServices />} />
-            <Route path="/services/shopify-apps-dev" element={<ShopifyServices />} />
+            <Route path="/services/woocommerce" element={<WooCommerceDevelopment />} />
+            <Route path="/services/shopify-apps-dev" element={<CustomShopifyApps />} />
             {/* Standard services */}
             <Route path="/services/web-development" element={<WebDevelopment />} />
             <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
@@ -61,6 +91,12 @@ export default function App() {
             <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
             {/* Shopify Apps page */}
             <Route path="/shopify-apps" element={<ShopifyApps />} />
+            <Route path="/shopify-apps/profit-saver" element={<ProfitSaverApp />} />
+            <Route path="/shopify-apps/page-booster" element={<PageBoosterApp />} />
+            <Route path="/shopify-apps/marginmate" element={<MarginMateApp />} />
+            <Route path="/shopify-apps/variant-image" element={<VariantImageApp />} />
+            <Route path="/shopify-apps/section-kit" element={<SectionKitApp />} />
+            <Route path="/shopify-apps/sectionkit" element={<Navigate to="/shopify-apps/section-kit" replace />} />
             {/* WordPress-style URL redirects */}
             <Route path="/shopify-services" element={<Navigate to="/services/shopify" replace />} />
             <Route path="/shopify-services/" element={<Navigate to="/services/shopify" replace />} />
@@ -71,17 +107,24 @@ export default function App() {
             <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
             <Route path="/contact-us/" element={<Navigate to="/contact" replace />} />
             {/* Other pages */}
-            <Route path="/industries" element={<Industries />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/technologies" element={<Technologies />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/portfolio/:slug" element={<CaseStudy />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:slug" element={<CaseStudy />} />
+            <Route path="/case-study/:slug" element={<CaseStudy />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/partnership" element={<Partnership />} />
+            <Route path="/awards" element={<Awards />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </Suspense>
       </AnimatePresence>

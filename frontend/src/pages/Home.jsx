@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
+import SEO from '../components/SEO';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -26,37 +27,26 @@ import {
   ShieldCheck,
   Layers3,
   Rocket,
+  ShoppingCart,
+  RefreshCw,
+  LayoutTemplate,
 } from 'lucide-react'
 
 /* ── Hero Slides ── */
 const heroSlides = [
   {
-    label: 'Innovation & Strategy',
-    title: <>Experiences Powered by<br /><em className="font-serif-italic not-italic text-white/40">Intelligence.</em></>,
-    cta: 'Watch the Future',
-    // Business team collaborating on laptops — 16:9 pre-cropped
-    bg: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    label: 'E-Commerce Experts',
+    title: <>Shopify & WordPress<br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
+    cta: 'Explore Platforms',
+    bgDesktop: '/herobanner.png',
+    bgMobile: '/herobannermb.png',
   },
   {
-    label: 'AI Solutions',
-    title: <>AI Precision. Human Intuition.<br /><em className="font-serif-italic not-italic text-white/40">Real Results.</em></>,
-    cta: 'Explore AI Services',
-    // Modern tech workspace with screens — 16:9 pre-cropped
-    bg: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-  },
-  {
-    label: 'Industry Leaders',
-    title: <>Tech, Marketing, Industry<br />Leaders, <em className="font-serif-italic not-italic text-white/40">One Stage!</em></>,
+    label: 'Custom Solutions',
+    title: <>Tailored Custom<br /><em className="font-serif-italic not-italic text-white">Development.</em></>,
     cta: 'See Our Work',
-    // Business conference / audience hall — 16:9 pre-cropped
-    bg: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
-  },
-  {
-    label: 'Digital Transformation',
-    title: <>Helping You Take the<br /><em className="font-serif-italic not-italic text-white/40">Digital Leap</em></>,
-    cta: 'Get Free Audit',
-    // E-commerce / analytics on laptop — 16:9 pre-cropped
-    bg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90',
+    bgDesktop: '/hero-banner.png',
+    bgMobile: '/hero-banner-mb.png',
   },
 ]
 
@@ -75,6 +65,60 @@ const specializedSolutions = [
     icon: ShieldCheck,
     title: 'Custom Shopify Apps',
     description: 'Build private or public apps when generic plugins create limits, bloat, or operational friction.',
+  },
+]
+
+const wordpressSolutions = [
+  {
+    icon: LayoutTemplate,
+    title: 'Custom WordPress Builds',
+    description: 'We develop fast, scalable, and secure WordPress websites tailored to your unique brand identity and operational needs.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Seamless Migrations',
+    description: 'Transition from legacy platforms to WordPress or WooCommerce with zero data loss and minimal downtime.',
+  },
+  {
+    icon: ShoppingCart,
+    title: 'WooCommerce Optimization',
+    description: 'Enhance your WooCommerce store for higher conversions, lightning-fast checkouts, and seamless third-party integrations.',
+  },
+]
+
+const shopifySolutions = [
+  {
+    icon: LayoutTemplate,
+    title: 'Custom Shopify Stores',
+    description: 'We build beautiful, fast-loading Shopify stores that are easy for you to manage and designed to help you sell more.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Safe Store Migrations',
+    description: 'Moving from another platform? We safely transfer all your products, customers, and orders to Shopify without losing any data.',
+  },
+  {
+    icon: Blocks,
+    title: 'Custom Shopify Apps',
+    description: 'Need a special feature? If standard plugins can’t do it, we build custom apps to make your store work exactly how you want.',
+  },
+]
+
+const customDevSolutions = [
+  {
+    icon: Blocks,
+    title: 'Web App Development',
+    description: 'We build powerful, scalable web apps from scratch using modern frameworks to solve your unique business challenges.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile App Development',
+    description: 'Native and cross-platform mobile applications that deliver beautiful, high-performance experiences for iOS and Android users.',
+  },
+  {
+    icon: Layers3,
+    title: 'System Integrations',
+    description: 'Connect your tools seamlessly. We build secure custom APIs that make your software, databases, and third-party services talk to each other.',
   },
 ]
 
@@ -97,8 +141,8 @@ const valuePillars = [
   {
     name: 'WooCommerce',
     svg: (
-      <svg className="h-9 md:h-11 w-auto text-white/80 group-hover:text-white transition-colors duration-300" viewBox="0 0 256 153" fill="currentColor">
-        <path d="M232.137523,0 L23.7592719,0 C10.5720702,0 -0.103257595,10.7799647 0.000639559736,23.862498 L0.000639559736,103.404247 C0.000639559736,116.591115 10.6767385,127.266612 23.8639402,127.266612 L122.558181,127.266612 L167.667206,152.384995 L157.410382,127.266612 L232.137523,127.266612 C245.325059,127.266612 255.999888,116.591115 255.999888,103.404247 L255.999888,23.862498 C255.999888,10.6752964 245.325059,0 232.137523,0 Z M19.3640061,18.4201481 C16.4334946,18.6294847 14.2355942,19.6761007 12.7703719,21.6645976 C11.3051496,23.5484931 10.781875,25.9556632 11.095813,28.6768382 C17.2707741,67.9247058 23.027062,94.4034429 28.3647436,108.113986 C30.4579757,113.137395 32.8651458,115.5451 35.690989,115.335764 C40.086656,115.021425 45.3196694,108.951332 51.4946305,97.1248185 C54.73908,90.4260478 59.7628237,80.3792294 66.5657276,66.9823567 C72.2170797,86.762992 79.9618646,101.625221 89.6956814,111.567705 C92.417057,114.393415 95.2427665,115.649434 97.9634733,115.440098 C100.371178,115.230761 102.254539,113.974742 103.510558,111.672039 C104.557241,109.683676 104.975914,107.380974 104.766578,104.764601 C104.138568,95.2407893 105.080917,81.9489193 107.69729,64.8892584 C110.417997,47.3063898 113.767382,34.6424627 117.849111,27.1069476 C118.686458,25.5370569 119.000128,23.9670994 118.895794,22.0832708 C118.686458,19.6760338 117.639775,17.6875369 115.651411,16.1176463 C113.663048,14.5477557 111.46468,13.8151445 109.057643,14.0244142 C106.022597,14.2337508 103.719895,15.6989731 102.150205,18.6294847 C95.6614396,30.4560654 91.0560348,49.6088916 88.335328,76.1924977 C84.3579328,66.145211 81.0085475,54.3185634 78.3921746,40.3987506 C77.2411578,34.2238564 74.4154483,31.2933449 69.8100434,31.6073497 C66.670329,31.8166194 64.0538892,33.9098515 61.9606572,37.8869122 L39.0401069,81.5302462 C35.2723159,66.3544807 31.7138615,47.8296643 28.4694119,25.9556632 C27.7368007,20.5133802 24.7016209,18.0014749 19.3640061,18.4201481 Z M221.044022,25.9559976 C228.475136,27.5259551 234.022221,31.5030159 237.789611,38.0965832 C241.138996,43.7482697 242.81302,50.5511737 242.81302,58.7146317 C242.81302,69.4943957 240.092314,79.3325464 234.649562,88.3333508 C228.370134,98.7995112 220.206676,104.032257 210.054854,104.032257 C208.275828,104.032257 206.391799,103.82292 204.402767,103.404247 C196.972321,101.834557 191.425236,97.857831 187.657177,91.264063 C184.308461,85.5076413 182.633768,78.6002028 182.633768,70.5410787 C182.633768,59.7612478 185.355144,49.923164 190.797226,41.0270948 C197.181658,30.5610681 205.345116,25.3280548 215.392603,25.3280548 C217.171629,25.3280548 219.055659,25.5373913 221.044022,25.9559976 Z M216.648622,82.5769291 C220.521015,79.1232099 223.137388,73.9947979 224.602744,67.0873594 C225.021417,64.6802562 225.335087,62.0637496 225.335087,59.3425746 C225.335087,56.3074616 224.707078,53.0630121 223.451058,49.8184957 C221.881368,45.7367667 219.788002,43.5389332 217.275963,43.0155917 C213.508574,42.2829805 209.845518,44.3762126 206.391799,49.5045577 C203.566089,53.4816184 201.786394,57.6680157 200.844713,61.9590813 C200.321038,64.3663182 200.111701,66.9830255 200.111701,69.5993984 C200.111701,72.6344445 200.739711,75.8788272 201.99573,79.1232099 C203.566089,83.2049389 205.658786,85.4026386 208.170825,85.9263145 C210.787198,86.4493215 213.612908,85.2983047 216.648622,82.5769291 Z M172.167608,38.0965832 C168.399549,31.5030159 162.74813,27.5259551 155.422019,25.9559976 C153.432987,25.5373913 151.549626,25.3280548 149.769931,25.3280548 C139.723112,25.3280548 131.559654,30.5610681 125.175223,41.0270948 C119.732472,49.923164 117.011765,59.7612478 117.011765,70.5410787 C117.011765,78.6002028 118.686458,85.5076413 122.035174,91.264063 C125.803233,97.857831 131.350318,101.834557 138.780763,103.404247 C140.769126,103.82292 142.653156,104.032257 144.432851,104.032257 C154.584672,104.032257 162.74813,98.7995112 169.027559,88.3333508 C174.47031,79.3325464 177.191017,69.4943957 177.191017,58.7146317 C177.191017,50.5511737 175.516324,43.7482697 172.167608,38.0965832 Z M158.980072,67.0873594 C157.515384,73.9947979 154.898343,79.1232099 151.02595,82.5769291 C147.990904,85.2983047 145.165195,86.4493215 142.548822,85.9263145 C140.036783,85.4026386 137.943417,83.2049389 136.373727,79.1232099 C135.117707,75.8788272 134.489698,72.6344445 134.489698,69.5993984 C134.489698,66.9830255 134.699034,64.3663182 135.22271,61.9590813 C136.16439,57.6680157 137.943417,53.4816184 140.769126,49.5045577 C144.223514,44.3762126 147.88657,42.2829805 151.65396,43.0155917 C154.165999,43.5389332 156.259365,45.7367667 157.829055,49.8184957 C159.085074,53.0630121 159.713084,56.3074616 159.713084,59.3425746 C159.713084,62.0637496 159.503748,64.6802562 158.980072,67.0873594 Z" />
+      <svg className="h-10 md:h-12 w-auto text-white/80 group-hover:text-white transition-colors duration-300 scale-[2.5] md:scale-[3]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.754 9.58a.754.754 0 00-.754.758v2.525c0 .42.339.758.758.758h3.135l1.431.799-.326-.799h2.373a.757.757 0 00.758-.758v-2.525a.757.757 0 00-.758-.758H.754zm2.709.445h.03c.065.001.124.023.179.067a.26.26 0 01.103.19.29.29 0 01-.033.16c-.13.239-.236.64-.322 1.199-.083.541-.114.965-.094 1.267a.392.392 0 01-.039.219.213.213 0 01-.176.12c-.086.006-.177-.034-.263-.124-.31-.316-.555-.788-.735-1.416-.216.425-.375.744-.478.957-.196.376-.363.568-.502.578-.09.007-.166-.069-.233-.228-.17-.436-.352-1.277-.548-2.524a.297.297 0 01.054-.222c.047-.064.116-.095.21-.102.169-.013.265.065.288.238.103.695.217 1.284.336 1.766l.727-1.387c.066-.126.15-.192.25-.199.146-.01.237.083.273.28.083.441.188.817.315 1.136.086-.844.233-1.453.44-1.828a.255.255 0 01.218-.147zm1.293.36c.056 0 .116.006.18.02.232.05.411.177.53.386.107.18.161.395.161.654 0 .343-.087.654-.26.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.158-.659c0-.342.085-.655.258-.937.202-.333.462-.498.78-.498zm2.084 0c.056 0 .116.006.18.02.236.05.411.177.53.386.107.18.16.395.16.654 0 .343-.086.654-.259.94-.2.332-.459.5-.781.5a.88.88 0 01-.18-.022.763.763 0 01-.531-.384 1.287 1.287 0 01-.16-.659c0-.342.087-.655.26-.937.202-.333.462-.498.78-.498zm4.437.047c-.305 0-.546.102-.718.304-.173.203-.256.49-.256.856 0 .395.086.697.256.906.17.21.418.316.744.316.315 0 .559-.107.728-.316.17-.21.256-.504.256-.883s-.087-.673-.26-.879c-.176-.202-.424-.304-.75-.304zm-1.466.002a1.13 1.13 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.505.336.861.336.103 0 .22-.016.346-.052v-.54c-.117.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm12.414 0a1.135 1.135 0 00-.84.326c-.223.22-.332.499-.332.838 0 .362.108.658.328.88.22.223.506.336.861.336.103 0 .22-.016.346-.052v-.54c-.116.034-.216.051-.303.051a.545.545 0 01-.422-.177c-.106-.12-.16-.278-.16-.48 0-.19.053-.348.156-.468a.498.498 0 01.397-.181c.103 0 .212.015.332.049v-.537a1.394 1.394 0 00-.363-.045zm-9.598.06l-.29 2.264h.579l.156-1.559.395 1.559h.412l.379-1.555.164 1.555h.603l-.304-2.264h-.791l-.12.508c-.03.13-.06.264-.087.4l-.067.352a29.97 29.97 0 00-.258-1.26h-.771zm2.768 0l-.29 2.264h.579l.156-1.559.396 1.559h.412l.375-1.555.165 1.555h.603l-.305-2.264h-.789l-.119.508c-.03.13-.06.264-.086.4l-.066.352c-.063-.352-.15-.771-.26-1.26h-.771zm3.988 0v2.264h.611v-1.031h.012l.494 1.03h.645l-.489-1.019a.61.61 0 00.37-.552.598.598 0 00-.25-.506c-.167-.123-.394-.186-.68-.186h-.713zm3.377 0v2.264H24v-.483h-.63v-.414h.54v-.468h-.54v-.416h.626v-.483H22.76zm-4.793.004v2.264h1.24v-.483h-.627v-.416h.541v-.468h-.54v-.415h.622v-.482h-1.236zm2.025.432c.146.003.25.025.313.072.063.046.091.12.091.227 0 .156-.135.236-.404.24v-.54zm-15.22.011c-.104 0-.205.069-.301.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.016-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm2.083 0c-.103 0-.204.069-.3.211a1.078 1.078 0 00-.2.639c0 .096.02.2.06.303.049.13.117.198.196.215.083.016.173-.02.27-.106.123-.11.205-.273.252-.492.013-.077.023-.16.023-.246 0-.097-.02-.2-.06-.303-.05-.13-.116-.198-.196-.215a.246.246 0 00-.045-.006zm4.428.006c.233 0 .354.218.354.66-.004.273-.038.46-.098.553a.293.293 0 01-.262.139.266.266 0 01-.242-.139c-.056-.093-.084-.28-.084-.562 0-.436.11-.65.332-.65Z" />
       </svg>
     )
   },
@@ -165,247 +209,309 @@ const valuePillars = [
         <path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z" />
       </svg>
     )
+  },
+  {
+    name: 'Vercel',
+    svg: (
+      <svg className="h-10 md:h-12 w-auto text-white/80 group-hover:text-white transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M24 22.525H0l12-21.05 12 21.05z" />
+      </svg>
+    )
+  },
+  {
+    name: 'GitHub',
+    svg: (
+      <svg className="h-10 md:h-12 w-auto text-white/80 group-hover:text-white transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+      </svg>
+    )
   }
 ]
 
+const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
+const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
+
+const transformBlog = (apiBlog) => {
+  const firstSectionWithText = apiBlog.sections?.find(s => s.text_content) || {};
+
+  const image = apiBlog.cover_image
+    ? `https://blogs.task19.com${apiBlog.cover_image}`
+    : 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop';
+
+  const slug = apiBlog.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  const dateObj = new Date(apiBlog.created_at);
+
+  return {
+    ...apiBlog,
+    title: apiBlog.title,
+    slug: slug,
+    image: image,
+    excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : ''),
+    category: 'Latest Updates',
+    date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+    readTime: '5 min read',
+  };
+}
+
 export default function Home() {
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [blogsLoading, setBlogsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(API_URL, {
+      headers: {
+        'Accept': 'application/json',
+        'X-API-KEY': API_KEY
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.blogs) {
+          setRecentBlogs(data.blogs.map(transformBlog).slice(0, 3));
+        }
+        setBlogsLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setBlogsLoading(false);
+      });
+  }, []);
   return (
     <>
-      <Helmet>
-        <title>Task19 Technologies — Shopify & E-Commerce Development Experts</title>
-        <meta name="description" content="Task19 Technologies is a leading Shopify & WooCommerce development agency. We build high-performance e-commerce stores, custom Shopify apps, and digital solutions that drive revenue." />
-        <link rel="canonical" href="https://task19.com" />
-      </Helmet>
+      <SEO 
+        title="Task19 Technologies — Shopify & E-Commerce Development Experts"
+        description="Task19 Technologies is a leading Shopify & WooCommerce development agency. We build high-performance e-commerce stores, custom Shopify apps, and digital solutions that drive revenue."
+        canonical="https://www.task19.com"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Task19 Technologies",
+          "url": "https://www.task19.com",
+          "logo": "https://www.task19.com/favicon.svg",
+          "description": "Premier digital transformation partner delivering enterprise web development, mobile apps, cloud solutions, and AI-powered innovation.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-9495147819",
+            "contactType": "customer service"
+          }
+        }}
+      />
 
-      {/* ═══ ROTATING HERO ═══ */}
-      <section className="relative overflow-hidden bg-primary hero-section-wrapper">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={0}
-          slidesPerView={1}
-          autoplay={{ delay: 5500, disableOnInteraction: false }}
-          pagination={{ clickable: true, el: '.hero-pagination' }}
-          loop
-          className="hero-swiper absolute inset-0 w-full h-full"
-        >
-          {heroSlides.map((slide, i) => (
-            <SwiperSlide key={i} className="relative w-full h-full">
-              {/* Background image — fills full area below header, no black bars */}
-              <div className="absolute top-[72px] bottom-0 left-0 right-0 z-0 overflow-hidden">
-                <img
-                  src={slide.bg}
-                  alt={slide.label}
-                  className="w-full h-full object-cover object-center"
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
+      {/* ═══ STATIC HERO ═══ */}
+      <section className="relative flex items-center justify-center overflow-hidden min-h-[80vh] bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="container relative z-10 px-4 sm:px-6 mx-auto text-center mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-block mb-6 px-4 py-1.5 rounded-full border border-gray-200 bg-white/50 backdrop-blur-sm shadow-sm"
+          >
+            <span className="text-sm font-medium text-gray-700">E-Commerce & Web Development Experts</span>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-4xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display text-gray-900 leading-tight tracking-tight mb-6">
+              Shopify, WordPress & <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">Custom Solutions</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+              We build high-performance e-commerce stores, tailor-made applications, and digital experiences that drive revenue and scale your business.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/services"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gray-900 text-white font-medium text-lg transition-transform hover:scale-105 hover:bg-black hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+              >
+                Explore Services
+              </Link>
+              <Link
+                to="/portfolio"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-medium text-lg transition-transform hover:scale-105 hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)]"
+              >
+                View Our Work
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Gradient Orbs for modern aesthetic */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300/20 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-[100px] pointer-events-none"></div>
+      </section>
+
+      {/* ═══ WHAT WE DO ═══ */}
+      <section className="section bg-slate-50 py-24">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="text-left max-w-3xl mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-900 mb-6">
+              What We Do
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed font-light">
+              We help brands grow by creating beautiful, fast, and reliable digital experiences. Whether you need a brand new store or want to improve your current setup, we've got you covered.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/40 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-blue-600 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 group-hover:scale-110 transition-transform duration-300">
+                <ShoppingCart className="w-7 h-7" />
               </div>
+              <h5 className="text-lg font-bold text-gray-900 mb-3">Shopify Development</h5>
+              <p className="text-gray-600 leading-relaxed font-light">
+                We build highly optimized and scalable Shopify stores tailored to your brand, ensuring fast checkouts and a seamless shopping experience.
+              </p>
+            </motion.div>
 
-              {/* Content — centered vertically, text left-aligned */}
-              <div className="relative z-10 h-full flex flex-col pt-[72px]">
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="container">
-                    <h1
-                      className="font-display font-light text-white leading-[1.1] tracking-tight mb-5 text-left"
-                      style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
-                    >
-                      {slide.title}
-                    </h1>
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 text-white text-sm font-light hover:text-white/70 transition-colors"
-                    >
-                      {slide.cta} <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/40 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-emerald-600 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 group-hover:scale-110 transition-transform duration-300">
+                <LayoutTemplate className="w-7 h-7" />
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              <h5 className="text-lg font-bold text-gray-900 mb-3">WooCommerce Development</h5>
+              <p className="text-gray-600 leading-relaxed font-light">
+                We craft powerful WooCommerce solutions on WordPress that are easy to manage and customized to fit your unique business needs perfectly.
+              </p>
+            </motion.div>
 
-        <div className="absolute bottom-8 left-0 right-0 z-20 pointer-events-none">
-          <div className="container flex justify-start">
-            <div className="hero-pagination flex gap-2 pointer-events-auto" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-gray-200/40 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-indigo-600 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 group-hover:scale-110 transition-transform duration-300">
+                <Gauge className="w-7 h-7" />
+              </div>
+              <h5 className="text-lg font-bold text-gray-900 mb-3">Custom Development</h5>
+              <p className="text-gray-600 leading-relaxed font-light">
+                From specialized web applications to complex API integrations, we engineer custom solutions designed for speed, security, and growth.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══ RECENT PORTFOLIO ═══ */}
-      <section className="pt-40 pb-32 lg:pt-48 lg:pb-40 bg-white">
-        <div className="container">
-
-          <div className="text-center">
-            <h2
-              className="font-display font-light text-text-primary leading-[1.05] tracking-tight"
-              style={{
-                fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
-                marginTop: "40px",       // Forces space above the text
-                marginBottom: "40px"     // Forces space below the text before the grid
-              }}
-            >
-              Recent Portfolio
+      {/* ═══ SPECIALIZED SOLUTIONS ═══ */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-blue-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-blue-600 tracking-widest uppercase">Expertise</span>
+              </div>
+              <Link 
+                to="/services" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore All Services</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              Specialized Solutions
             </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              Focused technical capabilities built for growing commerce teams. We solve complex operational challenges with precision.
+            </p>
           </div>
 
-          {/* Added pt-12 pb-16 (for mobile) and lg:pt-20 lg:pb-24 (for desktop screens) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 pt-12 pb-16 lg:pt-20 lg:pb-24">
-            {portfolioItems.slice(0, 6).map((item, i) => (
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {specializedSolutions.map((item, i) => (
               <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                className="cursor-pointer"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
               >
-                <a
-                  href={item.externalLink || `/portfolio/${item.slug}`}
-                  target={item.externalLink ? "_blank" : "_self"}
-                  rel={item.externalLink ? "noopener noreferrer" : undefined}
-                  className="block clip-inset-wrapper group"
-                >
-                  {/* Image */}
-                  <div
-                    className="w-full overflow-hidden clip-inset"
-                    style={{ aspectRatio: "1/1" }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
 
-                  {/* Content */}
-                  <div className="pt-4 pb-2">
-                    <span className="text-[11px] font-body text-text-muted">
-                      {item.industry || item.category}
-                    </span>
-
-                    <p className="mt-2 text-[13px] leading-[1.7] text-text-primary group-hover:text-accent transition-colors">
-                      <span className="font-semibold">{item.title}:</span>{" "}
-                      {item.shortDesc}
-                    </p>
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
                   </div>
-                </a>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
-
-          {/* Button */}
-          <div
-            className="flex justify-center mt-20 pt-14 pb-6"
-            style={{ borderTop: "1px solid #e5e5e5" }}
-          >
-            <Link
-              to="/portfolio"
-              className="group inline-flex items-center gap-3 bg-black text-white hover:bg-[#1b1b1b] transition-all duration-300"
-              style={{
-                padding: "1rem 2.8rem",
-                fontSize: "0.9rem",
-                fontFamily: "var(--font-display)",
-                fontWeight: 500,
-                letterSpacing: "0.02em",
-                marginTop: "40px",       // Forces space above the text
-                marginBottom: "40px"     // Forces space below the text before the grid
-              }}
-            >
-              Explore All Portfolio
-
-              <ArrowRight
-                className="group-hover:translate-x-1 transition-transform duration-300"
-                size={18}
-              />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* ═══ STRATEGY ═══ */}
-      <section className="section bg-surface border-t border-border">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
-            <div className="lg:sticky lg:top-32">
-              <span className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">Strategy</span>
-              </span>
-              <h2 className="font-display font-light text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
-                Stop Leaving Revenue<br />On The Table
-              </h2>
-              <p className="text-text-secondary text-lg leading-relaxed font-light mb-10 max-w-md">
-                In the competitive Direct-to-Consumer (D2C) landscape, your e-commerce platform is your most critical asset. We solve the technical and strategic hurdles that limit growth.
-              </p>
-              <Link to="/contact" className="btn-base btn-outline-dark">
-                Discuss Your Project <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
 
-            <div className="flex flex-col">
-              {[
-                { title: 'Conversion Bottlenecks', desc: 'A beautiful site is useless if it doesn\'t sell. We focus on conversion rate optimization (CRO) from the ground up.' },
-                { title: 'Scalability Issues', desc: 'We build infrastructure—from code to hosting—that can handle flash sales, high traffic, and rapid product expansion without breaking.' },
-                { title: 'Feature Gaps', desc: 'When off-the-shelf apps aren\'t enough, we develop custom solutions that fit your unique business logic perfectly.' },
-                { title: 'Proven Results & Trust', desc: 'We partner with D2C brands to deliver measurable growth. Our solutions are designed to be high-performance, maintainable, and revenue-focused.' }
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="group py-10 border-b border-border hover:border-accent transition-colors duration-500 flex flex-col sm:flex-row gap-6 sm:gap-10 items-start first:pt-0"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <span className="font-display text-4xl font-light text-border group-hover:text-accent transition-colors duration-500 mt-1">
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl font-light text-text-primary mb-3 group-hover:text-accent transition-colors duration-300">{item.title}</h3>
-                    <p className="text-base font-body text-text-secondary leading-relaxed font-light">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ═══ TECHNOLOGIES (WAC Clean Layout Style) ═══ */}
-      <section className="pt-12 pb-28 lg:pt-16 lg:pb-36 bg-black text-white">
+      <section className="section" style={{ backgroundColor: '#050f28', color: '#fff', paddingTop: '48px', paddingBottom: '48px' }}>
         <div className="container px-4 mx-auto w-full">
 
-          {/* Header Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-32 lg:mb-44 items-start">
-            <div className="lg:col-span-5">
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-white" style={{ fontSize: '14px' }}>Tech Stack</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '48px' }}>
+            <div>
               <h2
-                className="font-display font-normal text-white leading-none tracking-tight"
-                style={{
-                  fontSize: 'clamp(2.2rem, 4vw, 3.4rem)',
-                  marginTop: "50px",
-                  marginBottom: "20px"
-                }}
+                className="font-display font-bold text-white leading-tight tracking-tight text-[20px] md:text-[42px]"
+                style={{ margin: 0 }}
               >
                 Technologies
               </h2>
             </div>
-            <div className="lg:col-span-7 flex items-end h-full">
-              <p className="text-white/60 font-light leading-relaxed max-w-xl"
+            <div>
+              <p className="font-light leading-relaxed max-w-xl"
                 style={{
-                  fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)',
-                  marginTop: "0px",
-                  marginBottom: "20px"
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '18px',
+                  margin: 0
                 }}>
                 Shopify, WooCommerce & Custom App Development expertise for seamless e-commerce.
               </p>
             </div>
           </div>
 
-          {/* Logo Grid — more vertical space between rows, and before button */}
+          {/* Logo Grid */}
           <div
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-24 lg:gap-y-32 mb-36 lg:mb-52 items-center justify-items-center"
-            style={{ marginBottom: "clamp(6rem, 9vw, 6rem)" }}
+            className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 items-center justify-items-center"
+            style={{ gap: '48px 24px', marginBottom: '48px' }}
           >
             {techLogos.map((tech, i) => (
               <motion.div
@@ -417,10 +523,10 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: (i % 5) * 0.05 }}
               >
                 <div
-                  className="flex items-center justify-center opacity-90 hover:opacity-100 transition-all duration-300 [&_svg]:h-full [&_svg]:w-auto"
+                  className="flex items-center justify-center opacity-60 hover:opacity-100 transition-all duration-300 [&_svg]:h-full [&_svg]:w-auto"
                   style={{
                     height: '42px',
-                    filter: 'brightness(0) invert(1)', // forces logo to solid white regardless of source colors
+                    filter: 'brightness(0) invert(1)',
                   }}
                 >
                   {tech.svg}
@@ -429,329 +535,495 @@ export default function Home() {
             ))}
           </div>
 
-          {/* View all button — matches reference style */}
+          {/* View all button */}
           <div className="flex justify-center">
             <Link
               to="/technologies"
-              className="group border border-white/25 text-white hover:bg-black hover:text-white transition-all duration-300 font-display text-[13px] tracking-widest uppercase flex items-center justify-center gap-3"
-              style={{
-                padding: "1.25rem 2.75rem",
-                fontSize: "0.85rem",
-                fontFamily: "var(--font-display)",
-                fontWeight: 600,
-                marginBottom: "50px", letterSpacing: "0.15em",
-              }}
+              className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90"
+              style={{ backgroundColor: '#fff', color: '#000', borderRadius: '9999px', padding: '14px 28px', fontSize: '15px' }}
             >
               <span>View all technologies</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
           </div>
 
         </div>
       </section>
 
-      {/* ═══ SPECIALIZED SOLUTIONS ═══ */}
-      <section className="section bg-secondary border-t border-border">
-        <div className="container">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-            <div className="lg:w-[40%] lg:sticky lg:top-32">
-              <span className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">Specialized Solutions</span>
-              </span>
-              <h2 className="font-display font-light text-primary leading-[1.1] tracking-tight mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}>
-                Focused Services for Commerce Teams
-              </h2>
-              <p className="text-text-secondary text-lg leading-relaxed font-light mb-10">
-                These focused capabilities connect clearly to the problems growing stores actually need solved.
-              </p>
-              <Link to="/services/shopify" className="btn-base btn-solid-blue">
-                All Services <ArrowRight className="w-4 h-4" />
+      {/* ═══ WORDPRESS SOLUTIONS ═══ */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-slate-50 to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-purple-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-purple-600 tracking-widest uppercase">WordPress Expertise</span>
+              </div>
+              <Link 
+                to="/services/wordpress-development" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore WordPress</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-
-            <div className="lg:w-[60%] grid grid-cols-1 gap-6">
-              {specializedSolutions.map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  className="bg-surface p-10 border border-border hover:border-accent hover:shadow-xl transition-all duration-500 group"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <div className="w-14 h-14 bg-secondary flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-500 text-accent">
-                    <item.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-display text-xl font-medium text-text-primary mb-3">{item.title}</h3>
-                  <p className="text-text-secondary leading-relaxed font-light">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SERVICES ═══ */}
-      <section className="section bg-white border-t border-border">
-        <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-32 lg:mb-40">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-3 mb-6">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">What We Do</span>
-              </span>
-              <h4 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-4" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.2rem)' }}>
-                Full-Stack E-Commerce Solutions
-              </h4>
-              <p className="text-text-secondary text-[15px] leading-relaxed font-light">
-                A balanced mix of platform expertise, growth engineering, and custom product work for brands that need more than a template rollout.
-              </p>
-            </div>
-            <Link to="/services" className="btn-base btn-outline-dark flex-shrink-0" style={{ padding: "0.75rem 2.5rem", fontSize: "11px", border: "1px solid #000", boxSizing: "border-box", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-              Explore All Services <ArrowRight className="w-3.5 h-3.5 ml-2" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-4">
-            {servicesForCards.slice(0, 6).map((service, i) => {
-              const dummyImages = [
-                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-                "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80"
-              ];
-              return (
-                <motion.div
-                  key={service.id}
-                  className="group cursor-pointer"
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                >
-                  <Link to={`/services/${service.slug}`} className="block h-full">
-                    {/* Image Wrapper */}
-                    <div className="aspect-[4/3] w-full overflow-hidden mb-4 clip-inset-wrapper bg-surface">
-                      <img
-                        src={dummyImages[i] || dummyImages[0]}
-                        alt={service.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 clip-inset"
-                        loading="lazy"
-                      />
-                    </div>
-
-                    {/* Content */}
-                    <div>
-                      <h6 className="font-display text-[12px] font-semibold text-text-primary mb-1.5 group-hover:text-accent transition-colors duration-300 uppercase tracking-wide">
-                        {service.title}
-                      </h6>
-                      <p className="text-text-secondary text-[11px] leading-[1.6] font-light line-clamp-3">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ VALUE SECTION ═══ */}
-      <section className="section bg-surface">
-        <div className="container">
-
-          <div className="max-w-3xl mx-auto flex flex-col items-center justify-center text-center mb-16 mt-8">
-            <div className="flex items-center justify-center gap-3 mb-4 w-full">
-              <span className="h-px w-6 bg-accent" />
-              <span className="font-display text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">Why Task19</span>
-              <span className="h-px w-6 bg-accent" />
-            </div>
-            <h2 className="font-display font-light text-text-primary leading-[1.1] tracking-tight mb-6 w-full text-center" style={{ fontSize: 'clamp(2.2rem, 4vw, 3rem)' }}>
-              Modern UI Needs More Than Pretty Screens
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              WordPress & WooCommerce
             </h2>
-            <p className="text-text-secondary text-lg leading-relaxed font-light w-full text-center">
-              The strongest section design comes from alignment between messaging, interaction quality, visual rhythm, and reusable implementation.
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              From custom theme development to complex WooCommerce setups, we build digital experiences that are flexible, powerful, and easy to manage.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mt-16">
-            {valuePillars.map((item, i) => {
-              const valueImages = [
-                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=800&q=80"
-              ];
-              const imageUrl = valueImages[i] || valueImages[0];
-
-              return (
-                <motion.div
-                  key={item.title}
-                  className="group flex flex-col bg-white"
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                >
-                  {/* Top Image */}
-                  <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
-                    <img
-                      src={imageUrl}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Bottom Text Box with 3-sided border */}
-                  <div className="border-x border-b border-border p-6 lg:p-8 flex-grow flex flex-col items-center justify-center text-center bg-white">
-                    <h6 className="font-display text-[15px] font-semibold text-text-primary mb-3 group-hover:text-accent transition-colors duration-300 uppercase tracking-wide">
-                      {item.title}
-                    </h6>
-                    <p className="text-text-secondary text-[12px] leading-[1.6] font-light">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ TESTIMONIALS (Featured Stories) ═══ */}
-      <section className="py-24 bg-[#f9f9f9]">
-        <div className="container">
-          <div className="mb-12">
-            <h4 className="font-display font-light text-text-primary mb-4" style={{
-              fontSize: '40px',
-              marginTop: "40px",       // Forces space above the text
-              marginBottom: "40px"
-            }}>
-              Client Success Stories
-            </h4>
-            <p className="text-text-secondary text-[16px] font-light">
-              Real results from ambitious brands that trusted us to scale their digital presence.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {[
-              {
-                company: 'TechFlow Solutions',
-                industry: 'Enterprise Software',
-                image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
-                content: 'How we scaled a B2B SaaS platform to support 2M+ active users with zero downtime.'
-              },
-              {
-                company: 'Aura Lifestyle',
-                industry: 'E-Commerce',
-                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-                content: 'Transforming a boutique into a headless Shopify powerhouse with lightning-fast checkouts.'
-              },
-              {
-                company: 'FinGuard Systems',
-                industry: 'FinTech',
-                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-                content: 'Engineering a bank-grade mobile payment app with end-to-end encryption.'
-              },
-              {
-                company: 'NexHealth AI',
-                industry: 'Healthcare',
-                image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-                content: 'Building a HIPAA-compliant telemedicine portal that reduced wait times by 40%.'
-              }
-            ].map((t, i) => (
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {wordpressSolutions.map((item, i) => (
               <motion.div
-                key={i}
-                className="flex flex-col group cursor-pointer"
-                initial={{ opacity: 0, y: 15 }}
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Image area */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface">
-                  <img src={t.image} alt={t.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                  {/* Play icon overlay */}
-                  <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-                    <div className="w-0 h-0 border-t-[4px] border-t-transparent border-l-[6px] border-l-white border-b-[4px] border-b-transparent ml-0.5"></div>
-                  </div>
-                </div>
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
 
-                {/* Text area */}
-                <div className="bg-white p-5 flex-grow flex flex-col justify-start border border-t-0 border-[#eaeaea]">
-                  <span className="text-[9px] font-semibold text-[#0057FF] mb-3 uppercase tracking-[0.05em]">{t.industry}</span>
-                  <h5 className="font-display text-[15px] font-medium text-text-primary mb-2 group-hover:text-[#0057FF] transition-colors">{t.company}</h5>
-                  <p className="text-text-secondary text-[11px] leading-[1.6] font-light">
-                    {t.content}
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-purple-50 group-hover:text-purple-600 group-hover:border-purple-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-purple-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
                   </p>
                 </div>
               </motion.div>
             ))}
           </div>
-
-          {/* <div className="flex justify-center mt-12">
-            <Link to="/stories" className="inline-flex items-center justify-center px-8 py-3 text-[11px] uppercase font-medium tracking-wide border border-border hover:bg-black hover:text-white transition-all duration-300 bg-transparent">
-              View Case Studies <ArrowRight className="w-3.5 h-3.5 ml-3" />
-            </Link>
-          </div> */}
         </div>
       </section>
 
-      {/* ═══ BLOG (WAC Insights Style) ═══ */}
-      <section className="py-24 lg:py-32 bg-white border-t border-border">
-        <div className="container">
-          <div className="mb-12 lg:mb-16">
-            <h4 className="font-display font-light text-text-primary" style={{
-              fontSize: '40px',
-              marginTop: "40px",       // Forces space above the text
-              marginBottom: "40px"
-            }}>Insights</h4>
+      {/* ═══ SHOPIFY SOLUTIONS ═══ */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-emerald-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-emerald-600 tracking-widest uppercase">Shopify Expertise</span>
+              </div>
+              <Link 
+                to="/services/shopify-development" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore Shopify</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              Shopify Development
+            </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              We build and grow Shopify stores that look amazing, load fast, and make selling online completely effortless for your team.
+            </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {[
-              ...blogPosts,
-              {
-                slug: 'headless-commerce-architecture-2026',
-                title: 'Architecting High-Performance Headless Commerce for Enterprise Brands',
-                category: 'Architecture',
-                date: 'September 19, 2022',
-                readTime: '6 min read',
-                image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=360&fit=crop'
-              }
-            ].map((post, i) => (
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {shopifySolutions.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-emerald-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CUSTOM DEVELOPMENT ═══ */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Subtle Background Accent */}
+        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-slate-50 to-transparent opacity-80 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          {/* Header Section */}
+          <div className="mb-12">
+            <div className="flex flex-row items-center justify-between gap-4 mb-4">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-indigo-600"></span>
+                <span className="text-xs sm:text-sm font-semibold text-indigo-600 tracking-widest uppercase">Custom Dev Expertise</span>
+              </div>
+              <Link 
+                to="/services/custom-development" 
+                className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
+              >
+                <span className="hidden sm:inline">Explore Custom Dev</span>
+                <span className="sm:hidden">Explore</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
+              Custom Development
+            </h2>
+            
+            <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
+              From complex web platforms to native mobile apps, we engineer robust, fully custom solutions tailored exactly to your business needs.
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {customDevSolutions.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col p-8 rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-indigo-50 group-hover:text-indigo-600 group-hover:border-indigo-100 transition-all duration-300 shadow-sm">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  
+                  <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-indigo-600 transition-colors">{item.title}</h5>
+                  
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ RECENT PORTFOLIO ═══ */}
+      <section className="section bg-slate-50" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Our Work</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '64px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight mb-4 text-[20px] md:text-[42px]" style={{ margin: 0 }}>
+                Recent Portfolio
+              </h2>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/portfolio"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>Explore All Portfolio</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {portfolioItems.slice(0, 6).map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                className="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1"
+              >
+                <Link
+                  to={`/portfolio/${item.slug}`}
+                  className="absolute inset-0 z-20"
+                  aria-label={item.title}
+                />
+
+                {/* Content Section */}
+                <div className="p-6 md:p-8 flex flex-col flex-grow">
+
+                  {/* Row 1: Badge & Link Icon */}
+                  <div className="flex items-center justify-between mb-3 relative z-30 pointer-events-none">
+                    <div className="flex gap-2">
+                      {item.industry && (
+                        <span className="px-2.5 py-1 bg-blue-50 text-[#013Ad6] text-[10px] font-bold uppercase tracking-wider rounded-md">
+                          {item.industry}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Premium Circle Icon Link */}
+                    <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#013Ad6] group-hover:border-[#013Ad6] group-hover:text-white transition-all duration-300">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10" /></svg>
+                    </div>
+                  </div>
+
+                  {/* Row 2: Brand Name */}
+                  <h3 className="text-lg font-display font-bold text-[#10152F] mb-2 group-hover:text-[#013Ad6] transition-colors">
+                    {item.title}
+                  </h3>
+
+                  {/* Row 3: Description */}
+                  <p className="text-gray-500 text-xs leading-relaxed flex-grow line-clamp-2">
+                    {item.shortDesc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ STRATEGY ═══ */}
+      <section className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+          <div className="flex flex-col gap-12 max-w-4xl mx-auto">
+            
+            {/* Centered Header */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center gap-2 mb-4">
+                <span className="w-8 h-[1px] bg-amber-500"></span>
+                <span className="text-sm font-semibold text-amber-500 tracking-widest uppercase">Why Choose Us</span>
+                <span className="w-8 h-[1px] bg-amber-500"></span>
+              </div>
+              
+              <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-6">
+                Why Partner With <br className="hidden sm:block"/> Task19 Technologies
+              </h2>
+              
+              <p className="text-lg text-gray-600 font-light leading-relaxed mx-auto max-w-2xl">
+                We don't just build websites; we engineer digital growth engines. Our approach combines deep technical expertise with a relentless focus on your business goals.
+              </p>
+            </div>
+
+
+            
+            <div className="text-center mt-4">
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gray-900 text-white font-medium text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-xl group"
+              >
+                <span>Discuss Your Project</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TESTIMONIALS (Featured Stories) ═══ 
+      <section className="section" style={{ backgroundColor: '#f9fafb', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-gray-900 mb-4 text-[20px] md:text-[42px]" style={{ letterSpacing: '-0.02em' }}>
+              Client Success Stories
+            </h2>
+            <div className="flex items-center justify-center gap-2 font-medium text-gray-800">
+              <span style={{ fontSize: '15px' }}>4.5/5</span>
+              <div className="flex text-yellow-400 gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+              </div>
+              <span className="text-gray-500 ml-1" style={{ fontSize: '14px' }}>(Trusted by 148+ users)</span>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  name: 'Maya Zong',
+                  title: 'UI/UX Designer',
+                  image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+                  content: 'I appreciate how simple and focused this platform is. It removes the clutter and helps me stay organized across multiple e-commerce projects.'
+                },
+                {
+                  name: 'Ethan Miller',
+                  title: 'Web Developer',
+                  image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=150',
+                  content: 'Working with this team helps me manage multiple client setups without missing deadlines. The workflows give instant clarity on builds and deployments.'
+                },
+                {
+                  name: 'Hannah Lee',
+                  title: 'Content Writer',
+                  image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+                  content: 'Tracking content migrations used to be difficult. The custom solutions provided made the entire transition process clear and completely reliable.'
+                },
+                {
+                  name: 'Daniel Perez',
+                  title: 'Software Engineer',
+                  image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+                  content: 'The integrations are perfectly suited for modern engineering teams. I can quickly see what’s due and what’s completed without legacy blockers.'
+                },
+                {
+                  name: 'Laura Kim',
+                  title: 'Product Designer',
+                  image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
+                  content: 'The strategic consulting has helped me improve my delivery consistency with enterprise clients drastically.'
+                },
+                {
+                  name: 'Priya Shah',
+                  title: 'Marketing Specialist',
+                  image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
+                  content: 'This keeps all my campaign technical requirements structured. I no longer rely on scattered notes or reminders.'
+                }
+              ].map((t, i) => (
+                <div key={i} className="rounded-[24px] flex flex-col justify-between" style={{ backgroundColor: '#e5e7eb', padding: '32px', minHeight: '260px' }}>
+                  <p className="text-gray-800 leading-relaxed mb-8 font-medium" style={{ fontSize: '15px' }}>
+                    {t.content}
+                  </p>
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center gap-4">
+                      <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
+                      <div>
+                        <h5 className="font-display font-bold text-gray-900 m-0 leading-tight" style={{ fontSize: '15px' }}>{t.name}</h5>
+                        <span className="text-gray-600" style={{ fontSize: '13px' }}>{t.title}</span>
+                      </div>
+                    </div>
+                    <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+                      <svg className="w-4 h-4 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none flex items-end justify-center pb-8" style={{ background: 'linear-gradient(to top, #f9fafb 15%, rgba(249, 250, 251, 0) 100%)' }}>
+              <Link
+                to="#"
+                className="inline-flex items-center justify-center text-white rounded-full font-medium pointer-events-auto hover:bg-black transition-all"
+                style={{ backgroundColor: '#111827', fontSize: '15px', padding: '16px 36px', lineHeight: '1', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                View all Reviews
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      ═══ END TESTIMONIALS ═══ */}
+
+      {/* ═══ BLOG ═══ */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '48px', paddingBottom: '48px' }}>
+        <div className="container max-w-6xl mx-auto px-4">
+
+          {/* Header */}
+          <div className="mb-6">
+            <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px' }}>
+              <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Our Blog</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center" style={{ marginBottom: '40px' }}>
+            <div>
+              <h2 className="font-display font-bold text-gray-900 leading-tight tracking-tight text-[20px] md:text-[42px]" style={{ margin: 0 }}>
+                Insights & News
+              </h2>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-center h-full">
+              <Link
+                to="/blog"
+                className="inline-flex items-center justify-center font-medium transition-colors hover:bg-gray-50"
+                style={{ backgroundColor: '#fff', color: '#000', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '14px 32px', fontSize: '15px' }}
+              >
+                <span>View all insights</span>
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogsLoading ? (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-10">
+                <p className="text-gray-500">Loading insights...</p>
+              </div>
+            ) : recentBlogs.map((post, i) => (
               <motion.div
                 key={post.slug}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group cursor-pointer flex flex-col"
+                className="group relative flex flex-col bg-white border border-gray-100 overflow-hidden hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300"
+                style={{ borderRadius: '24px' }}
               >
-                <Link to={`/blog/${post.slug}`} className="block h-full">
-                  <div className="aspect-[16/10] overflow-hidden mb-5 bg-surface">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                <Link to={`/blog/${post.slug}`} className="absolute inset-0 z-10" aria-label={`Read ${post.title}`} />
+
+                <div className="aspect-[16/10] overflow-hidden bg-gray-100 relative shrink-0">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4 backdrop-blur-md px-3 py-1.5" style={{ backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: '9999px' }}>
+                    <span className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">{post.category}</span>
                   </div>
-                  <div className="flex items-center justify-between text-[10px] text-[#666] font-medium mb-3 tracking-wide">
-                    <span>{post.category} - {post.readTime}</span>
+                </div>
+
+                <div className="flex flex-col flex-grow relative z-0" style={{ padding: '32px' }}>
+                  <div className="flex items-center justify-between text-gray-500 font-medium mb-4" style={{ fontSize: '13px', letterSpacing: '0.02em' }}>
                     <span>{post.date}</span>
+                    <span>{post.readTime}</span>
                   </div>
-                  <h5 className="font-display text-[15px] font-medium text-text-primary leading-snug group-hover:text-[#0057FF] transition-colors line-clamp-3">
+                  <h5 className="font-display font-bold text-gray-900 leading-tight tracking-tight group-hover:text-black transition-colors line-clamp-3 mb-6" style={{ fontSize: '22px' }}>
                     {post.title}
                   </h5>
-                </Link>
+                  <div className="mt-auto flex items-center text-gray-500 hover:text-black font-medium transition-colors" style={{ fontSize: '14px' }}>
+                    Read Article
+                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -759,17 +1031,24 @@ export default function Home() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section className="section bg-secondary">
+      <section className="section" style={{ backgroundColor: '#f9fafb' }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '64px' }}>
             <div>
-              <SectionHeading label="Questions & Answers" title="Frequently Asked Questions" align="left" className="mb-0" />
-              <p className="text-text-secondary mt-5 mb-8 font-light text-base">Can't find what you're looking for? Reach out directly — we typically respond within 2 business hours.</p>
-              <Link to="/contact" className="btn-base btn-solid-dark">
-                Contact Us <ArrowRight className="w-4 h-4" />
+              <div className="inline-block bg-white" style={{ border: '1px solid #e5e7eb', borderRadius: '9999px', padding: '6px 16px', marginBottom: '24px' }}>
+                <span className="font-medium text-gray-800" style={{ fontSize: '14px' }}>Common questions</span>
+              </div>
+              <h2 className="font-display font-bold leading-tight text-black tracking-tight text-[20px] md:text-[42px]" style={{ marginBottom: '24px' }}>
+                Frequently<br />asked questions
+              </h2>
+              <p className="text-gray-500 font-light max-w-md" style={{ fontSize: '16px', marginTop: '8px', marginBottom: '32px' }}>
+                Can't find what you're looking for? Reach out directly — we typically respond within 2 business hours.
+              </p>
+              <Link to="/contact" className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90" style={{ backgroundColor: '#111827', color: '#fff', borderRadius: '14px', padding: '12px 24px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+                Contact Us <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
-            <div><FAQAccordion items={faqs.slice(0, 5)} /></div>
+            <div style={{ paddingTop: '8px' }}><FAQAccordion items={faqs.slice(0, 5)} /></div>
           </div>
         </div>
       </section>

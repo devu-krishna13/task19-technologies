@@ -1,253 +1,154 @@
-import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, ShoppingCart, Palette, Package, Code2 } from 'lucide-react'
-import SectionHeading from '../../components/ui/SectionHeading'
-import CTASection from '../../components/ui/CTASection'
-import FAQAccordion from '../../components/ui/FAQAccordion'
-
-const shopifyServices = [
+import React, { useEffect } from 'react';
+import SEO from '../../components/SEO';
+import { motion } from 'framer-motion';
+import { ArrowRight, ShoppingCart, TrendingUp, Layers, Settings, Globe, BarChart } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import PageHero from '../../components/ui/PageHero';
+const features = [
   {
-    id: 'D2C Store Setup',
-    icon: ShoppingCart,
-    color: '#013ad6',
-    tagline: '01 — Store Setup',
-    title: 'D2C Shopify Store Development',
-    desc: 'End-to-end Shopify store creation for direct-to-consumer brands. From theme selection to custom Liquid development, payment integrations, and full store launch strategy.',
-    features: [
-      'Custom Shopify theme development (Liquid, Section Blocks)',
-      'Product catalog setup with collections and tags',
-      'Payment gateway integration (Stripe, Razorpay, PayPal)',
-      'WhatsApp, email marketing, and CRM integrations',
-      'Analytics & conversion tracking setup (GA4, Pixel)',
-      'International market & multi-currency configuration',
-    ],
-    link: '/contact',
-    results: ['140% avg. conversion lift', '4–8 week delivery', '30-day post-launch support'],
+    title: 'Custom Shopify Theme Development',
+    desc: 'Stand out from the competition with bespoke, high-converting Shopify themes built from scratch using custom Liquid code and Section architecture tailored to your D2C brand.',
+    icon: ShoppingCart
   },
   {
-    id: 'CRO',
-    icon: Palette,
-    color: '#7c3aed',
-    tagline: '02 — CRO & Optimization',
-    title: 'Shopify Customization & CRO',
-    desc: 'Transform an underperforming store into a revenue machine. We audit, redesign, and optimize your Shopify storefront for maximum conversions, mobile performance, and user experience.',
-    features: [
-      'Full CRO audit and conversion bottleneck analysis',
-      'Homepage, collection & product page redesign',
-      'Mobile-first speed optimization (Core Web Vitals)',
-      'A/B testing strategy and implementation',
-      'Checkout flow redesign and abandoned cart recovery',
-      'Upsell, cross-sell, and bundle configuration',
-    ],
-    link: '/contact',
-    results: ['35% avg. cart abandonment reduction', 'Sub-2s load times', '220% organic traffic growth'],
+    title: 'Headless Shopify Commerce',
+    desc: 'Unlock lightning-fast storefronts by decoupling your frontend. We leverage the Storefront API with React and Next.js to deliver unparalleled speed and custom UX.',
+    icon: Globe
   },
   {
-    id: 'WooCommerce',
-    icon: Package,
-    color: '#06b6d4',
-    tagline: '03 — WooCommerce',
-    title: 'WooCommerce Development & Migration',
-    desc: 'Build powerful WooCommerce stores from scratch, or migrate from Magento, Shopify, or other platforms with zero data loss and zero downtime.',
-    features: [
-      'Custom WooCommerce theme and plugin development',
-      'Magento, OpenCart, Shopify to WooCommerce migration',
-      'Complex subscription and delivery scheduling systems',
-      'B2B pricing, wholesale, and bulk order management',
-      'Custom checkout workflows and payment gateways',
-      'WooCommerce performance tuning and scaling',
-    ],
-    link: '/contact',
-    results: ['500+ active subscribers delivered', '0 downtime migrations', '4.9/5 avg. client rating'],
+    title: 'Conversion Rate Optimization (CRO)',
+    desc: 'Data-driven UI/UX enhancements, frictionless checkout flows, and strategic A/B testing designed to maximize your AOV (Average Order Value) and overall ROI.',
+    icon: TrendingUp
   },
   {
-    id: 'ShopifyApps',
-    icon: Code2,
-    color: '#10b981',
-    tagline: '04 — Custom Apps',
-    title: 'Custom Shopify App Development',
-    desc: 'When the Shopify App Store doesn\'t have what you need, we build it. From private business automation apps to public apps for the Shopify marketplace.',
-    features: [
-      'Private Shopify apps for backend automation',
-      'Public Shopify App Store app development',
-      'Shopify Plus and B2B app customizations',
-      'Integration with ERP, CRM, and fulfilment systems',
-      'Webhook-based event automation and Metafield management',
-      'Shopify Polaris UI component development',
-    ],
-    link: '/contact',
-    results: ['4 public apps on App Store', '200+ merchants served', 'React + Node.js stack'],
-  },
-]
-
-const faqs = [
-  {
-    question: 'What Shopify plans do you support?',
-    answer: 'We work with all Shopify plans — from Basic Shopify through to Shopify Plus. For enterprise brands, we specialize in Shopify Plus features like custom checkouts, B2B portals, and multi-store management.',
+    title: 'Complex App Integrations & ERPs',
+    desc: 'We seamlessly integrate third-party APIs, custom private apps, ERP systems, and CRMs to automate your back-office operations and inventory management.',
+    icon: Layers
   },
   {
-    question: 'Can you migrate our store from WooCommerce or Magento to Shopify?',
-    answer: 'Yes. We have a proven migration process that preserves all product data, customer data, order history, and SEO rankings. We use validated data mapping and staging environments to ensure zero data loss and zero downtime during migration.',
+    title: 'Seamless Store Migrations',
+    desc: 'Flawlessly migrate your data from legacy platforms (WooCommerce, Magento, Custom) to Shopify Plus with zero downtime and strict SEO preservation protocols.',
+    icon: Settings
   },
   {
-    question: 'How long does a Shopify store build typically take?',
-    answer: 'A standard D2C Shopify store build takes 4–8 weeks from discovery to launch. Complex stores with custom features, multi-language support, or third-party integrations may require 10–14 weeks.',
-  },
-  {
-    question: 'Do you build custom Shopify themes from scratch?',
-    answer: 'Yes. We develop fully custom Shopify themes using Liquid, Section Architecture, and JSON templates. We also customize premium themes like Dawn, Prestige, and Impulse when that is the more cost-effective approach.',
-  },
-  {
-    question: 'What makes a custom Shopify app different from a public app?',
-    answer: 'A private app is built specifically for your store\'s unique business logic and is not listed on the Shopify App Store. A public app is listed on the App Store and available to all merchants. We develop both, using Shopify\'s official App Bridge, REST, and GraphQL Admin APIs.',
-  },
-]
+    title: 'Advanced Analytics & Tracking',
+    desc: 'Implement precise server-side tracking, Meta pixel integrations, and GA4 setups to ensure every ad dollar and user interaction is accurately measured.',
+    icon: BarChart
+  }
+];
 
 export default function ShopifyServices() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
-      <Helmet>
-        <title>Shopify Development Services — Task19 Technologies</title>
-        <meta name="description" content="Expert Shopify development services including D2C store setup, CRO & customization, WooCommerce migration, and custom Shopify app development. Delivered by Task19 Technologies." />
-        <link rel="canonical" href="https://task19.com/shopify-services/" />
-      </Helmet>
+      <SEO 
+        title="Shopify Plus & E-Commerce Development | Task19 Technologies"
+        description="Expert Shopify development agency specializing in custom D2C themes, Headless commerce, CRO, and seamless store migrations."
+        canonical="https://www.task19.com/shopifyservices"
+      />
 
-      {/* Hero */}
-      <section className="pt-40 pb-28 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
-        <div className="container relative z-10">
-          <motion.div
-            className="max-w-4xl"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-flex items-center gap-3 mb-7">
-              <span className="h-px w-10 bg-accent" />
-              <span className="font-display text-xs font-medium tracking-[0.3em] uppercase text-accent">Shopify Services</span>
-            </span>
-            <h1 className="font-display font-light text-white mb-7 leading-[1.05]" style={{ fontSize: 'var(--font-size-h1)' }}>
-              Shopify Expertise That<br />
-              <em className="font-serif-italic text-white/50">Drives Revenue</em>
-            </h1>
-            <p className="text-xl text-white/60 leading-relaxed max-w-3xl font-light mb-10">
-              From D2C store launches to complex app development — our Shopify specialists deliver e-commerce solutions that convert browsers into buyers and buyers into loyal customers.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-display font-semibold text-sm hover:bg-accent-hover transition-all duration-300">
-                Get Free Audit <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/portfolio" className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white font-display font-medium text-sm hover:border-white/50 transition-all duration-300">
-                View Case Studies
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <PageHero
+        badgeText="E-Commerce Leaders"
+        title={<>Shopify Store <br className="hidden md:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Development.</span></>}
+        description="We architect and build high-performing Shopify stores for direct-to-consumer brands, structuring every decision around conversion optimization and global growth."
+        orbColor1="bg-emerald-300/20"
+        orbColor2="bg-teal-300/20"
+      >
+        <Link 
+          to="/contact"
+          className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-black hover:shadow-xl transition-all hover:scale-105"
+        >
+          Scale Your Brand <ArrowRight className="ml-2 w-4 h-4" />
+        </Link>
+      </PageHero>
 
-      {/* Services List */}
-      {shopifyServices.map((service, i) => {
-        const Icon = service.icon
-        const isEven = i % 2 === 0
-        return (
-          <section key={service.id} className={`section ${isEven ? 'bg-surface' : 'bg-secondary'}`}>
-            <div className="container">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${isEven ? '' : 'lg:flex-row-reverse'}`}>
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className={isEven ? '' : 'lg:order-2'}
-                >
-                  <span className="inline-block font-display text-xs font-medium tracking-[0.2em] uppercase mb-5" style={{ color: service.color }}>
-                    {service.tagline}
-                  </span>
-                  <h2 className="font-display font-light text-text-primary mb-5 leading-snug" style={{ fontSize: 'var(--font-size-h3)' }}>
-                    {service.title}
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed mb-8 font-light text-lg">
-                    {service.desc}
-                  </p>
-                  <div className="space-y-3 mb-8">
-                    {service.features.map((f, j) => (
-                      <div key={j} className="flex gap-3">
-                        <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: service.color }} />
-                        <span className="text-sm text-text-secondary">{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Link
-                    to={service.link}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-display font-semibold text-sm transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: service.color }}
-                  >
-                    Get Started <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className={isEven ? '' : 'lg:order-1'}
-                >
-                  <div className="border border-border p-8 bg-surface">
-                    <div
-                      className="w-16 h-16 flex items-center justify-center mb-6"
-                      style={{ backgroundColor: `${service.color}10` }}
-                    >
-                      <Icon className="w-7 h-7" style={{ color: service.color }} />
-                    </div>
-                    <h3 className="font-display font-medium text-text-primary text-lg mb-6">Proven Results</h3>
-                    <div className="space-y-4">
-                      {service.results.map((r, j) => (
-                        <div key={j} className="flex items-center gap-3 py-3 border-b border-border last:border-b-0">
-                          <div className="w-1.5 h-1.5 flex-shrink-0" style={{ backgroundColor: service.color }} />
-                          <span className="font-display font-medium text-text-primary text-sm">{r}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-        )
-      })}
-
-      {/* FAQ */}
-      <section className="section bg-secondary">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <SectionHeading
-                label="Questions & Answers"
-                title="Shopify Service FAQs"
-                align="left"
-                className="mb-0"
-              />
-              <p className="text-text-secondary mt-5 mb-8 font-light">
-                Have more questions about our Shopify development services? Let's talk.
+      {/* What We Do Section */}
+      <section className="py-24 bg-white relative border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-left">
+              <h2 className="text-3xl md:text-5xl font-bold font-display text-gray-900 mb-6">
+                What We Do
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed font-light mb-6">
+                At Task19 Technologies, we don't just build Shopify stores; we engineer highly scalable e-commerce ecosystems that drive serious revenue. We cater to ambitious D2C brands that have outgrown standard templates.
               </p>
-              <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-display font-semibold text-sm hover:bg-primary-light transition-all duration-300">
-                Ask a Question <ArrowRight className="w-4 h-4" />
-              </Link>
+              <p className="text-lg text-gray-600 leading-relaxed font-light">
+                Our approach integrates stunning, bespoke UI/UX design with robust custom Liquid development, Headless Commerce setups, and deep API integrations. We ensure your storefront is an intuitive, conversion-optimized machine capable of handling global traffic spikes.
+              </p>
             </div>
-            <FAQAccordion items={faqs} />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-100 to-teal-50 rounded-[2rem] transform -rotate-3"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1658297063569-162817482fb6?q=80&w=1074&auto=format&fit=crop" 
+                alt="Shopify E-Commerce Development" 
+                className="relative z-10 rounded-[2rem] shadow-2xl object-cover h-[400px] w-full"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <CTASection
-        title="Ready to Build Your Shopify Success Story?"
-        subtitle="Join 50+ brands that trust Task19 Technologies to power their e-commerce growth."
-        primaryText="Get Free Store Audit"
-        secondaryText="View Case Studies"
-        secondaryTo="/portfolio"
-      />
+      {/* Features Detail Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="font-display text-4xl font-bold text-gray-900 mb-6">
+              Our Shopify Solutions
+            </h2>
+            <p className="text-gray-600 font-light text-lg leading-relaxed">
+              Stop settling for generic themes. We build custom Shopify architectures that capture attention, load instantly, and turn browsers into lifelong brand advocates.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative bg-white p-8 md:p-10 rounded-[32px] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[32px] pointer-events-none"></div>
+                
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-slate-50 border border-gray-100 rounded-2xl flex items-center justify-center mb-8 text-gray-400 group-hover:scale-110 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-100 transition-all duration-300 shadow-sm">
+                    <feature.icon className="w-8 h-8" />
+                  </div>
+                  {/* Replaced h3 with h5 as requested */}
+                  <h5 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors leading-snug">{feature.title}</h5>
+                  <p className="text-gray-600 font-light leading-relaxed text-[15px]">{feature.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="text-4xl font-display font-bold text-gray-900 mb-6">Ready to dominate your market?</h2>
+          <p className="text-lg text-gray-600 font-light mb-10 max-w-2xl mx-auto">
+            From seamless migrations to headless commerce and custom integrations, we have the specialized expertise to elevate your Shopify brand.
+          </p>
+          <Link 
+            to="/contact"
+            className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-black hover:shadow-xl transition-all hover:scale-105"
+          >
+            Launch Your Store <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
+        </div>
+      </section>
     </>
-  )
+  );
 }

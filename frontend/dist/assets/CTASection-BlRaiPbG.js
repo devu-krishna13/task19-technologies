@@ -1,0 +1,1 @@
+function u({title:e="Let's Build Something Great Together",subtitle:t="Share your vision and we'll deliver a solution engineered to grow your business.",primaryText:o="Get a Free Audit",primaryTo:r="/contact",secondaryText:i="",secondaryTo:n="/portfolio",eyebrow:a="Start Your Project"}){return null}export{u as C};

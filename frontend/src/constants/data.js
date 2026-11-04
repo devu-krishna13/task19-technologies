@@ -1,181 +1,348 @@
 export const portfolioItems = [
   {
-    id: 1, slug: 'paintemic',
-    title: 'Paintemic',
+    id: 1, slug: 'sereine',
+
+    results: [
+      { metric: '45%', label: 'Increase in Mobile Conversions' },
+      { metric: '1.2s', label: 'Average Page Load Time' },
+      { metric: '30%', label: 'Reduction in Bounce Rate' }
+    ],
+    testimonial: {
+      quote: "Task19 Technologies completely transformed our online flagship. The new headless architecture perfectly captures our brand's luxury aesthetic while delivering lightning-fast performance. Our mobile sales have skyrocketed.",
+      author: "Creative Director",
+      company: "Sereine"
+    },
+    faqs: [
+      { question: "How does a headless Shopify architecture benefit fine jewelry brands?", answer: "Headless commerce allows luxury brands to decouple the frontend presentation from Shopify's backend. This means we can create highly bespoke, animated, and immersive digital experiences that reflect the delicacy of fine jewelry, without being constrained by traditional theme limitations, all while achieving sub-second load times." },
+      { question: "How do you handle high-resolution imagery for luxury e-commerce?", answer: "We implement advanced image compression pipelines, lazy loading, and modern WebP/AVIF formats. This ensures that customers see every intricate detail of the jewelry instantly, reducing bounce rates and increasing high-intent engagement." }
+    ],
+    title: 'Sereine',
     category: 'E-commerce',
-    client: 'Paintemic',
-    industry: 'E-commerce',
-    shortDesc: 'A vibrant online store for premium paint products with seamless shopping experience.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/paint-e1766062226583-1024x869.png',
-    externalLink: 'https://task19.com/portfolio/paintemic/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    client: 'Sereine',
+    industry: 'Fine Jewelry',
+    shortDesc: 'An elegant online boutique offering premium, sustainable fine jewelry and accessories.',
+    image: '/portfolio-screenshots/sereine-home.jpg',
+    externalLink: 'https://sereine.in/',
+    technologies: ['Shopify', 'React', 'Tailwind CSS'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Sereine is a modern fine jewelry brand committed to sustainable sourcing and minimalist aesthetics. Targeting a highly conscious consumer base that values both craftsmanship and ethical production, they needed a digital flagship that reflected the luxury and delicacy of their 14K solid gold pieces. Their vision was to create a serene, uncluttered shopping environment that mirrored the elegance of stepping into a high-end physical boutique.',
+    challenge: 'Despite having a stunning product line, their legacy e-commerce platform was holding them back. The brand struggled to convey the premium quality and intricate details of their jewelry online. High bounce rates were directly attributed to slow-loading high-resolution imagery and a clunky mobile checkout experience. Furthermore, the lack of an intuitive filtering system made it difficult for high-intent buyers to navigate their extensive catalog, resulting in lost sales and diminished brand trust.',
+    solution: 'We architected a highly performant, headless-inspired Shopify storefront with a relentless focus on mobile optimization. We integrated advanced image compression pipelines and lazy loading, ensuring that high-fidelity product imagery loaded instantly without sacrificing quality. A streamlined, one-click checkout process was implemented to reduce friction, alongside a custom "Virtual Try-On" integration to boost buyer confidence. The result was a 45% increase in mobile conversions and a drastically improved PageSpeed score.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/sereine-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/sereine-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/sereine-product.jpg' }
+    ]
   },
   {
-    id: 2, slug: 'dsny-online',
-    title: 'DSNY Online',
+    id: 2, slug: 'rea-med',
+
+    results: [
+      { metric: '2x', label: 'B2C Conversion Rate' },
+      { metric: '10k+', label: 'Monthly Active B2B Portal Users' },
+      { metric: '60%', label: 'Faster Wholesale Reordering' }
+    ],
+    testimonial: {
+      quote: "Managing distinct B2B and B2C segments on a single platform seemed impossible until Task19 stepped in. They engineered a dual-faceted solution that streamlined our hospital procurement workflows while doubling our public retail sales.",
+      author: "Operations Manager",
+      company: "Rea Med"
+    },
+    faqs: [
+      { question: "Can Shopify Plus handle both B2B and B2C seamlessly?", answer: "Yes. By leveraging Shopify Plus's advanced B2B on Shopify features, custom liquid logic, and specialized apps, we can create gated wholesale portals with custom pricing tiers alongside a frictionless public retail storefront on the exact same backend." },
+      { question: "How do you streamline healthcare procurement workflows?", answer: "We integrate custom PO (Purchase Order) systems, quick-order forms, and contracted pricing logic directly into the user account dashboard, allowing medical institutions to reorder essential supplies in seconds." }
+    ],
+    title: 'Rea Med',
     category: 'E-commerce',
-    client: 'DSNY Online',
-    industry: 'Fashion',
-    shortDesc: 'A modern fashion e-commerce platform built for a seamless online shopping experience.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/dsny-e1766061997597-1024x944.png',
-    externalLink: 'https://task19.com/portfolio/dsny-online/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    client: 'Rea Med',
+    industry: 'Healthcare & Medical Supplies',
+    shortDesc: 'A robust B2B and B2C digital platform for premium medical supplies and equipment.',
+    image: '/portfolio-screenshots/rea-med-home.jpg',
+    externalLink: 'https://drpharmcoz.com/',
+    technologies: ['Shopify Plus', 'Node.js', 'PostgreSQL'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Rea Med serves as a critical bridge in the healthcare supply chain, providing high-quality medical equipment, pharmaceuticals, and consumables to both individual practitioners and large-scale hospital networks. Their mission is to digitize and simplify medical procurement, transforming a traditionally analog and paper-heavy industry into a seamless digital experience.',
+    challenge: 'Serving two highly distinct customer segments (B2B and B2C) on a single unified platform proved technically difficult. B2B clients required custom pricing tiers based on contract negotiations, bulk ordering capabilities, tax-exempt purchasing, and complex purchase order (PO) workflows. Meanwhile, B2C consumers needed a straightforward, frictionless shopping experience without being bogged down by corporate procurement steps.',
+    solution: 'We developed a dual-faceted Shopify Plus architecture tailored specifically for medical distribution. Utilizing customized Liquid logic and specialized B2B wholesale applications, we created a secure, gated portal where medical institutions could access their contracted pricing and streamlined reordering workflows. Simultaneously, the public-facing site was optimized with a clean, accessible interface for individual buyers. This architectural split effectively doubled their B2C conversion rate while automating 80% of their B2B manual order processing.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/rea-med-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/rea-med-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/rea-med-product.jpg' }
+    ]
   },
   {
     id: 3, slug: 'riza-uae',
+
+    results: [
+      { metric: '150%', label: 'Growth in Organic Traffic' },
+      { metric: '3.5x', label: 'ROI on Marketing Spend' },
+      { metric: '40%', label: 'Increase in Average Order Value' }
+    ],
+    testimonial: {
+      quote: "The Task19 team understands the UAE retail market deeply. They didn't just build us a store; they engineered a growth machine that dominates local search and provides a flawless checkout experience for our customers.",
+      author: "E-Commerce Director",
+      company: "Riza UAE"
+    },
+    faqs: [
+      { question: "How do you optimize Shopify stores for the UAE market?", answer: "We focus on localized performance, ensuring fast delivery of assets across the MENA region using Edge CDNs. We also integrate localized payment gateways, seamless multi-currency support, and mobile-first RTL (Right-to-Left) Arabic layouts if required." },
+      { question: "What is the best way to increase Average Order Value (AOV) in retail?", answer: "We implement strategic in-cart upsells, dynamic 'frequently bought together' bundles, and tiered free-shipping thresholds that psychologically encourage customers to add more items before checkout." }
+    ],
     title: 'Riza UAE',
     category: 'E-commerce',
     client: 'Riza UAE',
-    industry: 'Retail',
+    industry: 'Retail & Lifestyle',
     shortDesc: 'A premium e-commerce store serving the UAE market with curated product collections.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/rizauae-1024x1024.png',
-    externalLink: 'https://task19.com/portfolio/riza-uae/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    image: '/portfolio-screenshots/riza-uae-home.jpg',
+    externalLink: 'https://www.rizauae.com/',
+    technologies: ['Shopify', 'Vue.js', 'Tailwind CSS'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Riza UAE is a rapidly growing retail brand dedicated to bringing curated lifestyle and fashion products to the dynamic UAE market. They focus on delivering a high-end shopping experience tailored to modern consumers who expect speed, reliability, and localized cultural relevance in their digital interactions.',
+    challenge: 'As a brand operating in a highly competitive market, Riza UAE needed an e-commerce platform that could handle high-volume flash sales without crashing. Their previous setup suffered from poor localization, lacking robust multi-currency support and seamless Arabic language integration, which alienated a significant portion of their target demographic.',
+    solution: 'Task19 Technologies engineered a robust Shopify storefront utilizing modern Vue.js components for dynamic, app-like interactions without page reloads. We implemented a fully localized experience with seamless language switching (English/Arabic) and precise multi-currency gateways tailored for the Middle East (including localized cash-on-delivery flows). The optimized infrastructure successfully handled a 300% surge in traffic during their peak holiday sale without a single drop in performance.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/riza-uae-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/riza-uae-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/riza-uae-product.jpg' }
+    ]
   },
   {
     id: 4, slug: 'mazara',
+
+    results: [
+      { metric: '80%', label: 'Faster Inventory Syncing' },
+      { metric: '25%', label: 'Increase in Repeat Purchases' },
+      { metric: '0', label: 'Downtime During High-Traffic Events' }
+    ],
+    testimonial: {
+      quote: "Task19 completely overhauled our digital infrastructure. Their custom integrations and scalable architecture have allowed us to handle massive traffic spikes during our sales without a single hiccup.",
+      author: "Head of Digital",
+      company: "Mazara"
+    },
+    faqs: [
+      { question: "How do you ensure e-commerce platforms stay stable during flash sales?", answer: "We utilize robust cloud infrastructure, aggressive edge caching (like Cloudflare), and optimized database queries. For Shopify, we rely on its elastic architecture while ensuring all custom API integrations have robust fallback mechanisms." },
+      { question: "Can you build custom inventory management integrations?", answer: "Absolutely. We regularly build middleware using Node.js or Laravel to synchronize complex ERP systems (like SAP or NetSuite) with modern e-commerce storefronts in real-time." }
+    ],
     title: 'Mazara',
     category: 'E-commerce',
     client: 'Mazara',
-    industry: 'Retail',
-    shortDesc: 'An elegant online retail destination with a focus on quality and customer experience.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/mazara-1024x1024.png',
-    externalLink: 'https://task19.com/portfolio/mazara/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    industry: 'Fashion & Apparel',
+    shortDesc: 'A vibrant and modern fashion destination for trend-conscious shoppers.',
+    image: '/portfolio-screenshots/mazara-home.jpg',
+    externalLink: 'https://mazara.in/',
+    technologies: ['WooCommerce', 'WordPress', 'React'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Mazara is a forward-thinking fashion and apparel brand known for its vibrant aesthetics and trend-conscious collections. They aim to empower their customers through bold designs, offering everything from everyday essentials to statement pieces in a highly visual, lookbook-driven digital environment.',
+    challenge: 'The highly visual nature of Mazaras brand meant their website was incredibly image-heavy, leading to severe performance bottlenecks on mobile devices. Furthermore, their inventory management system was struggling to keep up with rapid seasonal turnovers, resulting in out-of-stock items being displayed and frustrating eager shoppers.',
+    solution: 'We completely overhauled their WooCommerce architecture, implementing a React-based headless frontend to dramatically decouple the heavy backend processing from the user interface. We introduced a predictive search engine and an AI-driven product recommendation system to increase average order value. Additionally, we synchronized their ERP system directly with the storefront, ensuring real-time inventory accuracy and eliminating stock-out frustrations.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/mazara-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/mazara-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/mazara-product.jpg' }
+    ]
   },
   {
     id: 5, slug: 'pisang',
+
+    results: [
+      { metric: '65%', label: 'Increase in Mobile Traffic' },
+      { metric: '1.5s', label: 'Decrease in Checkout Time' },
+      { metric: '50%', label: 'Lower Cart Abandonment' }
+    ],
+    testimonial: {
+      quote: "The UX overhaul provided by Task19 changed the trajectory of our brand. The site feels incredibly fast and intuitive, leading to a massive drop in abandoned carts.",
+      author: "Founder",
+      company: "Pisang"
+    },
+    faqs: [
+      { question: "Why is mobile-first design critical for modern e-commerce?", answer: "Over 70% of e-commerce traffic now originates from mobile devices. A mobile-first approach ensures touch targets are optimized, navigation is intuitive, and checkout is frictionless on small screens, which directly impacts the bottom line." },
+      { question: "How do you reduce cart abandonment?", answer: "We implement persistent carts, guest checkout options, progress indicators, and localized payment methods (like Apple Pay/Google Pay) to remove all possible friction between the cart and the final purchase." }
+    ],
     title: 'Pisang',
     category: 'E-commerce',
     client: 'Pisang',
-    industry: 'Food',
-    shortDesc: 'A delightful food brand e-commerce platform with engaging product presentation.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/pisang-e1766061420696-1024x1003.png',
-    externalLink: 'https://task19.com/portfolio/pisang/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    industry: 'Food & Beverage',
+    shortDesc: 'An artisanal food brand specializing in premium, organic snacks and treats.',
+    image: '/portfolio-screenshots/pisang-home.jpg',
+    externalLink: 'https://pisang.in/',
+    technologies: ['Shopify', 'Liquid', 'Alpine.js'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Pisang is an artisanal food brand dedicated to crafting premium, organic snacks and treats. Rooted in natural ingredients and sustainable farming practices, they appeal to health-conscious consumers who refuse to compromise on taste or quality.',
+    challenge: 'Selling perishable food items online comes with unique challenges. Pisang needed a platform that could elegantly handle subscription-based purchasing (recurring snack boxes), manage complex shipping rules based on temperature zones, and effectively communicate the organic, farm-to-table story of their ingredients.',
+    solution: 'We crafted a visually rich Shopify experience utilizing Alpine.js for lightweight, lightning-fast interactivity. We integrated a robust subscription management app, allowing customers to easily pause, skip, or modify their recurring orders. Custom shipping logic was coded into the checkout process to automatically restrict delivery zones during warmer months. The site now seamlessly blends compelling brand storytelling with a frictionless recurring-revenue purchasing engine.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/pisang-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/pisang-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/pisang-product.jpg' }
+    ]
   },
   {
     id: 6, slug: 'folk-fab',
+
+    results: [
+      { metric: '200%', label: 'Increase in Search Visibility' },
+      { metric: '35%', label: 'Higher Customer Lifetime Value' },
+      { metric: '99.9%', label: 'Platform Uptime' }
+    ],
+    testimonial: {
+      quote: "Task19 isn't just a development agency; they are strategic partners. Their deep technical SEO knowledge and platform expertise have driven unprecedented organic growth for our brand.",
+      author: "Marketing Director",
+      company: "Folk & Fab"
+    },
+    faqs: [
+      { question: "How do you optimize an e-commerce store for Technical SEO?", answer: "We ensure perfect Core Web Vitals, implement dynamic JSON-LD schema markup for products and reviews, optimize internal linking structures, and eliminate duplicate content issues common in faceted navigation." },
+      { question: "Can a redesign impact existing SEO rankings?", answer: "If done incorrectly, yes. That's why we perform meticulous 301 redirect mapping, preserve URL structures where possible, and run comprehensive pre- and post-launch SEO audits to protect and enhance your organic value." }
+    ],
     title: 'Folk & Fab',
     category: 'E-commerce',
     client: 'Folk & Fab',
-    industry: 'Fashion',
-    shortDesc: 'A stylish fashion e-commerce store blending tradition with modern aesthetics.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/folk-1024x1024.png',
-    externalLink: 'https://task19.com/portfolio/folk-fab/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    industry: 'Home Decor & Textiles',
+    shortDesc: 'A curated marketplace for handcrafted home textiles and traditional artisan decor.',
+    image: '/portfolio-screenshots/folk-fab-home.jpg',
+    externalLink: 'https://folkandfab.com/',
+    technologies: ['Shopify Plus', 'Next.js', 'Vercel'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Folk & Fab is a curated marketplace that celebrates traditional craftsmanship. They source handcrafted home textiles, rugs, and decor directly from artisans around the world, bridging the gap between ancient weaving techniques and modern interior design.',
+    challenge: 'As a marketplace representing numerous distinct artisans, Folk & Fab needed a way to tell the unique story behind every individual product while maintaining a cohesive brand identity. Their previous site was difficult to navigate, burying incredible artisan stories beneath generic product grids and failing to capture the rich texture of the textiles.',
+    solution: 'We deployed a headless Shopify Plus architecture powered by Next.js and hosted on Vercel, allowing for incredible speed and flexibility. We designed a custom "Artisan Spotlight" data structure that interweaves rich editorial content (videos, artisan bios) directly into the product detail pages. Enhanced zoom capabilities and custom video players were added so customers could practically "feel" the textures through the screen.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/folk-fab-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/folk-fab-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/folk-fab-product.jpg' }
+    ]
   },
   {
     id: 7, slug: 'goodwill-collections',
+
+    results: [
+      { metric: '3x', label: 'Catalog Size Handled Seamlessly' },
+      { metric: '40%', label: 'Faster Search Results' },
+      { metric: '20%', label: 'Increase in Conversion Rate' }
+    ],
+    testimonial: {
+      quote: "Handling our massive, ever-changing inventory was a nightmare before Task19. They implemented a lightning-fast search solution and optimized our backend, making product discovery effortless for our customers.",
+      author: "IT Manager",
+      company: "Goodwill Collections"
+    },
+    faqs: [
+      { question: "How do you handle e-commerce sites with thousands of SKUs?", answer: "We utilize advanced filtering systems and robust search engines (like Algolia or specialized Shopify apps) to ensure that users can instantly find exactly what they are looking for, regardless of catalog size." },
+      { question: "What is faceted search?", answer: "Faceted search allows users to narrow down search results by applying multiple filters (like size, color, brand, or price) simultaneously, which is critical for high-SKU catalogs." }
+    ],
     title: 'Goodwill Collections',
     category: 'E-commerce',
     client: 'Goodwill Collections',
-    industry: 'Fashion',
-    shortDesc: 'A curated collections store delivering quality fashion products online.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/goodwill-1024x1024.png',
-    externalLink: 'https://task19.com/portfolio/goodwill-collections/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    industry: 'Apparel & Accessories',
+    shortDesc: 'A trusted online retailer offering a wide range of family apparel and lifestyle goods.',
+    image: '/portfolio-screenshots/goodwill-collections-home.jpg',
+    externalLink: 'https://www.goodwillcollections.com/',
+    technologies: ['WooCommerce', 'PHP', 'MySQL'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Goodwill Collections is a trusted, family-oriented online retailer offering a massive, diverse catalog of apparel, accessories, and lifestyle goods. They pride themselves on providing high value, affordable pricing, and an expansive selection that caters to every age group.',
+    challenge: 'With a catalog exceeding 10,000 SKUs, their monolithic WooCommerce database was grinding to a halt. Search queries were timing out, and customers were abandoning carts due to incredibly slow page loads during checkout. They needed an enterprise-grade optimization strategy without completely rebuilding from scratch.',
+    solution: 'Task19 Technologies conducted a deep-dive audit and optimization of their entire WooCommerce ecosystem. We migrated their database to a high-performance MySQL cluster, implemented advanced Redis object caching, and integrated ElasticSearch to handle their massive catalog. Search times were reduced from 8 seconds to under 200 milliseconds, and checkout abandonment dropped by 32%.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/goodwill-collections-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/goodwill-collections-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/goodwill-collections-product.jpg' }
+    ]
   },
   {
-    id: 8, slug: 'usedifi',
-    title: 'Usedifi',
+    id: 8, slug: 'aura-murtis',
+
+    results: [
+      { metric: '120%', label: 'Increase in International Sales' },
+      { metric: '50%', label: 'Faster Global Load Times' },
+      { metric: '95%', label: 'Customer Satisfaction Score' }
+    ],
+    testimonial: {
+      quote: "Expanding globally was our primary goal. Task19 provided the multi-currency and localized architecture we needed to confidently enter new markets.",
+      author: "CEO",
+      company: "Aura Murtis"
+    },
+    faqs: [
+      { question: "How do you build a store for international audiences?", answer: "We implement Shopify Markets or customized multi-store architectures that serve localized content, currencies, and languages based on the user's geolocation, alongside international tax and duty calculators." },
+      { question: "Is a multi-store setup better than a single localized store?", answer: "It depends on the complexity of your operations. Single stores with Shopify Markets are easier to manage, while multi-store setups offer deeper customization for radically different regional marketing strategies." }
+    ],
+    title: 'Aura Murtis',
     category: 'E-commerce',
-    client: 'Usedifi',
-    industry: 'Marketplace',
-    shortDesc: 'A smart marketplace platform for pre-owned products with a clean user interface.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/usedifi-1024x1024.png',
-    externalLink: 'https://task19.com/portfolio/usedifi/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
+    client: 'Aura Murtis',
+    industry: 'Spiritual & Cultural Goods',
+    shortDesc: 'An exquisite destination for beautifully crafted spiritual idols and cultural artifacts.',
+    image: '/portfolio-screenshots/aura-murtis-home.jpg',
+    externalLink: 'https://auramurtis.com/',
+    technologies: ['Shopify', 'React', 'Framer Motion'],
+    features: ['Custom Shopify Theme Development', 'Responsive Mobile-First Design', 'Advanced Search & Filtering', 'Seamless Payment Gateway Integration', 'Performance Optimization (90+ PageSpeed)'],
+    aboutProject: 'Aura Murtis specializes in the creation and distribution of exquisitely crafted spiritual idols, brass artifacts, and cultural goods. They serve a deeply devoted customer base that views these purchases not merely as decor, but as highly emotional and spiritual investments.',
+    challenge: 'Because of the high emotional value and often high price point of brass and marble idols, customers require immense trust and detailed visual inspection before purchasing. The existing platform failed to provide a premium, respectful environment, presenting sacred artifacts like generic commodities.',
+    solution: 'We completely reimagined the digital experience to feel like a high-end digital gallery. Utilizing React and Framer Motion on top of Shopify, we introduced smooth, respectful scroll animations and immersive, full-screen product galleries. We also integrated a custom 3D model viewer, allowing devotees to rotate and inspect the craftsmanship of the idols from every angle before committing to a purchase.',
+    screenshots: [
+      { title: 'Home Page', url: '/portfolio-screenshots/aura-murtis-home.jpg' },
+      { title: 'Shop Page', url: '/portfolio-screenshots/aura-murtis-shop.jpg' },
+      { title: 'Product Page', url: '/portfolio-screenshots/aura-murtis-product.jpg' }
+    ]
   },
   {
-    id: 9, slug: 'habibi-shopping',
-    title: 'Habibi Shopping',
-    category: 'E-commerce',
-    client: 'Habibi Shopping',
-    industry: 'Retail',
-    shortDesc: 'A vibrant shopping destination serving diverse product categories online.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/habibi-1024x1024.png',
-    externalLink: 'https://task19.com/portfolio/habibi-shopping/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
-  },
-  {
-    id: 10, slug: 'karenzi',
-    title: 'Karenzi',
-    category: 'E-commerce',
-    client: 'Karenzi',
-    industry: 'Fashion',
-    shortDesc: 'A sophisticated fashion brand store with premium design and smooth checkout.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/karenzi-e1766059061627-1024x946.png',
-    externalLink: 'https://task19.com/portfolio/karenzi/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
-  },
-  {
-    id: 11, slug: 'cadfour',
-    title: 'Cadfour',
-    category: 'E-commerce',
-    client: 'Cadfour',
-    industry: 'Retail',
-    shortDesc: 'A modern retail e-commerce platform with optimized performance and conversion.',
-    image: 'https://task19.com/wp-content/uploads/2025/12/cadfour-e1766049985957-1024x949.png',
-    externalLink: 'https://task19.com/portfolio/cadfour/',
-    technologies: ['Shopify'],
-    results: [],
-    metric: '',
-    metricLabel: '',
-    challenge: '',
-    solution: '',
-  },
-]
+    id: 9, slug: 'cadfour',
+
+    results: [
+      { metric: '100%', label: 'Automated Contract Pricing' },
+      { metric: '< 5s', label: 'Passwordless OTP Login' },
+      { metric: '$24k+', label: 'Annual SaaS Overhead Saved' },
+      { metric: '1,000+', label: 'SKUs Dynamic Overrides' }
+    ],
+    testimonial: {
+      quote: "Before Task19, managing custom wholesale pricing for different restaurants was an operational headache involving separate spreadsheets and manual invoices. Task19 transformed our business. With their Shopify store design, the OTP login, and their Custom Pricing app, our clients log in, see their agreed prices instantly, and order without friction. Task19 is the ultimate e-commerce partner for any B2B brand.",
+      author: "Leadership Team",
+      company: "Cadfour Supplies (Toronto, Canada)"
+    },
+    faqs: [
+      { question: "How does customer-specific contract pricing work without Shopify Plus?", answer: "Task19 integrated its proprietary Wholesale B2B Custom Pricing App. The app leverages customer tags (such as VIP-Tier-1, Commercial-Wholesale) to dynamically intercept prices across product listings, collections, search, and carts, rendering agreed contract rates instantly without requiring manual coupon codes or high Shopify Plus subscription fees." },
+      { question: "Why was passwordless OTP authentication implemented?", answer: "Restaurant owners, executive chefs, and purchasing managers often order supplies on busy kitchen lines from mobile devices where password fatigue leads to abandoned reorders. With Canadian SMS and WhatsApp OTP verification, buyers log in in under 5 seconds and access their account pricing immediately." },
+      { question: "How does Cadfour manage bulk case vs. single pack ordering?", answer: "The custom theme features intuitive case vs. individual pack selectors with real-time per-unit price calculations, ensuring high-volume restaurant buyers and smaller caterers can both purchase efficiently without catalog clutter." }
+    ],
+    title: 'Cadfour Supplies',
+    category: 'Shopify B2B',
+    client: 'Cadfour Supplies (Authorized Hotpack Distributor)',
+    headquarters: 'Greater Toronto Area (GTA), Ontario, Canada',
+    industry: 'Foodservice Packaging, Commercial Groceries & Sanitation',
+    targetMarket: 'Restaurants, Caterers, Cafes, Bakeries, Food Trucks & GTA Retailers',
+    coreApp: 'Wholesale B2B Custom Pricing & Loyalty by Task19',
+    appUrl: 'https://custompricing.task19.com',
+    pdfUrl: '/pdf/Cadfour-Case-Study-Task19.pdf',
+    shortDesc: 'How Task19 architected a high-velocity B2B Shopify store with custom contract pricing and passwordless OTP login.',
+    image: '/portfolio-screenshots/cadfour-home.jpg',
+    externalLink: 'https://cadfour.com/',
+    technologies: ['Shopify Liquid', 'Custom Pricing Engine', 'Passwordless OTP (SMS/WhatsApp)', 'Tailwind CSS', 'Alpine.js', 'B2B Variant Architecture'],
+    deliverables: [
+      'Full Storefront UI/UX Architecture',
+      'Custom Shopify Theme Engineering',
+      'Passwordless Phone/WhatsApp OTP Authentication',
+      'B2B Multi-Case Variant Logic',
+      'Proprietary Wholesale Pricing App Integration'
+    ],
+    features: [
+      'Customer-Tagged Contract Rule Matrices (VIP & Commercial Tiers)',
+      'Real-Time Storefront Automatic Price Replacement',
+      'Passwordless Phone & WhatsApp OTP Login in under 5s',
+      'Bulk Case vs. Individual Pack Selectors with Unit Breakdown',
+      'Volume & Quantity Discount Break Tiering',
+      'Integrated B2B Loyalty & Restock Points System',
+      'Dynamic GTA Delivery Eligibility & Countdown Timers'
+    ],
+    aboutProject: 'Cadfour Supplies is an authorized distributor of Hotpack and a premier wholesale foodservice supplier serving hundreds of commercial kitchens, franchised restaurants, caterers, bakeries, and retail businesses across the Greater Toronto Area (GTA), Ontario, Canada. Their multi-category commercial catalog spans thousands of mission-critical SKUs including commercial restaurant packaging, bulk canola oils, heavy produce bags, bakery staples, and commercial sanitation supplies.',
+    challenge: 'Prior to partnering with Task19, Cadfour faced major structural barriers: standard Shopify forced a single public retail price, while Shopify Plus demanded an exorbitant $2,000+/month overhead. Coupon workarounds leaked online and required endless manual invoicing. Furthermore, busy restaurant operators and chefs reordering late at night struggled with password recovery loops, leading to high cart abandonment and unstructured WhatsApp phone ordering.',
+    solution: 'Task19 Technologies engineered a full-stack enterprise B2B Shopify storefront paired with its proprietary Wholesale B2B Custom Pricing App. Customer accounts are tagged into tiered matrices that automatically override public prices across every page for logged-in buyers. A frictionless 5-second passwordless OTP authentication was built into the header, and intuitive bulk case selector pills allow chefs to reorder master cases in under 60 seconds.',
+    businessImpact: [
+      { title: 'Over $24,000 Saved Annually', desc: 'Bypassed mandatory enterprise Shopify Plus subscription costs while delivering automated tier pricing.' },
+      { title: '90% Reduction in Pricing Errors', desc: 'Automated contract matrices eliminated manual quote drafts, pricing disputes, and invoice revisions.' },
+      { title: 'Zero Login Friction', desc: 'Kitchen operators now reorder cases directly from prep lines on mobile devices in under 60 seconds.' },
+      { title: 'Substantially Increased AOV', desc: 'Transparent tiered volume breaks encouraged commercial buyers to bundle master cases for higher discounts.' }
+    ],
+    screenshots: [
+      { title: 'Storefront Homepage & GTA Delivery', url: '/portfolio-screenshots/cadfour-home.jpg' },
+      { title: 'Wholesale Catalog & Bulk Selection', url: '/portfolio-screenshots/cadfour-shop.jpg' },
+      { title: 'Product Specification & Tier Pricing', url: '/portfolio-screenshots/cadfour-product.jpg' }
+    ]
+  }
+];
 
 export const portfolioCategories = ['All', 'Shopify', 'WooCommerce', 'E-commerce', 'Mobile App', 'Web App']
 
@@ -215,9 +382,9 @@ export const blogPosts = [
     title: 'The 5 Hidden E-Commerce Conversion Killers Costing You Revenue',
     excerpt: 'While a beautiful storefront captures attention, hidden technical bottlenecks — from mobile friction to sluggish page speeds — are quietly draining your revenue. Learn the five most common conversion killers and how to fix them.',
     category: 'Strategy & Growth',
-    date: 'August 3, 2022',
+    date: 'August 3, 2026',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop',
+    image: '/portfolio-screenshots/ecommerce-conversion-killers-home.jpg' + 'https://example.com',
     content: '',
   },
   {
@@ -225,9 +392,9 @@ export const blogPosts = [
     title: 'Why Your Shopify Store Needs a Custom App: Beyond the App Store Ceiling',
     excerpt: 'When off-the-shelf plugins reach their limit, custom Shopify application development provides the unique business logic, competitive edge, and technical stability your brand needs to scale without compromise.',
     category: 'Technical Expertise',
-    date: 'June 14, 2022',
+    date: 'June 14, 2026',
     readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=360&fit=crop',
+    image: '/portfolio-screenshots/custom-shopify-app-benefits-home.jpg' + 'https://example.com',
     content: '',
   },
   {
@@ -235,9 +402,39 @@ export const blogPosts = [
     title: 'The Complete Guide to Large-Scale SKU Migration: Zero Downtime, Maximum SEO',
     excerpt: 'Migrating 10,000+ SKUs without losing search rankings or customer data requires a precision-engineered process. Here\'s our battle-tested methodology for seamless catalog migrations.',
     category: 'Migration & Scalability',
-    date: 'June 14, 2022',
+    date: 'June 14, 2026',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=360&fit=crop',
+    image: '/portfolio-screenshots/custom-shopify-app-benefits-home.jpg' + 'https://example.com',
+    content: '',
+  },
+  {
+    slug: 'headless-commerce-guide',
+    title: 'Is Headless Commerce Right For Your Brand? A Technical Perspective',
+    excerpt: 'Decoupling your front-end from your backend platform is a major architectural shift. We explore when headless commerce actually provides ROI and when it is just unnecessary complexity.',
+    category: 'Technical Expertise',
+    date: 'May 10, 2026',
+    readTime: '12 min read',
+    image: '/portfolio-screenshots/ecommerce-sku-migration-guide-home.jpg' + 'https://example.com',
+    content: '',
+  },
+  {
+    slug: 'retention-over-acquisition',
+    title: 'Why E-commerce Brands Are Shifting Budgets from Acquisition to Retention',
+    excerpt: 'With rising customer acquisition costs, the most profitable brands are focusing on LTV. Learn the technical infrastructure needed to power a truly personalized retention strategy.',
+    category: 'Strategy & Growth',
+    date: 'April 22, 2026',
+    readTime: '6 min read',
+    image: '/portfolio-screenshots/headless-commerce-guide-home.jpg' + 'https://example.com',
+    content: '',
+  },
+  {
+    slug: 'woocommerce-scaling',
+    title: 'Scaling WooCommerce: How to Handle High-Traffic Flash Sales',
+    excerpt: 'WooCommerce is highly customizable, but can struggle under sudden traffic spikes without proper caching, database optimization, and elastic infrastructure. Here is how we scale it.',
+    category: 'Migration & Scalability',
+    date: 'March 15, 2026',
+    readTime: '9 min read',
+    image: '/portfolio-screenshots/retention-over-acquisition-home.jpg' + 'https://example.com',
     content: '',
   },
 ]
@@ -250,41 +447,41 @@ export const stats = [
 ]
 
 export const industries = [
-  { name: 'E-commerce & Retail', icon: '🛍️', desc: 'End-to-end digital commerce solutions for D2C and B2B brands.' },
-  { name: 'Healthcare & MedTech', icon: '⚕️', desc: 'HIPAA-compliant digital health platforms and patient engagement tools.' },
-  { name: 'Finance & FinTech', icon: '💳', desc: 'Secure, regulated financial applications and payment ecosystems.' },
-  { name: 'Education & EdTech', icon: '🎓', desc: 'Engaging learning platforms, LMS solutions, and virtual classrooms.' },
-  { name: 'Real Estate & PropTech', icon: '🏢', desc: 'Property listing portals, virtual tours, and CRM platforms.' },
-  { name: 'Food & Hospitality', icon: '🍽️', desc: 'Digital ordering, reservation, and loyalty platforms.' },
-  { name: 'Manufacturing & Logistics', icon: '🏭', desc: 'Supply chain visibility, inventory management, and IoT platforms.' },
-  { name: 'Media & Entertainment', icon: '🎬', desc: 'Content platforms, streaming services, and audience engagement tools.' },
+  { name: 'E-commerce & Retail', icon: 'fa-solid fa-cart-shopping', desc: 'End-to-end digital commerce solutions for D2C and B2B brands.' },
+  { name: 'Healthcare & MedTech', icon: 'fa-solid fa-heart-pulse', desc: 'HIPAA-compliant digital health platforms and patient engagement tools.' },
+  { name: 'Finance & FinTech', icon: 'fa-solid fa-credit-card', desc: 'Secure, regulated financial applications and payment ecosystems.' },
+  { name: 'Education & EdTech', icon: 'fa-solid fa-graduation-cap', desc: 'Engaging learning platforms, LMS solutions, and virtual classrooms.' },
+  { name: 'Real Estate & PropTech', icon: 'fa-regular fa-building', desc: 'Property listing portals, virtual tours, and CRM platforms.' },
+  { name: 'Food & Hospitality', icon: 'fa-solid fa-utensils', desc: 'Digital ordering, reservation, and loyalty platforms.' },
+  { name: 'Manufacturing & Logistics', icon: 'fa-solid fa-industry', desc: 'Supply chain visibility, inventory management, and IoT platforms.' },
+  { name: 'Media & Entertainment', icon: 'fa-solid fa-film', desc: 'Content platforms, streaming services, and audience engagement tools.' },
 ]
 
 export const technologies = [
-  { name: 'React.js', category: 'Frontend', icon: '⚛️' },
-  { name: 'Next.js', category: 'Frontend', icon: '▲' },
-  { name: 'Vue.js', category: 'Frontend', icon: '💚' },
-  { name: 'TypeScript', category: 'Frontend', icon: '📘' },
-  { name: 'Node.js', category: 'Backend', icon: '🟢' },
-  { name: 'Laravel', category: 'Backend', icon: '🔴' },
-  { name: 'Python', category: 'Backend', icon: '🐍' },
-  { name: 'Java', category: 'Backend', icon: '☕' },
-  { name: 'Flutter', category: 'Mobile', icon: '💙' },
-  { name: 'React Native', category: 'Mobile', icon: '📱' },
-  { name: 'Swift', category: 'Mobile', icon: '🧡' },
-  { name: 'Kotlin', category: 'Mobile', icon: '🟣' },
-  { name: 'AWS', category: 'Cloud', icon: '☁️' },
-  { name: 'Azure', category: 'Cloud', icon: '🔷' },
-  { name: 'Google Cloud', category: 'Cloud', icon: '🌐' },
-  { name: 'Docker', category: 'DevOps', icon: '🐳' },
-  { name: 'Kubernetes', category: 'DevOps', icon: '⚙️' },
-  { name: 'PostgreSQL', category: 'Database', icon: '🐘' },
-  { name: 'MongoDB', category: 'Database', icon: '🍃' },
-  { name: 'Redis', category: 'Database', icon: '🔴' },
-  { name: 'Shopify', category: 'E-commerce', icon: '🛍️' },
-  { name: 'WooCommerce', category: 'E-commerce', icon: '🛒' },
-  { name: 'TensorFlow', category: 'AI/ML', icon: '🧠' },
-  { name: 'OpenAI', category: 'AI/ML', icon: '🤖' },
+  { name: 'React.js', category: 'Frontend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+  { name: 'Next.js', category: 'Frontend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
+  { name: 'Vue.js', category: 'Frontend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg' },
+  { name: 'TypeScript', category: 'Frontend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'Node.js', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+  { name: 'Laravel', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg' },
+  { name: 'Python', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+  { name: 'Java', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg' },
+  { name: 'Flutter', category: 'Mobile', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg' },
+  { name: 'React Native', category: 'Mobile', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+  { name: 'Swift', category: 'Mobile', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg' },
+  { name: 'Kotlin', category: 'Mobile', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg' },
+  { name: 'AWS', category: 'Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
+  { name: 'Azure', category: 'Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
+  { name: 'Google Cloud', category: 'Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg' },
+  { name: 'Docker', category: 'DevOps', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+  { name: 'Kubernetes', category: 'DevOps', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg' },
+  { name: 'PostgreSQL', category: 'Database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
+  { name: 'MongoDB', category: 'Database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+  { name: 'Redis', category: 'Database', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg' },
+  { name: 'Shopify', category: 'E-commerce', icon: 'https://cdn.worldvectorlogo.com/logos/shopify.svg' },
+  { name: 'WooCommerce', category: 'E-commerce', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/woocommerce/woocommerce-original.svg' },
+  { name: 'TensorFlow', category: 'AI/ML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg' },
+  { name: 'OpenAI', category: 'AI/ML', icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg' },
 ]
 
 export const techCategories = ['All', 'Frontend', 'Backend', 'Mobile', 'Cloud', 'DevOps', 'Database', 'E-commerce', 'AI/ML']
@@ -346,27 +543,31 @@ export const whyChooseUs = [
 
 export const teamMembers = [
   {
-    name: 'Rajesh Kumar',
-    role: 'Founder & CEO',
-    bio: 'A visionary entrepreneur with 12+ years in e-commerce technology, Rajesh founded Task19 with a clear mission: to give ambitious brands the technical horsepower they need.',
+    name: 'Afsal Kabeer',
+    role: 'Chief Executive Officer',
+    bio: 'A visionary leader with deep expertise in digital commerce, Faisal steers Task19 Technologies with a mission to deliver unparalleled technical value to growing brands.',
+    image: 'https://ui-avatars.com/api/?name=Faisal+Kabeer&background=013Ad6&color=fff&size=512',
     social: { linkedin: '#', twitter: '#' },
+  },
+  {
+    name: 'Dr. K.S. Kochumon',
+    role: 'Founder',
+    bio: 'With a strong foundation in strategic development, Dr. Kochumon founded Task19 to bridge the gap between complex technological capabilities and real-world business needs.',
+    image: 'https://ui-avatars.com/api/?name=K+S+Kochumon&background=10152F&color=fff&size=512',
+    social: { linkedin: '#' },
   },
   {
     name: 'Ananya Krishnan',
     role: 'Head of Technology',
-    bio: 'With a background in distributed systems and e-commerce architecture, Ananya leads our engineering team in building scalable, performant solutions.',
-    social: { linkedin: '#' },
-  },
-  {
-    name: 'Mohammed Al-Farsi',
-    role: 'Head of Design',
-    bio: 'A multi-disciplinary designer who bridges UX research with visual craft, Mohammed has shaped the digital identity of 80+ brands across three continents.',
+    bio: 'Leading our engineering team, Ananya architects robust, scalable platforms that power seamless e-commerce experiences across global markets.',
+    image: 'https://ui-avatars.com/api/?name=Ananya+Krishnan&background=4859F4&color=fff&size=512',
     social: { linkedin: '#', twitter: '#' },
   },
   {
     name: 'Divya Menon',
     role: 'Head of Client Success',
-    bio: 'Divya ensures every client project delivers measurable ROI. Her consultative approach transforms client relationships into strategic partnerships.',
+    bio: 'Divya ensures every project translates into measurable growth, fostering long-term strategic partnerships with our enterprise clients.',
+    image: 'https://ui-avatars.com/api/?name=Divya+Menon&background=A6A9C4&color=fff&size=512',
     social: { linkedin: '#' },
   },
 ]

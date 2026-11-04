@@ -1,81 +1,100 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Linkedin, Twitter, Facebook, Instagram, Youtube } from 'lucide-react'
+import { ArrowRight, Linkedin, Facebook, Instagram, Youtube } from 'lucide-react'
+
+const XIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 const companyLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Services', to: '/services' },
-  { label: 'Industries', to: '/industries' },
+  { label: 'Products', to: '/products' },
+  { label: 'Shopify Apps', to: '/shopify-apps' },
   { label: 'Works', to: '/portfolio' },
-  { label: 'Careers', to: '/careers' },
+  // { label: 'Careers', to: '/careers' },
   { label: 'Contact Us', to: '/contact' },
 ]
 
 const serviceLinks = [
-  { label: 'Shopify Store Development', to: '/services/shopify' },
-  { label: 'WooCommerce Development', to: '/services/woocommerce' },
-  { label: 'Custom Shopify Apps', to: '/services/shopify-apps-dev' },
+  { label: 'WordPress Development', to: '/services/wordpress-development' },
+  { label: 'Shopify Development', to: '/services/shopify-development' },
+  { label: 'Custom Development', to: '/services/custom-development' },
   { label: 'Web Development', to: '/services/web-development' },
   { label: 'Mobile App Development', to: '/services/mobile-app-development' },
   { label: 'UI/UX Design', to: '/services/ui-ux-design' },
 ]
 
 const otherLinks = [
+  { label: 'Case Studies', to: '/case-studies' },
   { label: 'Partnership', to: '/partnership' },
   { label: 'Awards and Recognitions', to: '/awards' },
   { label: 'Insights', to: '/blog' },
-  { label: 'Resource Augmentation', to: '/resources' },
-  { label: 'Testimonials', to: '/testimonials' },
+  // { label: 'Testimonials', to: '/testimonials' },
   { label: 'Our Clients', to: '/clients' },
   { label: 'Submit Feedback', to: '/feedback' },
-  { label: 'Sitemap', to: '/sitemap' },
 ]
 
 const connectInfo = [
-  { label: 'General Enquiry', value: '+91 70126 39646' },
-  { label: 'Sales Enquiry', value: '+91 70126 39647' },
-  { label: 'Email', value: 'info@task19.com' },
-  { label: 'HR Enquiry', value: '+91 70126 39648' },
-  { label: 'Whatsapp (Sales)', value: '+91 70126 39649' },
+  { label: 'Sales Enquiry', value: 'Sales@task19.com' },
+  { label: 'General Enquiry', value: 'info@task19.com' },
+  { label: 'HR Enquiry', value: 'Hr@task19.com' },
+  { label: 'Whatsapp (Sales)', value: '+91 70126 39646' },
+  { label: 'Locations', value: 'Kochi & Calicut, India' },
 ]
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://www.linkedin.com/company/task19', label: 'LinkedIn' },
-  { icon: Youtube, href: '#', label: 'Youtube' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/task19-technologies/', label: 'LinkedIn' },
+  { icon: Youtube, href: 'http://www.youtube.com/@Task19Technologies', label: 'Youtube' },
+  { icon: Instagram, href: 'https://www.instagram.com/tasknineteen/', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/share/1BUtfhNHxW/', label: 'Facebook' },
+  { icon: XIcon, href: 'https://x.com/Task19_', label: 'X' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="container pt-20 pb-12 lg:pt-28 lg:pb-16">
+    <footer style={{ backgroundColor: '#050f28', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+      <div className="container py-12 md:py-20">
 
         {/* Top CTA Banner */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 lg:mb-28 gap-10">
-          <div>
-            <h4 className="font-display font-light text-white leading-[1.08]" style={{ fontSize: '40px' }}>
-              Get started now!
-            </h4>
-            <p className="text-white/60 text-lg font-light mt-4">It takes less than a minute of your time.</p>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 md:gap-10 mb-12 md:mb-20">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 lg:gap-14">
+            <div>
+              <h4 className="font-display font-bold leading-tight text-[32px] md:text-[40px] text-white tracking-[-0.02em]">
+                Get started now!
+              </h4>
+              <p className="text-gray-400 text-base md:text-lg mt-2 md:mt-4">It takes less than a minute of your time.</p>
+            </div>
+
+            {/* Shopify Badge in marked position */}
+            <div className="flex items-center sm:self-center">
+              <img
+                src="/Badge Select wht transp.svg"
+                alt="Shopify Select Partner"
+                className="h-12 md:h-16 lg:h-20 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity"
+              />
+            </div>
           </div>
+
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-8 py-3.5 text-[13px] font-light border border-white/40 bg-transparent text-white hover:bg-black hover:text-white transition-all duration-300 flex-shrink-0"
+            className="inline-flex items-center justify-center font-medium transition-colors hover:opacity-90 bg-white rounded-xl md:rounded-2xl px-6 py-3 md:px-8 md:py-3.5 text-sm md:text-[15px] shadow-sm flex-shrink-0"
+            style={{ color: '#000000' }}
           >
-            Request a quote <span className="ml-3 font-normal text-[15px]">→</span>
+            Request a quote <span className="ml-2 md:ml-3 font-normal">→</span>
           </Link>
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-8 lg:gap-8 mb-12 md:mb-20">
           {/* Company */}
           <div>
-            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Company</h4>
-            <ul className="space-y-3.5">
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Company</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {companyLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="text-[13px] font-light text-white/70 hover:text-white transition-colors duration-300">
+                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100 text-[13px] md:text-sm text-white/70">
                     {link.label}
                   </Link>
                 </li>
@@ -85,11 +104,11 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Services</h4>
-            <ul className="space-y-3.5">
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Services</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {serviceLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="text-[13px] font-light text-white/70 hover:text-white transition-colors duration-300">
+                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100 text-[13px] md:text-sm text-white/70">
                     {link.label}
                   </Link>
                 </li>
@@ -99,11 +118,11 @@ export default function Footer() {
 
           {/* Other */}
           <div>
-            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Other</h4>
-            <ul className="space-y-3.5">
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Other</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {otherLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="text-[13px] font-light text-white/70 hover:text-white transition-colors duration-300">
+                  <Link to={link.to} className="transition-colors duration-300 hover:opacity-100 text-[13px] md:text-sm text-white/70">
                     {link.label}
                   </Link>
                 </li>
@@ -113,12 +132,12 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-display font-medium text-white mb-6 text-[14px]">Connect</h4>
-            <ul className="space-y-3.5">
+            <h4 className="font-display font-bold mb-4 md:mb-6 text-sm md:text-[15px] text-white">Connect</h4>
+            <ul className="flex flex-col gap-3 md:gap-3.5">
               {connectInfo.map((info) => (
-                <li key={info.label} className="grid grid-cols-[135px_1fr] items-start gap-2">
-                  <span className="text-[13px] font-light text-white/60">{info.label}</span>
-                  <span className="text-[13px] font-light text-white">: {info.value}</span>
+                <li key={info.label} className="flex flex-col xl:grid xl:grid-cols-[120px_1fr] items-start gap-1 xl:gap-2">
+                  <span className="text-[12px] md:text-[13px] text-white/50 xl:text-white/70">{info.label}</span>
+                  <span className="text-[13px] md:text-sm text-white font-medium">{info.value}</span>
                 </li>
               ))}
             </ul>
@@ -126,21 +145,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        {/* Add mb-8 (mobile) and lg:mb-12 (desktop) to the top-level div here */}
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-6 pt-6 mb-8 lg:mb-12">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-[12px] font-light text-white/50 w-full lg:w-auto">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full lg:w-auto text-[12px] md:text-[13px] text-white/50">
             <span>TASK19 © {new Date().getFullYear()} All rights reserved</span>
-            <div className="flex items-center gap-6">
-              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            <div className="flex items-center gap-4 md:gap-6">
+              <Link to="/privacy-policy" className="transition-colors hover:opacity-100 text-white/50">Privacy Policy</Link>
+              <Link to="/terms" className="transition-colors hover:opacity-100 text-white/50">Terms & Conditions</Link>
             </div>
           </div>
 
           <div className="flex items-center gap-6 justify-center w-full lg:w-auto">
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                className="text-white/60 hover:text-white transition-colors duration-300">
-                <Icon className="w-4 h-4" />
+                className="transition-colors duration-300 hover:opacity-100" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                <Icon className="w-5 h-5" />
               </a>
             ))}
           </div>

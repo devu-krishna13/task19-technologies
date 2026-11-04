@@ -1,5 +1,36 @@
-import ServicePageTemplate from '../../components/ServicePageTemplate'
-import { services } from '../../constants/services'
+import { Smartphone } from 'lucide-react'
+import ServicePageTemplate from '../../components/layouts/ServicePageTemplate'
+
 export default function MobileAppDevelopment() {
-  return <ServicePageTemplate service={services.find(s => s.id === 'mobile-app-development')} />
+  return (
+    <ServicePageTemplate 
+      metaTitle="Mobile App Development — Task19 Technologies"
+      metaDesc="Native and cross-platform mobile application development for iOS and Android."
+      heroBadge="Mobile Solutions"
+      heroTitle="Mobile App"
+      heroSubtitle="Development"
+      heroDesc="We build intuitive, high-performance mobile applications for iOS and Android that connect brands with their customers anywhere, anytime."
+      heroImage="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&crop=center&w=1920&h=1080&q=90"
+      serviceTitle="Native & Cross-Platform Excellence"
+      serviceDesc="Whether you need a consumer-facing retail app or a complex internal business tool, our mobile engineering team delivers scalable, crash-free applications with stunning user interfaces."
+      features={[
+        'Cross-platform development (React Native, Flutter)',
+        'Native iOS (Swift) & Android (Kotlin) development',
+        'Mobile commerce & retail app experiences',
+        'Complex third-party API & hardware integrations',
+        'App Store & Google Play deployment strategies',
+        'Post-launch maintenance and performance monitoring'
+      ]}
+      results={[
+        '5-star App Store ratings',
+        'Zero-crash architecture',
+        'Seamless offline capabilities'
+      ]}
+      icon={Smartphone}
+      faqs={[
+        { question: 'Should I build a native or cross-platform app?', answer: 'It depends on your goals. Cross-platform (React Native) is highly cost-effective and faster to market. Native is best for apps requiring intense graphical processing or deep hardware access. We consult with you to make the right choice.' },
+        { question: 'Do you help with App Store submission?', answer: 'Yes, we handle the entire deployment process, ensuring your app meets all Apple and Google guidelines for a smooth, rejected-free launch.' }
+      ]}
+    />
+  )
 }
