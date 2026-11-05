@@ -278,7 +278,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <SEO 
+      <SEO
         title="Task19 Technologies — Shopify & E-Commerce Development Experts"
         description="Task19 Technologies is a leading Shopify & WooCommerce development agency. We build high-performance e-commerce stores, custom Shopify apps, and digital solutions that drive revenue."
         canonical="https://www.task19.com"
@@ -291,7 +291,7 @@ export default function Home() {
           "description": "Premier digital transformation partner delivering enterprise web development, mobile apps, cloud solutions, and AI-powered innovation.",
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+91-9495147819",
+            "telephone": "+91-7012639646",
             "contactType": "customer service"
           }
         }}
@@ -301,7 +301,7 @@ export default function Home() {
       <section className="relative flex items-center justify-center overflow-hidden min-h-[80vh] bg-gradient-to-br from-gray-50 via-white to-gray-100">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-        
+
         <div className="container relative z-10 px-4 sm:px-6 mx-auto text-center mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -311,7 +311,7 @@ export default function Home() {
           >
             <span className="text-sm font-medium text-gray-700">E-Commerce & Web Development Experts</span>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -320,12 +320,12 @@ export default function Home() {
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display text-gray-900 leading-tight tracking-tight mb-6">
               Shopify, WordPress & <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">Custom Solutions</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">Custom eCommerce Solutions</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
               We build high-performance e-commerce stores, tailor-made applications, and digital experiences that drive revenue and scale your business.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/services"
@@ -342,7 +342,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Gradient Orbs for modern aesthetic */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300/20 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-[100px] pointer-events-none"></div>
@@ -415,7 +415,7 @@ export default function Home() {
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Subtle Background Accent */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent opacity-80 pointer-events-none"></div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
           {/* Header Section */}
           <div className="mb-12">
@@ -424,8 +424,8 @@ export default function Home() {
                 <span className="w-8 h-[1px] bg-blue-600"></span>
                 <span className="text-xs sm:text-sm font-semibold text-blue-600 tracking-widest uppercase">Expertise</span>
               </div>
-              <Link 
-                to="/services" 
+              <Link
+                to="/services"
                 className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
               >
                 <span className="hidden sm:inline">Explore All Services</span>
@@ -433,11 +433,11 @@ export default function Home() {
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
               Specialized Solutions
             </h2>
-            
+
             <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
               Focused technical capabilities built for growing commerce teams. We solve complex operational challenges with precision.
             </p>
@@ -461,9 +461,9 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 transition-all duration-300 shadow-sm">
                     <item.icon className="w-6 h-6" />
                   </div>
-                  
+
                   <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h5>
-                  
+
                   <p className="text-gray-600 font-light leading-relaxed">
                     {item.description}
                   </p>
@@ -554,7 +554,7 @@ export default function Home() {
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Subtle Background Accent */}
         <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-slate-50 to-transparent opacity-80 pointer-events-none"></div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
           {/* Header Section */}
           <div className="mb-12">
@@ -563,8 +563,8 @@ export default function Home() {
                 <span className="w-8 h-[1px] bg-purple-600"></span>
                 <span className="text-xs sm:text-sm font-semibold text-purple-600 tracking-widest uppercase">WordPress Expertise</span>
               </div>
-              <Link 
-                to="/services/wordpress-development" 
+              <Link
+                to="/services/wordpress-development"
                 className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
               >
                 <span className="hidden sm:inline">Explore WordPress</span>
@@ -572,11 +572,11 @@ export default function Home() {
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
               WordPress & WooCommerce
             </h2>
-            
+
             <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
               From custom theme development to complex WooCommerce setups, we build digital experiences that are flexible, powerful, and easy to manage.
             </p>
@@ -600,9 +600,9 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-purple-50 group-hover:text-purple-600 group-hover:border-purple-100 transition-all duration-300 shadow-sm">
                     <item.icon className="w-6 h-6" />
                   </div>
-                  
+
                   <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-purple-600 transition-colors">{item.title}</h5>
-                  
+
                   <p className="text-gray-600 font-light leading-relaxed">
                     {item.description}
                   </p>
@@ -617,7 +617,7 @@ export default function Home() {
       <section className="py-24 bg-slate-50 relative overflow-hidden">
         {/* Subtle Background Accent */}
         <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent opacity-80 pointer-events-none"></div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
           {/* Header Section */}
           <div className="mb-12">
@@ -626,8 +626,8 @@ export default function Home() {
                 <span className="w-8 h-[1px] bg-emerald-600"></span>
                 <span className="text-xs sm:text-sm font-semibold text-emerald-600 tracking-widest uppercase">Shopify Expertise</span>
               </div>
-              <Link 
-                to="/services/shopify-development" 
+              <Link
+                to="/services/shopify-development"
                 className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
               >
                 <span className="hidden sm:inline">Explore Shopify</span>
@@ -635,11 +635,11 @@ export default function Home() {
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
               Shopify Development
             </h2>
-            
+
             <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
               We build and grow Shopify stores that look amazing, load fast, and make selling online completely effortless for your team.
             </p>
@@ -663,9 +663,9 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-100 transition-all duration-300 shadow-sm">
                     <item.icon className="w-6 h-6" />
                   </div>
-                  
+
                   <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-emerald-600 transition-colors">{item.title}</h5>
-                  
+
                   <p className="text-gray-600 font-light leading-relaxed">
                     {item.description}
                   </p>
@@ -680,7 +680,7 @@ export default function Home() {
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Subtle Background Accent */}
         <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-slate-50 to-transparent opacity-80 pointer-events-none"></div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
           {/* Header Section */}
           <div className="mb-12">
@@ -689,8 +689,8 @@ export default function Home() {
                 <span className="w-8 h-[1px] bg-indigo-600"></span>
                 <span className="text-xs sm:text-sm font-semibold text-indigo-600 tracking-widest uppercase">Custom Dev Expertise</span>
               </div>
-              <Link 
-                to="/services/custom-development" 
+              <Link
+                to="/services/custom-development"
                 className="inline-flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-gray-900 text-white font-medium text-xs sm:text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-lg group flex-shrink-0"
               >
                 <span className="hidden sm:inline">Explore Custom Dev</span>
@@ -698,11 +698,11 @@ export default function Home() {
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-4">
               Custom Development
             </h2>
-            
+
             <p className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl">
               From complex web platforms to native mobile apps, we engineer robust, fully custom solutions tailored exactly to your business needs.
             </p>
@@ -726,9 +726,9 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-700 mb-8 group-hover:scale-110 group-hover:bg-indigo-50 group-hover:text-indigo-600 group-hover:border-indigo-100 transition-all duration-300 shadow-sm">
                     <item.icon className="w-6 h-6" />
                   </div>
-                  
+
                   <h5 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-indigo-600 transition-colors">{item.title}</h5>
-                  
+
                   <p className="text-gray-600 font-light leading-relaxed">
                     {item.description}
                   </p>
@@ -823,7 +823,7 @@ export default function Home() {
       <section className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
           <div className="flex flex-col gap-12 max-w-4xl mx-auto">
-            
+
             {/* Centered Header */}
             <div className="text-center">
               <div className="inline-flex items-center justify-center gap-2 mb-4">
@@ -831,28 +831,28 @@ export default function Home() {
                 <span className="text-sm font-semibold text-amber-500 tracking-widest uppercase">Why Choose Us</span>
                 <span className="w-8 h-[1px] bg-amber-500"></span>
               </div>
-              
+
               <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight tracking-tight mb-6">
-                Why Partner With <br className="hidden sm:block"/> Task19 Technologies
+                Why Partner With <br className="hidden sm:block" /> Task19 Technologies
               </h2>
-              
+
               <p className="text-lg text-gray-600 font-light leading-relaxed mx-auto max-w-2xl">
                 We don't just build websites; we engineer digital growth engines. Our approach combines deep technical expertise with a relentless focus on your business goals.
               </p>
             </div>
 
 
-            
+
             <div className="text-center mt-4">
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gray-900 text-white font-medium text-sm transition-transform hover:scale-105 hover:bg-black hover:shadow-xl group"
               >
                 <span>Discuss Your Project</span>
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-            
+
           </div>
         </div>
       </section>
