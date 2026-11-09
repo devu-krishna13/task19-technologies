@@ -46,8 +46,9 @@ async function prerender() {
   let browser;
   try {
     browser = await puppeteer.launch({ 
-      headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      headless: true,
+      pipe: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
     });
   } catch (launchErr) {
     console.warn('Could not launch puppeteer, skipping prerender:', launchErr.message);

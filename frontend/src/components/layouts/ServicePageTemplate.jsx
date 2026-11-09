@@ -26,9 +26,9 @@ export default function ServicePageTemplate({
   return (
     <>
       <SEO 
-        title="{metaTitle}"
-        description=""
-        canonical="https://www.task19.com/servicepagetemplate"
+        title={metaTitle}
+        description={heroDesc || ''}
+        canonical="https://www.task19.com/services"
       />
 
       {/* ── Page Hero ── */}

@@ -11,11 +11,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   build: {
+    emptyOutDir: false,
+    copyPublicDir: false,
     rollupOptions: {
       output: {
         manualChunks: {

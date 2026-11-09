@@ -22,24 +22,23 @@ export default function BlogPost() {
     getFromIDB('blogs_data').then(cachedData => {
       if (cachedData) {
         processPostData(cachedData);
-        return;
       }
+    }).catch(() => {});
 
-      fetch(API_URL, {
-        headers: {
-          'Accept': 'application/json',
-          'X-API-KEY': API_KEY
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        saveToIDB('blogs_data', data).catch(err => console.warn('Could not save to IDB', err));
-        processPostData(data);
-      })
-      .catch(err => {
-        console.error(err)
-        setLoading(false)
-      })
+    fetch(API_URL, {
+      headers: {
+        'Accept': 'application/json',
+        'X-API-KEY': API_KEY
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      saveToIDB('blogs_data', data).catch(err => console.warn('Could not save to IDB', err));
+      processPostData(data);
+    })
+    .catch(err => {
+      console.error(err)
+      setLoading(false)
     });
   }, [slug])
 
@@ -113,9 +112,9 @@ export default function BlogPost() {
   return (
     <>
       <SEO 
-        title="{post.title} — Task19 Technologies Blog"
-        description=""
-        canonical="https://www.task19.com/blogpost"
+        title={`${post.title} — Task19 Technologies Blog`}
+        description={post.excerpt || `${post.title} - Read the full article on Task19 Technologies.`}
+        canonical={`https://www.task19.com/blog/${slug}`}
       />
 
       <section className="pt-40 pb-24 section-dark bg-grid-pattern">

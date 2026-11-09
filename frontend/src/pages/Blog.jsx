@@ -9,6 +9,20 @@ import { getFromIDB, saveToIDB } from '../utils/idb'
 const API_KEY = 'pk_ucyZsOgpafCiGYM4oUblYWMRaQKw3LSW';
 const API_URL = 'https://blogs.task19.com/api/v1/projects/blogs';
 
+// Helper to strip HTML and decoded entities to get clean text for card excerpts
+const stripHtml = (html) => {
+  if (!html) return '';
+  return html
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/<[^>]*>?/gm, '')
+    .replace(/&nbsp;/g, ' ')
+    .trim();
+};
+
 // Helper to transform API blog data to match our frontend format
 const transformBlog = (apiBlog) => {
   const firstSectionWithText = apiBlog.sections?.find(s => s.text_content) || {};
@@ -19,13 +33,17 @@ const transformBlog = (apiBlog) => {
   
   const slug = apiBlog.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
   const dateObj = new Date(apiBlog.created_at);
+
+  const cleanExcerpt = apiBlog.excerpt 
+    ? stripHtml(apiBlog.excerpt)
+    : (firstSectionWithText.text_content ? stripHtml(firstSectionWithText.text_content).substring(0, 150) + '...' : 'Read this amazing article on our blog.');
   
   return {
     ...apiBlog,
     title: apiBlog.title,
     slug: slug,
     image: image,
-    excerpt: apiBlog.excerpt || (firstSectionWithText.text_content ? firstSectionWithText.text_content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim().substring(0, 150) + '...' : 'Read this amazing article on our blog.'),
+    excerpt: cleanExcerpt,
     category: apiBlog.category?.name || 'Latest Updates',
     date: dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
     readTime: '5 min read',
@@ -40,28 +58,29 @@ export default function Blog() {
   const [itemsToShow, setItemsToShow] = useState(9)
 
   useEffect(() => {
+    // 1. Show cached data immediately if available (fast initial render)
     getFromIDB('blogs_data').then(cachedData => {
       if (cachedData) {
         processBlogData(cachedData);
-        return;
       }
+    }).catch(() => {});
 
-      fetch(API_URL, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'X-API-KEY': API_KEY
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        saveToIDB('blogs_data', data).catch(err => console.warn('Could not save to IDB', err));
-        processBlogData(data);
-      })
-      .catch(err => {
-        console.error(err)
-        setLoading(false)
-      })
+    // 2. Always fetch fresh live data in background to update immediately
+    fetch(API_URL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'X-API-KEY': API_KEY
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      saveToIDB('blogs_data', data).catch(err => console.warn('Could not save to IDB', err));
+      processBlogData(data);
+    })
+    .catch(err => {
+      console.error(err)
+      setLoading(false)
     });
   }, [])
 

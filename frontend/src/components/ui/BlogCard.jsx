@@ -34,10 +34,10 @@ export default function BlogCard({ title, excerpt, category, date, readTime, ima
               {readTime || '5 min read'}
             </span>
           </div>
-          <h3 className="text-[20px] md:text-[22px] font-bold text-gray-900 leading-[1.35] mb-4 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+          <h3 className="!text-[17px] md:!text-[18px] font-bold text-gray-900 leading-[1.35] mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2" style={{ fontSize: '18px' }}>
             {title}
           </h3>
-          <p className="text-[15px] text-gray-600 leading-relaxed mb-8 line-clamp-3 flex-1">
+          <p className="text-[14px] text-gray-600 leading-relaxed mb-6 line-clamp-3 flex-1">
             {excerpt}
           </p>
           <div className="flex items-center gap-2 mt-auto text-[13px] font-bold uppercase tracking-wide text-gray-900 group-hover:text-blue-600 transition-colors duration-300">

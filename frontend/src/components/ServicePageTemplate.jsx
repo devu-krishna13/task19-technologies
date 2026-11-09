@@ -16,9 +16,9 @@ export default function ServicePageTemplate({ service }) {
   return (
     <>
       <SEO 
-        title="{service.title} — Task19 Technologies"
-        description=""
-        canonical="https://www.task19.com/servicepagetemplate"
+        title={`${service.title} — Task19 Technologies`}
+        description={service.description || ''}
+        canonical={`https://www.task19.com/services/${slug || ''}`}
       />
 
       {/* Hero */}

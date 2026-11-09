@@ -27,6 +27,7 @@ const staticPages = [
 
 async function generateSitemap() {
   console.log('Generating sitemap...');
+  let blogs = [];
   try {
     const response = await fetch(API_URL, {
       method: 'GET',
@@ -36,12 +37,19 @@ async function generateSitemap() {
       }
     });
 
-    const data = await response.json();
-    let blogs = [];
-    if (data && data.blogs) {
-      blogs = data.blogs;
+    if (response.ok) {
+      const data = await response.json();
+      if (data && data.blogs) {
+        blogs = data.blogs;
+      }
+    } else {
+      console.warn(`Could not fetch dynamic blogs (HTTP ${response.status}), proceeding with static pages.`);
     }
+  } catch (apiErr) {
+    console.warn(`Could not connect to ${API_URL} (${apiErr.message}). Generating sitemap with static pages.`);
+  }
 
+  try {
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n`;
     sitemap += `  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n`;
@@ -78,13 +86,21 @@ async function generateSitemap() {
 
     // Write to both public directory (for dev) and dist directory (for prod if it exists)
     const publicPath = path.resolve(__dirname, 'public', 'sitemap.xml');
-    fs.writeFileSync(publicPath, sitemap);
-    console.log(`Sitemap written to ${publicPath}`);
+    try {
+      fs.writeFileSync(publicPath, sitemap);
+      console.log(`Sitemap written to ${publicPath}`);
+    } catch (writeErr) {
+      console.warn(`Could not write to ${publicPath} (${writeErr.message})`);
+    }
 
     const distPath = path.resolve(__dirname, 'dist', 'sitemap.xml');
     if (fs.existsSync(path.resolve(__dirname, 'dist'))) {
-      fs.writeFileSync(distPath, sitemap);
-      console.log(`Sitemap written to ${distPath}`);
+      try {
+        fs.writeFileSync(distPath, sitemap);
+        console.log(`Sitemap written to ${distPath}`);
+      } catch (distErr) {
+        console.warn(`Could not write to ${distPath} (${distErr.message})`);
+      }
     }
     
     console.log('Sitemap generation complete!');
